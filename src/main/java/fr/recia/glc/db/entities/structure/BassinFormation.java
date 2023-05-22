@@ -32,7 +32,9 @@ import jakarta.persistence.UniqueConstraint;
  * 10 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "code", "source" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"code", "source"})
+})
 public class BassinFormation extends AbstractSimpleEntity {
 
 	/** Identifiant de sérialisation. */

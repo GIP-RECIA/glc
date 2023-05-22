@@ -72,10 +72,12 @@ import java.util.Set;
 @SuppressWarnings("serial")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "apersonne", uniqueConstraints = { @UniqueConstraint(columnNames = { "cle", "source" }) }, indexes = {
-  @Index(name = "APersCleJointure", columnList = "cle,source"),
+@Table(name = "apersonne", indexes = {
+  @Index(name = "APersCleJointure", columnList = "cle, source"),
   @Index(name = "uid_index", columnList = "uid"),
   @Index(name = "uuid_index", columnList = "uuid")
+}, uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"cle", "source"})
 })
 public abstract class APersonne extends AbstractEntity {
 

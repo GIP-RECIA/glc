@@ -33,7 +33,9 @@ import jakarta.persistence.UniqueConstraint;
  * @author GIP RECIA - Gribonvald Julien 6 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "code", "source" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"code", "source"})
+})
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Discipline extends AbstractSimpleEntity {
 

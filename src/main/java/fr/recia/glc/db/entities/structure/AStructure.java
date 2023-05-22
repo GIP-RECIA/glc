@@ -67,7 +67,11 @@ import java.util.Set;
 @SuppressWarnings("serial")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "astructure", uniqueConstraints = { @UniqueConstraint(columnNames = { "cle", "source" }) }, indexes = { @Index(name = "AStructCleJointure", columnList = "cle,source") })
+@Table(name = "astructure", indexes = {
+  @Index(name = "AStructCleJointure", columnList = "cle, source")
+}, uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"cle", "source"})
+})
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public abstract class AStructure extends AbstractEntity {
 

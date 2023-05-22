@@ -33,7 +33,9 @@ import java.util.Set;
  * @author GIP RECIA - Gribonvald Julien 10 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "libelleService", "source" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"libelleService", "source"})
+})
 public class TypeService extends AbstractSimpleEntity {
 
 	/** Identifiant de sérialisation. */

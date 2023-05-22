@@ -33,7 +33,9 @@ import jakarta.persistence.UniqueConstraint;
  * 12 juin 08
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"l", "c", "xx" }))
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"l", "c", "xx"})
+})
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class GenUID extends AbstractEntity {
 

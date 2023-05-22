@@ -19,9 +19,18 @@ package fr.recia.glc.db.entities.relation;
  * @author GIP RECIA - Julien Gribonvald
  */
 public enum LienParente {
-
-	Pere(20, 1), Mere(10, 2), Tuteur(50, 3), MembreFamille(39, 4), ASE(51, 5), AutreLien(90, 6), EleveLuiMeme(70, 7), Fratrie(37, 37), Ascendant(38,
-			38), Educateur(41, 41), AssistantFamilial(42, 42), GardeEnfant(43, 43);
+  Pere(20, 1),
+  Mere(10, 2),
+  Tuteur(50, 3),
+  MembreFamille(39, 4),
+  ASE(51, 5),
+  AutreLien(90, 6),
+  EleveLuiMeme(70, 7),
+  Fratrie(37, 37),
+  Ascendant(38, 38),
+  Educateur(41, 41),
+  AssistantFamilial(42, 42),
+  GardeEnfant(43, 43);
 
 	private int code;
 
@@ -74,8 +83,8 @@ public enum LienParente {
 		} else if (code == LienParente.GardeEnfant.getCode() || code == LienParente.GardeEnfant.getOldCode()) {
 			return LienParente.GardeEnfant;
 		} else {
-			throw new IllegalArgumentException("Value of '" + code + "' doesn't match any code to enum " + LienParente.class.getCanonicalName()
-					+ " in defined values " + ResponsableLegal.values());
+			throw new IllegalArgumentException("Value of '" + code + "' doesn't match any code to enum " +
+        LienParente.class.getCanonicalName() + " in defined values " + ResponsableLegal.values());
 		}
 	}
 

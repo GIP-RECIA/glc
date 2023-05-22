@@ -35,7 +35,9 @@ import java.util.Date;
  * 9 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "code", "matiere", "source" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"code", "matiere", "source"})
+})
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Enseignement extends AbstractSimpleEntity {
 

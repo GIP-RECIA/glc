@@ -36,7 +36,9 @@ import java.util.Set;
  * 11 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "libelle", "sigle" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"libelle", "sigle"})
+})
 public class TypeStructure extends AbstractSimpleEntity {
 
 	/** Identifiant de sérialisation. */

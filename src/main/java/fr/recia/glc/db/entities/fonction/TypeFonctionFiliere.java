@@ -33,7 +33,9 @@ import jakarta.persistence.UniqueConstraint;
  * @author GIP RECIA - Gribonvald Julien 10 juin 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "codefiliere", "source" }) })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"codefiliere", "source"})
+})
 public class TypeFonctionFiliere extends AbstractSimpleEntity {
 
 	/** Identifiant de sérialisation. */

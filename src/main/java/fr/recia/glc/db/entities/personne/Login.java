@@ -35,7 +35,10 @@ import jakarta.persistence.UniqueConstraint;
  * 28 juil. 08
  */
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = "APERSONNE_LOGIN"), @UniqueConstraint(columnNames = "APERSONNE_ALIAS") })
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"APERSONNE_LOGIN"}),
+  @UniqueConstraint(columnNames = {"APERSONNE_ALIAS"})
+})
 public class Login extends AbstractEntity {
 
 	/** Identifiant de serialisation.*/

@@ -45,7 +45,10 @@ import java.util.Set;
  * 11 juin 08
  */
 @Entity
-@Table(indexes = {@Index(name = "sconetId", columnList = "sconetId"), @Index(name = "INE", columnList = "INE")})
+@Table(indexes = {
+  @Index(name = "sconetId", columnList = "sconetId"),
+  @Index(name = "INE", columnList = "INE")
+})
 public class Eleve extends APersonne {
 
 	/** Identifiant de sérialisation. */

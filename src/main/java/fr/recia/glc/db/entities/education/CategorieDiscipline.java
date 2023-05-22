@@ -32,9 +32,9 @@ import jakarta.persistence.UniqueConstraint;
  * 9 juin 08
  */
 @Entity
-@Table(
-		uniqueConstraints = { @UniqueConstraint(columnNames = { "code", "source" }) }
-	)
+@Table(uniqueConstraints = {
+  @UniqueConstraint(columnNames = {"code", "source"})
+})
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class CategorieDiscipline extends AbstractSimpleEntity {
 
