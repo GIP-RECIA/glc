@@ -163,7 +163,7 @@ public class Enseignement extends AbstractSimpleEntity {
 	 * Getter of member codeRattach.
 	 * @return <code>String</code> le membre codeRattach
 	 */
-	public final String getCodeRattach() {
+	public String getCodeRattach() {
 		return codeRattach;
 	}
 
@@ -171,7 +171,7 @@ public class Enseignement extends AbstractSimpleEntity {
 	 * Setter of member codeRattach.
 	 * @param codeRattach la nouvelle valeur du membre codeRattach
 	 */
-	public final void setCodeRattach(final String codeRattach) {
+	public void setCodeRattach(final String codeRattach) {
 		this.codeRattach = codeRattach;
 	}
 

@@ -177,14 +177,14 @@ public class PersRelRelation extends AMappingRelation {
 	/**
 	 * @return the adresse
 	 */
-	public final boolean isAdresse() {
+	public boolean isAdresse() {
 		return adresse;
 	}
 
 	/**
 	 * @param adresse the adresse to set
 	 */
-	public final void setAdresse(final boolean adresse) {
+	public void setAdresse(final boolean adresse) {
 		this.adresse = adresse;
 	}
 
