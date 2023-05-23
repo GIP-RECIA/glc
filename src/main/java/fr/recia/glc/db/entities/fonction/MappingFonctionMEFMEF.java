@@ -247,12 +247,10 @@ public class MappingFonctionMEFMEF implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("MappingFonctionMEFMEF [");
-		sb.append(this.source);
-		sb.append(", ");
-		sb.append(this.mef.toString());
-		sb.append("]");
-		return sb.toString();
+    return "MappingFonctionMEFMEF [" +
+      this.source + ", " +
+      this.mef.toString() +
+      "]";
 	}
 
 }

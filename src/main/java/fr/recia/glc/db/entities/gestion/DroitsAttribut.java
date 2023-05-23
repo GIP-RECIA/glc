@@ -227,26 +227,17 @@ public class DroitsAttribut extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("DroitAttribut [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.cle);
-		sb.append(", ");
-		sb.append(this.ajouter);
-		sb.append(", ");
-		sb.append(this.visible);
-		sb.append(", ");
-		sb.append(this.modifier);
-		sb.append(", ");
-		sb.append(this.supprimer);
-		sb.append(", ");
-		sb.append(this.collectif);
-		sb.append(", ");
-		sb.append(this.structure);
-		sb.append(", ");
-		sb.append(this.roleApplicatif);
-		sb.append("]");
-		return sb.toString();
+    return "DroitAttribut [" +
+      super.toString() + ", " +
+      this.cle + ", " +
+      this.ajouter + ", " +
+      this.visible + ", " +
+      this.modifier + ", " +
+      this.supprimer + ", " +
+      this.collectif + ", " +
+      this.structure + ", " +
+      this.roleApplicatif +
+      "]";
 	}
 
 	/**

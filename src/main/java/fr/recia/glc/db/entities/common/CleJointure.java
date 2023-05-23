@@ -103,12 +103,10 @@ public class CleJointure implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("CleJointure [");
-		sb.append(this.source);
-		sb.append(", ");
-		sb.append(this.cle);
-		sb.append("]");
-		return sb.toString();
+    return "CleJointure [" +
+      this.source + ", " +
+      this.cle +
+      "]";
 	}
 
 	/**

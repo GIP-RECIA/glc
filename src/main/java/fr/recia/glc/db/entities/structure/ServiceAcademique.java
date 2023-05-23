@@ -106,14 +106,11 @@ public class ServiceAcademique extends AStructure {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("ServiceAcademique [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.uai);
-		sb.append(", ");
-		sb.append(this.academie);
-		sb.append("]");
-		return sb.toString();
+    return "ServiceAcademique [" +
+      super.toString() + ", " +
+      this.uai + ", " +
+      this.academie +
+      "]";
 	}
 
 	/**

@@ -226,26 +226,17 @@ public class DroitsCategorie extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("DroitCategorie [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.changerPassword);
-		sb.append(", ");
-		sb.append(this.changerLogin);
-		sb.append(", ");
-		sb.append(this.changerIdentite);
-		sb.append(", ");
-		sb.append(this.modifierFiche);
-		sb.append(", ");
-		sb.append(this.voirFiche);
-		sb.append(", ");
-		sb.append(this.modeleLogin);
-		sb.append(", ");
-		sb.append(this.roleApplicatif);
-		sb.append(", ");
-		sb.append(this.structure);
-		sb.append("]");
-		return sb.toString();
+    return "DroitCategorie [" +
+      super.toString() + ", " +
+      this.changerPassword + ", " +
+      this.changerLogin + ", " +
+      this.changerIdentite + ", " +
+      this.modifierFiche + ", " +
+      this.voirFiche + ", " +
+      this.modeleLogin + ", " +
+      this.roleApplicatif + ", " +
+      this.structure +
+      "]";
 	}
 
 	/**

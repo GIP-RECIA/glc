@@ -156,12 +156,10 @@ public class Login extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Login [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.nom);
-		sb.append("]");
-		return sb.toString();
+    return "Login [" +
+      super.toString() + ", " +
+      this.nom +
+      "]";
 	}
 
 	/**

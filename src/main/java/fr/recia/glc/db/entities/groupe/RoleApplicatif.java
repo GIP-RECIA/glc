@@ -124,12 +124,10 @@ public class RoleApplicatif extends AGroupeOfAPersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("RoleApplicatif [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.profils);
-		sb.append("]");
-		return sb.toString();
+    return "RoleApplicatif [" +
+      super.toString() + ", " +
+      this.profils +
+      "]";
 	}
 
 	/**

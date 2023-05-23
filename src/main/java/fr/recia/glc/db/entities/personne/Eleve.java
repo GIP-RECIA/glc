@@ -285,30 +285,19 @@ public class Eleve extends APersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Eleve [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.sconetId);
-		sb.append(", ");
-		sb.append(this.INE);
-		sb.append(", ");
-		sb.append(this.boursier);
-		sb.append(", ");
-		sb.append(this.majeur);
-		sb.append(", ");
-		sb.append(this.majeurAnticipe);
-		sb.append(", ");
-		sb.append(this.regime);
-		sb.append(", ");
-		sb.append(this.statut);
-		sb.append(", ");
-		sb.append(this.transport);
-		sb.append(", ");
-		sb.append(this.mef);
-		sb.append(", ");
-		sb.append(this.enseignements);
-		sb.append("]");
-		return sb.toString();
+    return "Eleve [" +
+      super.toString() + ", " +
+      this.sconetId + ", " +
+      this.INE + ", " +
+      this.boursier + ", " +
+      this.majeur + ", " +
+      this.majeurAnticipe + ", " +
+      this.regime + ", " +
+      this.statut + ", " +
+      this.transport + ", " +
+      this.mef + ", " +
+      this.enseignements +
+      "]";
 	}
 
 }

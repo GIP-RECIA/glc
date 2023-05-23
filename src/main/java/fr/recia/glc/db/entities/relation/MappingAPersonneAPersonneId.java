@@ -155,15 +155,11 @@ public class MappingAPersonneAPersonneId implements Serializable {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MappingAPersonneAPersonneId [personne1=");
-		builder.append(personne1);
-		builder.append(", personne2=");
-		builder.append(personne2);
-		builder.append(", categoryRelation=");
-		builder.append(categorie);
-		builder.append("]");
-		return builder.toString();
+    return "MappingAPersonneAPersonneId [personne1=" +
+      this.personne1 + ", personne2=" +
+      this.personne2 + ", categoryRelation=" +
+      this.categorie +
+      "]";
 	}
 
 }

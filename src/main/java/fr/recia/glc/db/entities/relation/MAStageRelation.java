@@ -60,11 +60,7 @@ public class MAStageRelation extends AStageRelation {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MAStageRelation [");
-		builder.append(super.toString());
-		builder.append("]");
-		return builder.toString();
+    return "MAStageRelation [" + super.toString() + "]";
 	}
 
 }

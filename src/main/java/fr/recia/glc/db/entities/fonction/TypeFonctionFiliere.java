@@ -135,16 +135,12 @@ public class TypeFonctionFiliere extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("TypeFonctionFiliere [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.codeFiliere);
-		sb.append(", ");
-		sb.append(this.libelleFiliere);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "TypeFonctionFiliere [" +
+      super.toString() + ", " +
+      this.codeFiliere + ", " +
+      this.libelleFiliere + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

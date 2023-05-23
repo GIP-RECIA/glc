@@ -120,12 +120,10 @@ public class CentreInteret extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("CentreInteret [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.libelle);
-		sb.append("]");
-		return sb.toString();
+    return "CentreInteret [" +
+      super.toString() + ", " +
+      this.libelle +
+      "]";
 	}
 
 	/**

@@ -234,17 +234,12 @@ public abstract class AMappingRelation implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MappingAPersonneAPersonne [source=");
-		builder.append(source);
-		builder.append(", categoryRelation=");
-		builder.append(this.pk.getCategorie());
-		builder.append(", personne1=");
-		builder.append(this.getPersonne1().getId());
-		builder.append(", personne2=");
-		builder.append(this.getPersonne2().getId());
-		builder.append("]");
-		return builder.toString();
+    return "MappingAPersonneAPersonne [source=" +
+      source + ", categoryRelation=" +
+      this.pk.getCategorie() + ", personne1=" +
+      this.getPersonne1().getId() + ", personne2=" +
+      this.getPersonne2().getId() +
+      "]";
 	}
 
 }

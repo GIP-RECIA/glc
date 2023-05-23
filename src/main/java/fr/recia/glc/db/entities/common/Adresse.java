@@ -158,18 +158,13 @@ public class Adresse implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Adresse [");
-		sb.append(this.adresse);
-		sb.append(", ");
-		sb.append(this.codePostal);
-		sb.append(", ");
-		sb.append(this.ville);
-		sb.append(", ");
-		sb.append(this.boitePostale);
-		sb.append(", ");
-		sb.append(this.pays);
-		sb.append("]");
-		return sb.toString();
+    return "Adresse [" +
+      this.adresse + ", " +
+      this.codePostal + ", " +
+      this.ville + ", " +
+      this.boitePostale + ", " +
+      this.pays +
+      "]";
 	}
 
 	/**

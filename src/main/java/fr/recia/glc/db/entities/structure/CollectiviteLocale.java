@@ -86,12 +86,10 @@ public class CollectiviteLocale extends AStructure {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("CollectiviteLocale [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.lieuGeographique);
-		sb.append("]");
-		return sb.toString();
+    return "CollectiviteLocale [" +
+      super.toString() + ", " +
+      this.lieuGeographique +
+      "]";
 	}
 
 	/**

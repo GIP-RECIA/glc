@@ -284,23 +284,15 @@ public class PersRelRelation extends AMappingRelation {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("PersRelRelation [lienParente=");
-		builder.append(lienParente);
-		builder.append(", responsableFinancier=");
-		builder.append(responsableFinancier);
-		builder.append(", responsableLegal=");
-		builder.append(responsableLegal);
-		builder.append(", contact=");
-		builder.append(contact);
-		builder.append(", paiement=");
-		builder.append(paiement);
-		builder.append(", adresse=");
-		builder.append(adresse);
-		builder.append(", toString()=");
-		builder.append(super.toString());
-		builder.append("]");
-		return builder.toString();
+    return "PersRelRelation [lienParente=" +
+      this.lienParente + ", responsableFinancier=" +
+      this.responsableFinancier + ", responsableLegal=" +
+      this.responsableLegal + ", contact=" +
+      this.contact + ", paiement=" +
+      this.paiement + ", adresse=" +
+      this.adresse + ", toString()=" +
+      super.toString() +
+      "]";
 	}
 
 }

@@ -154,16 +154,12 @@ public class Fonction extends AFonction {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Fonction [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.disciplinePoste);
-		sb.append(", ");
-		sb.append(this.filiere);
-		sb.append(", ");
-		sb.append(this.structure);
-		sb.append("]");
-		return sb.toString();
+    return "Fonction [" +
+      super.toString() + ", " +
+      this.disciplinePoste + ", " +
+      this.filiere + ", " +
+      this.structure +
+      "]";
 	}
 
 	/**

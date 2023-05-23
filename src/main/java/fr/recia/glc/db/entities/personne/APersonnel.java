@@ -117,14 +117,11 @@ public abstract class APersonnel extends APersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("APersonnel [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.categorieDisciplines);
-		sb.append(", ");
-		sb.append(this.services);
-		sb.append("]");
-		return sb.toString();
+    return "APersonnel [" +
+      super.toString() + ", " +
+      this.categorieDisciplines + ", " +
+      this.services +
+      "]";
 	}
 
 }

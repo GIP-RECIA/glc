@@ -171,12 +171,10 @@ public class VersionTable extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("VersionTable[");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.tableName);
-		sb.append("]");
-		return sb.toString();
+    return "VersionTable[" +
+      super.toString() + ", " +
+      this.tableName +
+      "]";
 	}
 
 }

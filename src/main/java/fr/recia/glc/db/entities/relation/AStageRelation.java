@@ -85,13 +85,10 @@ public abstract class AStageRelation extends AMappingRelation {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("StageRelation [");
-		builder.append(type);
-		builder.append(", ");
-		builder.append(super.toString());
-		builder.append("]");
-		return builder.toString();
+    return "StageRelation [" +
+      type + ", " +
+      super.toString() +
+      "]";
 	}
 
 	/* (non-Javadoc)

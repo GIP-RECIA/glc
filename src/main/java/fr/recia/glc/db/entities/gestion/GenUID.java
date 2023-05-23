@@ -146,18 +146,13 @@ public class GenUID extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("GenUID [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.l);
-		sb.append(", ");
-		sb.append(this.xx);
-		sb.append(", ");
-		sb.append(this.c);
-		sb.append(", ");
-		sb.append(this.iiii);
-		sb.append("]");
-		return sb.toString();
+    return "GenUID [" +
+      super.toString() + ", " +
+      this.l + ", " +
+      this.xx + ", " +
+      this.c + ", " +
+      this.iiii +
+      "]";
 	}
 
 	/**

@@ -577,60 +577,39 @@ public abstract class AStructure extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("AStructure [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.etat);
-		sb.append(", ");
-		sb.append(this.etatAlim);
-		sb.append(", ");
-		sb.append(this.cleJointure);
-		sb.append(", ");
-		sb.append(this.categorie);
-		sb.append(", ");
-		sb.append(this.nom);
-		sb.append(", ");
-		sb.append(this.siren);
-		sb.append(", ");
-		sb.append(this.adresse);
-		if (this.contact != null) {
-			sb.append(", Contact[");
-			sb.append(this.contact.getId());
-			sb.append(", ");
-			sb.append(this.contact.getCleJointure());
-			sb.append(", ");
-			sb.append(this.contact.getDisplayName());
-			sb.append("], ");
-		}
-		sb.append(this.mails);
-		if (this.responsable != null) {
-			sb.append(", Responsable[");
-			sb.append(this.responsable.getId());
-			sb.append(", ");
-			sb.append(this.responsable.getCleJointure());
-			sb.append(", ");
-			sb.append(this.responsable.getDisplayName());
-			sb.append("], ");
-		}
-		sb.append(this.type);
-		sb.append(", ");
-		sb.append(this.telephones);
-		sb.append(", ");
-		sb.append(this.siteWeb);
-		//sb.append(", ");
-		//sb.append(this.modeleLogin);
-		sb.append(", ");
-		sb.append(logo);
-		sb.append(", ");
-		sb.append(this.abonnement);
-		//sb.append(", ");
-		//sb.append(this.centresInterets);
-		sb.append(", ");
-		sb.append(this.incertains);
-		//sb.append(", ");
-		//sb.append(this.profils);
-		sb.append("]");
-		return sb.toString();
+    String contact = this.contact != null ? ", Contact[" +
+      this.contact.getId() + ", " +
+      this.contact.getCleJointure() + ", " +
+      this.contact.getDisplayName() +
+      "], " : "";
+    String responsable = this.responsable != null ? ", Responsable[" +
+      this.responsable.getId() + ", " +
+      this.responsable.getCleJointure() + ", " +
+      this.responsable.getDisplayName() +
+      "], " : "";
+
+    return "AStructure [" +
+      super.toString() + ", " +
+      this.etat + ", " +
+      this.etatAlim + ", " +
+      this.cleJointure + ", " +
+      this.categorie + ", " +
+      this.nom + ", " +
+      this.siren + ", " +
+      this.adresse + ", " +
+      contact +
+      this.mails + ", " +
+      responsable +
+      this.type + ", " +
+      this.telephones + ", " +
+      this.siteWeb + ", " +
+      // this.modeleLogin + ", " +
+      this.logo + ", " +
+      this.abonnement + ", " +
+      // this.centresInterets + ", " +
+      this.incertains + ", " +
+      // this.profils
+      "]";
 	}
 
 	/**

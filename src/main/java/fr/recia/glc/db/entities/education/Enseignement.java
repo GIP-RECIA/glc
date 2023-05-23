@@ -182,20 +182,14 @@ public class Enseignement extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Enseignement [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.code);
-		sb.append(", ");
-		sb.append(this.matiere);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append(", ");
-		sb.append(this.codeRattach);
-		sb.append(", ");
-		sb.append(this.anneeScolaire);
-		sb.append("]");
-		return sb.toString();
+    return "Enseignement [" +
+      super.toString() + ", " +
+      this.code + ", " +
+      this.matiere + ", " +
+      this.source + ", " +
+      this.codeRattach + ", " +
+      this.anneeScolaire +
+      "]";
 	}
 
 	/**

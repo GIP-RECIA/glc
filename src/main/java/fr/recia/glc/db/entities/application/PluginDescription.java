@@ -157,18 +157,13 @@ public class PluginDescription extends Application {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Plugin [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.nomClass);
-		sb.append(", ");
-		sb.append(this.application.toString());
-		sb.append(", ");
-		sb.append(this.nomIni);
-		sb.append(", ");
-		sb.append(this.nomPlugin);
-		sb.append("]");
-		return sb.toString();
+    return "Plugin [" +
+      super.toString() + ", " +
+      this.nomClass + ", " +
+      this.application.toString() + ", " +
+      this.nomIni + ", " +
+      this.nomPlugin +
+      "]";
 	}
 
 	/**

@@ -96,10 +96,7 @@ public class PersonneRelationEleve extends APersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("PersonneRelationEleve [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "PersonneRelationEleve [" + super.toString() + "]";
 	}
 
 }

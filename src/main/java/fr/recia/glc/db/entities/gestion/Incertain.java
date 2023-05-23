@@ -276,40 +276,27 @@ public class Incertain extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Incertain [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.attribut);
-		sb.append(", ");
-		sb.append(this.obligatoire);
-		sb.append(", ");
-		sb.append(this.value);
-		sb.append(", ");
-		sb.append(this.texte);
-		sb.append(", ");
-		sb.append(this.dateCreation);
-		if (this.incertainPers != null && this.incertainPers.getCleJointure() != null) {
-			sb.append(", ");
-			sb.append(this.incertainPers.getId());
-			sb.append(", ");
-			sb.append(this.incertainPers.getCategorie());
-			sb.append(", ");
-			sb.append(this.incertainPers.getCleJointure().getSource());
-			sb.append(", ");
-			sb.append(this.incertainPers.getCleJointure().getCle());
-		}
-		if (this.incertainStruct != null && this.incertainStruct.getCleJointure() != null) {
-			sb.append(", ");
-			sb.append(this.incertainStruct.getId());
-			sb.append(", ");
-			sb.append(this.incertainStruct.getCategorie());
-			sb.append(", ");
-			sb.append(this.incertainStruct.getCleJointure().getSource());
-			sb.append(", ");
-			sb.append(this.incertainStruct.getCleJointure().getCle());
-		}
-		sb.append("]");
-		return sb.toString();
+    String incertainPers = this.incertainPers != null && this.incertainPers.getCleJointure() != null ? ", " +
+      this.incertainPers.getId() + ", " +
+      this.incertainPers.getCategorie() + ", " +
+      this.incertainPers.getCleJointure().getSource() + ", " +
+      this.incertainPers.getCleJointure().getCle() : "";
+    String incertainStruct = this.incertainStruct != null && this.incertainStruct.getCleJointure() != null ? ", " +
+      this.incertainStruct.getId() + ", " +
+      this.incertainStruct.getCategorie() + ", " +
+      this.incertainStruct.getCleJointure().getSource() + ", " +
+      this.incertainStruct.getCleJointure().getCle() : "";
+
+    return "Incertain [" +
+      super.toString() + ", " +
+      this.attribut + ", " +
+      this.obligatoire + ", " +
+      this.value + ", " +
+      this.texte + ", " +
+      this.dateCreation +
+      incertainPers +
+      incertainStruct +
+      "]";
 	}
 
 	/**

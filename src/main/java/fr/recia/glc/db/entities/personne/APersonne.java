@@ -1147,86 +1147,47 @@ public abstract class APersonne extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("APersonne [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.categorie);
-		sb.append(", ");
-		sb.append(this.etat);
-		sb.append(", ");
-		sb.append(this.forceEtat);
-		sb.append(", ");
-		sb.append(this.cleJointure);
-		sb.append(", ");
-		sb.append(this.uid);
-		sb.append(", ");
-		sb.append(this.uuid);
-		sb.append(", ");
-		sb.append(this.idEduConnect);
-		sb.append(", ");
-		sb.append(this.login);
-		sb.append(", ");
-		sb.append(this.alias);
-		sb.append(", ");
-		sb.append(this.externalIds);
-		sb.append(", ");
-		sb.append(this.cn);
-		sb.append(", ");
-		sb.append(this.listeRouge);
-		sb.append(", ");
-		sb.append(this.displayName);
-		sb.append(", ");
-		sb.append(this.givenName);
-		sb.append(", ");
-		sb.append(this.sn);
-		sb.append(", ");
-		sb.append(this.patronyme);
-		sb.append(", ");
-		sb.append(this.prenoms);
-		sb.append(", ");
-		sb.append(this.password);
-		sb.append(", ");
-		sb.append(this.adresse);
-		sb.append(", ");
-		sb.append(this.civilite);
-		sb.append(", ");
-		sb.append(this.sexe);
-		sb.append(", ");
-		sb.append(this.titre);
-		sb.append(", ");
-		sb.append(this.dateNaissance);
-		sb.append(", ");
-		sb.append(this.email);
-		sb.append(", ");
-		sb.append(this.numBureau);
-		sb.append(", ");
-		sb.append(this.photo);
-		// sb.append(", ");
-		// sb.append(this.centresInterets);
-		sb.append(", ");
-		sb.append(this.fonctions);
-		sb.append(", ");
-		sb.append(this.telephones);
-		sb.append(", ");
-		sb.append(this.anneeScolaire);
-		sb.append(", ");
-		sb.append(this.emailPersonnel);
-		sb.append(", ");
-		sb.append(this.autresMails);
-		sb.append(", ");
-		sb.append(this.doForward);
-		sb.append(", ");
-		sb.append(this.validationCharte);
-		sb.append(", ");
-		sb.append(this.groupes);
-		sb.append(", ");
-		sb.append(this.relationsTo);
-		sb.append(", ");
-		sb.append(this.incertains);
-		sb.append(", ");
-		sb.append(this.structRattachement);
-		sb.append("]");
-		return sb.toString();
+    return "APersonne [" +
+      super.toString() + ", " +
+      this.categorie + ", " +
+      this.etat + ", " +
+      this.forceEtat + ", " +
+      this.cleJointure + ", " +
+      this.uid + ", " +
+      this.uuid + ", " +
+      this.idEduConnect + ", " +
+      this.login + ", " +
+      this.alias + ", " +
+      this.externalIds + ", " +
+      this.cn + ", " +
+      this.listeRouge + ", " +
+      this.displayName + ", " +
+      this.givenName + ", " +
+      this.sn + ", " +
+      this.patronyme + ", " +
+      this.prenoms + ", " +
+      this.password + ", " +
+      this.adresse + ", " +
+      this.civilite + ", " +
+      this.sexe + ", " +
+      this.titre + ", " +
+      this.dateNaissance + ", " +
+      this.email + ", " +
+      this.numBureau + ", " +
+      this.photo + ", " +
+      // this.centresInterets + ", " +
+      this.fonctions + ", " +
+      this.telephones + ", " +
+      this.anneeScolaire + ", " +
+      this.emailPersonnel + ", " +
+      this.autresMails + ", " +
+      this.doForward + ", " +
+      this.validationCharte + ", " +
+      this.groupes + ", " +
+      this.relationsTo + ", " +
+      this.incertains + ", " +
+      this.structRattachement +
+      "]";
 	}
 
 	/**

@@ -137,16 +137,12 @@ public class Discipline extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Discipline [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.code);
-		sb.append(", ");
-		sb.append(this.disciplinePoste);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "Discipline [" +
+      super.toString() + ", " +
+      this.code + ", " +
+      this.disciplinePoste + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

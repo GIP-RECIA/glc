@@ -216,15 +216,11 @@ public class MappingAGroupeAPersonne implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MappingAGroupeAPersonne [source=");
-		builder.append(source);
-		builder.append(", groupe=");
-		builder.append(this.pk.getGroupe().getId());
-		builder.append(", personne=");
-		builder.append(this.pk.getPersonne().getId());
-		builder.append("]");
-		return builder.toString();
+    return "MappingAGroupeAPersonne [source=" +
+      this.source + ", groupe=" +
+      this.pk.getGroupe().getId() + ", personne=" +
+      this.pk.getPersonne().getId() +
+      "]";
 	}
 
 }

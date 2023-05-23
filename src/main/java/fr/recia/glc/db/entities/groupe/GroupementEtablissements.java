@@ -97,10 +97,7 @@ public class GroupementEtablissements extends AGroupe {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("GroupementEtablissement [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "GroupementEtablissement [" + super.toString() + "]";
 	}
 
 	/**

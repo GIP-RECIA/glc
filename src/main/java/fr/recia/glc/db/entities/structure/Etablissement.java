@@ -229,20 +229,14 @@ public class Etablissement extends AStructure {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Etablissement [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.uai);
-		sb.append(", ");
-		sb.append(this.contrat);
-		sb.append(", ");
-		sb.append(this.bassinFormation);
-		sb.append(", ");
-		sb.append(this.ministereTutelle);
-		sb.append(", ");
-		sb.append(this.groupements);
-		sb.append("]");
-		return sb.toString();
+    return "Etablissement [" +
+      super.toString() + ", " +
+      this.uai + ", " +
+      this.contrat + ", " +
+      this.bassinFormation + ", " +
+      this.ministereTutelle + ", " +
+      this.groupements +
+      "]";
 	}
 
 	/**

@@ -142,16 +142,12 @@ public class Version extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Version[");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.version);
-		sb.append(", ");
-		sb.append(this.dateVersion);
-		sb.append(", ");
-		sb.append(this.commentaires);
-		sb.append("]");
-		return sb.toString();
+    return "Version[" +
+      super.toString() + ", " +
+      this.version + ", " +
+      this.dateVersion + ", " +
+      this.commentaires +
+      "]";
 	}
 
 	/**

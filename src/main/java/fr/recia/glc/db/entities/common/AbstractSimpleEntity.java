@@ -73,10 +73,7 @@ public abstract class AbstractSimpleEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AbstractSimpleEntity [");
-		sb.append(this.id);
-		sb.append("]");
-		return sb.toString();
+    return "AbstractSimpleEntity [" + this.id + "]";
 	}
 
 }

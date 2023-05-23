@@ -145,18 +145,13 @@ public class Mail extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Mail [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.adresse);
-		sb.append(", ");
-		sb.append(this.type);
-		sb.append(", ");
-		sb.append(this.validated);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "Mail [" +
+      super.toString() + ", " +
+      this.adresse + ", " +
+      this.type + ", " +
+      this.validated + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

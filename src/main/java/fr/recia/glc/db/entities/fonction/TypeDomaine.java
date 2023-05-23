@@ -78,12 +78,10 @@ public class TypeDomaine extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("TypeDomaine [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.libelleDomaine);
-		sb.append("]");
-		return sb.toString();
+    return "TypeDomaine [" +
+      super.toString() + ", " +
+      this.libelleDomaine +
+      "]";
 	}
 
 	/**

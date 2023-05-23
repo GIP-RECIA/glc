@@ -136,14 +136,11 @@ public abstract class AFonction extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AFonction [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.categorie);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "AFonction [" +
+      super.toString() + ", " +
+      this.categorie + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

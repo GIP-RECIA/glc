@@ -71,10 +71,7 @@ public class ResponsableEntreprise extends APersonne implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("ResponsableEntreprise [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "ResponsableEntreprise [" + super.toString() + "]";
 	}
 
 }

@@ -150,16 +150,12 @@ public class CategorieDiscipline extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("CategorieDiscipline [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.code);
-		sb.append(", ");
-		sb.append(this.pivotDiscipline);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "CategorieDiscipline [" +
+      super.toString() + ", " +
+      this.code + ", " +
+      this.pivotDiscipline + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

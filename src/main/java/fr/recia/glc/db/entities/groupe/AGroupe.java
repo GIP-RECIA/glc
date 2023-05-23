@@ -168,20 +168,14 @@ public abstract class AGroupe extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AGroupe [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.categorie);
-		sb.append(", ");
-		sb.append(this.cn);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append(", ");
-		sb.append(this.anneeScolaire);
-		sb.append(", ");
-		sb.append(this.description);
-		sb.append("]");
-		return sb.toString();
+    return "AGroupe [" +
+      super.toString() + ", " +
+      this.categorie + ", " +
+      this.cn + ", " +
+      this.source + ", " +
+      this.anneeScolaire + ", " +
+      this.description +
+      "]";
 	}
 
 	/**

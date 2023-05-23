@@ -150,18 +150,13 @@ public class AnneeScolaire extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AnneeScolaire [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.anneeEnCours);
-		sb.append(", ");
-		sb.append(this.passageAnneeSuivante);
-		sb.append(", ");
-		sb.append(this.finAutorisation);
-		sb.append(", ");
-		sb.append(this.etabMAJ);
-		sb.append("]");
-		return sb.toString();
+    return "AnneeScolaire [" +
+      super.toString() + ", " +
+      this.anneeEnCours + ", " +
+      this.passageAnneeSuivante + ", " +
+      this.finAutorisation + ", " +
+      this.etabMAJ +
+      "]";
 	}
 
 	/**

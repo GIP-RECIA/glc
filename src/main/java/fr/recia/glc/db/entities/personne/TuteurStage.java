@@ -78,10 +78,7 @@ public class TuteurStage extends APersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("TuteurStage [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "TuteurStage [" + super.toString() + "]";
 	}
 
 	/**

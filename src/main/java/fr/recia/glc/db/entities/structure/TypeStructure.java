@@ -134,14 +134,11 @@ public class TypeStructure extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("TypeStructure [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.libelle);
-		sb.append(", ");
-		sb.append(this.sigle);
-		sb.append("]");
-		return sb.toString();
+    return "TypeStructure [" +
+      super.toString() + ", " +
+      this.libelle + ", " +
+      this.sigle +
+      "]";
 	}
 
 	/**

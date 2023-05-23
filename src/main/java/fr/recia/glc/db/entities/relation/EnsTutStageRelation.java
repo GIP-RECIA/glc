@@ -61,11 +61,7 @@ public class EnsTutStageRelation extends AStageRelation {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("EnsTutStageRelation [");
-		builder.append(super.toString());
-		builder.append("]");
-		return builder.toString();
+    return "EnsTutStageRelation [" + super.toString() + "]";
 	}
 
 }

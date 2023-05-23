@@ -78,12 +78,10 @@ public class MinistereTutelle extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("MinistereTutelle [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.ministere);
-		sb.append("]");
-		return sb.toString();
+    return "MinistereTutelle [" +
+      super.toString() + ", " +
+      this.ministere +
+      "]";
 	}
 
 	/**

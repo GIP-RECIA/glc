@@ -196,14 +196,11 @@ public class TypeService extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("TypeService [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.libelleService);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "TypeService [" +
+      super.toString() + ", " +
+      this.libelleService + ", " +
+      this.source +
+      "]";
 	}
 
 }

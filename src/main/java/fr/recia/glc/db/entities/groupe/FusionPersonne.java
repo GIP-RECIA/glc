@@ -60,10 +60,7 @@ public class FusionPersonne extends AGroupeOfAPersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("FusionPersonne [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "FusionPersonne [" + super.toString() + "]";
 	}
 
 }

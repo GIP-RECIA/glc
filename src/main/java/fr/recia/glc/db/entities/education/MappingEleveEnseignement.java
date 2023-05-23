@@ -291,15 +291,11 @@ public class MappingEleveEnseignement implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MappingEleveEnseignement [source=");
-		builder.append(source);
-		builder.append(", enseignement=");
-		builder.append(enseignement);
-		builder.append(", etablissement=");
-		builder.append(etablissement != null ? etablissement.getId() : "default");
-		builder.append("]");
-		return builder.toString();
+    return "MappingEleveEnseignement [source=" +
+      this.source + ", enseignement=" +
+      this.enseignement + ", etablissement=" +
+      (etablissement != null ? etablissement.getId() : "default") +
+      "]";
 	}
 
 }

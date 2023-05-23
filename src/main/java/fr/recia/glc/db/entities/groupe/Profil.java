@@ -135,12 +135,10 @@ public class Profil extends AGroupeOfAPersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Profil [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.reglePeuplement);
-		sb.append("]");
-		return sb.toString();
+    return "Profil [" +
+      super.toString() + ", " +
+      this.reglePeuplement +
+      "]";
 	}
 
 	/**

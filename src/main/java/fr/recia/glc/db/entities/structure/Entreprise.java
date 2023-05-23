@@ -96,12 +96,10 @@ public class Entreprise extends AStructure {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Entreprise [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.partenariat);
-		sb.append("]");
-		return sb.toString();
+    return "Entreprise [" +
+      super.toString() + ", " +
+      this.partenariat +
+      "]";
 	}
 
 }

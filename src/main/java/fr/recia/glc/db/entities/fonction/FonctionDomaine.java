@@ -127,14 +127,11 @@ public class FonctionDomaine extends AFonction {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("FonctionDomaine [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.structure);
-		sb.append(", ");
-		sb.append(this.domaines);
-		sb.append("]");
-		return sb.toString();
+    return "FonctionDomaine [" +
+      super.toString() + ", " +
+      this.structure + ", " +
+      this.domaines +
+      "]";
 	}
 
 	/**

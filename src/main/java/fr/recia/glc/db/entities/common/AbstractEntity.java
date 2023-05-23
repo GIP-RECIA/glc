@@ -162,16 +162,12 @@ public abstract class AbstractEntity extends AbstractSimpleEntity implements Ser
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AbstractEntity [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.version);
-		sb.append(", ");
-		sb.append(this.dateCreation);
-		sb.append(", ");
-		sb.append(this.dateModification);
-		sb.append("]");
-		return sb.toString();
+    return "AbstractEntity [" +
+      super.toString() + ", " +
+      this.version + ", " +
+      this.dateCreation + ", " +
+      this.dateModification +
+      "]";
 	}
 
 }

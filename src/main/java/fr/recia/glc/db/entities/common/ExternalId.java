@@ -95,13 +95,10 @@ public class ExternalId {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ExternalId [id=");
-		builder.append(id);
-		builder.append(", destinataire=");
-		builder.append(destinataire);
-		builder.append("]");
-		return builder.toString();
+    return "ExternalId [id=" +
+      this.id + ", destinataire=" +
+      this.destinataire +
+      "]";
 	}
 
 	@Override

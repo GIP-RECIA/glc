@@ -243,20 +243,14 @@ public class Application extends AbstractEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Application [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.categorie);
-		sb.append(", ");
-		sb.append(this.identifiant);
-		sb.append(", ");
-		sb.append(this.nom);
-		sb.append(", ");
-		sb.append(this.description);
-		sb.append(", ");
-		sb.append(this.password);
-		sb.append("]");
-		return sb.toString();
+    return "Application [" +
+      super.toString() + ", " +
+      this.categorie + ", " +
+      this.identifiant + ", " +
+      this.nom + ", " +
+      this.description + ", " +
+      this.password +
+      "]";
 	}
 
 	/**

@@ -67,10 +67,7 @@ public class PersonnelExterieur extends APersonnel {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("PersonnelExterieur [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "PersonnelExterieur [" + super.toString() + "]";
 	}
 
 }

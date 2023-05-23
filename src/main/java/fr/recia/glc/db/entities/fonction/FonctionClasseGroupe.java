@@ -120,22 +120,17 @@ public class FonctionClasseGroupe extends AFonction {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("FonctionClasseGroupe [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.type);
-		sb.append(", ");
-		sb.append(this.classeGroupe);
-		/* if (this.classeGroupe != null && this.classeGroupe.getCn() != null
-				&& this.classeGroupe.getProprietaire() != null) {
-			sb.append(", ClasseGroupe [");
-			sb.append(this.classeGroupe.getCn());
-			sb.append(", Etablissement[");
-			sb.append(this.classeGroupe.getProprietaire().getCleJointure());
-			sb.append("]]");
-		}*/
-		sb.append("]");
-		return sb.toString();
+    /* String classeGroupe =
+      this.classeGroupe != null && this.classeGroupe.getCn() != null && this.classeGroupe.getProprietaire() != null ?
+        ", ClasseGroupe [" + this.classeGroupe.getCn() +
+        ", Etablissement[" + this.classeGroupe.getProprietaire().getCleJointure() +
+        "]]" : "";*/
+    return "FonctionClasseGroupe [" +
+      super.toString() + ", " +
+      this.type + ", " +
+      this.classeGroupe +
+      // classeGroupe +
+      "]";
 	}
 
 	/**

@@ -141,13 +141,10 @@ public class MappingAGroupeAPersonneId implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("MappingAGroupeAPersonneId [personne=");
-		builder.append(personne.getId());
-		builder.append(", groupe=");
-		builder.append(groupe.getId());
-		builder.append("]");
-		return builder.toString();
+    return "MappingAGroupeAPersonneId [personne=" +
+      this.personne.getId() + ", groupe=" +
+      this.groupe.getId() +
+      "]";
 	}
 
 }

@@ -126,16 +126,12 @@ public class BassinFormation extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("BassinFormation [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.code);
-		sb.append(", ");
-		sb.append(this.nom);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append("]");
-		return sb.toString();
+    return "BassinFormation [" +
+      super.toString() + ", " +
+      this.code + ", " +
+      this.nom + ", " +
+      this.source +
+      "]";
 	}
 
 	/**

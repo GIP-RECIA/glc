@@ -134,14 +134,11 @@ public class FonctionMEF extends AFonction {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("FonctionMEF [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.etablissement);
-		sb.append(", ");
-		sb.append(this.mefs);
-		sb.append("]");
-		return sb.toString();
+    return "FonctionMEF [" +
+      super.toString() + ", " +
+      this.etablissement + ", " +
+      this.mefs +
+      "]";
 	}
 
 	/**

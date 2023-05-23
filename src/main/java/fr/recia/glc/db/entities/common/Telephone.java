@@ -146,18 +146,13 @@ public class Telephone extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Telephone [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.type);
-		sb.append(", ");
-		sb.append(this.numero);
-		sb.append(", ");
-		sb.append(this.source);
-		sb.append(", ");
-		sb.append(this.used);
-		sb.append("]");
-		return sb.toString();
+    return "Telephone [" +
+      super.toString() + ", " +
+      this.type + ", " +
+      this.numero + ", " +
+      this.source + ", " +
+      this.used +
+      "]";
 	}
 
 	/**

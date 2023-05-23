@@ -67,10 +67,7 @@ public class NonEnseignantServiceAcademique extends APersonnel {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("NonEnseignantServiceAcademique [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "NonEnseignantServiceAcademique [" + super.toString() + "]";
 	}
 
 }

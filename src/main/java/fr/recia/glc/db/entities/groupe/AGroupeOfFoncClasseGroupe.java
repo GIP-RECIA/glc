@@ -124,12 +124,10 @@ public abstract class AGroupeOfFoncClasseGroupe extends AGroupeOfAPersonne {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AGroupeOfFoncClasseGroupe [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.proprietaire);
-		sb.append("]");
-		return sb.toString();
+    return "AGroupeOfFoncClasseGroupe [" +
+      super.toString() + ", " +
+      this.proprietaire +
+      "]";
 	}
 
 	/**

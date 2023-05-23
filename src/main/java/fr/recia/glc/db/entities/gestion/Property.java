@@ -104,14 +104,11 @@ public class Property extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("Property [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.name);
-		sb.append(", ");
-		sb.append(this.value);
-		sb.append("]");
-		return sb.toString();
+    return "Property [" +
+      super.toString() + ", " +
+      this.name + ", " +
+      this.value +
+      "]";
 	}
 
 	/**

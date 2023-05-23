@@ -104,10 +104,7 @@ public abstract class AGroupeOfAPersonne extends AGroupe {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("AGroupeOfAPersonne [");
-		sb.append(super.toString());
-		sb.append("]");
-		return sb.toString();
+    return "AGroupeOfAPersonne [" + super.toString() + "]";
 	}
 
 }

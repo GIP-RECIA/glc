@@ -331,29 +331,18 @@ public class MEF extends AbstractSimpleEntity {
 	 */
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("MEF [");
-		sb.append(super.toString());
-		sb.append(", ");
-		sb.append(this.code);
-		sb.append(", ");
-		sb.append(this.libelle);
-		sb.append(", ");
-		sb.append(this.filiere);
-		sb.append(", ");
-		sb.append(this.niveauFormation);
-		sb.append(", ");
-		sb.append(this.niveauFormationDiplome);
-		sb.append(", ");
-		sb.append(this.specialite);
-		if (this.rattachement != null) {
-			sb.append(", MEF principal [");
-			sb.append(this.rattachement.code);
-			sb.append("]");
-		}
-		sb.append(", ");
-		sb.append(this.anneeScolaire);
-		sb.append("]");
-		return sb.toString();
+    String rattachement = this.rattachement != null ? "MEF principal [" + this.rattachement.code + "], " : "";
+    return "MEF [" +
+      super.toString() + ", " +
+      this.code + ", " +
+      this.libelle + ", " +
+      this.filiere + ", " +
+      this.niveauFormation + ", " +
+      this.niveauFormationDiplome + ", " +
+      this.specialite + ", " +
+      rattachement +
+      this.anneeScolaire +
+      "]";
 	}
 
 	/**
