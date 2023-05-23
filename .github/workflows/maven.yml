@@ -55,7 +55,7 @@ jobs:
       - name: Check locales
         run: locale -a
 
-      - name: Pull ${{ MARIADB_IMG }}:${{ matrix.mariadb }} docker image
+      - name: Pull mariadb:${{ matrix.mariadb }} docker image
         run: docker pull ${MARIADB_IMG}:${{ matrix.mariadb }}
 
       - name: Run MariaDB container
