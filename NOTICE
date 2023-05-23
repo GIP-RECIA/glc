@@ -17,12 +17,14 @@ limitations under the License.
 This project includes:
   Angus Activation Registries under EDL 1.0
   ANTLR 4 Runtime under The BSD License
+  Apache Commons Lang under Apache License, Version 2.0
   Apache Log4j API under Apache License, Version 2.0
   Apache Log4j to SLF4J Adapter under Apache License, Version 2.0
   asm under BSD-3-Clause
   ASM based accessors helper used by json-smart under The Apache Software License, Version 2.0
   AspectJ Weaver under Eclipse Public License - v 2.0
-  AssertJ fluent assertions under Apache License, Version 2.0
+  AssertJ Core under Apache License, Version 2.0
+  Bouncy Castle Provider under Bouncy Castle Licence
   Byte Buddy (without dependencies) under Apache License, Version 2.0
   Byte Buddy agent under Apache License, Version 2.0
   ClassMate under Apache License, Version 2.0
@@ -44,12 +46,18 @@ This project includes:
   Jakarta Persistence API under Eclipse Public License v. 2.0 or Eclipse Distribution License v. 1.0
   Jakarta XML Binding API under Eclipse Distribution License - v 1.0
   jakarta.transaction API under EPL 2.0 or GPL2 w/ CPE
-  Java Annotation Indexer under Apache License, Version 2.0
+  Jandex: Core under Apache License, Version 2.0
+  JASYPT: Java Simplified Encryption under The Apache Software License, Version 2.0
+  javax.annotation API under CDDL + GPLv2 with classpath exception
   JAXB Core under Eclipse Distribution License - v 1.0
   JAXB Runtime under Eclipse Distribution License - v 1.0
   JBoss Logging 3 under Apache License, version 2.0
+  JJWT :: API under Apache License, Version 2.0
+  JJWT :: Extensions :: Jackson under Apache License, Version 2.0
+  JJWT :: Impl under Apache License, Version 2.0
   JSON library from Android SDK under Apache License 2.0
   JSON Small and Fast Parser under The Apache Software License, Version 2.0
+  json-path under The Apache Software License, Version 2.0
   JSONassert under The Apache Software License, Version 2.0
   JUL to SLF4J bridge under MIT License
   JUnit Jupiter (Aggregator) under Eclipse Public License v2.0
@@ -64,11 +72,11 @@ This project includes:
   micrometer-observation under The Apache Software License, Version 2.0
   mockito-core under The MIT License
   mockito-junit-jupiter under The MIT License
+  MySQL Connector/J under The GNU General Public License, v2 with Universal FOSS Exception, v1.0
   Objenesis under Apache License, Version 2.0
   org.apiguardian:apiguardian-api under The Apache License, Version 2.0
   org.opentest4j:opentest4j under The Apache License, Version 2.0
   org.xmlunit:xmlunit-core under The Apache Software License, Version 2.0
-  project ':json-path' under The Apache Software License, Version 2.0
   Project Lombok under The MIT License
   SLF4J API Module under MIT License
   SnakeYAML under Apache License, Version 2.0
@@ -110,4 +118,5 @@ This project includes:
   tomcat-embed-el under Apache License, Version 2.0
   tomcat-embed-websocket under Apache License, Version 2.0
   TXW2 Runtime under Eclipse Distribution License - v 1.0
+  uPortal under The Apache License, Version 2.0
 
