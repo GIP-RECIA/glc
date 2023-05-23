@@ -27,7 +27,10 @@ This project includes:
   Bouncy Castle Provider under Bouncy Castle Licence
   Byte Buddy (without dependencies) under Apache License, Version 2.0
   Byte Buddy agent under Apache License, Version 2.0
+  Caffeine cache under Apache License, Version 2.0
+  Checker Qual under The MIT License
   ClassMate under Apache License, Version 2.0
+  error-prone annotations under Apache 2.0
   glc under Apache License, Version 2.0
   Hamcrest under BSD License 3
   Hibernate Commons Annotations under GNU Library General Public License v2.1 or later
@@ -48,10 +51,13 @@ This project includes:
   jakarta.transaction API under EPL 2.0 or GPL2 w/ CPE
   Jandex: Core under Apache License, Version 2.0
   JASYPT: Java Simplified Encryption under The Apache Software License, Version 2.0
+  Java Native Access under LGPL-2.1-or-later or Apache-2.0
+  Java Native Access Platform under LGPL-2.1-or-later or Apache-2.0
   javax.annotation API under CDDL + GPLv2 with classpath exception
   JAXB Core under Eclipse Distribution License - v 1.0
   JAXB Runtime under Eclipse Distribution License - v 1.0
   JBoss Logging 3 under Apache License, version 2.0
+  JCL 1.2 implemented over SLF4J under Apache License, Version 2.0
   JJWT :: API under Apache License, Version 2.0
   JJWT :: Extensions :: Jackson under Apache License, Version 2.0
   JJWT :: Impl under Apache License, Version 2.0
@@ -68,6 +74,7 @@ This project includes:
   JUnit Platform Engine API under Eclipse Public License v2.0
   Logback Classic Module under Eclipse Public License - v 1.0 or GNU Lesser General Public License
   Logback Core Module under Eclipse Public License - v 1.0 or GNU Lesser General Public License
+  mariadb-java-client under LGPL-2.1
   micrometer-commons under The Apache Software License, Version 2.0
   micrometer-observation under The Apache Software License, Version 2.0
   mockito-core under The MIT License
@@ -119,4 +126,5 @@ This project includes:
   tomcat-embed-websocket under Apache License, Version 2.0
   TXW2 Runtime under Eclipse Distribution License - v 1.0
   uPortal under The Apache License, Version 2.0
+  waffle-jna under MIT
 
