@@ -31,72 +31,80 @@ import java.util.EnumSet;
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>uid, login, password, cn, sn, displayName, givenName, CategoriePersonne,
  * cleJointure, anneeScolaire, etat.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 11 juin 08
  */
 @Entity
 public class PersonneRelationEleve extends APersonne {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = -510775757879985634L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = -510775757879985634L;
 
-	//Attributs
+  //Attributs
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet PersonneRelationEleve.java.
-	 */
-	public PersonneRelationEleve() {
-		super();
-		this.setCategorie(CategoriePersonne.Personne_relation_eleve);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet PersonneRelationEleve.java.
-	 * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
-	 * @param cleJointure Clé de jointure, identifiant unique fourni par les différentes sources,
-	 * mais unique uniquement pour le périmètre de la source.
-	 * @param cn Nom canonique de la personne : NOM + Prénom usuels.
-	 * @param givenName Prénom usuel.
-	 * @param sn Nom d'usage.
-	 */
-	public PersonneRelationEleve(final Date anneeScolaire, final CleJointure cleJointure,
+  /**
+   * Constructeur de l'objet PersonneRelationEleve.java.
+   */
+  public PersonneRelationEleve() {
+    super();
+    this.setCategorie(CategoriePersonne.Personne_relation_eleve);
+  }
+
+  /**
+   * Constructeur de l'objet PersonneRelationEleve.java.
+   *
+   * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
+   * @param cleJointure   Clé de jointure, identifiant unique fourni par les différentes sources,
+   *                      mais unique uniquement pour le périmètre de la source.
+   * @param cn            Nom canonique de la personne : NOM + Prénom usuels.
+   * @param givenName     Prénom usuel.
+   * @param sn            Nom d'usage.
+   */
+  public PersonneRelationEleve(final Date anneeScolaire, final CleJointure cleJointure,
                                final String cn, final String givenName, final String sn) {
-		super(anneeScolaire, CategoriePersonne.Personne_relation_eleve, cleJointure, cn, givenName, sn);
-	}
+    super(anneeScolaire, CategoriePersonne.Personne_relation_eleve, cleJointure, cn, givenName, sn);
+  }
 
-	//Accesseurs
+  //Accesseurs
 
-	// Méthodes utiles
-	/**
-	 * Effectue la vérification si la personne est en relation qu'avec des élèves incertains.
-	 * @return <code>boolean</code> Faux si au moins une relation est avec un élève valide.
-	 */
-	public boolean hasAllRelationWithIncertain() {
-		boolean b = true;
-		if (getRelationsFrom() != null && !getRelationsFrom().isEmpty()) {
-			for (AMappingRelation relation : getRelationsFrom()) {
-				if (CategorieRelation.PersRel.equals(relation.getCategorie())) {
-					PersRelRelation relv = (PersRelRelation) relation;
-					EnumSet<Etat> set = EnumSet.of(Etat.Incertain, Etat.Delete);
-					if (!set.contains(relv.getEleve().getEtat())) {
-						b = false;
-						break;
-					}
-				}
-			}
-		}
-		return b;
-	}
+  // Méthodes utiles
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.personne.APersonne#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Effectue la vérification si la personne est en relation qu'avec des élèves incertains.
+   *
+   * @return <code>boolean</code> Faux si au moins une relation est avec un élève valide.
+   */
+  public boolean hasAllRelationWithIncertain() {
+    boolean b = true;
+    if (getRelationsFrom() != null && !getRelationsFrom().isEmpty()) {
+      for (AMappingRelation relation : getRelationsFrom()) {
+        if (CategorieRelation.PersRel.equals(relation.getCategorie())) {
+          PersRelRelation relv = (PersRelRelation) relation;
+          EnumSet<Etat> set = EnumSet.of(Etat.Incertain, Etat.Delete);
+          if (!set.contains(relv.getEleve().getEtat())) {
+            b = false;
+            break;
+          }
+        }
+      }
+    }
+    return b;
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.personne.APersonne#toString()
+   */
+  @Override
+  public String toString() {
     return "PersonneRelationEleve [" + super.toString() + "]";
-	}
+  }
 
 }

@@ -32,6 +32,7 @@ import java.util.Set;
  * Définition du type de structure : Lycée d'enseignement général, lycée professionnel, collège...
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>libelle, sigle (même si l'un des deux champs est nul, l'initialiser à String vide : "").</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 11 juin 08
  */
@@ -41,146 +42,167 @@ import java.util.Set;
 })
 public class TypeStructure extends AbstractSimpleEntity {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = 1191498724458361075L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = 1191498724458361075L;
 
-	//Attributs
-	/** Nom complet du type. */
-	@Column(length = IntConst.I80)
-	private String libelle;
-	/** Nom court du type. */
-	@Column(length = IntConst.I25)
-	private String sigle;
+  //Attributs
+  /**
+   * Nom complet du type.
+   */
+  @Column(length = IntConst.I80)
+  private String libelle;
+  /**
+   * Nom court du type.
+   */
+  @Column(length = IntConst.I25)
+  private String sigle;
 
-	//Relations
-	/** Relation bidirectionnelle.
-	 * Liste des structures de ce type. */
-	@OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
-	private Set<AStructure> structures = new HashSet<>();
+  //Relations
+  /**
+   * Relation bidirectionnelle.
+   * Liste des structures de ce type.
+   */
+  @OneToMany(mappedBy = "type", fetch = FetchType.LAZY)
+  private Set<AStructure> structures = new HashSet<>();
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet TypeStructure.java.
-	 */
-	public TypeStructure() {
-		super();
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet TypeStructure.java.
-	 * @param sigle Nom court du type.
-	 * @param libelle Nom complet du type.
-	 */
-	public TypeStructure(final String sigle, final String libelle) {
-		super();
-		this.sigle = sigle;
-		this.libelle = libelle;
-	}
+  /**
+   * Constructeur de l'objet TypeStructure.java.
+   */
+  public TypeStructure() {
+    super();
+  }
 
-	//Accesseurs
-	/**
-	 * Getter du membre libelle.
-	 * @return <code>String</code> le membre libelle.
-	 */
-	public String getLibelle() {
-		return this.libelle;
-	}
+  /**
+   * Constructeur de l'objet TypeStructure.java.
+   *
+   * @param sigle   Nom court du type.
+   * @param libelle Nom complet du type.
+   */
+  public TypeStructure(final String sigle, final String libelle) {
+    super();
+    this.sigle = sigle;
+    this.libelle = libelle;
+  }
 
-	/**
-	 * Setter du membre libelle.
-	 * @param libelle la nouvelle valeur du membre libelle.
-	 */
-	public void setLibelle(final String libelle) {
-		this.libelle = libelle;
-	}
+  //Accesseurs
 
-	/**
-	 * Getter du membre sigle.
-	 * @return <code>String</code> le membre sigle.
-	 */
-	public String getSigle() {
-		return this.sigle;
-	}
+  /**
+   * Getter du membre libelle.
+   *
+   * @return <code>String</code> le membre libelle.
+   */
+  public String getLibelle() {
+    return this.libelle;
+  }
 
-	/**
-	 * Setter du membre sigle.
-	 * @param sigle la nouvelle valeur du membre sigle.
-	 */
-	public void setSigle(final String sigle) {
-		this.sigle = sigle;
-	}
+  /**
+   * Setter du membre libelle.
+   *
+   * @param libelle la nouvelle valeur du membre libelle.
+   */
+  public void setLibelle(final String libelle) {
+    this.libelle = libelle;
+  }
 
-	//Relations
-	/**
-	 * Getter du membre structures.
-	 * @return <code>Set< AStructure ></code> le membre structures.
-	 */
-	public Set<AStructure> getStructures() {
-		return this.structures;
-	}
+  /**
+   * Getter du membre sigle.
+   *
+   * @return <code>String</code> le membre sigle.
+   */
+  public String getSigle() {
+    return this.sigle;
+  }
 
-	/**
-	 * Setter du membre structures.
-	 * @param structures la nouvelle valeur du membre structures.
-	 */
-	public void setStructures(final Set<AStructure> structures) {
-		this.structures = structures;
-	}
+  /**
+   * Setter du membre sigle.
+   *
+   * @param sigle la nouvelle valeur du membre sigle.
+   */
+  public void setSigle(final String sigle) {
+    this.sigle = sigle;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.common.AbstractEntity#toString()
-	 */
-	@Override
-	public String toString() {
+  //Relations
+
+  /**
+   * Getter du membre structures.
+   *
+   * @return <code>Set< AStructure ></code> le membre structures.
+   */
+  public Set<AStructure> getStructures() {
+    return this.structures;
+  }
+
+  /**
+   * Setter du membre structures.
+   *
+   * @param structures la nouvelle valeur du membre structures.
+   */
+  public void setStructures(final Set<AStructure> structures) {
+    this.structures = structures;
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.common.AbstractEntity#toString()
+   */
+  @Override
+  public String toString() {
     return "TypeStructure [" +
       super.toString() + ", " +
       this.libelle + ", " +
       this.sigle +
       "]";
-	}
+  }
 
-	/**
-	 * Donne la valeur de hachage de l'instance.
-	 * @return <code>int</code> La valeur du hash.
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		if (this.libelle == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.libelle.hashCode();
-		}
-		return result;
-	}
+  /**
+   * Donne la valeur de hachage de l'instance.
+   *
+   * @return <code>int</code> La valeur du hash.
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.libelle == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.libelle.hashCode();
+    }
+    return result;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance.
-	 * @param obj l'instance le l'object à comparer.
-	 * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (!(obj instanceof TypeStructure)) {
-			return false;
-		}
-		final TypeStructure other = (TypeStructure) obj;
-		if (this.libelle == null) {
-			if (other.libelle != null) {
-				return false;
-			}
-		} else if (!this.libelle.equals(other.libelle)) {
-			return false;
-		}
-		return true;
-	}
+  /**
+   * Teste si un objet est égal à cette instance.
+   *
+   * @param obj l'instance le l'object à comparer.
+   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof TypeStructure)) {
+      return false;
+    }
+    final TypeStructure other = (TypeStructure) obj;
+    if (this.libelle == null) {
+      if (other.libelle != null) {
+        return false;
+      }
+    } else if (!this.libelle.equals(other.libelle)) {
+      return false;
+    }
+    return true;
+  }
 
 }

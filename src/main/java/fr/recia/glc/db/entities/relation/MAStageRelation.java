@@ -28,39 +28,42 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue(value = "MASTAGE")
 public class MAStageRelation extends AStageRelation {
 
-	/** Serial id */
-	private static final long serialVersionUID = 6692982461589564566L;
+  /**
+   * Serial id
+   */
+  private static final long serialVersionUID = 6692982461589564566L;
 
-	/**
-	 * Empty Constructor, must not be used.
-	 */
-	public MAStageRelation() {
-		super();
-	}
+  /**
+   * Empty Constructor, must not be used.
+   */
+  public MAStageRelation() {
+    super();
+  }
 
-	/**
-	 * @param source
-	 * @param tuteurStage
-	 * @param eleve
-	 */
-	public MAStageRelation(final String source, final TuteurStage tuteurStage, final Eleve eleve) {
-		super(source, tuteurStage, eleve, TypeStage.Tuteur, CategorieRelation.MAStage);
-	}
+  /**
+   * @param source
+   * @param tuteurStage
+   * @param eleve
+   */
+  public MAStageRelation(final String source, final TuteurStage tuteurStage, final Eleve eleve) {
+    super(source, tuteurStage, eleve, TypeStage.Tuteur, CategorieRelation.MAStage);
+  }
 
-	/**
-	 * getter of TuteurStage to avoid confusion between personne1 and personne2 type
-	 * @return <code>TuteurStage</code>
-	 */
-	public TuteurStage getTuteurStage() {
-		return (TuteurStage) this.getPersonne1();
-	}
+  /**
+   * getter of TuteurStage to avoid confusion between personne1 and personne2 type
+   *
+   * @return <code>TuteurStage</code>
+   */
+  public TuteurStage getTuteurStage() {
+    return (TuteurStage) this.getPersonne1();
+  }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
     return "MAStageRelation [" + super.toString() + "]";
-	}
+  }
 
 }

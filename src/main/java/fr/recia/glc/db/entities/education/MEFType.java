@@ -18,14 +18,21 @@ package fr.recia.glc.db.entities.education;
 /**
  * Type énumré des types de MEF.
  * MEF de type académique ou national.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 9 juin 08
  */
 public enum MEFType {
-	/** MEF de type Académique. */
-	Academique,
-	/** MEF de type National. */
-	National,
-	/** MEF de type Cfa. */
-	Cfa
+  /**
+   * MEF de type Académique.
+   */
+  Academique,
+  /**
+   * MEF de type National.
+   */
+  National,
+  /**
+   * MEF de type Cfa.
+   */
+  Cfa
 }

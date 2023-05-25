@@ -34,72 +34,80 @@ import java.util.EnumSet;
  * cleJointure, anneeScolaire, etat, societe, fonction.</DD></DL>
  * <b>Attention la société est donnée dans le champs structRattachement
  * et fonction représente la liste des élèves suivis en stage ou en apprentissage. </b>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
 @Entity
 public class TuteurStage extends APersonne {
 
-	/**Identifiant de sérialisation. */
-	private static final long serialVersionUID = 7505676238668581501L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = 7505676238668581501L;
 
-	//Attributs
+  //Attributs
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet TuteurStage.java.
-	 */
-	public TuteurStage() {
-		super();
-		this.setCategorie(CategoriePersonne.Tuteur_stage);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet TuteurStage.java.
-	 * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
-	 * @param cleJointure Clé de jointure, identifiant unique fourni par les différentes sources,
-	 * mais unique uniquement pour le périmètre de la source.
-	 * @param cn Nom canonique de la personne : NOM + Prénom usuels.
-	 * @param givenName Prénom usuel.
-	 * @param sn Nom d'usage.
-	 * @param societe Société dont la personne est le responsable.
-	 */
-	public TuteurStage(final Date anneeScolaire, final CleJointure cleJointure,
+  /**
+   * Constructeur de l'objet TuteurStage.java.
+   */
+  public TuteurStage() {
+    super();
+    this.setCategorie(CategoriePersonne.Tuteur_stage);
+  }
+
+  /**
+   * Constructeur de l'objet TuteurStage.java.
+   *
+   * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
+   * @param cleJointure   Clé de jointure, identifiant unique fourni par les différentes sources,
+   *                      mais unique uniquement pour le périmètre de la source.
+   * @param cn            Nom canonique de la personne : NOM + Prénom usuels.
+   * @param givenName     Prénom usuel.
+   * @param sn            Nom d'usage.
+   * @param societe       Société dont la personne est le responsable.
+   */
+  public TuteurStage(final Date anneeScolaire, final CleJointure cleJointure,
                      final String cn, final String givenName, final String sn, final AStructure societe) {
-		super(anneeScolaire, CategoriePersonne.Tuteur_stage, cleJointure, cn, givenName, sn);
-		this.setStructRattachement(societe);
-	}
+    super(anneeScolaire, CategoriePersonne.Tuteur_stage, cleJointure, cn, givenName, sn);
+    this.setStructRattachement(societe);
+  }
 
-	//Accesseurs
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.personne.APersonne#toString()
-	 */
-	@Override
-	public String toString() {
+  //Accesseurs
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.personne.APersonne#toString()
+   */
+  @Override
+  public String toString() {
     return "TuteurStage [" + super.toString() + "]";
-	}
+  }
 
-	/**
-	 * Effectue la vérification si la personne est en relation qu'avec des élèves incertains.
-	 * @return <code>boolean</code> Faux si au moins une relation est avec un élève valide.
-	 */
-	public boolean hasAllRelationWithIncertain() {
-		boolean b = true;
-		if (getRelationsTo() != null && !getRelationsTo().isEmpty()) {
-			for (AMappingRelation relation : getRelationsTo()) {
-				if (CategorieRelation.MAStage.equals(relation.getCategorie())) {
-					MAStageRelation relv = (MAStageRelation) relation;
-					EnumSet<Etat> set = EnumSet.of(Etat.Incertain, Etat.Delete);
-					if (!set.contains(relv.getEleve().getEtat())) {
-						b = false;
-						break;
-					}
-				}
-			}
-		}
-		return b;
-	}
+  /**
+   * Effectue la vérification si la personne est en relation qu'avec des élèves incertains.
+   *
+   * @return <code>boolean</code> Faux si au moins une relation est avec un élève valide.
+   */
+  public boolean hasAllRelationWithIncertain() {
+    boolean b = true;
+    if (getRelationsTo() != null && !getRelationsTo().isEmpty()) {
+      for (AMappingRelation relation : getRelationsTo()) {
+        if (CategorieRelation.MAStage.equals(relation.getCategorie())) {
+          MAStageRelation relv = (MAStageRelation) relation;
+          EnumSet<Etat> set = EnumSet.of(Etat.Incertain, Etat.Delete);
+          if (!set.contains(relv.getEleve().getEtat())) {
+            b = false;
+            break;
+          }
+        }
+      }
+    }
+    return b;
+  }
 
 }

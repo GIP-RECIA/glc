@@ -35,93 +35,93 @@ import java.util.Set;
 @MappedSuperclass
 public abstract class APersonnel extends APersonne {
 
-	/**
-	 * Relation bidirectionnelle. Liste des catégories de disciplines de poste d'une personne (Enseignant, NonEnsEtab) au sein d'un établissement.
-	 */
-	@Fetch(FetchMode.JOIN)
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "apersonnes_catdisciplines", foreignKey = @ForeignKey(name = "FK_APERSONNE_ID_CAT_DISCIPLINE_ID"), joinColumns = @JoinColumn(name = "APERSONNE_ID", referencedColumnName = "id", table = "apersonne"), inverseJoinColumns = @JoinColumn(name = "CATDISCIPLINE_ID", referencedColumnName = "id"))
-	private Set<CategorieDiscipline> categorieDisciplines = new HashSet<>();
+  /**
+   * Relation bidirectionnelle. Liste des catégories de disciplines de poste d'une personne (Enseignant, NonEnsEtab) au sein d'un établissement.
+   */
+  @Fetch(FetchMode.JOIN)
+  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+  @JoinTable(name = "apersonnes_catdisciplines", foreignKey = @ForeignKey(name = "FK_APERSONNE_ID_CAT_DISCIPLINE_ID"), joinColumns = @JoinColumn(name = "APERSONNE_ID", referencedColumnName = "id", table = "apersonne"), inverseJoinColumns = @JoinColumn(name = "CATDISCIPLINE_ID", referencedColumnName = "id"))
+  private Set<CategorieDiscipline> categorieDisciplines = new HashSet<>();
 
-	/**
-	 * Relation bidirectionnelle. Liste des services de la personne (NonEns Etab, NonEnsCollLoc, NonEnsServAc, Enseignant)
-	 */
-	@ManyToMany(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY)
-	@JoinTable(name = "apersonnes_services", foreignKey = @ForeignKey(name = "FK_APERSONNE_ID_SERVICE_ID"), joinColumns = @JoinColumn(name = "APERSONNE_ID", referencedColumnName = "id", table = "apersonne"), inverseJoinColumns = @JoinColumn(name = "SERVICE_ID", referencedColumnName = "id"))
-	private Set<TypeService> services = new HashSet<>();
+  /**
+   * Relation bidirectionnelle. Liste des services de la personne (NonEns Etab, NonEnsCollLoc, NonEnsServAc, Enseignant)
+   */
+  @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+  @JoinTable(name = "apersonnes_services", foreignKey = @ForeignKey(name = "FK_APERSONNE_ID_SERVICE_ID"), joinColumns = @JoinColumn(name = "APERSONNE_ID", referencedColumnName = "id", table = "apersonne"), inverseJoinColumns = @JoinColumn(name = "SERVICE_ID", referencedColumnName = "id"))
+  private Set<TypeService> services = new HashSet<>();
 
-	public APersonnel() {
-		super();
-	}
+  public APersonnel() {
+    super();
+  }
 
-	public APersonnel(final Date anneeScolaire, final CategoriePersonne categorie, final CleJointure cleJointure,
+  public APersonnel(final Date anneeScolaire, final CategoriePersonne categorie, final CleJointure cleJointure,
                     final String cn, final String givenName, final String sn) {
-		super(anneeScolaire, categorie, cleJointure, cn, givenName, sn);
-	}
+    super(anneeScolaire, categorie, cleJointure, cn, givenName, sn);
+  }
 
-	/**
-	 * Getter du membre categorieDisciplines.
-	 *
-	 * @return <code>Set< CategorieDiscipline ></code> le membre categorieDisciplines.
-	 */
-	public Set<CategorieDiscipline> getCategorieDisciplines() {
-		return this.categorieDisciplines;
-	}
+  /**
+   * Getter du membre categorieDisciplines.
+   *
+   * @return <code>Set< CategorieDiscipline ></code> le membre categorieDisciplines.
+   */
+  public Set<CategorieDiscipline> getCategorieDisciplines() {
+    return this.categorieDisciplines;
+  }
 
-	/**
-	 * Setter du membre categorieDisciplines.
-	 *
-	 * @param disciplines la nouvelle valeur du membre categorieDisciplines.
-	 */
-	public void setCategorieDisciplines(final Set<CategorieDiscipline> disciplines) {
-		this.categorieDisciplines = disciplines;
-	}
+  /**
+   * Setter du membre categorieDisciplines.
+   *
+   * @param disciplines la nouvelle valeur du membre categorieDisciplines.
+   */
+  public void setCategorieDisciplines(final Set<CategorieDiscipline> disciplines) {
+    this.categorieDisciplines = disciplines;
+  }
 
-	/**
-	 * Ajoute une catégrorie de discipline à la liste.
-	 *
-	 * @param categorieDiscipline une nouvelle catégorie à ajouter.
-	 */
-	public void addCategorieDiscipline(final CategorieDiscipline categorieDiscipline) {
-		this.categorieDisciplines.add(categorieDiscipline);
-	}
+  /**
+   * Ajoute une catégrorie de discipline à la liste.
+   *
+   * @param categorieDiscipline une nouvelle catégorie à ajouter.
+   */
+  public void addCategorieDiscipline(final CategorieDiscipline categorieDiscipline) {
+    this.categorieDisciplines.add(categorieDiscipline);
+  }
 
-	/**
-	 * @return the services
-	 */
-	public Set<TypeService> getServices() {
-		return services;
-	}
+  /**
+   * @return the services
+   */
+  public Set<TypeService> getServices() {
+    return services;
+  }
 
-	/**
-	 * @param services the services to set
-	 */
-	public void setServices(final Set<TypeService> services) {
-		this.services = services;
-	}
+  /**
+   * @param services the services to set
+   */
+  public void setServices(final Set<TypeService> services) {
+    this.services = services;
+  }
 
-	/**
-	 * Ajoute un service à la liste.
-	 *
-	 * @param service
-	 */
-	public void addService(final TypeService service) {
-		this.getServices().add(service);
-	}
+  /**
+   * Ajoute un service à la liste.
+   *
+   * @param service
+   */
+  public void addService(final TypeService service) {
+    this.getServices().add(service);
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 *
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.personne.APersonne#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.personne.APersonne#toString()
+   */
+  @Override
+  public String toString() {
     return "APersonnel [" +
       super.toString() + ", " +
       this.categorieDisciplines + ", " +
       this.services +
       "]";
-	}
+  }
 
 }

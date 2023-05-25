@@ -17,16 +17,23 @@ package fr.recia.glc.db.entities.relation;
 
 /**
  * Type énuméré des type de relation de stage avec un élève stagiaire.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
 public enum TypeStage {
-	/** Enseignant étant responsable de l'élève en stage. */
-	Enseignant_responsable,
-	/** Enseignant étant le tuteur de l'élève en stage. */
-	Enseignant_tuteur,
-	/** Personne de l'entreprise étant responsable de l'élève en stage. */
-	//Responsable,
-	/** Personne de l'entreprise étant le tuteur de l'élève en stage. */
-	Tuteur
+  /**
+   * Enseignant étant responsable de l'élève en stage.
+   */
+  Enseignant_responsable,
+  /**
+   * Enseignant étant le tuteur de l'élève en stage.
+   */
+  Enseignant_tuteur,
+  /** Personne de l'entreprise étant responsable de l'élève en stage. */
+  //Responsable,
+  /**
+   * Personne de l'entreprise étant le tuteur de l'élève en stage.
+   */
+  Tuteur
 }

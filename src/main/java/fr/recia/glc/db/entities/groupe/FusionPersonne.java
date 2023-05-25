@@ -25,42 +25,48 @@ import java.util.Set;
  * compte pour la fusion, permet ainsi de définir un seul utilisateur pour plusieurs clé de jointure par exemple.
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>cn, membres (deux membres au minimum doivent être donnés).</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 11 juin 08
  */
 @Entity
 public class FusionPersonne extends AGroupeOfAPersonne {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = 4846698873547654588L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = 4846698873547654588L;
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet FusionPersonne.java.
-	 */
-	public FusionPersonne() {
-		super();
-		this.setCategorie(CategorieGroupe.Fusion);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet FusionPersonne.java.
-	 * @param cn Nom du groupe de fusion, peut servir à définir le compte principal.
-	 * @param membres Liste des personnes fusionnant.
-	 * @param source Source ayant créé l'objet.
-	 */
-	public FusionPersonne(final String cn, final Set<MappingAGroupeAPersonne> membres, final String source) {
-		super(cn, CategorieGroupe.Fusion, membres, source);
-	}
+  /**
+   * Constructeur de l'objet FusionPersonne.java.
+   */
+  public FusionPersonne() {
+    super();
+    this.setCategorie(CategorieGroupe.Fusion);
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.groupe.AGroupeOfAPersonne#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Constructeur de l'objet FusionPersonne.java.
+   *
+   * @param cn      Nom du groupe de fusion, peut servir à définir le compte principal.
+   * @param membres Liste des personnes fusionnant.
+   * @param source  Source ayant créé l'objet.
+   */
+  public FusionPersonne(final String cn, final Set<MappingAGroupeAPersonne> membres, final String source) {
+    super(cn, CategorieGroupe.Fusion, membres, source);
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.groupe.AGroupeOfAPersonne#toString()
+   */
+  @Override
+  public String toString() {
     return "FusionPersonne [" + super.toString() + "]";
-	}
+  }
 
 }

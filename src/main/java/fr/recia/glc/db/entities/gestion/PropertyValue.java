@@ -17,18 +17,29 @@ package fr.recia.glc.db.entities.gestion;
 
 /**
  * Type énuméré des différentes valeurs des propriétés applicatives de Sarapis.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 7 oct. 09
  */
 public enum PropertyValue {
-	/** */
-	TRUE,
-	/** */
-	FALSE,
-	/** */
-	ON,
-	/** */
-	OFF,
-	/** */
-	PAUSE
+  /**
+   *
+   */
+  TRUE,
+  /**
+   *
+   */
+  FALSE,
+  /**
+   *
+   */
+  ON,
+  /**
+   *
+   */
+  OFF,
+  /**
+   *
+   */
+  PAUSE
 }

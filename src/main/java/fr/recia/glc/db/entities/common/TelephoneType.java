@@ -21,14 +21,24 @@ package fr.recia.glc.db.entities.common;
  * @author GIP RECIA - Gribonvald Julien 3 Juin 2008
  */
 public enum TelephoneType {
-	/** Téléphone de type fax. */
-	fax,
-	/** téléphone de type fixe personnel. */
-	fixe_perso,
-	/** Téléphone de type fixe professionnel. */
-	fixe_pro,
-	/** Téléphone de type mobile. */
-	mobile,
-	/** Téléphone de type mobile pour les SMS. */
-	sms
+  /**
+   * Téléphone de type fax.
+   */
+  fax,
+  /**
+   * téléphone de type fixe personnel.
+   */
+  fixe_perso,
+  /**
+   * Téléphone de type fixe professionnel.
+   */
+  fixe_pro,
+  /**
+   * Téléphone de type mobile.
+   */
+  mobile,
+  /**
+   * Téléphone de type mobile pour les SMS.
+   */
+  sms
 }

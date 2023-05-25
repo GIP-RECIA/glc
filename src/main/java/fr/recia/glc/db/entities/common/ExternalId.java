@@ -35,106 +35,112 @@ import java.util.Set;
 @Embeddable
 public class ExternalId {
 
-	// Attributs
-	/** Identifiant externe. */
-	@Column(nullable = false)
-	private String id;
-	/** Destinataire de l'identifiant. */
-	@Enumerated(EnumType.STRING)
-	@Column(length = IntConst.I20, nullable = false)
-	private ExternalIdSource destinataire;
+  // Attributs
+  /**
+   * Identifiant externe.
+   */
+  @Column(nullable = false)
+  private String id;
+  /**
+   * Destinataire de l'identifiant.
+   */
+  @Enumerated(EnumType.STRING)
+  @Column(length = IntConst.I20, nullable = false)
+  private ExternalIdSource destinataire;
 
-	// Constructeurs
-	/**
-	 * Constructeur de l'objet ExternalId.java.
-	 */
-	public ExternalId() {
-		super();
-	}
+  // Constructeurs
 
-	/**
-	 * Constructeur de l'objet Mail.java.
-	 *
-	 * @param id           Identifiant.
-	 * @param destinataire Le destinataire utilisant l'identifiant.
-	 */
-	public ExternalId(final String id, final ExternalIdSource destinataire) {
-		super();
-		this.id = id;
-		this.destinataire = destinataire;
-	}
+  /**
+   * Constructeur de l'objet ExternalId.java.
+   */
+  public ExternalId() {
+    super();
+  }
 
-	// Accesseurs
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
+  /**
+   * Constructeur de l'objet Mail.java.
+   *
+   * @param id           Identifiant.
+   * @param destinataire Le destinataire utilisant l'identifiant.
+   */
+  public ExternalId(final String id, final ExternalIdSource destinataire) {
+    super();
+    this.id = id;
+    this.destinataire = destinataire;
+  }
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
+  // Accesseurs
 
-	/**
-	 * @return the destinataire
-	 */
-	public ExternalIdSource getDestinataire() {
-		return destinataire;
-	}
+  /**
+   * @return the id
+   */
+  public String getId() {
+    return id;
+  }
 
-	/**
-	 * @param destinataire the destinataire to set
-	 */
-	public void setDestinataire(ExternalIdSource destinataire) {
-		this.destinataire = destinataire;
-	}
+  /**
+   * @param id the id to set
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
 
-	@Override
-	public String toString() {
+  /**
+   * @return the destinataire
+   */
+  public ExternalIdSource getDestinataire() {
+    return destinataire;
+  }
+
+  /**
+   * @param destinataire the destinataire to set
+   */
+  public void setDestinataire(ExternalIdSource destinataire) {
+    this.destinataire = destinataire;
+  }
+
+  @Override
+  public String toString() {
     return "ExternalId [id=" +
       this.id + ", destinataire=" +
       this.destinataire +
       "]";
-	}
+  }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((destinataire == null) ? 0 : destinataire.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((destinataire == null) ? 0 : destinataire.hashCode());
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    return result;
+  }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ExternalId other = (ExternalId) obj;
-		if (destinataire != other.destinataire)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    ExternalId other = (ExternalId) obj;
+    if (destinataire != other.destinataire)
+      return false;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    return true;
+  }
 
-	public static boolean isExternalIdForDestIsDefined(final Set<ExternalId> collection, final ExternalIdSource dest) {
-		for (ExternalId item : collection) {
-			if (item.destinataire.equals(dest))
-				return true;
-		}
-		return false;
-	}
+  public static boolean isExternalIdForDestIsDefined(final Set<ExternalId> collection, final ExternalIdSource dest) {
+    for (ExternalId item : collection) {
+      if (item.destinataire.equals(dest))
+        return true;
+    }
+    return false;
+  }
 
 }

@@ -17,24 +17,41 @@ package fr.recia.glc.db.entities.common;
 
 /**
  * Type énuméré définissant l'état d'un objet, personne ou structure.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 24 juin 08
  */
 public enum Etat {
-	/** Objet dans un état invalide, cas ou l'utilisateur n'aurait pas encore valider son compte. */
-	Invalide,
-	/** Objet dans un état valide, l'utilisateur à validé son compte. */
-	Valide,
-	/** Objet dans un état bloqué, un administrateur à bloqué le compte de l'utilisateur.*/
-	Bloque,
-	/** Objet dans un état de suppression exporté, la source d'alimentation a demandé la suppression du compte.*/
-	Delete,
-	/** Objet dans un état incertain, les attributs obligatoires ne sont pas renseignés.*/
-	Incertain,
-	/** Objet dans un état incertain suite à une erreur d'export lors du delete.*/
-	Incertain_Export_Delete,
-	/** Objet dans un état incertain suite à une erreur d'export lors de la modification.*/
-	Incertain_Export_Modify,
-	/** Objet dans un état incertain suite à une erreur d'export lors de l'ajout.*/
-	Incertain_Export_Add
+  /**
+   * Objet dans un état invalide, cas ou l'utilisateur n'aurait pas encore valider son compte.
+   */
+  Invalide,
+  /**
+   * Objet dans un état valide, l'utilisateur à validé son compte.
+   */
+  Valide,
+  /**
+   * Objet dans un état bloqué, un administrateur à bloqué le compte de l'utilisateur.
+   */
+  Bloque,
+  /**
+   * Objet dans un état de suppression exporté, la source d'alimentation a demandé la suppression du compte.
+   */
+  Delete,
+  /**
+   * Objet dans un état incertain, les attributs obligatoires ne sont pas renseignés.
+   */
+  Incertain,
+  /**
+   * Objet dans un état incertain suite à une erreur d'export lors du delete.
+   */
+  Incertain_Export_Delete,
+  /**
+   * Objet dans un état incertain suite à une erreur d'export lors de la modification.
+   */
+  Incertain_Export_Modify,
+  /**
+   * Objet dans un état incertain suite à une erreur d'export lors de l'ajout.
+   */
+  Incertain_Export_Add
 }

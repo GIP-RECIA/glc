@@ -28,40 +28,43 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue(value = "ENSRESPSTAGE")
 public class EnsRespStageRelation extends AStageRelation {
 
-	/** Serial id */
-	private static final long serialVersionUID = 6692982461589564566L;
+  /**
+   * Serial id
+   */
+  private static final long serialVersionUID = 6692982461589564566L;
 
-	/**
-	 * Empty Constructor, must not be used.
-	 */
-	public EnsRespStageRelation() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+  /**
+   * Empty Constructor, must not be used.
+   */
+  public EnsRespStageRelation() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
-	/**
-	 * @param source
-	 * @param tuteurStage
-	 * @param eleve
-	 */
-	public EnsRespStageRelation(final String source, final Enseignant tuteurStage, final Eleve eleve) {
-		super(source, tuteurStage, eleve, TypeStage.Enseignant_responsable, CategorieRelation.EnsRespStage);
-	}
+  /**
+   * @param source
+   * @param tuteurStage
+   * @param eleve
+   */
+  public EnsRespStageRelation(final String source, final Enseignant tuteurStage, final Eleve eleve) {
+    super(source, tuteurStage, eleve, TypeStage.Enseignant_responsable, CategorieRelation.EnsRespStage);
+  }
 
-	/**
-	 * getter of Enseignant to avoid confusion between personne1 and personne2 type
-	 * @return <code>Enseignant</code>
-	 */
-	public Enseignant getEnsStage() {
-		return (Enseignant) this.getPersonne1();
-	}
+  /**
+   * getter of Enseignant to avoid confusion between personne1 and personne2 type
+   *
+   * @return <code>Enseignant</code>
+   */
+  public Enseignant getEnsStage() {
+    return (Enseignant) this.getPersonne1();
+  }
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
     return "EnsRespStageRelation [" + super.toString() + "]";
-	}
+  }
 
 }

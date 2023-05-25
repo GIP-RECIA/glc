@@ -33,93 +33,109 @@ import jakarta.persistence.ManyToOne;
  * Fonction au sein d'une classe ou d'un groupe.
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>type, personne, classegroupe, source.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 9 juin 08
  */
 @Entity
 public class FonctionClasseGroupe extends AFonction {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = -1543953413958583108L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = -1543953413958583108L;
 
-	//Attributs
-	/** Type énuméré du type de fonction. */
-	@Enumerated(EnumType.STRING)
-	@Column(length = IntConst.I30)
-	private TypeClasse type;
+  //Attributs
+  /**
+   * Type énuméré du type de fonction.
+   */
+  @Enumerated(EnumType.STRING)
+  @Column(length = IntConst.I30)
+  private TypeClasse type;
 
-	//Relations
-	/** Relation bidirectionnelle.
-	 * Classe ou groupe concerné.*/
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH },
-			fetch = FetchType.LAZY)
-	@JoinColumn(name = "classe_groupe_fk")
-	private AGroupeOfFoncClasseGroupe classeGroupe;
+  //Relations
+  /**
+   * Relation bidirectionnelle.
+   * Classe ou groupe concerné.
+   */
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
+    fetch = FetchType.LAZY)
+  @JoinColumn(name = "classe_groupe_fk")
+  private AGroupeOfFoncClasseGroupe classeGroupe;
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet FonctionClasseGroupe.java.
-	 */
-	public FonctionClasseGroupe() {
-		super();
-		this.setCategorie(CategorieFonction.Classe);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet FonctionClasseGroupe.java.
-	 * @param type Type énuméré du type de fonction.
-	 * @param personne Personne ayant cette fonction.
-	 * @param classeGroupe Classe ou groupe concerné.
-	 * @param source Source d'alimentation gérant cette fonction.
-	 */
-	public FonctionClasseGroupe(final TypeClasse type, final APersonne personne,
-			                        final AGroupeOfFoncClasseGroupe classeGroupe, final String source) {
-		super(CategorieFonction.Classe, personne, source);
-		this.type = type;
-		this.classeGroupe = classeGroupe;
-	}
+  /**
+   * Constructeur de l'objet FonctionClasseGroupe.java.
+   */
+  public FonctionClasseGroupe() {
+    super();
+    this.setCategorie(CategorieFonction.Classe);
+  }
 
-	//Accesseurs
-	/**
-	 * Getter du membre type.
-	 * @return <code>TypeClasse</code> le membre type
-	 */
-	public TypeClasse getType() {
-		return this.type;
-	}
+  /**
+   * Constructeur de l'objet FonctionClasseGroupe.java.
+   *
+   * @param type         Type énuméré du type de fonction.
+   * @param personne     Personne ayant cette fonction.
+   * @param classeGroupe Classe ou groupe concerné.
+   * @param source       Source d'alimentation gérant cette fonction.
+   */
+  public FonctionClasseGroupe(final TypeClasse type, final APersonne personne,
+                              final AGroupeOfFoncClasseGroupe classeGroupe, final String source) {
+    super(CategorieFonction.Classe, personne, source);
+    this.type = type;
+    this.classeGroupe = classeGroupe;
+  }
 
-	/**
-	 * Setter du membre type.
-	 * @param type la nouvelle valeur du membre type
-	 */
-	public void setType(final TypeClasse type) {
-		this.type = type;
-	}
+  //Accesseurs
 
-	//Relations
-	/**
-	 * Getter du membre classeGroupe.
-	 * @return <code>AGroupeOfFoncClasseGroupe</code> le membre classeGroupe
-	 */
-	public AGroupeOfFoncClasseGroupe getClasseGroupe() {
-		return this.classeGroupe;
-	}
+  /**
+   * Getter du membre type.
+   *
+   * @return <code>TypeClasse</code> le membre type
+   */
+  public TypeClasse getType() {
+    return this.type;
+  }
 
-	/**
-	 * Setter du membre classeGroupe.
-	 * @param classeGroupe la nouvelle valeur du membre classeGroupe
-	 */
-	public void setClasseGroupe(final AGroupeOfFoncClasseGroupe classeGroupe) {
-		this.classeGroupe = classeGroupe;
-	}
+  /**
+   * Setter du membre type.
+   *
+   * @param type la nouvelle valeur du membre type
+   */
+  public void setType(final TypeClasse type) {
+    this.type = type;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
-	 */
-	@Override
-	public String toString() {
+  //Relations
+
+  /**
+   * Getter du membre classeGroupe.
+   *
+   * @return <code>AGroupeOfFoncClasseGroupe</code> le membre classeGroupe
+   */
+  public AGroupeOfFoncClasseGroupe getClasseGroupe() {
+    return this.classeGroupe;
+  }
+
+  /**
+   * Setter du membre classeGroupe.
+   *
+   * @param classeGroupe la nouvelle valeur du membre classeGroupe
+   */
+  public void setClasseGroupe(final AGroupeOfFoncClasseGroupe classeGroupe) {
+    this.classeGroupe = classeGroupe;
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
+   */
+  @Override
+  public String toString() {
     /* String classeGroupe =
       this.classeGroupe != null && this.classeGroupe.getCn() != null && this.classeGroupe.getProprietaire() != null ?
         ", ClasseGroupe [" + this.classeGroupe.getCn() +
@@ -131,50 +147,68 @@ public class FonctionClasseGroupe extends AFonction {
       this.classeGroupe +
       // classeGroupe +
       "]";
-	}
+  }
 
-	/**
-	 * Donne la valeur de hachage de l'instance.
-	 * @return <code>int</code> La valeur du hash.
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		if (this.classeGroupe == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.classeGroupe.hashCode();
-		}
-		if (this.type == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.type.hashCode();
-		}
-		return result;
-	}
+  /**
+   * Donne la valeur de hachage de l'instance.
+   *
+   * @return <code>int</code> La valeur du hash.
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.classeGroupe == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.classeGroupe.hashCode();
+    }
+    if (this.type == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.type.hashCode();
+    }
+    return result;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance.
-	 * @param obj l'instance le l'object à comparer.
-	 * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!super.equals(obj)) { return false; }
-		if (!(obj instanceof FonctionClasseGroupe)) { return false; }
-		final FonctionClasseGroupe other = (FonctionClasseGroupe) obj;
-		if (this.classeGroupe == null) {
-			if (other.classeGroupe != null) { return false; }
-		} else if (!this.classeGroupe.equals(other.classeGroupe)) { return false; }
-		if (this.type == null) {
-			if (other.type != null) { return false; }
-		} else if (!this.type.equals(other.type)) { return false; }
-		return true;
-	}
+  /**
+   * Teste si un objet est égal à cette instance.
+   *
+   * @param obj l'instance le l'object à comparer.
+   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof FonctionClasseGroupe)) {
+      return false;
+    }
+    final FonctionClasseGroupe other = (FonctionClasseGroupe) obj;
+    if (this.classeGroupe == null) {
+      if (other.classeGroupe != null) {
+        return false;
+      }
+    } else if (!this.classeGroupe.equals(other.classeGroupe)) {
+      return false;
+    }
+    if (this.type == null) {
+      if (other.type != null) {
+        return false;
+      }
+    } else if (!this.type.equals(other.type)) {
+      return false;
+    }
+    return true;
+  }
 
 }

@@ -31,6 +31,7 @@ import java.util.Set;
  * AGroupeOfFoncClasseGroupe (Groupe de personnes avec fonction) étendu en classe.
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>cn, membres, proprietaire.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
@@ -38,73 +39,83 @@ import java.util.Set;
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Classe extends AGroupeOfFoncClasseGroupe {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = -4436457971297179853L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = -4436457971297179853L;
 
-	//Attributs
-	/** Mefs associé à la classe. */
-	@ManyToMany(cascade = {}, fetch = FetchType.EAGER)
-	@JoinTable(name = "classes_mefs",
-			joinColumns = @JoinColumn(name = "CLASSE_ID", referencedColumnName = "ID"),
-			inverseJoinColumns = @JoinColumn(name = "MEF_ID", referencedColumnName = "ID"))
-	private Set<MEF> mefs = new HashSet<>();
+  //Attributs
+  /**
+   * Mefs associé à la classe.
+   */
+  @ManyToMany(cascade = {}, fetch = FetchType.EAGER)
+  @JoinTable(name = "classes_mefs",
+    joinColumns = @JoinColumn(name = "CLASSE_ID", referencedColumnName = "ID"),
+    inverseJoinColumns = @JoinColumn(name = "MEF_ID", referencedColumnName = "ID"))
+  private Set<MEF> mefs = new HashSet<>();
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet Classe.java.
-	 */
-	public Classe() {
-		super();
-		this.setCategorie(CategorieGroupe.Classe);
-	}
-	/**
-	 * Constructeur de l'objet Classe.java.
-	 * @param cn Nom unique de la classe, peut servir comme identifiant.
-	 * @param membres Liste des personnes membre de la classe.
-	 * @param proprietaire Etablissement ayant défini cette classe.
-	 * @param source Source ayant créé l'objet.
-	 */
-	public Classe(final String cn, final Set<MappingAGroupeAPersonne> membres,
+  //Constructeurs
+
+  /**
+   * Constructeur de l'objet Classe.java.
+   */
+  public Classe() {
+    super();
+    this.setCategorie(CategorieGroupe.Classe);
+  }
+
+  /**
+   * Constructeur de l'objet Classe.java.
+   *
+   * @param cn           Nom unique de la classe, peut servir comme identifiant.
+   * @param membres      Liste des personnes membre de la classe.
+   * @param proprietaire Etablissement ayant défini cette classe.
+   * @param source       Source ayant créé l'objet.
+   */
+  public Classe(final String cn, final Set<MappingAGroupeAPersonne> membres,
                 final Etablissement proprietaire, final String source) {
-		super(cn, CategorieGroupe.Classe, membres, proprietaire, source);
-	}
+    super(cn, CategorieGroupe.Classe, membres, proprietaire, source);
+  }
 
-	/**
-	 * Getter of member mefs.
-	 * @return <code>Set<MEF></code> the attribute mefs
-	 */
-	public Set<MEF> getMefs() {
-		return mefs;
-	}
+  /**
+   * Getter of member mefs.
+   *
+   * @return <code>Set<MEF></code> the attribute mefs
+   */
+  public Set<MEF> getMefs() {
+    return mefs;
+  }
 
-	/**
-	 * Setter of attribute mefs.
-	 * @param mefs the attribute mefs to set
-	 */
-	public void setMefs(final Set<MEF> mefs) {
-		this.mefs = mefs;
-	}
+  /**
+   * Setter of attribute mefs.
+   *
+   * @param mefs the attribute mefs to set
+   */
+  public void setMefs(final Set<MEF> mefs) {
+    this.mefs = mefs;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.groupe.AGroupeOfFoncClasseGroupe#toString()
-	 */
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("Classe [");
-		sb.append(super.toString());
-		if (this.mefs != null && !this.mefs.isEmpty()) {
-			sb.append(", MEFs : [");
-			for (MEF mef : this.mefs) {
-				sb.append(mef.getCode());
-				sb.append(", ");
-			}
-			sb.delete(sb.length()-2, sb.length());
-			sb.append("]");
-		}
-		sb.append("]");
-		return sb.toString();
-	}
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.groupe.AGroupeOfFoncClasseGroupe#toString()
+   */
+  @Override
+  public String toString() {
+    final StringBuilder sb = new StringBuilder("Classe [");
+    sb.append(super.toString());
+    if (this.mefs != null && !this.mefs.isEmpty()) {
+      sb.append(", MEFs : [");
+      for (MEF mef : this.mefs) {
+        sb.append(mef.getCode());
+        sb.append(", ");
+      }
+      sb.delete(sb.length() - 2, sb.length());
+      sb.append("]");
+    }
+    sb.append("]");
+    return sb.toString();
+  }
 
 }

@@ -50,8 +50,8 @@ class HealthCheckTest {
     mockHealthCheckMvc.perform(head("/health-check")
         .contentType(TestUtil.APPLICATION_JSON_UTF8)
         .accept(TestUtil.APPLICATION_JSON_UTF8))
-        .andDo(MockMvcResultHandlers.print())
-        .andExpect(status().isOk());
+      .andDo(MockMvcResultHandlers.print())
+      .andExpect(status().isOk());
   }
 
 }

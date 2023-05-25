@@ -17,15 +17,22 @@ package fr.recia.glc.db.entities.personne;
 
 /**
  * Type énuméré des civilités d'une personne.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
 public enum Civilite {
-	/** Monsieur. */
-	M,
-	/** Mademoiselle. */
-	@Deprecated
-	Mlle,
-	/** Madame. */
-	Mme
+  /**
+   * Monsieur.
+   */
+  M,
+  /**
+   * Mademoiselle.
+   */
+  @Deprecated
+  Mlle,
+  /**
+   * Madame.
+   */
+  Mme
 }

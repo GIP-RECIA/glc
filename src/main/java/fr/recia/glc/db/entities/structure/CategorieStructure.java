@@ -17,16 +17,25 @@ package fr.recia.glc.db.entities.structure;
 
 /**
  * Définition des différentes catégories de structures.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
 public enum CategorieStructure {
-	/** Collectivité Locale. */
-	Collectivite_locale,
-	/** Entreprise. */
-	Entreprise,
-	/** Etablissement. */
-	Etablissement,
-	/** Service Académique. */
-	Service_academique
+  /**
+   * Collectivité Locale.
+   */
+  Collectivite_locale,
+  /**
+   * Entreprise.
+   */
+  Entreprise,
+  /**
+   * Etablissement.
+   */
+  Etablissement,
+  /**
+   * Service Académique.
+   */
+  Service_academique
 }

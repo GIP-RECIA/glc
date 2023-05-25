@@ -35,76 +35,78 @@ import java.util.Set;
 //@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public abstract class AGroupeOfAPersonne extends AGroupe {
 
-	// Attributs
+  // Attributs
 
-	// Relations
-	/**
-	 * Relation bidirectionnelle. Liste des personnes membre du groupe.
-	 */
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.groupe")
-	private Set<MappingAGroupeAPersonne> membres = new HashSet<>();
+  // Relations
+  /**
+   * Relation bidirectionnelle. Liste des personnes membre du groupe.
+   */
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.groupe")
+  private Set<MappingAGroupeAPersonne> membres = new HashSet<>();
 
-	// Constructeurs
-	/**
-	 * Constructeur de l'objet AGroupeOfAPersonne.java.
-	 */
-	public AGroupeOfAPersonne() {
-		super();
-	}
+  // Constructeurs
 
-	/**
-	 * Constructeur de l'objet AGroupeOfAPersonne.java.
-	 *
-	 * @param cn        Nom unique de groupe, peut servir comme identifiant.
-	 * @param categorie Type de groupe.
-	 * @param membres   Liste des membres du groupe.
-	 * @param source    Source ayant créé l'objet.
-	 */
-	public AGroupeOfAPersonne(final String cn, final CategorieGroupe categorie,
+  /**
+   * Constructeur de l'objet AGroupeOfAPersonne.java.
+   */
+  public AGroupeOfAPersonne() {
+    super();
+  }
+
+  /**
+   * Constructeur de l'objet AGroupeOfAPersonne.java.
+   *
+   * @param cn        Nom unique de groupe, peut servir comme identifiant.
+   * @param categorie Type de groupe.
+   * @param membres   Liste des membres du groupe.
+   * @param source    Source ayant créé l'objet.
+   */
+  public AGroupeOfAPersonne(final String cn, final CategorieGroupe categorie,
                             final Set<MappingAGroupeAPersonne> membres, final String source) {
-		super(cn, categorie, source);
-		this.membres = membres;
-	}
+    super(cn, categorie, source);
+    this.membres = membres;
+  }
 
-	// Accesseurs
+  // Accesseurs
 
-	// Relations
-	/**
-	 * Getter du membre membres.
-	 *
-	 * @return <code>Set< APersonne ></code> le membre membres.
-	 */
-	public Set<MappingAGroupeAPersonne> getMembres() {
-		return this.membres;
-	}
+  // Relations
 
-	/**
-	 * Setter du membre membres.
-	 *
-	 * @param membres la nouvelle valeur du membre membres.
-	 */
-	public void setMembres(final Set<MappingAGroupeAPersonne> membres) {
-		this.membres = membres;
-	}
+  /**
+   * Getter du membre membres.
+   *
+   * @return <code>Set< APersonne ></code> le membre membres.
+   */
+  public Set<MappingAGroupeAPersonne> getMembres() {
+    return this.membres;
+  }
 
-	/**
-	 * Ajoute un membre au groupe.
-	 *
-	 * @param membre le mebre à ajouter.
-	 */
-	public void addMembre(final MappingAGroupeAPersonne membre) {
-		this.membres.add(membre);
-	}
+  /**
+   * Setter du membre membres.
+   *
+   * @param membres la nouvelle valeur du membre membres.
+   */
+  public void setMembres(final Set<MappingAGroupeAPersonne> membres) {
+    this.membres = membres;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 *
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.groupe.AGroupe#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Ajoute un membre au groupe.
+   *
+   * @param membre le mebre à ajouter.
+   */
+  public void addMembre(final MappingAGroupeAPersonne membre) {
+    this.membres.add(membre);
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.groupe.AGroupe#toString()
+   */
+  @Override
+  public String toString() {
     return "AGroupeOfAPersonne [" + super.toString() + "]";
-	}
+  }
 
 }

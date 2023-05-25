@@ -17,12 +17,17 @@ package fr.recia.glc.db.entities.personne;
 
 /**
  * Type énuméré des types de sexe d'une personne.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 12 juin 08
  */
 public enum Sexe {
-	/** Féminin. */
-	F,
-	/** Masculin. */
-	M
+  /**
+   * Féminin.
+   */
+  F,
+  /**
+   * Masculin.
+   */
+  M
 }

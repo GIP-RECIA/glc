@@ -32,65 +32,65 @@ public enum LienParente {
   AssistantFamilial(42, 42),
   GardeEnfant(43, 43);
 
-	private int code;
+  private int code;
 
-	private int oldCode;
+  private int oldCode;
 
-	public int getCode() {
-		return code;
-	}
+  public int getCode() {
+    return code;
+  }
 
-	private LienParente(int code, int oldCode) {
-		this.code = code;
-		this.oldCode = oldCode;
-	}
+  private LienParente(int code, int oldCode) {
+    this.code = code;
+    this.oldCode = oldCode;
+  }
 
-	public void setCode(final int code) {
-		this.code = code;
-	}
+  public void setCode(final int code) {
+    this.code = code;
+  }
 
-	public int getOldCode() {
-		return oldCode;
-	}
+  public int getOldCode() {
+    return oldCode;
+  }
 
-	public void setOldCode(final int oldCode) {
-		this.oldCode = oldCode;
-	}
+  public void setOldCode(final int oldCode) {
+    this.oldCode = oldCode;
+  }
 
-	public static LienParente valueOf(final int code) {
-		if (code == LienParente.Pere.getCode() || code == LienParente.Pere.getOldCode()) {
-			return LienParente.Pere;
-		} else if (code == LienParente.Mere.getCode() || code == LienParente.Mere.getOldCode()) {
-			return LienParente.Mere;
-		} else if (code == LienParente.Tuteur.getCode() || code == LienParente.Tuteur.getOldCode()) {
-			return LienParente.Tuteur;
-		} else if (code == LienParente.MembreFamille.getCode() || code == LienParente.MembreFamille.getOldCode()) {
-			return LienParente.MembreFamille;
-		} else if (code == LienParente.ASE.getCode() || code == LienParente.ASE.getOldCode()) {
-			return LienParente.ASE;
-		} else if (code == LienParente.AutreLien.getCode() || code == LienParente.AutreLien.getOldCode()) {
-			return LienParente.AutreLien;
-		} else if (code == LienParente.EleveLuiMeme.getCode() || code == LienParente.EleveLuiMeme.getOldCode()) {
-			return LienParente.EleveLuiMeme;
-		} else if (code == LienParente.Fratrie.getCode() || code == LienParente.Fratrie.getOldCode()) {
-			return LienParente.Fratrie;
-		} else if (code == LienParente.Ascendant.getCode() || code == LienParente.Ascendant.getOldCode()) {
-			return LienParente.Ascendant;
-		} else if (code == LienParente.Educateur.getCode() || code == LienParente.Educateur.getOldCode()) {
-			return LienParente.Educateur;
-		} else if (code == LienParente.AssistantFamilial.getCode() || code == LienParente.AssistantFamilial.getOldCode()) {
-			return LienParente.AssistantFamilial;
-		} else if (code == LienParente.GardeEnfant.getCode() || code == LienParente.GardeEnfant.getOldCode()) {
-			return LienParente.GardeEnfant;
-		} else {
-			throw new IllegalArgumentException("Value of '" + code + "' doesn't match any code to enum " +
+  public static LienParente valueOf(final int code) {
+    if (code == LienParente.Pere.getCode() || code == LienParente.Pere.getOldCode()) {
+      return LienParente.Pere;
+    } else if (code == LienParente.Mere.getCode() || code == LienParente.Mere.getOldCode()) {
+      return LienParente.Mere;
+    } else if (code == LienParente.Tuteur.getCode() || code == LienParente.Tuteur.getOldCode()) {
+      return LienParente.Tuteur;
+    } else if (code == LienParente.MembreFamille.getCode() || code == LienParente.MembreFamille.getOldCode()) {
+      return LienParente.MembreFamille;
+    } else if (code == LienParente.ASE.getCode() || code == LienParente.ASE.getOldCode()) {
+      return LienParente.ASE;
+    } else if (code == LienParente.AutreLien.getCode() || code == LienParente.AutreLien.getOldCode()) {
+      return LienParente.AutreLien;
+    } else if (code == LienParente.EleveLuiMeme.getCode() || code == LienParente.EleveLuiMeme.getOldCode()) {
+      return LienParente.EleveLuiMeme;
+    } else if (code == LienParente.Fratrie.getCode() || code == LienParente.Fratrie.getOldCode()) {
+      return LienParente.Fratrie;
+    } else if (code == LienParente.Ascendant.getCode() || code == LienParente.Ascendant.getOldCode()) {
+      return LienParente.Ascendant;
+    } else if (code == LienParente.Educateur.getCode() || code == LienParente.Educateur.getOldCode()) {
+      return LienParente.Educateur;
+    } else if (code == LienParente.AssistantFamilial.getCode() || code == LienParente.AssistantFamilial.getOldCode()) {
+      return LienParente.AssistantFamilial;
+    } else if (code == LienParente.GardeEnfant.getCode() || code == LienParente.GardeEnfant.getOldCode()) {
+      return LienParente.GardeEnfant;
+    } else {
+      throw new IllegalArgumentException("Value of '" + code + "' doesn't match any code to enum " +
         LienParente.class.getCanonicalName() + " in defined values " + ResponsableLegal.values());
-		}
-	}
+    }
+  }
 
-	@Override
-	public String toString() {
-		return this.name() + "(" + this.getCode() + ")";
-	}
+  @Override
+  public String toString() {
+    return this.name() + "(" + this.getCode() + ")";
+  }
 
 }

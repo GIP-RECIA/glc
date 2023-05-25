@@ -33,149 +33,182 @@ import java.util.Set;
  * Domaines de fonction pour une personne dans une structure.
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>domaine, structure, personne, source.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 9 juin 08
  */
 @Entity
 public class FonctionDomaine extends AFonction {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = 4017026658563725022L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = 4017026658563725022L;
 
-	//Attributs
+  //Attributs
 
-	//Relations
-	/** Relation unidirectionnelle.
-	 * Domaines d'exercice. */
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE },
-			fetch = FetchType.LAZY)
-	@JoinTable(name = "fonctions_domaines",
-			joinColumns =
-				@JoinColumn(name = "FONCTIONDOMAINE_ID", referencedColumnName = "ID"),
-			inverseJoinColumns =
-				@JoinColumn(name = "TYPEDOMAINE_ID", referencedColumnName = "ID"))
-	private Set<TypeDomaine> domaines = new HashSet<>();
+  //Relations
+  /**
+   * Relation unidirectionnelle.
+   * Domaines d'exercice.
+   */
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+    fetch = FetchType.LAZY)
+  @JoinTable(name = "fonctions_domaines",
+    joinColumns =
+    @JoinColumn(name = "FONCTIONDOMAINE_ID", referencedColumnName = "ID"),
+    inverseJoinColumns =
+    @JoinColumn(name = "TYPEDOMAINE_ID", referencedColumnName = "ID"))
+  private Set<TypeDomaine> domaines = new HashSet<>();
 
-	/** Relation unidirectionnelle.
-	 * Structure d'exercice des domaines. */
-	@ManyToOne
-	@JoinColumn(name = "astructure_fk", insertable = false, updatable = false)
-	private AStructure structure;
+  /**
+   * Relation unidirectionnelle.
+   * Structure d'exercice des domaines.
+   */
+  @ManyToOne
+  @JoinColumn(name = "astructure_fk", insertable = false, updatable = false)
+  private AStructure structure;
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet FonctionDomaine.java.
-	 */
-	public FonctionDomaine() {
-		super();
-		this.setCategorie(CategorieFonction.Domaine);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet FonctionDomaine.java.
-	 * @param domaines Domaines d'exercice.
-	 * @param structure Structure d'exercice des domaines.
-	 * @param personne Personne exerçant ce domaine.
-	 * @param source Source d'alimentation gérant cette fonction.
-	 */
-	public FonctionDomaine(final Set<TypeDomaine> domaines, final AStructure structure,
+  /**
+   * Constructeur de l'objet FonctionDomaine.java.
+   */
+  public FonctionDomaine() {
+    super();
+    this.setCategorie(CategorieFonction.Domaine);
+  }
+
+  /**
+   * Constructeur de l'objet FonctionDomaine.java.
+   *
+   * @param domaines  Domaines d'exercice.
+   * @param structure Structure d'exercice des domaines.
+   * @param personne  Personne exerçant ce domaine.
+   * @param source    Source d'alimentation gérant cette fonction.
+   */
+  public FonctionDomaine(final Set<TypeDomaine> domaines, final AStructure structure,
                          final APersonne personne, final String source) {
-		super(CategorieFonction.Domaine , personne, source);
-		this.domaines = domaines;
-		this.structure = structure;
-	}
+    super(CategorieFonction.Domaine, personne, source);
+    this.domaines = domaines;
+    this.structure = structure;
+  }
 
-	//Accesseurs
+  //Accesseurs
 
-	//Relations
-	/**
-	 * Getter du membre domaines.
-	 * @return <code>Set< TypeDomaine ></code> le membre domaines.
-	 */
-	public Set<TypeDomaine> getDomaines() {
-		return this.domaines;
-	}
+  //Relations
 
-	/**
-	 * Setter du membre domaine.
-	 * @param domaines la nouvelle valeur du membre domaines.
-	 */
-	public void setDomaines(final Set<TypeDomaine> domaines) {
-		this.domaines = domaines;
-	}
+  /**
+   * Getter du membre domaines.
+   *
+   * @return <code>Set< TypeDomaine ></code> le membre domaines.
+   */
+  public Set<TypeDomaine> getDomaines() {
+    return this.domaines;
+  }
 
-	/**
-	 * Getter du membre structure.
-	 * @return <code>AStructure</code> le membre structure
-	 */
-	public AStructure getStructure() {
-		return this.structure;
-	}
+  /**
+   * Setter du membre domaine.
+   *
+   * @param domaines la nouvelle valeur du membre domaines.
+   */
+  public void setDomaines(final Set<TypeDomaine> domaines) {
+    this.domaines = domaines;
+  }
 
-	/**
-	 * Setter du membre structure.
-	 * @param structure la nouvelle valeur du membre structure
-	 */
-	public void setStructure(final AStructure structure) {
-		this.structure = structure;
-	}
+  /**
+   * Getter du membre structure.
+   *
+   * @return <code>AStructure</code> le membre structure
+   */
+  public AStructure getStructure() {
+    return this.structure;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Setter du membre structure.
+   *
+   * @param structure la nouvelle valeur du membre structure
+   */
+  public void setStructure(final AStructure structure) {
+    this.structure = structure;
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
+   */
+  @Override
+  public String toString() {
     return "FonctionDomaine [" +
       super.toString() + ", " +
       this.structure + ", " +
       this.domaines +
       "]";
-	}
+  }
 
-	/**
-	 * Donne la valeur de hachage de l'instance.
-	 * @return <code>int</code> La valeur du hash.
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		if (this.domaines == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.domaines.hashCode();
-		}
-		if (this.structure == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.structure.hashCode();
-		}
-		return result;
-	}
+  /**
+   * Donne la valeur de hachage de l'instance.
+   *
+   * @return <code>int</code> La valeur du hash.
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.domaines == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.domaines.hashCode();
+    }
+    if (this.structure == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.structure.hashCode();
+    }
+    return result;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance.
-	 * @param obj l'instance le l'object à comparer.
-	 * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!super.equals(obj)) { return false; }
-		if (!(obj instanceof FonctionDomaine)) { return false; }
-		final FonctionDomaine other = (FonctionDomaine) obj;
-		if (this.domaines == null) {
-			if (other.domaines != null) { return false; }
-		} else if (!this.domaines.equals(other.domaines)) { return false; }
-		if (this.structure == null) {
-			if (other.structure != null) { return false; }
-		} else if (!this.structure.equals(other.structure)) { return false; }
-		return true;
-	}
+  /**
+   * Teste si un objet est égal à cette instance.
+   *
+   * @param obj l'instance le l'object à comparer.
+   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof FonctionDomaine)) {
+      return false;
+    }
+    final FonctionDomaine other = (FonctionDomaine) obj;
+    if (this.domaines == null) {
+      if (other.domaines != null) {
+        return false;
+      }
+    } else if (!this.domaines.equals(other.domaines)) {
+      return false;
+    }
+    if (this.structure == null) {
+      if (other.structure != null) {
+        return false;
+      }
+    } else if (!this.structure.equals(other.structure)) {
+      return false;
+    }
+    return true;
+  }
 
 }

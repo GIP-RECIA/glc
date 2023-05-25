@@ -17,12 +17,17 @@ package fr.recia.glc.db.entities.structure;
 
 /**
  * Type énuméré des types de contrat.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 11 juin 08
  */
 public enum Contrat {
-	/** Contrat privé. */
-	Prive,
-	/** Contrat public. */
-	Public,
+  /**
+   * Contrat privé.
+   */
+  Prive,
+  /**
+   * Contrat public.
+   */
+  Public,
 }

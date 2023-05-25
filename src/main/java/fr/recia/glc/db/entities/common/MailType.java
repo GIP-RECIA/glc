@@ -21,12 +21,20 @@ package fr.recia.glc.db.entities.common;
  * @author GIP RECIA - Gribonvald Julien 3 Février 2016
  */
 public enum MailType {
-	/** Mail à usage public. */
-	Public,
-	/** Mail à usage interne. */
-	Interne,
-	/** Mail sans usage. */
-	Unused,
-	/** Mail en provenance du SI non modifiable. */
-	SI
+  /**
+   * Mail à usage public.
+   */
+  Public,
+  /**
+   * Mail à usage interne.
+   */
+  Interne,
+  /**
+   * Mail sans usage.
+   */
+  Unused,
+  /**
+   * Mail en provenance du SI non modifiable.
+   */
+  SI
 }

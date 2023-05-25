@@ -41,6 +41,7 @@ import java.util.Set;
  * <DD> uid, login, password, cn, sn, displayName, givenName, CategoriePersonne.Eleve,
  * cleJointure, anneeScolaire, etat, sexe, majeur, statut, mef, enseignements,
  * classes(groupes dans APersonne), dateNaissance, structureRattachement, sconetId.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 11 juin 08
  */
@@ -51,240 +52,287 @@ import java.util.Set;
 })
 public class Eleve extends APersonne {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = -1232117960539403689L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = -1232117960539403689L;
 
-	//Attributs
-	/** Identifiant sconet.*/
-	@Column(length = IntConst.I15)
-	private String sconetId;
-	/** Identifiant National. */
-	@Column(length = IntConst.I11)
-	private String INE;
-	/** Vrai si l'élève est majeur, Faux sinon. */
-	@Column(nullable = false, columnDefinition = "BIT not null DEFAULT false")
-	private boolean majeur;
-	/** Vrai si l'élève est majeur anticipé, Faux sinon, null si non renseigné. */
-	@Column(columnDefinition = "BIT")
-	private Boolean majeurAnticipe;
-	/** Régime de l'élève. */
-	@Column(length = IntConst.I128)
-	private String regime;
-	/** statut de l'élève. */
-	@Column(length = IntConst.I128)
-	private String statut;
-	/** Vrai si l'élève utilise les transport scolaire, Faux sinon, null si non renseigné. */
-	@Column(columnDefinition = "BIT")
-	private Boolean transport;
-	/** Vrai si l'élève est boursier, Faux sinon, null si non renseigné. */
-	@Column(columnDefinition = "BIT")
-	private Boolean boursier;
+  //Attributs
+  /**
+   * Identifiant sconet.
+   */
+  @Column(length = IntConst.I15)
+  private String sconetId;
+  /**
+   * Identifiant National.
+   */
+  @Column(length = IntConst.I11)
+  private String INE;
+  /**
+   * Vrai si l'élève est majeur, Faux sinon.
+   */
+  @Column(nullable = false, columnDefinition = "BIT not null DEFAULT false")
+  private boolean majeur;
+  /**
+   * Vrai si l'élève est majeur anticipé, Faux sinon, null si non renseigné.
+   */
+  @Column(columnDefinition = "BIT")
+  private Boolean majeurAnticipe;
+  /**
+   * Régime de l'élève.
+   */
+  @Column(length = IntConst.I128)
+  private String regime;
+  /**
+   * statut de l'élève.
+   */
+  @Column(length = IntConst.I128)
+  private String statut;
+  /**
+   * Vrai si l'élève utilise les transport scolaire, Faux sinon, null si non renseigné.
+   */
+  @Column(columnDefinition = "BIT")
+  private Boolean transport;
+  /**
+   * Vrai si l'élève est boursier, Faux sinon, null si non renseigné.
+   */
+  @Column(columnDefinition = "BIT")
+  private Boolean boursier;
 
-	//Relations
-	/** Relation unidirectionnelle.
-	 * MEF associé à l'élève. */
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "mef_fk")
-	private MEF mef;
+  //Relations
+  /**
+   * Relation unidirectionnelle.
+   * MEF associé à l'élève.
+   */
+  @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+  @JoinColumn(name = "mef_fk")
+  private MEF mef;
 
-	/** Relation unidirectionnelle.
-	 * Liste des enseignements suivi par l'élève.*/
-	@ElementCollection(fetch = FetchType.LAZY)
-	@JoinTable(name = "eleves_enseignements", joinColumns = @JoinColumn(name = "ELEVE_ID", referencedColumnName = "ID"))
-	private Set<MappingEleveEnseignement> enseignements = new HashSet<>();
+  /**
+   * Relation unidirectionnelle.
+   * Liste des enseignements suivi par l'élève.
+   */
+  @ElementCollection(fetch = FetchType.LAZY)
+  @JoinTable(name = "eleves_enseignements", joinColumns = @JoinColumn(name = "ELEVE_ID", referencedColumnName = "ID"))
+  private Set<MappingEleveEnseignement> enseignements = new HashSet<>();
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet Eleve.java.
-	 */
-	public Eleve() {
-		super();
-		this.setCategorie(CategoriePersonne.Eleve);
-	}
+  //Constructeurs
 
-	/**
-	 * Constructeur de l'objet Eleve.java.
-	 * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
-	 * @param cleJointure Clé de jointure, identifiant unique fourni par les différentes sources,
-	 * mais unique uniquement pour le périmètre de la source.
-	 * @param cn Nom canonique de la personne : NOM + Prénom usuels.
-	 * @param givenName Prénom usuel.
-	 * @param sn Nom d'usage.
-	 */
-	public Eleve(final Date anneeScolaire, final CleJointure cleJointure,
+  /**
+   * Constructeur de l'objet Eleve.java.
+   */
+  public Eleve() {
+    super();
+    this.setCategorie(CategoriePersonne.Eleve);
+  }
+
+  /**
+   * Constructeur de l'objet Eleve.java.
+   *
+   * @param anneeScolaire Année scolaire de validité de l'individu. Année à la rentrée de septembre.
+   * @param cleJointure   Clé de jointure, identifiant unique fourni par les différentes sources,
+   *                      mais unique uniquement pour le périmètre de la source.
+   * @param cn            Nom canonique de la personne : NOM + Prénom usuels.
+   * @param givenName     Prénom usuel.
+   * @param sn            Nom d'usage.
+   */
+  public Eleve(final Date anneeScolaire, final CleJointure cleJointure,
                final String cn, final String givenName, final String sn) {
-		super(anneeScolaire, CategoriePersonne.Eleve, cleJointure, cn, givenName, sn);
-	}
+    super(anneeScolaire, CategoriePersonne.Eleve, cleJointure, cn, givenName, sn);
+  }
 
-	//Accesseurs
-	/**
-	 * Getter du membre sconetId.
-	 * @return <code>String</code> le membre sconetId.
-	 */
-	public String getSconetId() {
-		return sconetId;
-	}
+  //Accesseurs
 
-	/**
-	 * Setter du membre sconetId.
-	 * @param sconetId la nouvelle valeur du membre sconetId.
-	 */
-	public void setSconetId(final String sconetId) {
-		this.sconetId = sconetId;
-	}
+  /**
+   * Getter du membre sconetId.
+   *
+   * @return <code>String</code> le membre sconetId.
+   */
+  public String getSconetId() {
+    return sconetId;
+  }
 
-	/**
-	 * Getter du membre INE.
-	 * @return the iNE
-	 */
-	public String getINE() {
-		return INE;
-	}
+  /**
+   * Setter du membre sconetId.
+   *
+   * @param sconetId la nouvelle valeur du membre sconetId.
+   */
+  public void setSconetId(final String sconetId) {
+    this.sconetId = sconetId;
+  }
 
-	/**
-	 * Setter du membre INE.
-	 * @param iNE la nouvelle valeur du membre INE
-	 */
-	public void setINE(final String iNE) {
-		INE = iNE;
-	}
+  /**
+   * Getter du membre INE.
+   *
+   * @return the iNE
+   */
+  public String getINE() {
+    return INE;
+  }
 
-	/**
-	 * Getter du membre majeur.
-	 * @return <code>boolean</code> le membre majeur.
-	 */
-	public boolean getMajeur() {
-		return this.majeur;
-	}
+  /**
+   * Setter du membre INE.
+   *
+   * @param iNE la nouvelle valeur du membre INE
+   */
+  public void setINE(final String iNE) {
+    INE = iNE;
+  }
 
-	/**
-	 * Setter du membre majeur.
-	 * @param majeur la nouvelle valeur du membre majeur.
-	 */
-	public void setMajeur(final boolean majeur) {
-		this.majeur = majeur;
-	}
+  /**
+   * Getter du membre majeur.
+   *
+   * @return <code>boolean</code> le membre majeur.
+   */
+  public boolean getMajeur() {
+    return this.majeur;
+  }
 
-	/**
-	 * Getter du membre majeurAnticipe.
-	 * @return <code>Boolean</code> le membre majeurAnticipe.
-	 */
-	public Boolean getMajeurAnticipe() {
-		return this.majeurAnticipe;
-	}
+  /**
+   * Setter du membre majeur.
+   *
+   * @param majeur la nouvelle valeur du membre majeur.
+   */
+  public void setMajeur(final boolean majeur) {
+    this.majeur = majeur;
+  }
 
-	/**
-	 * Setter du membre majeurAnticipe.
-	 * @param majeurAnticipe la nouvelle valeur du membre majeurAnticipe.
-	 */
-	public void setMajeurAnticipe(final Boolean majeurAnticipe) {
-		this.majeurAnticipe = majeurAnticipe;
-	}
+  /**
+   * Getter du membre majeurAnticipe.
+   *
+   * @return <code>Boolean</code> le membre majeurAnticipe.
+   */
+  public Boolean getMajeurAnticipe() {
+    return this.majeurAnticipe;
+  }
 
-	/**
-	 * Getter du membre regime.
-	 * @return <code>String</code> le membre regime.
-	 */
-	public String getRegime() {
-		return this.regime;
-	}
+  /**
+   * Setter du membre majeurAnticipe.
+   *
+   * @param majeurAnticipe la nouvelle valeur du membre majeurAnticipe.
+   */
+  public void setMajeurAnticipe(final Boolean majeurAnticipe) {
+    this.majeurAnticipe = majeurAnticipe;
+  }
 
-	/**
-	 * Setter du membre regime.
-	 * @param regime la nouvelle valeur du membre regime.
-	 */
-	public void setRegime(final String regime) {
-		this.regime = regime;
-	}
+  /**
+   * Getter du membre regime.
+   *
+   * @return <code>String</code> le membre regime.
+   */
+  public String getRegime() {
+    return this.regime;
+  }
 
-	/**
-	 * Getter du membre statut.
-	 * @return <code>String</code> le membre statut.
-	 */
-	public String getStatut() {
-		return this.statut;
-	}
+  /**
+   * Setter du membre regime.
+   *
+   * @param regime la nouvelle valeur du membre regime.
+   */
+  public void setRegime(final String regime) {
+    this.regime = regime;
+  }
 
-	/**
-	 * Setter du membre statut.
-	 * @param statut la nouvelle valeur du membre statut.
-	 */
-	public void setStatut(final String statut) {
-		this.statut = statut;
-	}
+  /**
+   * Getter du membre statut.
+   *
+   * @return <code>String</code> le membre statut.
+   */
+  public String getStatut() {
+    return this.statut;
+  }
 
-	/**
-	 * Getter du membre transport.
-	 * @return <code>Boolean</code> le membre transport.
-	 */
-	public Boolean getTransport() {
-		return this.transport;
-	}
+  /**
+   * Setter du membre statut.
+   *
+   * @param statut la nouvelle valeur du membre statut.
+   */
+  public void setStatut(final String statut) {
+    this.statut = statut;
+  }
 
-	/**
-	 * Setter du membre transport.
-	 * @param transport la nouvelle valeur du membre transport.
-	 */
-	public void setTransport(final Boolean transport) {
-		this.transport = transport;
-	}
+  /**
+   * Getter du membre transport.
+   *
+   * @return <code>Boolean</code> le membre transport.
+   */
+  public Boolean getTransport() {
+    return this.transport;
+  }
 
-	/**
-	 * Getter du membre boursier.
-	 * @return <code>Boolean</code> le membre boursier.
-	 */
-	public Boolean getBoursier() {
-		return this.boursier;
-	}
+  /**
+   * Setter du membre transport.
+   *
+   * @param transport la nouvelle valeur du membre transport.
+   */
+  public void setTransport(final Boolean transport) {
+    this.transport = transport;
+  }
 
-	/**
-	 * Setter du membre boursier.
-	 * @param boursier la nouvelle valeur du membre boursier.
-	 */
-	public void setBoursier(final Boolean boursier) {
-		this.boursier = boursier;
-	}
+  /**
+   * Getter du membre boursier.
+   *
+   * @return <code>Boolean</code> le membre boursier.
+   */
+  public Boolean getBoursier() {
+    return this.boursier;
+  }
 
-	//Relations
-	/**
-	 * Getter du membre mef.
-	 * @return <code>MEF</code> le membre mef.
-	 */
-	public MEF getMef() {
-		return this.mef;
-	}
+  /**
+   * Setter du membre boursier.
+   *
+   * @param boursier la nouvelle valeur du membre boursier.
+   */
+  public void setBoursier(final Boolean boursier) {
+    this.boursier = boursier;
+  }
 
-	/**
-	 * Setter du membre mef.
-	 * @param mef la nouvelle valeur du membre mef.
-	 */
-	public void setMef(final MEF mef) {
-		this.mef = mef;
-	}
+  //Relations
 
-	/**
-	 * Getter du membre enseignements.
-	 * @return <code>Set< MappingEleveEnseignement ></code> le membre enseignements.
-	 */
-	public Set<MappingEleveEnseignement> getEnseignements() {
-		return this.enseignements;
-	}
+  /**
+   * Getter du membre mef.
+   *
+   * @return <code>MEF</code> le membre mef.
+   */
+  public MEF getMef() {
+    return this.mef;
+  }
 
-	/**
-	 * Setter du membre enseignements.
-	 * @param enseignements la nouvelle valeur du membre enseignements.
-	 */
-	public void setEnseignements(final Set<MappingEleveEnseignement> enseignements) {
-		this.enseignements = enseignements;
-	}
+  /**
+   * Setter du membre mef.
+   *
+   * @param mef la nouvelle valeur du membre mef.
+   */
+  public void setMef(final MEF mef) {
+    this.mef = mef;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.personne.APersonne#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Getter du membre enseignements.
+   *
+   * @return <code>Set< MappingEleveEnseignement ></code> le membre enseignements.
+   */
+  public Set<MappingEleveEnseignement> getEnseignements() {
+    return this.enseignements;
+  }
+
+  /**
+   * Setter du membre enseignements.
+   *
+   * @param enseignements la nouvelle valeur du membre enseignements.
+   */
+  public void setEnseignements(final Set<MappingEleveEnseignement> enseignements) {
+    this.enseignements = enseignements;
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.personne.APersonne#toString()
+   */
+  @Override
+  public String toString() {
     return "Eleve [" +
       super.toString() + ", " +
       this.sconetId + ", " +
@@ -298,6 +346,6 @@ public class Eleve extends APersonne {
       this.mef + ", " +
       this.enseignements +
       "]";
-	}
+  }
 
 }

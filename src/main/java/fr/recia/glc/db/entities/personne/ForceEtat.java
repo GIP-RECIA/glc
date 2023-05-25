@@ -20,10 +20,16 @@ package fr.recia.glc.db.entities.personne;
  * 5 sept. 2014
  */
 public enum ForceEtat {
-	/** Aucun état forcé. */
-	NONE,
-	/** Force la suppression. */
-	Deleted,
-	/** Force l'activation. */
-	Activated
+  /**
+   * Aucun état forcé.
+   */
+  NONE,
+  /**
+   * Force la suppression.
+   */
+  Deleted,
+  /**
+   * Force l'activation.
+   */
+  Activated
 }

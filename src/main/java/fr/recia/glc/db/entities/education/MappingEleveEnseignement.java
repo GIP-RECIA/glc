@@ -40,204 +40,214 @@ import java.util.Set;
 @Embeddable
 public class MappingEleveEnseignement implements Serializable {
 
-	/** Identitifant de serialization. */
-	private static final long serialVersionUID = -8513866991911167167L;
+  /**
+   * Identitifant de serialization.
+   */
+  private static final long serialVersionUID = -8513866991911167167L;
 
-	/** Relation avec l'opbjet parent. */
-	@Parent
-	@Column(name = "ELEVE_ID", nullable = false)
-	private Eleve eleve;
+  /**
+   * Relation avec l'opbjet parent.
+   */
+  @Parent
+  @Column(name = "ELEVE_ID", nullable = false)
+  private Eleve eleve;
 
-	/** Source d'alimentation de l'association. */
-	@Basic
-	@Column(length = IntConst.ISOURCE, name = "SOURCE", nullable = false, unique = false)
-	private String source;
+  /**
+   * Source d'alimentation de l'association.
+   */
+  @Basic
+  @Column(length = IntConst.ISOURCE, name = "SOURCE", nullable = false, unique = false)
+  private String source;
 
-	/** Relation avec l'enseignement. */
-	@OneToOne
-	@JoinColumn(name = "ENSEIGNEMENT_ID", nullable = false)
-	private Enseignement enseignement;
+  /**
+   * Relation avec l'enseignement.
+   */
+  @OneToOne
+  @JoinColumn(name = "ENSEIGNEMENT_ID", nullable = false)
+  private Enseignement enseignement;
 
-	/** Relation avec l'établissement. */
-	@OneToOne
-	@JoinColumn(name = "ETABLISSEMENT_ID", nullable = true)
-	private Etablissement etablissement;
+  /**
+   * Relation avec l'établissement.
+   */
+  @OneToOne
+  @JoinColumn(name = "ETABLISSEMENT_ID", nullable = true)
+  private Etablissement etablissement;
 
-	/**
-	 * Contructor of the object MappingEleveEnseignement.java.
-	 */
-	public MappingEleveEnseignement() {
-		super();
-	}
+  /**
+   * Contructor of the object MappingEleveEnseignement.java.
+   */
+  public MappingEleveEnseignement() {
+    super();
+  }
 
-	/**
-	 * Contructor of the object MappingEleveEnseignement.java.
-	 *
-	 * @param source
-	 * @param enseignement
-	 */
-	public MappingEleveEnseignement(final String source, final Enseignement enseignement) {
-		super();
-		this.source = source;
-		this.enseignement = enseignement;
-	}
+  /**
+   * Contructor of the object MappingEleveEnseignement.java.
+   *
+   * @param source
+   * @param enseignement
+   */
+  public MappingEleveEnseignement(final String source, final Enseignement enseignement) {
+    super();
+    this.source = source;
+    this.enseignement = enseignement;
+  }
 
-	/**
-	 * Contructor of the object MappingEleveEnseignement.java.
-	 *
-	 * @param source
-	 * @param enseignement
-	 * @param etablissement
-	 */
-	public MappingEleveEnseignement(final String source, final Enseignement enseignement, final Etablissement etablissement) {
-		super();
-		this.source = source;
-		this.enseignement = enseignement;
-		this.etablissement = etablissement;
-	}
+  /**
+   * Contructor of the object MappingEleveEnseignement.java.
+   *
+   * @param source
+   * @param enseignement
+   * @param etablissement
+   */
+  public MappingEleveEnseignement(final String source, final Enseignement enseignement, final Etablissement etablissement) {
+    super();
+    this.source = source;
+    this.enseignement = enseignement;
+    this.etablissement = etablissement;
+  }
 
-	/**
-	 * Getter of member eleve.
-	 *
-	 * @return <code>Eleve</code> the attribute eleve
-	 */
-	public Eleve getEleve() {
-		return eleve;
-	}
+  /**
+   * Getter of member eleve.
+   *
+   * @return <code>Eleve</code> the attribute eleve
+   */
+  public Eleve getEleve() {
+    return eleve;
+  }
 
-	/**
-	 * Setter of attribute eleve.
-	 *
-	 * @param eleve the attribute eleve to set
-	 */
-	public void setEleve(final Eleve eleve) {
-		this.eleve = eleve;
-	}
+  /**
+   * Setter of attribute eleve.
+   *
+   * @param eleve the attribute eleve to set
+   */
+  public void setEleve(final Eleve eleve) {
+    this.eleve = eleve;
+  }
 
-	/**
-	 * Getter of member source.
-	 *
-	 * @return <code>String</code> the attribute source
-	 */
-	public String getSource() {
-		return source;
-	}
+  /**
+   * Getter of member source.
+   *
+   * @return <code>String</code> the attribute source
+   */
+  public String getSource() {
+    return source;
+  }
 
-	/**
-	 * Setter of attribute source.
-	 *
-	 * @param source the attribute source to set
-	 */
-	public void setSource(final String source) {
-		this.source = source;
-	}
+  /**
+   * Setter of attribute source.
+   *
+   * @param source the attribute source to set
+   */
+  public void setSource(final String source) {
+    this.source = source;
+  }
 
-	/**
-	 * Getter of member enseignement.
-	 *
-	 * @return <code>Enseignement</code> the attribute enseignement
-	 */
-	public Enseignement getEnseignement() {
-		return enseignement;
-	}
+  /**
+   * Getter of member enseignement.
+   *
+   * @return <code>Enseignement</code> the attribute enseignement
+   */
+  public Enseignement getEnseignement() {
+    return enseignement;
+  }
 
-	/**
-	 * Setter of attribute enseignement.
-	 *
-	 * @param enseignement the attribute enseignement to set
-	 */
-	public void setEnseignement(final Enseignement enseignement) {
-		this.enseignement = enseignement;
-	}
+  /**
+   * Setter of attribute enseignement.
+   *
+   * @param enseignement the attribute enseignement to set
+   */
+  public void setEnseignement(final Enseignement enseignement) {
+    this.enseignement = enseignement;
+  }
 
-	/**
-	 * Getter of attribute
-	 *
-	 * @return the etablissement
-	 */
-	public Etablissement getEtablissement() {
-		return etablissement;
-	}
+  /**
+   * Getter of attribute
+   *
+   * @return the etablissement
+   */
+  public Etablissement getEtablissement() {
+    return etablissement;
+  }
 
-	/**
-	 * Setter of attribute etablissement
-	 *
-	 * @param etablissement the etablissement to set
-	 */
-	public void setEtablissement(Etablissement etablissement) {
-		this.etablissement = etablissement;
-	}
+  /**
+   * Setter of attribute etablissement
+   *
+   * @param etablissement the etablissement to set
+   */
+  public void setEtablissement(Etablissement etablissement) {
+    this.etablissement = etablissement;
+  }
 
-	/**
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((eleve == null) ? 0 : eleve.hashCode());
-		result = prime * result + ((enseignement == null) ? 0 : enseignement.hashCode());
-		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		return result;
-	}
+  /**
+   * (non-Javadoc)
+   *
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((eleve == null) ? 0 : eleve.hashCode());
+    result = prime * result + ((enseignement == null) ? 0 : enseignement.hashCode());
+    result = prime * result + ((source == null) ? 0 : source.hashCode());
+    return result;
+  }
 
-	/**
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MappingEleveEnseignement other = (MappingEleveEnseignement) obj;
-		if (enseignement == null) {
-			if (other.enseignement != null)
-				return false;
-		} else if (!enseignement.equals(other.enseignement))
-			return false;
-		if (source == null) {
-			if (other.source != null)
-				return false;
-		} else if (!source.equals(other.source))
-			return false;
-		return true;
-	}
+  /**
+   * (non-Javadoc)
+   *
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingEleveEnseignement other = (MappingEleveEnseignement) obj;
+    if (enseignement == null) {
+      if (other.enseignement != null)
+        return false;
+    } else if (!enseignement.equals(other.enseignement))
+      return false;
+    if (source == null) {
+      if (other.source != null)
+        return false;
+    } else if (!source.equals(other.source))
+      return false;
+    return true;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance en ignorant l'attribut source.
-	 *
-	 * @param obj
-	 * @return boolean
-	 */
-	public boolean equalsIgnoreSource(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MappingEleveEnseignement other = (MappingEleveEnseignement) obj;
-		if (enseignement == null) {
-			if (other.enseignement != null)
-				return false;
-		} else if (!enseignement.equals(other.enseignement))
-			return false;
-		return true;
-	}
+  /**
+   * Teste si un objet est égal à cette instance en ignorant l'attribut source.
+   *
+   * @param obj
+   * @return boolean
+   */
+  public boolean equalsIgnoreSource(final Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingEleveEnseignement other = (MappingEleveEnseignement) obj;
+    if (enseignement == null) {
+      if (other.enseignement != null)
+        return false;
+    } else if (!enseignement.equals(other.enseignement))
+      return false;
+    return true;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance en ignorant l'attribut source.
-	 *
-	 * @param obj
-	 * @return boolean
-	 */
+  /**
+   * Teste si un objet est égal à cette instance en ignorant l'attribut source.
+   *
+   * @param obj
+   * @return boolean
+   */
 	 /* public boolean equalsCodeEnsIgnoreSource(final Object obj) {
      if (this == obj)
        return true;
@@ -254,28 +264,28 @@ public class MappingEleveEnseignement implements Serializable {
      return true;
    }*/
 
-	/**
-	 * Test if a set of MappingEleveEnseignement contains an enseignement without checking the source of MappingEleveEnseignement link.
-	 *
-	 * @param collection
-	 * @param object
-	 * @return boolean
-	 */
-	public static boolean containsWithoutSource(final Set<MappingEleveEnseignement> collection, final MappingEleveEnseignement object) {
-		for (MappingEleveEnseignement item : collection) {
-			if (item.equalsIgnoreSource(object))
-				return true;
-		}
-		return false;
-	}
+  /**
+   * Test if a set of MappingEleveEnseignement contains an enseignement without checking the source of MappingEleveEnseignement link.
+   *
+   * @param collection
+   * @param object
+   * @return boolean
+   */
+  public static boolean containsWithoutSource(final Set<MappingEleveEnseignement> collection, final MappingEleveEnseignement object) {
+    for (MappingEleveEnseignement item : collection) {
+      if (item.equalsIgnoreSource(object))
+        return true;
+    }
+    return false;
+  }
 
-	/**
-	 * Test if a set of MappingEleveEnseignement contains an enseignement without checking the source of MappingEleveEnseignement link.
-	 *
-	 * @param collection
-	 * @param object
-	 * @return boolean
-	 */
+  /**
+   * Test if a set of MappingEleveEnseignement contains an enseignement without checking the source of MappingEleveEnseignement link.
+   *
+   * @param collection
+   * @param object
+   * @return boolean
+   */
   /* public static boolean containsCodeEnsWithoutSource(final Set<MappingEleveEnseignement> collection, final MappingEleveEnseignement object) {
     for (MappingEleveEnseignement item : collection) {
       if (item.equalsCodeEnsIgnoreSource(object))
@@ -284,18 +294,18 @@ public class MappingEleveEnseignement implements Serializable {
     return false;
   }*/
 
-	/**
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * (non-Javadoc)
+   *
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString() {
     return "MappingEleveEnseignement [source=" +
       this.source + ", enseignement=" +
       this.enseignement + ", etablissement=" +
       (etablissement != null ? etablissement.getId() : "default") +
       "]";
-	}
+  }
 
 }

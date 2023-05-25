@@ -17,19 +17,30 @@ package fr.recia.glc.db.entities.fonction;
 
 /**
  * Type énuméré des différentes catégories de fonctions.
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 9 juin 08
  */
 public enum CategorieFonction {
-	/** prof_principal, délégué de classe, délégué vie scolaire,
-	 * délégué remplaçant1, délégué remplaçant2. */
-	Classe,
-	/** Domaines d'exercices. */
-	Domaine,
-	/** Domaines d'exercices au sein d'un groupement d'établissment. */
-	Domaine_Groupement,
-	/** Fonction dans une structure, avec le type de fonction filière et discipline de poste associée. */
-	Fonction,
-	/** Enseignant qui enseigne pour un MEF dans un etablissement. */
-	MEF
+  /**
+   * prof_principal, délégué de classe, délégué vie scolaire,
+   * délégué remplaçant1, délégué remplaçant2.
+   */
+  Classe,
+  /**
+   * Domaines d'exercices.
+   */
+  Domaine,
+  /**
+   * Domaines d'exercices au sein d'un groupement d'établissment.
+   */
+  Domaine_Groupement,
+  /**
+   * Fonction dans une structure, avec le type de fonction filière et discipline de poste associée.
+   */
+  Fonction,
+  /**
+   * Enseignant qui enseigne pour un MEF dans un etablissement.
+   */
+  MEF
 }

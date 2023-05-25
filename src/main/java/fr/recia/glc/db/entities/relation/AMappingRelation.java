@@ -38,208 +38,227 @@ import java.util.Set;
 @Entity
 @Table(name = "relations_apersonnes")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@AssociationOverrides({ @AssociationOverride(name = "pk.personne1", joinColumns = @JoinColumn(name = "APERSONNE1_ID")),
-		@AssociationOverride(name = "pk.personne2", joinColumns = @JoinColumn(name = "APERSONNE2_ID")) })
+@AssociationOverrides({@AssociationOverride(name = "pk.personne1", joinColumns = @JoinColumn(name = "APERSONNE1_ID")),
+  @AssociationOverride(name = "pk.personne2", joinColumns = @JoinColumn(name = "APERSONNE2_ID"))})
 public abstract class AMappingRelation implements Serializable {
 
-	/** Identifiant de serialisation*/
-	private static final long serialVersionUID = -317565852223813976L;
+  /**
+   * Identifiant de serialisation
+   */
+  private static final long serialVersionUID = -317565852223813976L;
 
-	/** The Source which insert the entry. */
-	@Basic
-	@Column(name = "SOURCE", length = IntConst.ISOURCE, nullable = false)
-	private String source;
+  /**
+   * The Source which insert the entry.
+   */
+  @Basic
+  @Column(name = "SOURCE", length = IntConst.ISOURCE, nullable = false)
+  private String source;
 
-	/** The pk */
-	@EmbeddedId
-	private MappingAPersonneAPersonneId pk = new MappingAPersonneAPersonneId();
+  /**
+   * The pk
+   */
+  @EmbeddedId
+  private MappingAPersonneAPersonneId pk = new MappingAPersonneAPersonneId();
 
-	/**
-	 * Empty Constructor, must not be used.
-	 */
-	public AMappingRelation() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+  /**
+   * Empty Constructor, must not be used.
+   */
+  public AMappingRelation() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
-	/**
-	 * Contructor of the object MappingAGroupeAPersonne.java.
-	 * @param source
-	 * @param personne1
-	 * @param personne2
-	 */
-	public AMappingRelation(final String source, final APersonne personne1,
+  /**
+   * Contructor of the object MappingAGroupeAPersonne.java.
+   *
+   * @param source
+   * @param personne1
+   * @param personne2
+   */
+  public AMappingRelation(final String source, final APersonne personne1,
                           final APersonne personne2, final CategorieRelation categoryRelation) {
-		super();
-		this.source = source;
-		this.pk = new MappingAPersonneAPersonneId(personne1, personne2, categoryRelation);
-	}
+    super();
+    this.source = source;
+    this.pk = new MappingAPersonneAPersonneId(personne1, personne2, categoryRelation);
+  }
 
-	/**
-	 * Getter of member source.
-	 * @return <code>String</code> the attribute source
-	 */
-	public String getSource() {
-		return source;
-	}
+  /**
+   * Getter of member source.
+   *
+   * @return <code>String</code> the attribute source
+   */
+  public String getSource() {
+    return source;
+  }
 
-	/**
-	 * Setter of attribute source.
-	 * @param source the attribute source to set
-	 */
-	public void setSource(final String source) {
-		this.source = source;
-	}
+  /**
+   * Setter of attribute source.
+   *
+   * @param source the attribute source to set
+   */
+  public void setSource(final String source) {
+    this.source = source;
+  }
 
-	/**
-	 * Getter of member pk.
-	 * @return <code>MappingAGroupeAPersonneId</code> the attribute pk
-	 */
-	public MappingAPersonneAPersonneId getPk() {
-		return pk;
-	}
+  /**
+   * Getter of member pk.
+   *
+   * @return <code>MappingAGroupeAPersonneId</code> the attribute pk
+   */
+  public MappingAPersonneAPersonneId getPk() {
+    return pk;
+  }
 
-	/**
-	 * Setter of attribute pk.
-	 * @param pk the attribute pk to set
-	 */
-	public void setPk(final MappingAPersonneAPersonneId pk) {
-		this.pk = pk;
-	}
+  /**
+   * Setter of attribute pk.
+   *
+   * @param pk the attribute pk to set
+   */
+  public void setPk(final MappingAPersonneAPersonneId pk) {
+    this.pk = pk;
+  }
 
-	/**
-	 * Getter of member personne.
-	 * @return <code>APersonne</code> the attribute personne
-	 */
-	//@Transient
-	protected APersonne getPersonne1() {
-		return this.getPk().getPersonne1();
-	}
+  /**
+   * Getter of member personne.
+   *
+   * @return <code>APersonne</code> the attribute personne
+   */
+  //@Transient
+  protected APersonne getPersonne1() {
+    return this.getPk().getPersonne1();
+  }
 
-	/**
-	 * Setter of attribute personne.
-	 * @param personne the attribute personne to set
-	 */
-	protected void setPersonne1(APersonne personne) {
-		this.getPk().setPersonne1(personne);
-	}
+  /**
+   * Setter of attribute personne.
+   *
+   * @param personne the attribute personne to set
+   */
+  protected void setPersonne1(APersonne personne) {
+    this.getPk().setPersonne1(personne);
+  }
 
-	/**
-	 * Getter of member personne.
-	 * @return <code>APersonne</code> the attribute personne
-	 */
-	//@Transient
-	protected APersonne getPersonne2() {
-		return this.getPk().getPersonne2();
-	}
+  /**
+   * Getter of member personne.
+   *
+   * @return <code>APersonne</code> the attribute personne
+   */
+  //@Transient
+  protected APersonne getPersonne2() {
+    return this.getPk().getPersonne2();
+  }
 
-	/**
-	 * Setter of attribute personne.
-	 * @param personne the attribute personne to set
-	 */
-	protected void setPersonne2(APersonne personne) {
-		this.getPk().setPersonne2(personne);
-	}
+  /**
+   * Setter of attribute personne.
+   *
+   * @param personne the attribute personne to set
+   */
+  protected void setPersonne2(APersonne personne) {
+    this.getPk().setPersonne2(personne);
+  }
 
-	/**
-	 * Getter of member categorie.
-	 * @return <code>CategoryRelation</code> the attribute categorie
-	 */
-	public CategorieRelation getCategorie() {
-		return this.getPk().getCategorie();
-	}
+  /**
+   * Getter of member categorie.
+   *
+   * @return <code>CategoryRelation</code> the attribute categorie
+   */
+  public CategorieRelation getCategorie() {
+    return this.getPk().getCategorie();
+  }
 
-	/**
-	 * Setter of attribute categorie.
-	 * @param categoryRelation the attribute categorie to set
-	 */
-	public void setCategorie(CategorieRelation categoryRelation) {
-		this.getPk().setCategorie(categoryRelation);
-	}
+  /**
+   * Setter of attribute categorie.
+   *
+   * @param categoryRelation the attribute categorie to set
+   */
+  public void setCategorie(CategorieRelation categoryRelation) {
+    this.getPk().setCategorie(categoryRelation);
+  }
 
-	/**
-	 * @see Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((pk == null) ? 0 : pk.hashCode());
-		result = prime * result + ((source == null) ? 0 : source.hashCode());
-		return result;
-	}
+  /**
+   * @see Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((pk == null) ? 0 : pk.hashCode());
+    result = prime * result + ((source == null) ? 0 : source.hashCode());
+    return result;
+  }
 
-	/**
-	 * @see Object#equals(Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AMappingRelation other = (AMappingRelation) obj;
-		if (pk == null) {
-			if (other.pk != null)
-				return false;
-		} else if (!pk.equals(other.pk))
-			return false;
-		if (source == null) {
-			if (other.source != null)
-				return false;
-		} else if (!source.equals(other.source))
-			return false;
-		return true;
-	}
+  /**
+   * @see Object#equals(Object)
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    AMappingRelation other = (AMappingRelation) obj;
+    if (pk == null) {
+      if (other.pk != null)
+        return false;
+    } else if (!pk.equals(other.pk))
+      return false;
+    if (source == null) {
+      if (other.source != null)
+        return false;
+    } else if (!source.equals(other.source))
+      return false;
+    return true;
+  }
 
-	/**
-	 * Check if the object is equals without source comparison
-	 * @param obj
-	 * @return true is equals else false.
-	 */
-	public boolean equalsIgnoreSource(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AMappingRelation other = (AMappingRelation) obj;
-		if (pk == null) {
-			if (other.pk != null)
-				return false;
-		} else if (!pk.equals(other.pk))
-			return false;
-		return true;
-	}
+  /**
+   * Check if the object is equals without source comparison
+   *
+   * @param obj
+   * @return true is equals else false.
+   */
+  public boolean equalsIgnoreSource(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    AMappingRelation other = (AMappingRelation) obj;
+    if (pk == null) {
+      if (other.pk != null)
+        return false;
+    } else if (!pk.equals(other.pk))
+      return false;
+    return true;
+  }
 
-	/**
-	 * Test if a set contains a groupe.
-	 * @param collection The set of MappingAPersonneAPersonne where to check.
-	 * @param object the groupe To find.
-	 * @return true if contains, else false.
-	 */
-	public static boolean containsWithoutSource(final Set<AMappingRelation> collection, final AMappingRelation object) {
-		for (AMappingRelation item : collection) {
-			if (item.equalsIgnoreSource(object))
-				return true;
-		}
-		return false;
-	}
+  /**
+   * Test if a set contains a groupe.
+   *
+   * @param collection The set of MappingAPersonneAPersonne where to check.
+   * @param object     the groupe To find.
+   * @return true if contains, else false.
+   */
+  public static boolean containsWithoutSource(final Set<AMappingRelation> collection, final AMappingRelation object) {
+    for (AMappingRelation item : collection) {
+      if (item.equalsIgnoreSource(object))
+        return true;
+    }
+    return false;
+  }
 
-	/**
-	 * @see Object#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * @see Object#toString()
+   */
+  @Override
+  public String toString() {
     return "MappingAPersonneAPersonne [source=" +
       source + ", categoryRelation=" +
       this.pk.getCategorie() + ", personne1=" +
       this.getPersonne1().getId() + ", personne2=" +
       this.getPersonne2().getId() +
       "]";
-	}
+  }
 
 }

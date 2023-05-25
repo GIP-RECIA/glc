@@ -32,24 +32,31 @@ import java.util.Set;
  * Ensemble des MEF associés à un enseignant pour un établissement.
  * <DL><DT><b>Champs obligatoires :</b></DT>
  * <DD>mef.</DD></DL>
+ *
  * @author GIP RECIA - Gribonvald Julien
  * 10 juin 08
  */
 @Entity
 public class FonctionMEF extends AFonction {
 
-	/** Identifiant de sérialisation. */
-	private static final long serialVersionUID = 4906542086808245030L;
+  /**
+   * Identifiant de sérialisation.
+   */
+  private static final long serialVersionUID = 4906542086808245030L;
 
-	//Attributs
+  //Attributs
 
-		//Relations
-	/** Relation unidirectionnelle. */
-	@ManyToOne
-	@JoinColumn(name = "etablissement_fk")
-	private Etablissement etablissement;
+  //Relations
+  /**
+   * Relation unidirectionnelle.
+   */
+  @ManyToOne
+  @JoinColumn(name = "etablissement_fk")
+  private Etablissement etablissement;
 
-	/** Relation unidirectionnelle. */
+  /**
+   * Relation unidirectionnelle.
+   */
 	/* @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
 	@JoinTable(name = "fonctions_mefs",
 			joinColumns =
@@ -58,123 +65,147 @@ public class FonctionMEF extends AFonction {
 				@JoinColumn(name = "MEF_ID", referencedColumnName = "ID"))
 	private Set<MEF> mefs = new HashSet<>();*/
 
-	@ElementCollection(fetch = FetchType.LAZY)
-	@JoinTable(name = "fonctions_mefs", joinColumns =
-			@JoinColumn(name = "FONCTIONMEF_ID", referencedColumnName = "ID"))
-	private Set<MappingFonctionMEFMEF> mefs = new HashSet<>();
+  @ElementCollection(fetch = FetchType.LAZY)
+  @JoinTable(name = "fonctions_mefs", joinColumns =
+  @JoinColumn(name = "FONCTIONMEF_ID", referencedColumnName = "ID"))
+  private Set<MappingFonctionMEFMEF> mefs = new HashSet<>();
 
-	//Constructeurs
-	/**
-	 * Constructeur de l'objet FonctionMEF.java.
-	 */
-	public FonctionMEF() {
-		super();
-		this.setCategorie(CategorieFonction.MEF);
-	}
-	/**
-	 * Constructeur de l'objet FonctionMEF.java.
-	 * @param mefs Liste des mefs.
-	 * @param etablissement l'établissement associé à l'enseignement de ces mef
-	 * @param personne la personne ayant la fonction d'enseigner associé à ce mefs.
-	 * @param source Source d'alimentation gérant cette fonction.
-	 */
-	public FonctionMEF(final Set<MappingFonctionMEFMEF> mefs, final Etablissement etablissement,
+  //Constructeurs
+
+  /**
+   * Constructeur de l'objet FonctionMEF.java.
+   */
+  public FonctionMEF() {
+    super();
+    this.setCategorie(CategorieFonction.MEF);
+  }
+
+  /**
+   * Constructeur de l'objet FonctionMEF.java.
+   *
+   * @param mefs          Liste des mefs.
+   * @param etablissement l'établissement associé à l'enseignement de ces mef
+   * @param personne      la personne ayant la fonction d'enseigner associé à ce mefs.
+   * @param source        Source d'alimentation gérant cette fonction.
+   */
+  public FonctionMEF(final Set<MappingFonctionMEFMEF> mefs, final Etablissement etablissement,
                      final APersonne personne, final String source) {
-		super(CategorieFonction.MEF, personne, source);
-		this.mefs = mefs;
-		this.etablissement = etablissement;
-	}
+    super(CategorieFonction.MEF, personne, source);
+    this.mefs = mefs;
+    this.etablissement = etablissement;
+  }
 
-	//Accesseurs
+  //Accesseurs
   //Relations
-	/**
-	 * Getter du membre etablissement.
-	 * @return <code>Etablissement</code> le membre etablissement.
-	 */
-	public Etablissement getEtablissement() {
-		return this.etablissement;
-	}
 
-	/**
-	 * Setter du membre etablissement.
-	 * @param etablissement la nouvelle valeur du membre etablissement.
-	 */
-	public void setEtablissement(final Etablissement etablissement) {
-		this.etablissement = etablissement;
-	}
+  /**
+   * Getter du membre etablissement.
+   *
+   * @return <code>Etablissement</code> le membre etablissement.
+   */
+  public Etablissement getEtablissement() {
+    return this.etablissement;
+  }
 
-	/**
-	 * Getter of member mefs.
-	 * @return <code>Set<MappingFonctionMEFMEF></code> the attribute mefs
-	 */
-	public Set<MappingFonctionMEFMEF> getMefs() {
-		return mefs;
-	}
+  /**
+   * Setter du membre etablissement.
+   *
+   * @param etablissement la nouvelle valeur du membre etablissement.
+   */
+  public void setEtablissement(final Etablissement etablissement) {
+    this.etablissement = etablissement;
+  }
 
-	/**
-	 * Setter of attribute mefs.
-	 * @param mefs the attribute mefs to set
-	 */
-	public void setMefs(final Set<MappingFonctionMEFMEF> mefs) {
-		this.mefs = mefs;
-	}
+  /**
+   * Getter of member mefs.
+   *
+   * @return <code>Set<MappingFonctionMEFMEF></code> the attribute mefs
+   */
+  public Set<MappingFonctionMEFMEF> getMefs() {
+    return mefs;
+  }
 
-	/**
-	 * Ajoute un Mef à la liste.
-	 * @param mef le mef à ajouter.
-	 */
-	public void addMef(final MappingFonctionMEFMEF mef) {
-		this.mefs.add(mef);
-	}
+  /**
+   * Setter of attribute mefs.
+   *
+   * @param mefs the attribute mefs to set
+   */
+  public void setMefs(final Set<MappingFonctionMEFMEF> mefs) {
+    this.mefs = mefs;
+  }
 
-	/**
-	 * Transforme cette instance en chaine de caractères.
-	 * @return <code>String</code> La chaine.
-	 * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
-	 */
-	@Override
-	public String toString() {
+  /**
+   * Ajoute un Mef à la liste.
+   *
+   * @param mef le mef à ajouter.
+   */
+  public void addMef(final MappingFonctionMEFMEF mef) {
+    this.mefs.add(mef);
+  }
+
+  /**
+   * Transforme cette instance en chaine de caractères.
+   *
+   * @return <code>String</code> La chaine.
+   * @see fr.recia.glc.db.entities.fonction.AFonction#toString()
+   */
+  @Override
+  public String toString() {
     return "FonctionMEF [" +
       super.toString() + ", " +
       this.etablissement + ", " +
       this.mefs +
       "]";
-	}
+  }
 
-	/**
-	 * Donne la valeur de hachage de l'instance.
-	 * @return <code>int</code> La valeur du hash.
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		if (this.etablissement == null) {
-			result = prime * result;
-		} else {
-			result = prime * result + this.etablissement.hashCode();
-		}
-		return result;
-	}
+  /**
+   * Donne la valeur de hachage de l'instance.
+   *
+   * @return <code>int</code> La valeur du hash.
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.etablissement == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.etablissement.hashCode();
+    }
+    return result;
+  }
 
-	/**
-	 * Teste si un objet est égal à cette instance.
-	 * @param obj l'instance le l'object à comparer.
-	 * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) { return true; }
-		if (obj == null) { return false; }
-		if (!super.equals(obj)) { return false; }
-		if (!(obj instanceof FonctionMEF)) { return false; }
-		final FonctionMEF other = (FonctionMEF) obj;
-		if (this.etablissement == null) {
-			if (other.etablissement != null) { return false; }
-		} else if (!this.etablissement.equals(other.etablissement)) { return false; }
-		return true;
-	}
+  /**
+   * Teste si un objet est égal à cette instance.
+   *
+   * @param obj l'instance le l'object à comparer.
+   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof FonctionMEF)) {
+      return false;
+    }
+    final FonctionMEF other = (FonctionMEF) obj;
+    if (this.etablissement == null) {
+      if (other.etablissement != null) {
+        return false;
+      }
+    } else if (!this.etablissement.equals(other.etablissement)) {
+      return false;
+    }
+    return true;
+  }
 
 }
