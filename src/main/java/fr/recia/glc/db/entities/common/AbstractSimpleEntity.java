@@ -42,7 +42,7 @@ public abstract class AbstractSimpleEntity implements Serializable {
    */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   //Constructeur
 
@@ -60,7 +60,7 @@ public abstract class AbstractSimpleEntity implements Serializable {
    *
    * @return <code>long</code> le membre id
    */
-  public long getId() {
+  public Long getId() {
     return this.id;
   }
 
@@ -69,7 +69,7 @@ public abstract class AbstractSimpleEntity implements Serializable {
    *
    * @param id la nouvelle valeur du membre id
    */
-  public void setId(final long id) {
+  public void setId(final Long id) {
     this.id = id;
   }
 

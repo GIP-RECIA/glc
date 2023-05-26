@@ -22,6 +22,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
@@ -29,7 +32,7 @@ spring:
 
 security-configuration:
   soffit:
-    jwt.signatureKey: '=== Signature Key ===' # Variable privée surchargée dans private.yml.
+    jwt.signatureKey: "=== Signature Key ===" # Variable privée surchargée dans private.yml.
   cors:
     enable: true
     allow-credentials: true
