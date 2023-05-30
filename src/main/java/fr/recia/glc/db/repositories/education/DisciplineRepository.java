@@ -16,9 +16,7 @@
 package fr.recia.glc.db.repositories.education;
 
 import fr.recia.glc.db.entities.education.Discipline;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-import java.util.List;
-
-public interface DisciplineRepository extends JpaRepository<Discipline, Long> {
+public interface DisciplineRepository<T extends Discipline> extends AbstractRepository<T, Long> {
 }

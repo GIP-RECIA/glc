@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.AGroupeOfAPersonne;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface AGroupeOfAPersonneRepository extends JpaRepository<AGroupeOfAPersonne, Long> {
+public interface AGroupeOfAPersonneRepository<T extends AGroupeOfAPersonne> extends AbstractRepository<T, Long> {
 }

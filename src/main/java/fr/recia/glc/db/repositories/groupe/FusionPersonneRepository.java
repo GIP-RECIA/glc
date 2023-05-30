@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.FusionPersonne;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface FusionPersonneRepository extends JpaRepository<FusionPersonne, Long> {
+public interface FusionPersonneRepository<T extends FusionPersonne> extends AbstractRepository<T, Long> {
 }

@@ -13,10 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.repositories.fonction;
+package fr.recia.glc.db.repositories;
 
-import fr.recia.glc.db.entities.fonction.TypeFonctionFiliere;
-import fr.recia.glc.db.repositories.AbstractRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.data.repository.NoRepositoryBean;
 
-public interface TypeFonctionFiliereRepository<T extends TypeFonctionFiliere> extends AbstractRepository<T, Long> {
+import java.io.Serializable;
+
+@SuppressWarnings("java:S119")
+@NoRepositoryBean
+public interface AbstractRepository<M, ID extends Serializable> extends JpaRepository<M, ID>, QuerydslPredicateExecutor<M> {
 }

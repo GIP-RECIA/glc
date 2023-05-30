@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.common;
 
 import fr.recia.glc.db.entities.common.Mail;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface MailRepository extends JpaRepository<Mail, Long> {
+public interface MailRepository<T extends Mail> extends AbstractRepository<T, Long> {
 }

@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.structure;
 
 import fr.recia.glc.db.entities.structure.AStructure;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface AStructureRepository extends JpaRepository<AStructure, Long> {
+public interface AStructureRepository<T extends AStructure> extends AbstractRepository<T, Long> {
 }

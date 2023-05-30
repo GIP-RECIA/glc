@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.Profil;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface ProfilRepository extends JpaRepository<Profil, Long> {
+public interface ProfilRepository<T extends Profil> extends AbstractRepository<T, Long> {
 }

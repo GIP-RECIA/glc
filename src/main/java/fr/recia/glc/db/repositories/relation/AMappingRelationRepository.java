@@ -17,7 +17,7 @@ package fr.recia.glc.db.repositories.relation;
 
 import fr.recia.glc.db.entities.relation.AMappingRelation;
 import fr.recia.glc.db.entities.relation.MappingAPersonneAPersonneId;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface AMappingRelationRepository extends JpaRepository<AMappingRelation, MappingAPersonneAPersonneId> {
+public interface AMappingRelationRepository<T extends AMappingRelation> extends AbstractRepository<T, MappingAPersonneAPersonneId> {
 }

@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.Enseignant;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface EnseignantRepository extends JpaRepository<Enseignant, Long> {
+public interface EnseignantRepository<T extends Enseignant> extends AbstractRepository<T, Long> {
 }

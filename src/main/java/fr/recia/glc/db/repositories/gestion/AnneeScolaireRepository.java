@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.gestion;
 
 import fr.recia.glc.db.entities.gestion.AnneeScolaire;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface AnneeScolaireRepository extends JpaRepository<AnneeScolaire, Long> {
+public interface AnneeScolaireRepository<T extends AnneeScolaire> extends AbstractRepository<T, Long> {
 }

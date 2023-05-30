@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.Login;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface LoginRepository extends JpaRepository<Login, Long> {
+public interface LoginRepository<T extends Login> extends AbstractRepository<T, Long> {
 }

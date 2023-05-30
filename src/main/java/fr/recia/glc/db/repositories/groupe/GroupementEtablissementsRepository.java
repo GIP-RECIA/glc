@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.GroupementEtablissements;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface GroupementEtablissementsRepository extends JpaRepository<GroupementEtablissements, Long> {
+public interface GroupementEtablissementsRepository<T extends GroupementEtablissements> extends AbstractRepository<T, Long> {
 }

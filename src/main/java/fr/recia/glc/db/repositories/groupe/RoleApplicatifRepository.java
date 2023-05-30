@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.RoleApplicatif;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface RoleApplicatifRepository extends JpaRepository<RoleApplicatif, Long> {
+public interface RoleApplicatifRepository<T extends RoleApplicatif> extends AbstractRepository<T, Long> {
 }

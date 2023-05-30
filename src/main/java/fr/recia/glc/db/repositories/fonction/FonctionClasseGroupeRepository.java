@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.fonction;
 
 import fr.recia.glc.db.entities.fonction.FonctionClasseGroupe;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface FonctionClasseGroupeRepository extends JpaRepository<FonctionClasseGroupe, Long> {
+public interface FonctionClasseGroupeRepository<T extends FonctionClasseGroupe> extends AbstractRepository<T, Long> {
 }

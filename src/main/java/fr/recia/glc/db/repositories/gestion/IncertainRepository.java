@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.gestion;
 
 import fr.recia.glc.db.entities.gestion.Incertain;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface IncertainRepository extends JpaRepository<Incertain, Long> {
+public interface IncertainRepository<T extends Incertain> extends AbstractRepository<T, Long> {
 }

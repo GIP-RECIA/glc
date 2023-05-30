@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.groupe;
 
 import fr.recia.glc.db.entities.groupe.AGroupeOfFoncClasseGroupe;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface AGroupeOfFoncClasseGroupeRepository extends JpaRepository<AGroupeOfFoncClasseGroupe, Long> {
+public interface AGroupeOfFoncClasseGroupeRepository<T extends AGroupeOfFoncClasseGroupe> extends AbstractRepository<T, Long> {
 }

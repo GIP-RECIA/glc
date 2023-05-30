@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.TuteurStage;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface TuteurStageRepository extends JpaRepository<TuteurStage, Long> {
+public interface TuteurStageRepository<T extends TuteurStage> extends AbstractRepository<T, Long> {
 }

@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.Eleve;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface EleveRepository extends JpaRepository<Eleve, Long> {
+public interface EleveRepository<T extends Eleve> extends AbstractRepository<T, Long> {
 }

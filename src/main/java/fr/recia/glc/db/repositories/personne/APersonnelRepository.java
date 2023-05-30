@@ -16,9 +16,9 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.APersonnel;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 @NoRepositoryBean
-public interface APersonnelRepository<T extends APersonnel> extends JpaRepository<T, Long> {
+public interface APersonnelRepository<T extends APersonnel> extends AbstractRepository<T, Long> {
 }

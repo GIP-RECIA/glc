@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.common;
 
 import fr.recia.glc.db.entities.common.TypeService;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface TypeServiceRepository extends JpaRepository<TypeService, Long> {
+public interface TypeServiceRepository<T extends TypeService> extends AbstractRepository<T, Long> {
 }

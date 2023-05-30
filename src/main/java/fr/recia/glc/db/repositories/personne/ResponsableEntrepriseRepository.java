@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.ResponsableEntreprise;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface ResponsableEntrepriseRepository extends JpaRepository<ResponsableEntreprise, Long> {
+public interface ResponsableEntrepriseRepository<T extends ResponsableEntreprise> extends AbstractRepository<T, Long> {
 }

@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.fonction;
 
 import fr.recia.glc.db.entities.fonction.Fonction;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface FonctionRepository extends JpaRepository<Fonction, Long> {
+public interface FonctionRepository<T extends Fonction> extends AbstractRepository<T, Long> {
 }

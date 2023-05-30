@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.structure;
 
 import fr.recia.glc.db.entities.structure.MinistereTutelle;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface MinistereTutelleRepository extends JpaRepository<MinistereTutelle, Long> {
+public interface MinistereTutelleRepository<T extends MinistereTutelle> extends AbstractRepository<T, Long> {
 }

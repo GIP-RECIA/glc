@@ -17,7 +17,7 @@ package fr.recia.glc.db.repositories.relation;
 
 import fr.recia.glc.db.entities.relation.EnsRespStageRelation;
 import fr.recia.glc.db.entities.relation.MappingAPersonneAPersonneId;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface EnsRespStageRelationRepository extends JpaRepository<EnsRespStageRelation, MappingAPersonneAPersonneId> {
+public interface EnsRespStageRelationRepository<T extends EnsRespStageRelation> extends AbstractRepository<T, MappingAPersonneAPersonneId> {
 }

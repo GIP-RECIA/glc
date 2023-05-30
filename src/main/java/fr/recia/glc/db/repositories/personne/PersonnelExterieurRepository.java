@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.PersonnelExterieur;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface PersonnelExterieurRepository extends JpaRepository<PersonnelExterieur, Long> {
+public interface PersonnelExterieurRepository<T extends PersonnelExterieur> extends AbstractRepository<T, Long> {
 }

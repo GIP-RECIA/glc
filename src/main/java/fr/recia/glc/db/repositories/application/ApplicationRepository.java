@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.application;
 
 import fr.recia.glc.db.entities.application.Application;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface ApplicationRepository extends JpaRepository<Application, Long> {
+public interface ApplicationRepository<T extends Application> extends AbstractRepository<T, Long> {
 }

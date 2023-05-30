@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.gestion;
 
 import fr.recia.glc.db.entities.gestion.DroitsAttribut;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface DroitsAttributRepository extends JpaRepository<DroitsAttribut, Long> {
+public interface DroitsAttributRepository<T extends DroitsAttribut> extends AbstractRepository<T, Long> {
 }

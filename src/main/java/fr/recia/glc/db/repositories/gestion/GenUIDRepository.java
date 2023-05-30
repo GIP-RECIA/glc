@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.gestion;
 
 import fr.recia.glc.db.entities.gestion.GenUID;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface GenUIDRepository extends JpaRepository<GenUID, Long> {
+public interface GenUIDRepository<T extends GenUID> extends AbstractRepository<T, Long> {
 }

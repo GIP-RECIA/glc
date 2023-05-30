@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.gestion;
 
 import fr.recia.glc.db.entities.gestion.Property;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface PropertyRepository extends JpaRepository<Property, Long> {
+public interface PropertyRepository<T extends Property> extends AbstractRepository<T, Long> {
 }

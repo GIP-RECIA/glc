@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.version;
 
 import fr.recia.glc.db.entities.version.VersionTable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface VersionTableRepository extends JpaRepository<VersionTable, Long> {
+public interface VersionTableRepository<T extends VersionTable> extends AbstractRepository<T, Long> {
 }

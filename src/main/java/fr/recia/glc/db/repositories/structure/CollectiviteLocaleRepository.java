@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.structure;
 
 import fr.recia.glc.db.entities.structure.CollectiviteLocale;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface CollectiviteLocaleRepository extends JpaRepository<CollectiviteLocale, Long> {
+public interface CollectiviteLocaleRepository<T extends CollectiviteLocale> extends AbstractRepository<T, Long> {
 }

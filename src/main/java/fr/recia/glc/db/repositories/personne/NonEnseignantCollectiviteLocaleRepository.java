@@ -16,7 +16,7 @@
 package fr.recia.glc.db.repositories.personne;
 
 import fr.recia.glc.db.entities.personne.NonEnseignantCollectiviteLocale;
-import org.springframework.data.jpa.repository.JpaRepository;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface NonEnseignantCollectiviteLocaleRepository extends JpaRepository<NonEnseignantCollectiviteLocale, Long> {
+public interface NonEnseignantCollectiviteLocaleRepository<T extends NonEnseignantCollectiviteLocale> extends AbstractRepository<T, Long> {
 }
