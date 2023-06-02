@@ -1,13 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: 'default-config'
+
+---
+
 server:
   port: 8090
   servlet:
     context-path: /spring-api
-  error:
-    whitelabel.enabled: true
-    include-binding-errors: always
-    include-exception: true
-    include-message: always
-    include-stacktrace: always
 
 #logging:
 #  level:
@@ -15,11 +16,19 @@ server:
 #    fr: DEBUG
 
 spring:
-  config:
-    import: classpath:private.yml # Variables privées à ne pas diffuser.
+  application:
+    name: GLC
+
+  profiles:
+    active: @spring.profiles.active@
+    group:
+      dev: dev
+      test: test
+      prod: prod
+      ci: test
 
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
       naming:
@@ -32,13 +41,13 @@ spring:
 
 security-configuration:
   soffit:
-    jwt.signatureKey: "=== Signature Key ===" # Variable privée surchargée dans private.yml.
+    jwt.signatureKey: "=== Signature Key ==="
+
   cors:
     enable: true
     allow-credentials: true
     allowed-origins: >
       http://localhost:5173,
-      http://10.209.28.14:5173,
       https://*.giprecia.net
     exposed-headers: >
       x-auth-token,
@@ -54,3 +63,6 @@ security-configuration:
       x-xsrf-token
     allowed-methods: >
       GET
+      PUT
+      POST
+      DELETE
