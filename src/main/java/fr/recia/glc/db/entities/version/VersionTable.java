@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.version;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.common.AbstractSimpleEntity;
 
 import jakarta.persistence.Column;

@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.fonction;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.education.MEF;
 import org.hibernate.annotations.Parent;
 

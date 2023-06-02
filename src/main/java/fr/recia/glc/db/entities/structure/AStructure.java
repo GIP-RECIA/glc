@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.structure;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.application.Application;
 import fr.recia.glc.db.entities.common.AbstractEntity;
 import fr.recia.glc.db.entities.common.Adresse;

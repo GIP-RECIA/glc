@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.application;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.common.AbstractEntity;
 import fr.recia.glc.db.entities.groupe.Profil;
 import fr.recia.glc.db.entities.groupe.RoleApplicatif;

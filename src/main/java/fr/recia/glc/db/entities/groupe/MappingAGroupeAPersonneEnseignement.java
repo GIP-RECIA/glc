@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.groupe;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.education.Enseignement;
 import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.entities.personne.Enseignant;

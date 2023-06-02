@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.commons;
+package fr.recia.glc.db.utils;
 
 /**
  * Liste des constantes d'entier.
@@ -21,8 +21,7 @@ package fr.recia.glc.db.commons;
  * @author GIP RECIA - Gribonvald Julien
  * 29 avr. 09
  */
-
-public class IntConst {
+public final class IntConst {
   /**
    * Constante de la longueur de la chaine de la source dans la cle de jointure.
    */
@@ -37,7 +36,7 @@ public class IntConst {
   public static final int IUAI = IntConst.I8;
 
   /**
-   * Constante.
+   * Constantes.
    */
   public static final int I0 = 0;
   public static final int I1 = 1;
@@ -73,7 +72,7 @@ public class IntConst {
    * Constructeur de l'objet IntConst.java.
    */
   private IntConst() {
-    // TODO Auto-generated constructor stub
+    throw new IllegalStateException("Util class");
   }
 
 }

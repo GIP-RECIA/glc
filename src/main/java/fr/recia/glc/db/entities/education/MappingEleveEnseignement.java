@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.education;
 
-import fr.recia.glc.db.commons.IntConst;
+import fr.recia.glc.db.utils.IntConst;
 import fr.recia.glc.db.entities.personne.Eleve;
 import fr.recia.glc.db.entities.structure.Etablissement;
 import org.hibernate.annotations.Parent;
