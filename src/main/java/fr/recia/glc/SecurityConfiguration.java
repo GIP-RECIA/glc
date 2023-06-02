@@ -45,7 +45,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-  @Value("${security-configuration.soffit.jwt.signatureKey:Changeme}")
+  @Value("${security-configuration.soffit.jwt.signatureKey}")
   private String signatureKey;
 
   @Value("${security-configuration.cors.enable}")
