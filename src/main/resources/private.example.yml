@@ -1,6 +1,6 @@
 security-configuration:
   soffit:
-    jwt.signatureKey: ''
+    jwt.signatureKey: ""
 
 spring:
   datasource:
