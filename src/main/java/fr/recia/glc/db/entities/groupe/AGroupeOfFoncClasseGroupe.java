@@ -33,7 +33,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class AGroupeOfFoncClasseGroupe extends AGroupeOfAPersonne {
+public abstract class AGroupeOfFoncClasseGroupe extends AGroupeOfAPersonne {
 
   /**
    * Relation bidirectionnelle.

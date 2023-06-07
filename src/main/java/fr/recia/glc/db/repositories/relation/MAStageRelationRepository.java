@@ -13,17 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.repositories;
+package fr.recia.glc.db.repositories.relation;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
-import org.springframework.data.repository.NoRepositoryBean;
+import fr.recia.glc.db.entities.relation.MAStageRelation;
+import fr.recia.glc.db.entities.relation.MappingAPersonneAPersonneId;
+import fr.recia.glc.db.repositories.AbstractRepository;
 
-import java.io.Serializable;
-
-@SuppressWarnings("java:S119")
-@NoRepositoryBean
-public interface AbstractRepository<M, ID extends Serializable>
-  extends JpaRepository<M, ID>, QuerydslPredicateExecutor<M>, JpaSpecificationExecutor<M> {
+public interface MAStageRelationRepository<T extends MAStageRelation> extends AbstractRepository<T, MappingAPersonneAPersonneId> {
 }
