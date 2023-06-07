@@ -18,7 +18,6 @@ package fr.recia.glc.db.entities.structure;
 import fr.recia.glc.db.entities.application.Application;
 import fr.recia.glc.db.entities.common.AbstractEntity;
 import fr.recia.glc.db.entities.common.Adresse;
-import fr.recia.glc.db.entities.common.CentreInteret;
 import fr.recia.glc.db.entities.common.CleJointure;
 import fr.recia.glc.db.entities.common.Mail;
 import fr.recia.glc.db.entities.common.Telephone;
@@ -30,7 +29,6 @@ import fr.recia.glc.db.entities.groupe.Profil;
 import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -183,11 +181,6 @@ public abstract class AStructure extends AbstractEntity {
   @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.LAZY)
   @JoinColumn(name = "astructure_fk")
   private Set<Mail> mails = new HashSet<>();
-  /** Relation bidirectionnelle.
-   * Liste des centres d'intérêts définis par la structure.
-   */
-	@OneToMany(cascade = {CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "structure")
-	private Set<CentreInteret> centresInterets = new HashSet<>();
   /**
    * Relation unidirectionnelle.
    * Utilisé par Bordeaux pour définir les listes d'applications auxquelles les établissements sont abonnés.
@@ -264,7 +257,6 @@ public abstract class AStructure extends AbstractEntity {
       this.modeleLogin + ", " +
       this.logo + ", " +
       this.abonnement + ", " +
-      this.centresInterets + ", " +
       this.incertains + ", " +
       this.profils +
       "]";

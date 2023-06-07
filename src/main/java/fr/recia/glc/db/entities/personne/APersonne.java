@@ -17,14 +17,13 @@ package fr.recia.glc.db.entities.personne;
 
 import fr.recia.glc.db.entities.common.AbstractEntity;
 import fr.recia.glc.db.entities.common.Adresse;
-import fr.recia.glc.db.entities.common.CentreInteret;
 import fr.recia.glc.db.entities.common.CleJointure;
-import fr.recia.glc.db.entities.common.enums.CategoriePersonne;
-import fr.recia.glc.db.entities.common.enums.Civilite;
-import fr.recia.glc.db.entities.common.enums.Etat;
 import fr.recia.glc.db.entities.common.ExternalId;
 import fr.recia.glc.db.entities.common.Mail;
 import fr.recia.glc.db.entities.common.Telephone;
+import fr.recia.glc.db.entities.common.enums.CategoriePersonne;
+import fr.recia.glc.db.entities.common.enums.Civilite;
+import fr.recia.glc.db.entities.common.enums.Etat;
 import fr.recia.glc.db.entities.common.enums.ForceEtat;
 import fr.recia.glc.db.entities.common.enums.Sexe;
 import fr.recia.glc.db.entities.fonction.AFonction;
@@ -233,17 +232,6 @@ public abstract class APersonne extends AbstractEntity {
   private Collection<Login> oldAlias;
   /**
    * Relation bidirectionnelle.
-   * Liste des centres d'intérêts par rapport à l'établissement pour la personne.
-   */
-  @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH }, fetch = FetchType.LAZY)
-  @JoinTable(
-    name = "apersonnes_centres_interets",
-    joinColumns = @JoinColumn(name = "APERSONNE_ID", referencedColumnName = "ID"),
-    inverseJoinColumns = @JoinColumn(name = "CENTRE_INTERET_ID", referencedColumnName = "ID")
-  )
-  private Set<CentreInteret> centresInterets = new HashSet<>();
-  /**
-   * Relation bidirectionnelle.
    * Liste des fonctions d'une personne, uniquement les fonctions dans une structure, pas les fonctions de groupes.
    * Profils, classes, groupes, role applicatif
    */
@@ -381,7 +369,6 @@ public abstract class APersonne extends AbstractEntity {
       this.email + ", " +
       this.numBureau + ", " +
       this.photo + ", " +
-      this.centresInterets + ", " +
       this.fonctions + ", " +
       this.telephones + ", " +
       this.anneeScolaire + ", " +
