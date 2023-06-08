@@ -42,7 +42,7 @@ import java.io.Serializable;
 })
 @Getter
 @Setter
-public class AMappingRelation implements Serializable {
+public abstract class AMappingRelation implements Serializable {
 
   /**
    * The Source which insert the entry.
