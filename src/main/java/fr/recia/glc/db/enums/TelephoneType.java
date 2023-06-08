@@ -13,12 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum PropertyValue {
-  TRUE,
-  FALSE,
-  ON,
-  OFF,
-  PAUSE
+public enum TelephoneType {
+  /**
+   * Téléphone de type fax.
+   */
+  fax,
+  /**
+   * Téléphone de type fixe personnel.
+   */
+  fixe_perso,
+  /**
+   * Téléphone de type fixe professionnel.
+   */
+  fixe_pro,
+  /**
+   * Téléphone de type mobile.
+   */
+  mobile,
+  /**
+   * Téléphone de type mobile pour les SMS.
+   */
+  sms
 }

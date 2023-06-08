@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum ExternalIdSource {
-  PRONOTE,
-  BCDI,
-  SACOCHE,
-  CERISE,
-  ONISEP,
-  FOLIOS,
-  CAPYTALE,
-  XWIKI,
-  DNMA,
-  YEPS,
-  INSTANTSMETIERS,
-  WEBGEREST,
-  RENATER
+public enum ForceEtat {
+  /**
+   * Aucun état forcé.
+   */
+  NONE,
+  /**
+   * Force la suppression.
+   */
+  Deleted,
+  /**
+   * Force l'activation.
+   */
+  Activated
 }

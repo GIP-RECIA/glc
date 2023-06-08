@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum Sexe {
-  /**
-   * Féminin.
-   */
-  F,
-  /**
-   * Masculin.
-   */
-  M
+public enum PropertyValue {
+  TRUE,
+  FALSE,
+  ON,
+  OFF,
+  PAUSE
 }

@@ -16,7 +16,7 @@
 package fr.recia.glc.db.entities.groupe;
 
 import fr.recia.glc.db.entities.application.Application;
-import fr.recia.glc.db.entities.common.enums.CategorieGroupe;
+import fr.recia.glc.db.enums.CategorieGroupe;
 import fr.recia.glc.db.entities.structure.AStructure;
 import lombok.Getter;
 import lombok.Setter;

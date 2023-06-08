@@ -13,27 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum CategorieFonction {
+public enum Civilite {
   /**
-   * Prof principal, délégué de classe, délégué vie scolaire, délégué remplaçant1, délégué remplaçant2.
+   * Monsieur.
    */
-  Classe,
+  M,
   /**
-   * Domaines d'exercices.
+   * Mademoiselle.
    */
-  Domaine,
+  @Deprecated
+  Mlle,
   /**
-   * Domaines d'exercices au sein d'un groupement d'établissements.
+   * Madame.
    */
-  Domaine_Groupement,
-  /**
-   * Fonction dans une structure, avec le type de fonction filière et discipline de poste associée.
-   */
-  Fonction,
-  /**
-   * Enseignant qui enseigne pour un MEF dans un établissement.
-   */
-  MEF
+  Mme
 }

@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum PropertyName {
+public enum MEFType {
   /**
-   * Défini le droit à la modification des données de la BD.
-   * Export compris, car les acquittements effectuent des modifications).
+   * MEF de type Académique.
    */
-  CAN_WORK_ON_DB,
+  Academique,
   /**
-   * Définie l'état d'execution du cron de sarapis.
+   * MEF de type National.
    */
-  CRON_STATS,
+  National,
   /**
-   * Définie une volonté d'arrêt.
+   * MEF de type Cfa.
    */
-  FORCE_STOP
+  Cfa
 }

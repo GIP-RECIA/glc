@@ -13,19 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum ForceEtat {
+public enum MailType {
   /**
-   * Aucun état forcé.
+   * Mail à usage public.
    */
-  NONE,
+  Public,
   /**
-   * Force la suppression.
+   * Mail à usage interne.
    */
-  Deleted,
+  Interne,
   /**
-   * Force l'activation.
+   * Mail sans usage.
    */
-  Activated
+  Unused,
+  /**
+   * Mail en provenance du SI non modifiable.
+   */
+  SI
 }

@@ -13,19 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum EtatAlim {
+public enum CategorieStructure {
   /**
-   * Non alimenté.
+   * Collectivité Locale.
    */
-  Non_alimente,
+  Collectivite_locale,
   /**
-   * En bascule, attente du complet.
+   * Entreprise.
    */
-  Bascule,
+  Entreprise,
   /**
-   * Traitement quotidient des deltas.
+   * Etablissement.
    */
-  Ouvert
+  Etablissement,
+  /**
+   * Service Académique.
+   */
+  Service_academique
 }

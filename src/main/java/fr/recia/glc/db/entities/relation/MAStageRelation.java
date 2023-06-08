@@ -15,8 +15,8 @@
  */
 package fr.recia.glc.db.entities.relation;
 
-import fr.recia.glc.db.entities.common.enums.CategorieRelation;
-import fr.recia.glc.db.entities.common.enums.TypeStage;
+import fr.recia.glc.db.enums.CategorieRelation;
+import fr.recia.glc.db.enums.TypeStage;
 import fr.recia.glc.db.entities.personne.Eleve;
 import fr.recia.glc.db.entities.personne.TuteurStage;
 import lombok.Getter;

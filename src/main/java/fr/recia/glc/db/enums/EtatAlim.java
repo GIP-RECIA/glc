@@ -13,27 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum TelephoneType {
+public enum EtatAlim {
   /**
-   * Téléphone de type fax.
+   * Non alimenté.
    */
-  fax,
+  Non_alimente,
   /**
-   * Téléphone de type fixe personnel.
+   * En bascule, attente du complet.
    */
-  fixe_perso,
+  Bascule,
   /**
-   * Téléphone de type fixe professionnel.
+   * Traitement quotidient des deltas.
    */
-  fixe_pro,
-  /**
-   * Téléphone de type mobile.
-   */
-  mobile,
-  /**
-   * Téléphone de type mobile pour les SMS.
-   */
-  sms
+  Ouvert
 }

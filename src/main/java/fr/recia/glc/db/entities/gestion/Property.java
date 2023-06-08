@@ -16,7 +16,7 @@
 package fr.recia.glc.db.entities.gestion;
 
 import fr.recia.glc.db.entities.common.AbstractSimpleEntity;
-import fr.recia.glc.db.entities.common.enums.PropertyName;
+import fr.recia.glc.db.enums.PropertyName;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

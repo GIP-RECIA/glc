@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum Contrat {
+public enum PropertyName {
   /**
-   * Contrat privé.
+   * Défini le droit à la modification des données de la BD.
+   * Export compris, car les acquittements effectuent des modifications).
    */
-  Prive,
+  CAN_WORK_ON_DB,
   /**
-   * Contrat public.
+   * Définie l'état d'execution du cron de sarapis.
    */
-  Public,
+  CRON_STATS,
+  /**
+   * Définie une volonté d'arrêt.
+   */
+  FORCE_STOP
 }

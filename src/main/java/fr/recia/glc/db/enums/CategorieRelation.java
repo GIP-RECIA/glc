@@ -13,19 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum MEFType {
+public enum CategorieRelation {
   /**
-   * MEF de type Académique.
+   * Relation de tuteur qu'un enseignant a avec un élève
    */
-  Academique,
+  EnsTutStage,
   /**
-   * MEF de type National.
+   * Relation de responsable qu'un enseignant a avec un élève
    */
-  National,
+  EnsRespStage,
   /**
-   * MEF de type Cfa.
+   * Relation qu'un MA a avec un élève
    */
-  Cfa
+  MAStage,
+  /**
+   * Relation qu'un PersRelEleve a avec un élève
+   */
+  PersRel
 }

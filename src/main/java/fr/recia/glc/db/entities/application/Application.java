@@ -16,7 +16,7 @@
 package fr.recia.glc.db.entities.application;
 
 import fr.recia.glc.db.entities.common.AbstractEntity;
-import fr.recia.glc.db.entities.common.enums.CategorieApplication;
+import fr.recia.glc.db.enums.CategorieApplication;
 import fr.recia.glc.db.entities.groupe.Profil;
 import fr.recia.glc.db.entities.groupe.RoleApplicatif;
 import fr.recia.glc.db.entities.personne.APersonne;

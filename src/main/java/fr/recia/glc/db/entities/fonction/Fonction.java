@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.fonction;
 
-import fr.recia.glc.db.entities.common.enums.CategorieFonction;
+import fr.recia.glc.db.enums.CategorieFonction;
 import fr.recia.glc.db.entities.education.Discipline;
 import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.entities.structure.AStructure;

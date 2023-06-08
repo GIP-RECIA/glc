@@ -15,7 +15,7 @@
  */
 package fr.recia.glc.db.entities.common;
 
-import fr.recia.glc.db.entities.common.enums.ExternalIdSource;
+import fr.recia.glc.db.enums.ExternalIdSource;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

@@ -13,35 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum CategorieApplication {
+public enum Sexe {
   /**
-   * Spécifique aux applications de communication.
+   * Féminin.
    */
-  Communication,
+  F,
   /**
-   * Applications diverses.
+   * Masculin.
    */
-  Divers,
-  /**
-   * Application Outils.
-   */
-  Outils,
-  /**
-   * Applications spécifiques aux personnels.
-   */
-  Personnels,
-  /**
-   * Applications spécifiques aux ressources.
-   */
-  Ressources,
-  /**
-   * Applications de la Vie Scolaire.
-   */
-  Vie_Scolaire,
-  /**
-   * Applications ou modules sarapis.
-   */
-  Sarapis
+  M
 }

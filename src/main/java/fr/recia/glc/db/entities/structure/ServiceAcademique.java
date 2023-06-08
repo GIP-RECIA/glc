@@ -16,7 +16,7 @@
 package fr.recia.glc.db.entities.structure;
 
 import fr.recia.glc.db.entities.common.CleJointure;
-import fr.recia.glc.db.entities.common.enums.CategorieStructure;
+import fr.recia.glc.db.enums.CategorieStructure;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

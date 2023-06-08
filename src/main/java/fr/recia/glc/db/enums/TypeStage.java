@@ -13,23 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum MailType {
+public enum TypeStage {
   /**
-   * Mail à usage public.
+   * Enseignant étant responsable de l'élève en stage.
    */
-  Public,
+  Enseignant_responsable,
   /**
-   * Mail à usage interne.
+   * Enseignant étant le tuteur de l'élève en stage.
    */
-  Interne,
+  Enseignant_tuteur,
+//  /**
+//   * Personne de l'entreprise étant responsable de l'élève en stage.
+//   */
+//  Responsable,
   /**
-   * Mail sans usage.
+   * Personne de l'entreprise étant le tuteur de l'élève en stage.
    */
-  Unused,
-  /**
-   * Mail en provenance du SI non modifiable.
-   */
-  SI
+  Tuteur
 }

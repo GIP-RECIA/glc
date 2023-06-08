@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum CategorieStructure {
+public enum CategorieFonction {
   /**
-   * Collectivité Locale.
+   * Prof principal, délégué de classe, délégué vie scolaire, délégué remplaçant1, délégué remplaçant2.
    */
-  Collectivite_locale,
+  Classe,
   /**
-   * Entreprise.
+   * Domaines d'exercices.
    */
-  Entreprise,
+  Domaine,
   /**
-   * Etablissement.
+   * Domaines d'exercices au sein d'un groupement d'établissements.
    */
-  Etablissement,
+  Domaine_Groupement,
   /**
-   * Service Académique.
+   * Fonction dans une structure, avec le type de fonction filière et discipline de poste associée.
    */
-  Service_academique
+  Fonction,
+  /**
+   * Enseignant qui enseigne pour un MEF dans un établissement.
+   */
+  MEF
 }

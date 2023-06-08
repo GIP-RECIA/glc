@@ -13,23 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package fr.recia.glc.db.entities.common.enums;
+package fr.recia.glc.db.enums;
 
-public enum TypeStage {
+public enum CategorieApplication {
   /**
-   * Enseignant étant responsable de l'élève en stage.
+   * Spécifique aux applications de communication.
    */
-  Enseignant_responsable,
+  Communication,
   /**
-   * Enseignant étant le tuteur de l'élève en stage.
+   * Applications diverses.
    */
-  Enseignant_tuteur,
-//  /**
-//   * Personne de l'entreprise étant responsable de l'élève en stage.
-//   */
-//  Responsable,
+  Divers,
   /**
-   * Personne de l'entreprise étant le tuteur de l'élève en stage.
+   * Application Outils.
    */
-  Tuteur
+  Outils,
+  /**
+   * Applications spécifiques aux personnels.
+   */
+  Personnels,
+  /**
+   * Applications spécifiques aux ressources.
+   */
+  Ressources,
+  /**
+   * Applications de la Vie Scolaire.
+   */
+  Vie_Scolaire,
+  /**
+   * Applications ou modules sarapis.
+   */
+  Sarapis
 }
