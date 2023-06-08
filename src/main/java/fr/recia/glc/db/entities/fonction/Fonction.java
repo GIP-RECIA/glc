@@ -112,12 +112,6 @@ public class Fonction extends AFonction {
       "]";
   }
 
-  /**
-   * Donne la valeur de hachage de l'instance.
-   *
-   * @return <code>int</code> La valeur du hash.
-   * @see java.lang.Object#hashCode()
-   */
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -140,13 +134,6 @@ public class Fonction extends AFonction {
     return result;
   }
 
-  /**
-   * Teste si un objet est égal à cette instance.
-   *
-   * @param obj l'instance le l'object à comparer.
-   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
   @Override
   public boolean equals(final Object obj) {
     if (this == obj) {

@@ -78,4 +78,53 @@ public abstract class AGroupeOfFoncClasseGroupe extends AGroupeOfAPersonne {
     this.proprietaire = proprietaire;
   }
 
+  @Override
+  public String toString() {
+    return "AGroupeOfFoncClasseGroupe [" +
+      super.toString() + ", " +
+      this.proprietaire +
+      "]";
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.proprietaire == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.proprietaire.hashCode();
+    }
+    return result;
+  }
+
+  /**
+   * Teste si un objet est égal à cette instance.
+   *
+   * @param obj l'instance le l'object à comparer.
+   * @return <code>boolean</code> : vrai si l'instance est identique, faux sinon
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof AGroupeOfFoncClasseGroupe)) {
+      return false;
+    }
+    final AGroupeOfFoncClasseGroupe other = (AGroupeOfFoncClasseGroupe) obj;
+    if (this.proprietaire == null) {
+      if (other.proprietaire != null) {
+        return false;
+      }
+    } else if (!this.proprietaire.equals(other.proprietaire)) {
+      return false;
+    }
+    return true;
+  }
+
 }

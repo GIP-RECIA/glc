@@ -62,4 +62,14 @@ public abstract class AGroupeOfAPersonne extends AGroupe {
     return "AGroupeOfAPersonne [" + super.toString() + "]";
   }
 
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
 }

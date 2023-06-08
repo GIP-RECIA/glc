@@ -96,4 +96,50 @@ public class PluginDescription extends Application {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.application == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.application.hashCode();
+    }
+    if (this.nomClass == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.nomClass.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof PluginDescription)) {
+      return false;
+    }
+    final PluginDescription other = (PluginDescription) obj;
+    if (this.application == null) {
+      if (other.application != null) {
+        return false;
+      }
+    } else if (!this.application.equals(other.application)) {
+      return false;
+    }
+    if (this.nomClass == null) {
+      if (other.nomClass != null) {
+        return false;
+      }
+    } else if (!this.nomClass.equals(other.nomClass)) {
+      return false;
+    }
+    return true;
+  }
+
 }

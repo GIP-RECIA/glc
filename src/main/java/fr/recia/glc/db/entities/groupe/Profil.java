@@ -83,4 +83,43 @@ public class Profil extends AGroupeOfAPersonne {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.reglePeuplement == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.reglePeuplement.hashCode();
+    }
+    if (this.proprietaire == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.proprietaire.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof Profil)) {
+      return false;
+    }
+    final Profil other = (Profil) obj;
+    if (this.reglePeuplement == null) {
+      if (other.reglePeuplement != null) {
+        return false;
+      }
+    } else if (!this.reglePeuplement.equals(other.reglePeuplement)) {
+      return false;
+    }
+    return true;
+  }
+
 }

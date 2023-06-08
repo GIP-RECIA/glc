@@ -56,4 +56,38 @@ public class TypeDomaine extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.libelleDomaine == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.libelleDomaine.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof TypeDomaine)) {
+      return false;
+    }
+    final TypeDomaine other = (TypeDomaine) obj;
+    if (this.libelleDomaine == null) {
+      if (other.libelleDomaine != null) {
+        return false;
+      }
+    } else if (!this.libelleDomaine.equals(other.libelleDomaine)) {
+      return false;
+    }
+    return true;
+  }
+
 }

@@ -186,4 +186,97 @@ public class Incertain extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    final int cst1 = 1237;
+    final int cst2 = 1231;
+
+    int result = 1;
+    if (this.attribut == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.attribut.hashCode();
+    }
+    if (this.value == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.value.hashCode();
+    }
+    if (this.incertainPers == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.incertainPers.hashCode();
+    }
+    if (this.incertainStruct == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.incertainStruct.hashCode();
+    }
+    if (this.texte == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.texte.hashCode();
+    }
+    if (this.obligatoire) {
+      result = prime * result + cst2;
+    } else {
+      result = prime * result + cst1;
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Incertain)) {
+      return false;
+    }
+    final Incertain other = (Incertain) obj;
+    if (this.attribut == null) {
+      if (other.attribut != null) {
+        return false;
+      }
+    } else if (!this.attribut.equals(other.attribut)) {
+      return false;
+    }
+    if (this.value == null) {
+      if (other.value != null) {
+        return false;
+      }
+    } else if (!this.value.equals(other.value)) {
+      return false;
+    }
+    if (this.incertainPers == null) {
+      if (other.incertainPers != null) {
+        return false;
+      }
+    } else if (!this.incertainPers.equals(other.incertainPers)) {
+      return false;
+    }
+    if (this.incertainStruct == null) {
+      if (other.incertainStruct != null) {
+        return false;
+      }
+    } else if (!this.incertainStruct.equals(other.incertainStruct)) {
+      return false;
+    }
+    if (this.obligatoire != other.obligatoire) {
+      return false;
+    }
+    if (this.texte == null) {
+      if (other.texte != null) {
+        return false;
+      }
+    } else if (!this.texte.equals(other.texte)) {
+      return false;
+    }
+    return true;
+  }
+
 }

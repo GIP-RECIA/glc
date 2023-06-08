@@ -97,4 +97,38 @@ public class Login extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.nom == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.nom.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Login)) {
+      return false;
+    }
+    final Login other = (Login) obj;
+    if (this.nom == null) {
+      if (other.nom != null) {
+        return false;
+      }
+    } else if (!this.nom.equals(other.nom)) {
+      return false;
+    }
+    return true;
+  }
+
 }

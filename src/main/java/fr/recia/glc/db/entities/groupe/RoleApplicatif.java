@@ -83,4 +83,38 @@ public class RoleApplicatif extends AGroupeOfAPersonne {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.proprietaire == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.proprietaire.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof RoleApplicatif)) {
+      return false;
+    }
+    final RoleApplicatif other = (RoleApplicatif) obj;
+    if (this.proprietaire == null) {
+      if (other.proprietaire != null) {
+        return false;
+      }
+    } else if (!this.proprietaire.equals(other.proprietaire)) {
+      return false;
+    }
+    return true;
+  }
+
 }

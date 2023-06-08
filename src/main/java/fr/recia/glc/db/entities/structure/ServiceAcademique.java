@@ -72,4 +72,50 @@ public class ServiceAcademique extends AStructure {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.academie == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.academie.hashCode();
+    }
+    if (this.uai == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.uai.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof ServiceAcademique)) {
+      return false;
+    }
+    final ServiceAcademique other = (ServiceAcademique) obj;
+    if (this.academie == null) {
+      if (other.academie != null) {
+        return false;
+      }
+    } else if (!this.academie.equals(other.academie)) {
+      return false;
+    }
+    if (this.uai == null) {
+      if (other.uai != null) {
+        return false;
+      }
+    } else if (!this.uai.equals(other.uai)) {
+      return false;
+    }
+    return true;
+  }
+
 }

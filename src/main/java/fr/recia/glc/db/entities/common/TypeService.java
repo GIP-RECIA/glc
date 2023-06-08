@@ -71,4 +71,35 @@ public class TypeService extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((libelleService == null) ? 0 : libelleService.hashCode());
+    result = prime * result + ((source == null) ? 0 : source.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    TypeService other = (TypeService) obj;
+    if (libelleService == null) {
+      if (other.libelleService != null)
+        return false;
+    } else if (!libelleService.equals(other.libelleService))
+      return false;
+    if (source == null) {
+      if (other.source != null)
+        return false;
+    } else if (!source.equals(other.source))
+      return false;
+    return true;
+  }
+
 }

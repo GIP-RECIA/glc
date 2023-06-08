@@ -65,4 +65,14 @@ public class TuteurStage extends APersonne {
     return "TuteurStage [" + super.toString() + "]";
   }
 
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
 }

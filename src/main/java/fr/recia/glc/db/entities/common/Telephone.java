@@ -47,7 +47,7 @@ public class Telephone extends AbstractSimpleEntity {
   @Column(nullable = false, length = IntConst.ISOURCE)
   private String source;
   /**
-   * si téléphone utilisé.
+   * Si téléphone utilisé.
    */
   @Column(nullable = false, columnDefinition = "BIT not null DEFAULT false")
   private boolean used;
@@ -75,12 +75,6 @@ public class Telephone extends AbstractSimpleEntity {
     this.used = used;
   }
 
-  /**
-   * Transforme cette instance en chaine de caractères.
-   *
-   * @return <code>String</code> La chaine.
-   * @see fr.recia.glc.db.entities.common.AbstractEntity#toString()
-   */
   @Override
   public String toString() {
     return "Telephone [" +
@@ -90,6 +84,64 @@ public class Telephone extends AbstractSimpleEntity {
       this.source + ", " +
       this.used +
       "]";
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (numero == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + numero.hashCode();
+    }
+    if (type == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + type.hashCode();
+    }
+    if (source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Telephone)) {
+      return false;
+    }
+    final Telephone other = (Telephone) obj;
+    if (numero == null) {
+      if (other.numero != null) {
+        return false;
+      }
+    } else if (!numero.equals(other.numero)) {
+      return false;
+    }
+    if (type == null) {
+      if (other.type != null) {
+        return false;
+      }
+    } else if (!type.equals(other.type)) {
+      return false;
+    }
+    if (source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!source.equals(other.source)) {
+      return false;
+    }
+    return true;
   }
 
 }

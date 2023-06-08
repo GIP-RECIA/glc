@@ -71,4 +71,50 @@ public class Property extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (name == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + name.hashCode();
+    }
+    if (value == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + value.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Property)) {
+      return false;
+    }
+    final Property other = (Property) obj;
+    if (name == null) {
+      if (other.name != null) {
+        return false;
+      }
+    } else if (!name.equals(other.name)) {
+      return false;
+    }
+    if (value == null) {
+      if (other.value != null) {
+        return false;
+      }
+    } else if (!value.equals(other.value)) {
+      return false;
+    }
+    return true;
+  }
+
 }

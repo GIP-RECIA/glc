@@ -79,4 +79,62 @@ public class BassinFormation extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.code == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.code.hashCode();
+    }
+    if (this.nom == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.nom.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof BassinFormation)) {
+      return false;
+    }
+    final BassinFormation other = (BassinFormation) obj;
+    if (this.code == null) {
+      if (other.code != null) {
+        return false;
+      }
+    } else if (!this.code.equals(other.code)) {
+      return false;
+    }
+    if (this.nom == null) {
+      if (other.nom != null) {
+        return false;
+      }
+    } else if (!this.nom.equals(other.nom)) {
+      return false;
+    }
+    if (this.source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!this.source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

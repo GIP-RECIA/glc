@@ -83,4 +83,86 @@ public class Adresse implements Serializable {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.adresse == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.adresse.hashCode();
+    }
+    if (this.boitePostale == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.boitePostale.hashCode();
+    }
+    if (this.codePostal == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.codePostal.hashCode();
+    }
+    if (this.pays == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.pays.hashCode();
+    }
+    if (this.ville == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.ville.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Adresse)) {
+      return false;
+    }
+    final Adresse other = (Adresse) obj;
+    if (this.adresse == null) {
+      if (other.adresse != null) {
+        return false;
+      }
+    } else if (!this.adresse.equals(other.adresse)) {
+      return false;
+    }
+    if (this.boitePostale == null) {
+      if (other.boitePostale != null) {
+        return false;
+      }
+    } else if (!this.boitePostale.equals(other.boitePostale)) {
+      return false;
+    }
+    if (this.codePostal == null) {
+      if (other.codePostal != null) {
+        return false;
+      }
+    } else if (!this.codePostal.equals(other.codePostal)) {
+      return false;
+    }
+    if (this.pays == null) {
+      if (other.pays != null) {
+        return false;
+      }
+    } else if (!this.pays.equals(other.pays)) {
+      return false;
+    }
+    if (this.ville == null) {
+      if (other.ville != null) {
+        return false;
+      }
+    } else if (!this.ville.equals(other.ville)) {
+      return false;
+    }
+    return true;
+  }
+
 }

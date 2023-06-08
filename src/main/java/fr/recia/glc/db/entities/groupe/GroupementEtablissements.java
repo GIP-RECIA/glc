@@ -70,4 +70,38 @@ public class GroupementEtablissements extends AGroupe {
     return "GroupementEtablissement [" + super.toString() + "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.membres == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.membres.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof GroupementEtablissements)) {
+      return false;
+    }
+    final GroupementEtablissements other = (GroupementEtablissements) obj;
+    if (this.membres == null) {
+      if (other.membres != null) {
+        return false;
+      }
+    } else if (!this.membres.equals(other.membres)) {
+      return false;
+    }
+    return true;
+  }
+
 }

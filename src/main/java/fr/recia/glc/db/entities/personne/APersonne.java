@@ -382,4 +382,38 @@ public abstract class APersonne extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (cleJointure == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + cleJointure.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof APersonne)) {
+      return false;
+    }
+    final APersonne other = (APersonne) obj;
+    if (cleJointure == null) {
+      if (other.cleJointure != null) {
+        return false;
+      }
+    } else if (!cleJointure.equals(other.cleJointure)) {
+      return false;
+    }
+    return true;
+  }
+
 }

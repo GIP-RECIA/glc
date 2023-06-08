@@ -79,4 +79,62 @@ public class TypeFonctionFiliere extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.codeFiliere == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.codeFiliere.hashCode();
+    }
+    if (this.libelleFiliere == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.libelleFiliere.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof TypeFonctionFiliere)) {
+      return false;
+    }
+    final TypeFonctionFiliere other = (TypeFonctionFiliere) obj;
+    if (this.codeFiliere == null) {
+      if (other.codeFiliere != null) {
+        return false;
+      }
+    } else if (!this.codeFiliere.equals(other.codeFiliere)) {
+      return false;
+    }
+    if (this.libelleFiliere == null) {
+      if (other.libelleFiliere != null) {
+        return false;
+      }
+    } else if (!this.libelleFiliere.equals(other.libelleFiliere)) {
+      return false;
+    }
+    if (this.source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!this.source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

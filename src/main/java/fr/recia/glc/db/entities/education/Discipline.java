@@ -79,4 +79,62 @@ public class Discipline extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.code == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.code.hashCode();
+    }
+    if (this.disciplinePoste == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.disciplinePoste.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Discipline)) {
+      return false;
+    }
+    final Discipline other = (Discipline) obj;
+    if (this.code == null) {
+      if (other.code != null) {
+        return false;
+      }
+    } else if (!this.code.equals(other.code)) {
+      return false;
+    }
+    if (this.disciplinePoste == null) {
+      if (other.disciplinePoste != null) {
+        return false;
+      }
+    } else if (!this.disciplinePoste.equals(other.disciplinePoste)) {
+      return false;
+    }
+    if (this.source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!this.source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

@@ -62,4 +62,14 @@ public class NonEnseignantCollectiviteLocale extends APersonnel {
     return "NonEnseignantCollectiviteLocale [" + super.toString() + "]";
   }
 
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
 }

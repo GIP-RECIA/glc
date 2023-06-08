@@ -110,4 +110,50 @@ public class DroitsCategorie extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.roleApplicatif == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.roleApplicatif.hashCode();
+    }
+    if (this.structure == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.structure.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof DroitsCategorie)) {
+      return false;
+    }
+    final DroitsCategorie other = (DroitsCategorie) obj;
+    if (this.roleApplicatif == null) {
+      if (other.roleApplicatif != null) {
+        return false;
+      }
+    } else if (!this.roleApplicatif.equals(other.roleApplicatif)) {
+      return false;
+    }
+    if (this.structure == null) {
+      if (other.structure != null) {
+        return false;
+      }
+    } else if (!this.structure.equals(other.structure)) {
+      return false;
+    }
+    return true;
+  }
+
 }

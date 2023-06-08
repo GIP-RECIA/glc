@@ -160,4 +160,50 @@ public class MEF extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (code == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + code.hashCode();
+    }
+    if (libelle == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + libelle.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof MEF)) {
+      return false;
+    }
+    final MEF other = (MEF) obj;
+    if (code == null) {
+      if (other.code != null) {
+        return false;
+      }
+    } else if (!code.equals(other.code)) {
+      return false;
+    }
+    if (libelle == null) {
+      if (other.libelle != null) {
+        return false;
+      }
+    } else if (!libelle.equals(other.libelle)) {
+      return false;
+    }
+    return true;
+  }
+
 }

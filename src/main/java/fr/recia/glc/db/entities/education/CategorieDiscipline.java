@@ -79,4 +79,62 @@ public class CategorieDiscipline extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.code == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.code.hashCode();
+    }
+    if (this.pivotDiscipline == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.pivotDiscipline.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof CategorieDiscipline)) {
+      return false;
+    }
+    final CategorieDiscipline other = (CategorieDiscipline) obj;
+    if (this.code == null) {
+      if (other.code != null) {
+        return false;
+      }
+    } else if (!this.code.equals(other.code)) {
+      return false;
+    }
+    if (this.pivotDiscipline == null) {
+      if (other.pivotDiscipline != null) {
+        return false;
+      }
+    } else if (!this.pivotDiscipline.equals(other.pivotDiscipline)) {
+      return false;
+    }
+    if (this.source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!this.source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

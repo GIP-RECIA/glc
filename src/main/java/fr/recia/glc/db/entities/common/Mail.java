@@ -92,4 +92,62 @@ public class Mail extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (adresse == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + adresse.hashCode();
+    }
+    if (type == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + type.hashCode();
+    }
+    if (source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Mail)) {
+      return false;
+    }
+    final Mail other = (Mail) obj;
+    if (adresse == null) {
+      if (other.adresse != null) {
+        return false;
+      }
+    } else if (!adresse.equals(other.adresse)) {
+      return false;
+    }
+    if (type == null) {
+      if (other.type != null) {
+        return false;
+      }
+    } else if (!type.equals(other.type)) {
+      return false;
+    }
+    if (source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

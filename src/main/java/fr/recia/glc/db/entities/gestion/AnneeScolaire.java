@@ -89,4 +89,62 @@ public class AnneeScolaire extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.anneeEnCours == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.anneeEnCours.hashCode();
+    }
+    if (this.finAutorisation == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.finAutorisation.hashCode();
+    }
+    if (this.passageAnneeSuivante == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.passageAnneeSuivante.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof AnneeScolaire)) {
+      return false;
+    }
+    final AnneeScolaire other = (AnneeScolaire) obj;
+    if (this.anneeEnCours == null) {
+      if (other.anneeEnCours != null) {
+        return false;
+      }
+    } else if (!this.anneeEnCours.equals(other.anneeEnCours)) {
+      return false;
+    }
+    if (this.finAutorisation == null) {
+      if (other.finAutorisation != null) {
+        return false;
+      }
+    } else if (!this.finAutorisation.equals(other.finAutorisation)) {
+      return false;
+    }
+    if (this.passageAnneeSuivante == null) {
+      if (other.passageAnneeSuivante != null) {
+        return false;
+      }
+    } else if (!this.passageAnneeSuivante.equals(other.passageAnneeSuivante)) {
+      return false;
+    }
+    return true;
+  }
+
 }

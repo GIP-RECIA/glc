@@ -85,4 +85,35 @@ public class TypeStructure extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.libelle == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.libelle.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof TypeStructure)) {
+      return false;
+    }
+    final TypeStructure other = (TypeStructure) obj;
+    if (this.libelle == null) {
+      if (other.libelle != null) {
+        return false;
+      }
+    } else if (!this.libelle.equals(other.libelle)) {
+      return false;
+    }
+    return true;
+  }
+
 }

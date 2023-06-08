@@ -67,4 +67,50 @@ public class CleJointure implements Serializable {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (cle == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + cle.hashCode();
+    }
+    if (source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof CleJointure)) {
+      return false;
+    }
+    final CleJointure other = (CleJointure) obj;
+    if (cle == null) {
+      if (other.cle != null) {
+        return false;
+      }
+    } else if (!cle.equals(other.cle)) {
+      return false;
+    }
+    if (source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

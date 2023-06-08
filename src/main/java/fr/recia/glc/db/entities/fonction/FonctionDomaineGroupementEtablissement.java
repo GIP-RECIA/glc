@@ -88,4 +88,53 @@ public class FonctionDomaineGroupementEtablissement extends AFonction {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.domaines == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.domaines.hashCode();
+    }
+    if (this.groupeEtablissements == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.groupeEtablissements.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof FonctionDomaineGroupementEtablissement)) {
+      return false;
+    }
+    final FonctionDomaineGroupementEtablissement other = (FonctionDomaineGroupementEtablissement) obj;
+    if (this.domaines == null) {
+      if (other.domaines != null) {
+        return false;
+      }
+    } else if (!this.domaines.equals(other.domaines)) {
+      return false;
+    }
+    if (this.groupeEtablissements == null) {
+      if (other.groupeEtablissements != null) {
+        return false;
+      }
+    } else if (!this.groupeEtablissements.equals(other.groupeEtablissements)) {
+      return false;
+    }
+    return true;
+  }
+
 }

@@ -71,4 +71,35 @@ public class MappingAGroupeAPersonneId implements Serializable {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
+    result = prime * result + ((personne == null) ? 0 : personne.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingAGroupeAPersonneId other = (MappingAGroupeAPersonneId) obj;
+    if (groupe == null) {
+      if (other.groupe != null)
+        return false;
+    } else if (!groupe.equals(other.groupe))
+      return false;
+    if (personne == null) {
+      if (other.personne != null)
+        return false;
+    } else if (!personne.equals(other.personne))
+      return false;
+    return true;
+  }
+
 }

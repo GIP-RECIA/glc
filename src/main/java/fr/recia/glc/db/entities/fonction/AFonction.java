@@ -88,4 +88,62 @@ public abstract class AFonction extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.categorie == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.categorie.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    if (this.personne == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.personne.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof AFonction)) {
+      return false;
+    }
+    final AFonction other = (AFonction) obj;
+    if (categorie == null) {
+      if (other.categorie != null) {
+        return false;
+      }
+    } else if (!categorie.equals(other.categorie)) {
+      return false;
+    }
+    if (source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!source.equals(other.source)) {
+      return false;
+    }
+    if (personne == null) {
+      if (other.personne != null) {
+        return false;
+      }
+    } else if (!personne.equals(other.personne)) {
+      return false;
+    }
+    return true;
+  }
+
 }

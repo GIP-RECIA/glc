@@ -134,4 +134,38 @@ public class Etablissement extends AStructure {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.uai == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.uai.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof Etablissement)) {
+      return false;
+    }
+    final Etablissement other = (Etablissement) obj;
+    if (this.uai == null) {
+      if (other.uai != null) {
+        return false;
+      }
+    } else if (!this.uai.equals(other.uai)) {
+      return false;
+    }
+    return true;
+  }
+
 }

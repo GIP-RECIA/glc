@@ -84,4 +84,53 @@ public class FonctionClasseGroupe extends AFonction {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (this.classeGroupe == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.classeGroupe.hashCode();
+    }
+    if (this.type == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.type.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof FonctionClasseGroupe)) {
+      return false;
+    }
+    final FonctionClasseGroupe other = (FonctionClasseGroupe) obj;
+    if (this.classeGroupe == null) {
+      if (other.classeGroupe != null) {
+        return false;
+      }
+    } else if (!this.classeGroupe.equals(other.classeGroupe)) {
+      return false;
+    }
+    if (this.type == null) {
+      if (other.type != null) {
+        return false;
+      }
+    } else if (!this.type.equals(other.type)) {
+      return false;
+    }
+    return true;
+  }
+
 }

@@ -93,4 +93,62 @@ public abstract class AGroupe extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.categorie == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.categorie.hashCode();
+    }
+    if (this.cn == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.cn.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof AGroupe)) {
+      return false;
+    }
+    final AGroupe other = (AGroupe) obj;
+    if (this.categorie == null) {
+      if (other.categorie != null) {
+        return false;
+      }
+    } else if (!this.categorie.equals(other.categorie)) {
+      return false;
+    }
+    if (this.cn == null) {
+      if (other.cn != null) {
+        return false;
+      }
+    } else if (!this.cn.equalsIgnoreCase(other.cn)) {
+      return false;
+    }
+    if (this.source == null) {
+      if (other.source != null) {
+        return false;
+      }
+    } else if (!this.source.equals(other.source)) {
+      return false;
+    }
+    return true;
+  }
+
 }

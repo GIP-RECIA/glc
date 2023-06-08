@@ -102,4 +102,39 @@ public class PersRelRelation extends AMappingRelation {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    result = prime * result + (adresse ? 1231 : 1237);
+    result = prime * result + (contact ? 1231 : 1237);
+    result = prime * result + ((lienParente == null) ? 0 : lienParente.hashCode());
+    result = prime * result + (paiement ? 1231 : 1237);
+    result = prime * result + (responsableFinancier ? 1231 : 1237);
+    result = prime * result + ((responsableLegal == null) ? 0 : responsableLegal.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (!super.equals(obj))
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    PersRelRelation other = (PersRelRelation) obj;
+    if (contact != other.contact)
+      return false;
+    if (lienParente != other.lienParente)
+      return false;
+    if (paiement != other.paiement)
+      return false;
+    if (responsableFinancier != other.responsableFinancier)
+      return false;
+    if (responsableLegal != other.responsableLegal)
+      return false;
+    return true;
+  }
+
 }

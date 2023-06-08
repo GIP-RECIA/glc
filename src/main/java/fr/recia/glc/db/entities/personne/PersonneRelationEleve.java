@@ -62,4 +62,14 @@ public class PersonneRelationEleve extends APersonne {
     return "PersonneRelationEleve [" + super.toString() + "]";
   }
 
+  @Override
+  public int hashCode() {
+    return super.hashCode();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    return super.equals(obj);
+  }
+
 }

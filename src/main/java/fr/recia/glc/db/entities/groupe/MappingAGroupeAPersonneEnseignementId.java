@@ -81,4 +81,43 @@ public class MappingAGroupeAPersonneEnseignementId implements Serializable {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result
+      + ((enseignement == null) ? 0 : enseignement.hashCode());
+    result = prime * result + ((groupe == null) ? 0 : groupe.hashCode());
+    result = prime * result
+      + ((enseignant == null) ? 0 : enseignant.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingAGroupeAPersonneEnseignementId other = (MappingAGroupeAPersonneEnseignementId) obj;
+    if (enseignement == null) {
+      if (other.enseignement != null)
+        return false;
+    } else if (!enseignement.equals(other.enseignement))
+      return false;
+    if (groupe == null) {
+      if (other.groupe != null)
+        return false;
+    } else if (!groupe.equals(other.groupe))
+      return false;
+    if (enseignant == null) {
+      if (other.enseignant != null)
+        return false;
+    } else if (!enseignant.equals(other.enseignant))
+      return false;
+    return true;
+  }
+
 }

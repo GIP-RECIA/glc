@@ -129,4 +129,62 @@ public class Application extends AbstractEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.categorie == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.categorie.hashCode();
+    }
+    if (this.identifiant == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.identifiant.hashCode();
+    }
+    if (this.nom == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.nom.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof Application)) {
+      return false;
+    }
+    final Application other = (Application) obj;
+    if (this.categorie == null) {
+      if (other.categorie != null) {
+        return false;
+      }
+    } else if (!this.categorie.equals(other.categorie)) {
+      return false;
+    }
+    if (this.identifiant == null) {
+      if (other.identifiant != null) {
+        return false;
+      }
+    } else if (!this.identifiant.equals(other.identifiant)) {
+      return false;
+    }
+    if (this.nom == null) {
+      if (other.nom != null) {
+        return false;
+      }
+    } else if (!this.nom.equals(other.nom)) {
+      return false;
+    }
+    return true;
+  }
+
 }

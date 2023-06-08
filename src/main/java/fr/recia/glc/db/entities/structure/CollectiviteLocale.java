@@ -64,4 +64,38 @@ public class CollectiviteLocale extends AStructure {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = super.hashCode();
+    if (lieuGeographique == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + lieuGeographique.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!super.equals(obj)) {
+      return false;
+    }
+    if (!(obj instanceof CollectiviteLocale)) {
+      return false;
+    }
+    final CollectiviteLocale other = (CollectiviteLocale) obj;
+    if (lieuGeographique == null) {
+      if (other.lieuGeographique != null) {
+        return false;
+      }
+    } else if (!lieuGeographique.equals(other.lieuGeographique)) {
+      return false;
+    }
+    return true;
+  }
+
 }

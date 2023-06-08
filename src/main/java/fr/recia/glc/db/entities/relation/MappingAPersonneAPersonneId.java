@@ -82,4 +82,38 @@ public class MappingAPersonneAPersonneId implements Serializable {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((categorie == null) ? 0 : categorie.hashCode());
+    result = prime * result + ((personne1 == null) ? 0 : personne1.hashCode());
+    result = prime * result + ((personne2 == null) ? 0 : personne2.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingAPersonneAPersonneId other = (MappingAPersonneAPersonneId) obj;
+    if (categorie != other.categorie)
+      return false;
+    if (personne1 == null) {
+      if (other.personne1 != null)
+        return false;
+    } else if (!personne1.equals(other.personne1))
+      return false;
+    if (personne2 == null) {
+      if (other.personne2 != null)
+        return false;
+    } else if (!personne2.equals(other.personne2))
+      return false;
+    return true;
+  }
+
 }

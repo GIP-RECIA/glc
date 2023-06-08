@@ -86,4 +86,48 @@ public class MappingFonctionMEFMEF {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.mef == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + mef.hashCode();
+    }
+    if (this.fonctionMEF == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + fonctionMEF.hashCode();
+    }
+    if (this.source == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.source.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    MappingFonctionMEFMEF other = (MappingFonctionMEFMEF) obj;
+    if (mef == null) {
+      if (other.mef != null)
+        return false;
+    } else if (!mef.equals(other.mef))
+      return false;
+    if (source == null) {
+      if (other.source != null)
+        return false;
+    } else if (!source.equals(other.source))
+      return false;
+    return true;
+  }
+
 }

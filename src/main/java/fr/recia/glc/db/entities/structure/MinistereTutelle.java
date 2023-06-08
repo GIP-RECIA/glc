@@ -56,4 +56,38 @@ public class MinistereTutelle extends AbstractSimpleEntity {
       "]";
   }
 
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    if (this.ministere == null) {
+      result = prime * result;
+    } else {
+      result = prime * result + this.ministere.hashCode();
+    }
+    return result;
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (!(obj instanceof MinistereTutelle)) {
+      return false;
+    }
+    final MinistereTutelle other = (MinistereTutelle) obj;
+    if (this.ministere == null) {
+      if (other.ministere != null) {
+        return false;
+      }
+    } else if (!this.ministere.equals(other.ministere)) {
+      return false;
+    }
+    return true;
+  }
+
 }
