@@ -216,19 +216,19 @@ public abstract class APersonne extends AbstractEntity {
    * Relation bidirectionnelle.
    * Login de l'individu généré par l'ENT.
    */
-  @OneToOne(fetch = FetchType.LAZY, mappedBy = "apersonneLogin")
+  @OneToOne(mappedBy = "apersonneLogin")
   private Login login;
   /**
    * Relation bidirectionnelle.
    * Alias remplaçant le login, personnalisé par l'individu.
    */
-  @OneToOne(fetch = FetchType.LAZY, mappedBy = "apersonneAlias")
+  @OneToOne(mappedBy = "apersonneAlias")
   private Login alias;
   /**
    * Relation bidirectionnelle.
    * Liste des anciens alias de l'individu qui ne sont plus utilisés.
    */
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "apersonneOldAlias")
+  @OneToMany(mappedBy = "apersonneOldAlias", fetch = FetchType.LAZY)
   private Collection<Login> oldAlias;
   /**
    * Relation bidirectionnelle.

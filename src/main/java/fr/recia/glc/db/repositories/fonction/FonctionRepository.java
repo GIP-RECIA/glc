@@ -15,8 +15,20 @@
  */
 package fr.recia.glc.db.repositories.fonction;
 
+import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.repositories.AbstractRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface FonctionRepository<T extends Fonction> extends AbstractRepository<T, Long> {
+
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id) " +
+    "FROM Fonction f " +
+    "INNER JOIN AFonction af ON f.id = af.id " +
+    "WHERE af.personne.id = :id")
+  List<FonctionDto> findByPersonneId(@Param("id") Long id);
+
 }
