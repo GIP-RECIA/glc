@@ -19,5 +19,6 @@ import fr.recia.glc.db.entities.relation.MappingAPersonneAPersonneId;
 import fr.recia.glc.db.entities.relation.PersRelRelation;
 import fr.recia.glc.db.repositories.AbstractRepository;
 
-public interface PersRelRelationRepository<T extends PersRelRelation> extends AbstractRepository<T, MappingAPersonneAPersonneId> {
+public interface PersRelRelationRepository<T extends PersRelRelation>
+  extends AbstractRepository<T, MappingAPersonneAPersonneId> {
 }
