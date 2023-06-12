@@ -15,8 +15,22 @@
  */
 package fr.recia.glc.db.repositories.fonction;
 
+import fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto;
 import fr.recia.glc.db.entities.fonction.TypeFonctionFiliere;
 import fr.recia.glc.db.repositories.AbstractRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface TypeFonctionFiliereRepository<T extends TypeFonctionFiliere> extends AbstractRepository<T, Long> {
+
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto(tff.id, tff.codeFiliere, " +
+    "tff.libelleFiliere) " +
+    "FROM TypeFonctionFiliere tff " +
+    "INNER JOIN Fonction f on tff.id = f.filiere.id " +
+    "WHERE f.source like 'SarapisUi_%' " +
+    "AND tff.source = :source")
+  List<TypeFonctionFiliereDto> findBySource(@Param("source") String source);
+
 }

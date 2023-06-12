@@ -31,4 +31,9 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
     "WHERE af.personne.id = :id")
   List<FonctionDto> findByPersonneId(@Param("id") Long id);
 
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id) " +
+    "FROM Fonction f " +
+    "WHERE f.source LIKE 'SarapisUi_%'")
+  List<FonctionDto> findAllUi();
+
 }

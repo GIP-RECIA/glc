@@ -15,8 +15,20 @@
  */
 package fr.recia.glc.db.repositories.education;
 
+import fr.recia.glc.db.dto.education.DisciplineDto;
 import fr.recia.glc.db.entities.education.Discipline;
 import fr.recia.glc.db.repositories.AbstractRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface DisciplineRepository<T extends Discipline> extends AbstractRepository<T, Long> {
+
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.education.DisciplineDto(d.id, d.code, d.disciplinePoste) " +
+    "FROM Discipline d " +
+    "INNER JOIN Fonction f on d.id = f.disciplinePoste.id " +
+    "WHERE f.source like 'SarapisUi_%' " +
+    "AND d.source = :source")
+  List<DisciplineDto> findBySource(String source);
+
 }
