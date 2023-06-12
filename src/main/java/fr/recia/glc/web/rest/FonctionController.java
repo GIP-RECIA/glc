@@ -49,28 +49,33 @@ public class FonctionController {
 
   @GetMapping(value = "/")
   public ApiResponse getFonctions() {
+    String source = "AC-ORLEANS-TOURS";
 
     List<FonctionDto> fonctions = fonctionRepository.findAllUi();
-    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource("AC-ORLEANS-TOURS");
-    List<DisciplineDto> disciplines = disciplineRepository.findBySource("AC-ORLEANS-TOURS");
+    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
+    List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
 
     typesFonctionFiliere = typesFonctionFiliere.stream().map(typeFonctionFiliere -> {
-      List<Long> disciplineIds = fonctions.stream().filter(fonction -> fonction.getFiliere() == typeFonctionFiliere.getId())
+      List<Long> disciplineIds = fonctions.stream()
+        .filter(fonction -> fonction.getFiliere() == typeFonctionFiliere.getId())
         .map(FonctionDto::getDisciplinePoste)
         .toList();
-      typeFonctionFiliere.setDisciplines(disciplineIds);
+      List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
+        .filter(discipline -> disciplineIds.contains(discipline.getId()))
+        .toList();
+      typeFonctionFiliere.setDisciplines(disciplinesInFiliere);
 
       return typeFonctionFiliere;
     }).toList();
 
-    Map<String, List<?>> data = new HashMap<>();
+    Map<String, Object> data = new HashMap<>();
+    data.put("source", source);
     data.put("typesFonctionFiliere", typesFonctionFiliere);
-    data.put("disciplines", disciplines);
 
     return new ApiResponse(
       "",
       data
-      );
+    );
   }
 
 }

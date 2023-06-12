@@ -19,7 +19,6 @@ import fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto;
 import fr.recia.glc.db.entities.fonction.TypeFonctionFiliere;
 import fr.recia.glc.db.repositories.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -31,6 +30,6 @@ public interface TypeFonctionFiliereRepository<T extends TypeFonctionFiliere> ex
     "INNER JOIN Fonction f on tff.id = f.filiere.id " +
     "WHERE f.source like 'SarapisUi_%' " +
     "AND tff.source = :source")
-  List<TypeFonctionFiliereDto> findBySource(@Param("source") String source);
+  List<TypeFonctionFiliereDto> findBySource(String source);
 
 }

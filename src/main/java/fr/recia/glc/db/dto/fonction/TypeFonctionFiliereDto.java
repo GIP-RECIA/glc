@@ -15,6 +15,7 @@
  */
 package fr.recia.glc.db.dto.fonction;
 
+import fr.recia.glc.db.dto.education.DisciplineDto;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -31,7 +32,7 @@ public class TypeFonctionFiliereDto {
   private Long id;
   private String codeFiliere;
   private String libelleFiliere;
-  private List<Long> disciplines;
+  private List<DisciplineDto> disciplines;
 
   public TypeFonctionFiliereDto(Long id, String codeFiliere, String libelleFiliere) {
     this.id = id;
