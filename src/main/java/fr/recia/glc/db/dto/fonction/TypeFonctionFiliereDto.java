@@ -32,12 +32,14 @@ public class TypeFonctionFiliereDto {
   private Long id;
   private String codeFiliere;
   private String libelleFiliere;
+  private String source;
   private List<DisciplineDto> disciplines;
 
-  public TypeFonctionFiliereDto(Long id, String codeFiliere, String libelleFiliere) {
+  public TypeFonctionFiliereDto(Long id, String codeFiliere, String libelleFiliere, String source) {
     this.id = id;
     this.codeFiliere = codeFiliere;
     this.libelleFiliere = libelleFiliere;
+    this.source = source;
   }
 
 }

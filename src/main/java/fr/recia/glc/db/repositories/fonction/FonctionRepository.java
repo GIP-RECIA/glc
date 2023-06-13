@@ -19,7 +19,6 @@ import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.repositories.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -29,11 +28,18 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
     "FROM Fonction f " +
     "INNER JOIN AFonction af ON f.id = af.id " +
     "WHERE af.personne.id = :id")
-  List<FonctionDto> findByPersonneId(@Param("id") Long id);
+  List<FonctionDto> findByPersonneId(Long id);
 
   @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id) " +
     "FROM Fonction f " +
-    "WHERE f.source LIKE 'SarapisUi_%'")
-  List<FonctionDto> findAllUi();
+    "WHERE f.source = :source " +
+    "OR f.source = CONCAT('SarapisUi_', :source)")
+  List<FonctionDto> findBySource(String source);
+
+  @Query("SELECT DISTINCT f.source " +
+    "FROM Fonction f " +
+    "WHERE f.source NOT LIKE 'SarapisUi_%' " +
+    "ORDER BY f.source")
+  List<String> findAllSources();
 
 }

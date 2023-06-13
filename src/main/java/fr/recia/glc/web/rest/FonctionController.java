@@ -32,8 +32,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController()
@@ -49,33 +53,48 @@ public class FonctionController {
 
   @GetMapping(value = "/")
   public ApiResponse getFonctions() {
-    String source = "AC-ORLEANS-TOURS";
-
-    List<FonctionDto> fonctions = fonctionRepository.findAllUi();
-    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
-    List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
-
-    typesFonctionFiliere = typesFonctionFiliere.stream().map(typeFonctionFiliere -> {
-      List<Long> disciplineIds = fonctions.stream()
-        .filter(fonction -> fonction.getFiliere() == typeFonctionFiliere.getId())
-        .map(FonctionDto::getDisciplinePoste)
-        .toList();
-      List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
-        .filter(discipline -> disciplineIds.contains(discipline.getId()))
-        .toList();
-      typeFonctionFiliere.setDisciplines(disciplinesInFiliere);
-
-      return typeFonctionFiliere;
-    }).toList();
-
     Map<String, Object> data = new HashMap<>();
-    data.put("source", source);
-    data.put("typesFonctionFiliere", typesFonctionFiliere);
 
-    return new ApiResponse(
-      "",
-      data
-    );
+    List<String> sources = fonctionRepository.findAllSources();
+    sources.forEach(source -> {
+      List<FonctionDto> fonctions = fonctionRepository.findBySource(source);
+      List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
+      List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
+
+      Set<Long> usedDisciplineIds = new HashSet<>();
+
+      typesFonctionFiliere = typesFonctionFiliere.stream().map(typeFonctionFiliere -> {
+        Set<Long> disciplineIds = fonctions.stream()
+          .filter(fonction -> Objects.equals(fonction.getFiliere(), typeFonctionFiliere.getId()))
+          .map(FonctionDto::getDisciplinePoste)
+          .collect(Collectors.toSet());
+        usedDisciplineIds.addAll(disciplineIds);
+        List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
+          .filter(discipline -> disciplineIds.contains(discipline.getId())).toList();
+        typeFonctionFiliere.setDisciplines(disciplinesInFiliere);
+
+        return typeFonctionFiliere;
+      }).toList();
+
+      List<DisciplineDto> unusedDisciplines = disciplines.stream()
+        .filter(discipline -> !usedDisciplineIds.contains(discipline.getId()))
+        .toList();
+
+      Map<String, Object> object = new HashMap<>();
+      object.put(
+        "filiereWithDiscipline",
+        typesFonctionFiliere.stream().filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
+      );
+      object.put(
+        "filiereWithoutDisciplines",
+        typesFonctionFiliere.stream().filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
+      );
+      object.put("disciplinesWithoutFiliere", unusedDisciplines);
+
+      data.put(source, object);
+    });
+
+    return new ApiResponse("", data);
   }
 
 }

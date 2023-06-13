@@ -25,11 +25,10 @@ import java.util.List;
 public interface TypeFonctionFiliereRepository<T extends TypeFonctionFiliere> extends AbstractRepository<T, Long> {
 
   @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto(tff.id, tff.codeFiliere, " +
-    "tff.libelleFiliere) " +
+    "tff.libelleFiliere, tff.source) " +
     "FROM TypeFonctionFiliere tff " +
-    "INNER JOIN Fonction f on tff.id = f.filiere.id " +
-    "WHERE f.source like 'SarapisUi_%' " +
-    "AND tff.source = :source")
+    "WHERE tff.source = :source " +
+    "OR tff.source = CONCAT('SarapisUi_', :source)")
   List<TypeFonctionFiliereDto> findBySource(String source);
 
 }
