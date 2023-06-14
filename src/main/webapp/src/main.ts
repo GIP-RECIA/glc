@@ -1,5 +1,5 @@
 import App from "@/App.vue";
-import "@/assets/main.css";
+import "@/assets/main.scss";
 import i18n from "@/plugins/i18n";
 import pinia from "@/plugins/pinia";
 import vuetify from "@/plugins/vuetify";
