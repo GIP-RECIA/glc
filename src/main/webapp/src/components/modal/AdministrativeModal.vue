@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import BaseModal from "./BaseModal.vue";
 import { ref } from "vue";
 
 let dialog = ref<boolean>(false);
@@ -12,31 +13,20 @@ let dialog = ref<boolean>(false);
       @click="dialog = true"
     ></v-btn>
 
-    <v-dialog v-model="dialog" persistent width="auto">
-      <v-card>
-        <v-toolbar color="rgba(0, 0, 0, 0)">
-          <v-toolbar-title class="text-h6">Title</v-toolbar-title>
-          <template v-slot:append>
-            <v-btn
-              icon="fas fa-xmark"
-              color="default"
-              variant="plain"
-              @click="dialog = false"
-            />
-          </template>
-        </v-toolbar>
-        <v-card-text>Body</v-card-text>
-        <v-card-actions>
-          <v-btn
-            color="success"
-            prepend-icon="fas fa-floppy-disk"
-            @click="dialog = false"
-          >
-            {{ $t("save") }}
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+    <base-modal v-model="dialog" title="Test" :persistent="true">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ad quos. Hic
+      veniam ipsa commodi recusandae fugiat, odio sed delectus facere. Est,
+      fugiat similique architecto alias atque iure voluptate accusantium?
+      <template #footer>
+        <v-btn
+          color="success"
+          prepend-icon="fas fa-floppy-disk"
+          @click="dialog = false"
+        >
+          {{ $t("save") }}
+        </v-btn>
+      </template>
+    </base-modal>
   </div>
 </template>
 
