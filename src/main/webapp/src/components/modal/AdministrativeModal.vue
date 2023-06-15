@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import BaseModal from "./BaseModal.vue";
+import ReadonlyData from "@/components/ReadonlyData.vue";
+import { useFonctionStore } from "@/stores/fonctionStore";
+import { capitalize } from "@/utils/stringUtils";
 import { ref } from "vue";
 
 let dialog = ref<boolean>(false);
+let selected = ref<Array<number>>([]);
+
+const fonctionStore = useFonctionStore();
 </script>
 
 <template>
@@ -13,10 +19,34 @@ let dialog = ref<boolean>(false);
       @click="dialog = true"
     ></v-btn>
 
-    <base-modal v-model="dialog" title="Test" :persistent="true">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, ad quos. Hic
-      veniam ipsa commodi recusandae fugiat, odio sed delectus facere. Est,
-      fugiat similique architecto alias atque iure voluptate accusantium?
+    <base-modal v-model="dialog" :title="$t('add')">
+      <div class="d-flex flex-row flex-wrap">
+        <readonly-data :label="$t('status')" class="flex-item" />
+        <readonly-data :label="$t('mail')" class="flex-item" />
+      </div>
+      <div>{{ $t("additionalFunction", 2) }}</div>
+      <div
+        v-for="(filiere, index) in fonctionStore.fonctions['AC-ORLEANS-TOURS']
+          .filiereWithDiscipline"
+        :key="index"
+      >
+        <div>{{ capitalize(filiere.libelleFiliere) }}</div>
+        <div class="d-flex flex-row flex-wrap">
+          <div
+            v-for="(discipline, index) in filiere.disciplines"
+            :key="index"
+            class="flex-item"
+          >
+            <v-checkbox
+              v-model="selected"
+              :label="capitalize(discipline.disciplinePoste)"
+              :value="`${filiere.id}-${discipline.id}`"
+              color="primary"
+              :hide-details="true"
+            />
+          </div>
+        </div>
+      </div>
       <template #footer>
         <v-btn
           color="success"
@@ -30,4 +60,14 @@ let dialog = ref<boolean>(false);
   </div>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.flex-item {
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .flex-item {
+    width: 50%;
+  }
+}
+</style>

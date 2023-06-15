@@ -14,7 +14,7 @@ const { modelValue } = toRefs(props);
 </script>
 
 <template>
-  <v-dialog v-model="modelValue" width="auto">
+  <v-dialog v-model="modelValue" scrollable :max-width="1024">
     <v-card>
       <v-toolbar color="rgba(0, 0, 0, 0)">
         <v-toolbar-title class="text-h6">{{ title }}</v-toolbar-title>

@@ -22,7 +22,7 @@ const getToken = async (): Promise<string | undefined> => {
 const getFonctions = async () =>
   await axios.get(`${VITE_API_URL}/fonction/`, {
     headers: {
-      // Authorization: `Bearer ${await getToken()}`,
+      Authorization: `Bearer ${await getToken()}`,
       "content-type": "application/jwt",
     },
   });
