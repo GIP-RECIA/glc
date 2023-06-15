@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useFonctionStore } from "@/stores/fonctionStore";
+
+const fonctionStore = useFonctionStore();
+fonctionStore.init();
+</script>
 
 <template>
   <header></header>
