@@ -51,7 +51,7 @@ public class FonctionController {
   @Autowired
   private TypeFonctionFiliereRepository<TypeFonctionFiliere> typeFonctionFiliereRepository;
 
-  @GetMapping(value = "/")
+  @GetMapping()
   public ApiResponse getFonctions() {
     Map<String, Object> data = new HashMap<>();
 
