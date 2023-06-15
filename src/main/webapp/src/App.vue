@@ -12,5 +12,3 @@ fonctionStore.init();
   </main>
   <footer></footer>
 </template>
-
-<style scoped></style>

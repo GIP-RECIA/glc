@@ -37,5 +37,3 @@ let tab = ref<string>();
     </v-window>
   </div>
 </template>
-
-<style scoped></style>

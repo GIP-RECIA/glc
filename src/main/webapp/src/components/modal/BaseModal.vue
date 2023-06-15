@@ -36,5 +36,3 @@ const { modelValue } = toRefs(props);
     </v-card>
   </v-dialog>
 </template>
-
-<style scoped></style>

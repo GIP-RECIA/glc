@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BaseModal from "./BaseModal.vue";
 import ReadonlyData from "@/components/ReadonlyData.vue";
+import BaseModal from "@/components/modal/BaseModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { capitalize } from "@/utils/stringUtils";
 import { ref } from "vue";
@@ -9,15 +9,17 @@ let dialog = ref<boolean>(false);
 let selected = ref<Array<number>>([]);
 
 const fonctionStore = useFonctionStore();
+
+const filieres = ref(
+  fonctionStore.fonctions["AC-ORLEANS-TOURS"].filiereWithDiscipline
+);
 </script>
 
 <template>
   <div>
-    <v-btn
-      color="primary"
-      icon="fas fa-user-plus"
-      @click="dialog = true"
-    ></v-btn>
+    <div class="fab ma-4">
+      <v-btn color="primary" icon="fas fa-user-plus" @click="dialog = true" />
+    </div>
 
     <base-modal v-model="dialog" :title="$t('add')">
       <div class="d-flex flex-row flex-wrap">
@@ -25,11 +27,7 @@ const fonctionStore = useFonctionStore();
         <readonly-data :label="$t('mail')" class="flex-item" />
       </div>
       <div>{{ $t("additionalFunction", 2) }}</div>
-      <div
-        v-for="(filiere, index) in fonctionStore.fonctions['AC-ORLEANS-TOURS']
-          .filiereWithDiscipline"
-        :key="index"
-      >
+      <div v-for="(filiere, index) in filieres" :key="index">
         <div>{{ capitalize(filiere.libelleFiliere) }}</div>
         <div class="d-flex flex-row flex-wrap">
           <div
