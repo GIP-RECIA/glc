@@ -4,7 +4,6 @@ import { toRefs } from "vue";
 const props = defineProps<{
   modelValue: boolean;
   title: string;
-  persistent: boolean;
 }>();
 
 defineEmits<{
@@ -15,7 +14,7 @@ const { modelValue } = toRefs(props);
 </script>
 
 <template>
-  <v-dialog v-model="modelValue" :persistent="persistent" width="auto">
+  <v-dialog v-model="modelValue" width="auto">
     <v-card>
       <v-toolbar color="rgba(0, 0, 0, 0)">
         <v-toolbar-title class="text-h6">{{ title }}</v-toolbar-title>
