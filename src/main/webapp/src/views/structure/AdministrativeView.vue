@@ -34,11 +34,17 @@ const etats = ref([
           :md="6"
           :lg="4"
           :xxl="3"
+          class="pa-2"
         >
           <v-card :title="capitalize(discipline.disciplinePoste)">
             <v-card-text>
               <v-row>
-                <v-col :cols="6" v-for="(user, index) in etats" :key="index">
+                <v-col
+                  :cols="6"
+                  v-for="(user, index) in etats"
+                  :key="index"
+                  class="pa-2"
+                >
                   <user-card
                     :fistName="'Didier'"
                     :lastName="'CUNAFO'"
