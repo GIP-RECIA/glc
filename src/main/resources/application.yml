@@ -62,7 +62,7 @@ security-configuration:
       x-requested-with,
       x-xsrf-token
     allowed-methods: >
-      GET
-      PUT
-      POST
+      GET,
+      PUT,
+      POST,
       DELETE
