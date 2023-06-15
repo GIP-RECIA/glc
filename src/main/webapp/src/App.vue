@@ -1,14 +1,64 @@
 <script setup lang="ts">
+import { useStructureStore } from "./stores/structureStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
+import { onBeforeMount } from "vue";
 
 const fonctionStore = useFonctionStore();
 fonctionStore.init();
+
+const structureStore = useStructureStore();
+structureStore.init();
+
+onBeforeMount(() => {
+  let extendedUportalHeaderScript = document.createElement("script");
+  extendedUportalHeaderScript.setAttribute(
+    "src",
+    "/commun/extended-uportal-header.min.js"
+  );
+  document.head.appendChild(extendedUportalHeaderScript);
+  let extendedUportalFooterScript = document.createElement("script");
+  extendedUportalFooterScript.setAttribute(
+    "src",
+    "/commun/extended-uportal-footer.min.js"
+  );
+  document.head.appendChild(extendedUportalFooterScript);
+});
 </script>
 
 <template>
-  <header></header>
+  <header>
+    <extended-uportal-header
+      domain="test-lycee.giprecia.net"
+      service-name="Gestion Locale des Comptes"
+      context-api-url="/portail"
+      sign-out-url="/portail/Logout"
+      default-org-logo-path="/annuaire_images/default_banner_v1.jpg"
+      default-avatar-path="/images/icones/noPictureUser.svg"
+      default-org-icon-path="/images/partners/netocentre-simple.svg"
+      favorite-api-url="/portail/api/layout"
+      layout-api-url="/portail/api/v4-3/dlm/layout.json"
+      organization-api-url="/change-etablissement/rest/v2/structures/structs/"
+      portlet-api-url="/portail/api/v4-3/dlm/portletRegistry.json?category=All%20categories"
+      user-info-api-url="/portail/api/v5-1/userinfo?claims=private,name,ESCOSIRENCourant,ESCOSIREN&groups="
+      user-info-portlet-url="/portail/p/ESCO-MCE"
+      template-api-path="/commun/portal_template_api.tpl.json"
+      switch-org-portlet-url="/portail/p/etablissement-swapper"
+      favorites-portlet-card-size="small"
+      grid-portlet-card-size="auto"
+      hide-action-mode="never"
+      show-favorites-in-slider="true"
+      return-home-title="Aller à l'accueil"
+      return-home-target="_self"
+      icon-type="nine-square"
+    />
+  </header>
   <main>
     <RouterView />
   </main>
-  <footer></footer>
+  <footer>
+    <extended-uportal-footer
+      domain="test-lycee.giprecia.net"
+      template-api-path="/commun/portal_template_api.tpl.json"
+    />
+  </footer>
 </template>

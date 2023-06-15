@@ -10,7 +10,13 @@ export default defineConfig({
   root: "./src/main/webapp",
   envDir: "../../../",
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => tag.includes("extended-uportal-"),
+        },
+      },
+    }),
     vuetify({ autoImport: true }),
     VueI18nPlugin({
       include: resolve(
