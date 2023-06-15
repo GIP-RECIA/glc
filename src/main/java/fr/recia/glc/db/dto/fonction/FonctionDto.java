@@ -28,5 +28,11 @@ public class FonctionDto {
 
   private Long disciplinePoste;
   private Long filiere;
+  private String source;
+
+  public FonctionDto(Long disciplinePoste, Long filiere) {
+    this.disciplinePoste = disciplinePoste;
+    this.filiere = filiere;
+  }
 
 }

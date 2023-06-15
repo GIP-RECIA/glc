@@ -24,6 +24,7 @@ import lombok.Setter;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
@@ -36,7 +37,7 @@ public class Fonction extends AFonction {
    * Relation unidirectionnelle.
    * Discipline de poste d'un enseignant ou d'un personnel d'établissement.
    */
-  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+  @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   @JoinColumn(name = "discipline_poste_fk")
   private Discipline disciplinePoste;
 
@@ -44,7 +45,7 @@ public class Fonction extends AFonction {
    * Relation unidirectionnelle.
    * Fonction filière, N_FONCTION_FILIERE.
    */
-  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+  @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
   @JoinColumn(name = "filiere_fk")
   private TypeFonctionFiliere filiere;
 
