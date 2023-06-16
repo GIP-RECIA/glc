@@ -3,16 +3,14 @@ import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { capitalize } from "@/utils/stringUtils";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 let dialog = ref<boolean>(false);
 let selected = ref<Array<number>>([]);
 
 const fonctionStore = useFonctionStore();
-
-const filieres = ref(
-  fonctionStore.fonctions["AC-ORLEANS-TOURS"].filiereWithDiscipline
-);
+const { filieres } = storeToRefs(fonctionStore);
 </script>
 
 <template>

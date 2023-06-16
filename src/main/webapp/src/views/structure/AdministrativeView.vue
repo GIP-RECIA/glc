@@ -3,13 +3,12 @@ import UserCard from "@/components/UserCard.vue";
 import AdministrativeModal from "@/components/modal/AdministrativeModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { capitalize } from "@/utils/stringUtils";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 const fonctionStore = useFonctionStore();
+const { filieres } = storeToRefs(fonctionStore);
 
-const filieres = ref(
-  fonctionStore.fonctions["AC-ORLEANS-TOURS"].filiereWithDiscipline
-);
 const etats = ref([
   "Invalide",
   "Valide",
