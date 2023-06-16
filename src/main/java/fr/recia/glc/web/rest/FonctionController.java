@@ -58,8 +58,17 @@ public class FonctionController {
     List<String> sources = fonctionRepository.findAllSources();
     sources.forEach(source -> {
       List<FonctionDto> fonctions = fonctionRepository.findBySource(source);
-      List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
-      List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
+      List<TypeFonctionFiliereDto> typesFonctionFiliere;
+      List<DisciplineDto> disciplines;
+
+      if (source.startsWith("SarapisUi_")) {
+        String querySource = source.substring("SarapisUi_".length());
+        typesFonctionFiliere = typeFonctionFiliereRepository.findBySourceSarapis(querySource);
+        disciplines = disciplineRepository.findBySourceSarapis(querySource);
+      } else {
+        typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
+        disciplines = disciplineRepository.findBySource(source);
+      }
 
       Set<Long> usedDisciplineIds = new HashSet<>();
 
@@ -70,7 +79,8 @@ public class FonctionController {
           .collect(Collectors.toSet());
         usedDisciplineIds.addAll(disciplineIds);
         List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
-          .filter(discipline -> disciplineIds.contains(discipline.getId())).toList();
+          .filter(discipline -> disciplineIds.contains(discipline.getId()))
+          .toList();
         typeFonctionFiliere.setDisciplines(disciplinesInFiliere);
 
         return typeFonctionFiliere;
@@ -83,11 +93,15 @@ public class FonctionController {
       Map<String, Object> object = new HashMap<>();
       object.put(
         "filiereWithDiscipline",
-        typesFonctionFiliere.stream().filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
+        typesFonctionFiliere.stream()
+          .filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
+          .toList()
       );
       object.put(
         "filiereWithoutDisciplines",
-        typesFonctionFiliere.stream().filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
+        typesFonctionFiliere.stream()
+          .filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
+          .toList()
       );
       object.put("disciplinesWithoutFiliere", unusedDisciplines);
 

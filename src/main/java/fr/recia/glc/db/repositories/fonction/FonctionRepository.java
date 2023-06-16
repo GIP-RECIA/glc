@@ -32,13 +32,11 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
 
   @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id) " +
     "FROM Fonction f " +
-    "WHERE f.source = :source " +
-    "OR f.source = CONCAT('SarapisUi_', :source)")
+    "WHERE f.source = :source")
   List<FonctionDto> findBySource(String source);
 
   @Query("SELECT DISTINCT f.source " +
     "FROM Fonction f " +
-    "WHERE f.source NOT LIKE 'SarapisUi_%' " +
     "ORDER BY f.source")
   List<String> findAllSources();
 

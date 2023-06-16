@@ -27,8 +27,14 @@ public interface TypeFonctionFiliereRepository<T extends TypeFonctionFiliere> ex
   @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto(tff.id, tff.codeFiliere, " +
     "tff.libelleFiliere, tff.source) " +
     "FROM TypeFonctionFiliere tff " +
+    "WHERE tff.source = :source")
+  List<TypeFonctionFiliereDto> findBySource(String source);
+
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto(tff.id, tff.codeFiliere, " +
+    "tff.libelleFiliere, tff.source) " +
+    "FROM TypeFonctionFiliere tff " +
     "WHERE tff.source = :source " +
     "OR tff.source = CONCAT('SarapisUi_', :source)")
-  List<TypeFonctionFiliereDto> findBySource(String source);
+  List<TypeFonctionFiliereDto> findBySourceSarapis(String source);
 
 }

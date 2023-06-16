@@ -26,8 +26,13 @@ public interface DisciplineRepository<T extends Discipline> extends AbstractRepo
 
   @Query("SELECT DISTINCT new fr.recia.glc.db.dto.education.DisciplineDto(d.id, d.code, d.disciplinePoste, d.source) " +
     "FROM Discipline d " +
+    "WHERE d.source = :source")
+  List<DisciplineDto> findBySource(String source);
+
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.education.DisciplineDto(d.id, d.code, d.disciplinePoste, d.source) " +
+    "FROM Discipline d " +
     "WHERE d.source = :source " +
     "OR d.source = CONCAT('SarapisUi_', :source)")
-  List<DisciplineDto> findBySource(String source);
+  List<DisciplineDto> findBySourceSarapis(String source);
 
 }
