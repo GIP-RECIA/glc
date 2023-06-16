@@ -40,4 +40,9 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
     "ORDER BY f.source")
   List<String> findAllSources();
 
+  @Query("SELECT DISTINCT f.filiere.id " +
+    "FROM Fonction f " +
+    "WHERE f.structure.id = :id")
+  List<Long> findByStructure(Long id);
+
 }

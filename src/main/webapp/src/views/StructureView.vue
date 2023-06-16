@@ -5,7 +5,19 @@ import DashboardView from "./structure/DashboardView.vue";
 import ExportView from "./structure/ExportView.vue";
 import InfoView from "./structure/InfoView.vue";
 import TeachingView from "./structure/TeachingView.vue";
+import { useFonctionStore } from "@/stores/fonctionStore";
+import { useStructureStore } from "@/stores/structureStore";
 import { ref } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+const { structureId } = route.params;
+
+const fonctionStore = useFonctionStore();
+fonctionStore.init();
+
+const structureStore = useStructureStore();
+structureStore.initCurrentEtab(Number(structureId));
 
 let tab = ref<string>();
 </script>

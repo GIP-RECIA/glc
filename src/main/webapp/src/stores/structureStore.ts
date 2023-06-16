@@ -1,21 +1,27 @@
-import { getEtablissements } from "@/services/structureService";
+import {
+  getEtablissements,
+  getEtablissement,
+} from "@/services/structureService";
 import type { Etablissement } from "@/types/etablissementType";
 import { defineStore } from "pinia";
 import { readonly, ref } from "vue";
 
 export const useStructureStore = defineStore("structure", () => {
-  const etablissements = ref<Array<Etablissement> | undefined>();
+  const etabs = ref<Array<Etablissement> | undefined>();
+  const currentEtab = ref<Etablissement | undefined>();
 
   const init = async (): Promise<void> => {
-    etablissements.value = (await getEtablissements()).data.payload;
+    etabs.value = (await getEtablissements()).data.payload;
   };
 
-  const getEtablissement = (id: number): Etablissement | undefined =>
-    etablissements.value?.find((etablissement) => etablissement.id === id);
+  const initCurrentEtab = async (id: number): Promise<void> => {
+    currentEtab.value = (await getEtablissement(id)).data.payload;
+  };
 
   return {
-    etablissements: readonly(etablissements),
+    etabs: readonly(etabs),
+    currentEtab: readonly(currentEtab),
     init,
-    getEtablissement,
+    initCurrentEtab,
   };
 });

@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import { useStructureStore } from "./stores/structureStore";
-import { useFonctionStore } from "@/stores/fonctionStore";
 import { onBeforeMount } from "vue";
-
-const fonctionStore = useFonctionStore();
-fonctionStore.init();
-
-const structureStore = useStructureStore();
-structureStore.init();
 
 onBeforeMount(() => {
   let extendedUportalHeaderScript = document.createElement("script");

@@ -15,4 +15,5 @@ export type Etablissement = {
   siteWeb: string;
   modeleLogin: string;
   logo: string;
+  filieres: Array<number>;
 };

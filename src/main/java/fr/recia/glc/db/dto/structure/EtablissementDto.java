@@ -25,6 +25,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,5 +47,36 @@ public class EtablissementDto {
   private String siteWeb;
   private String modeleLogin;
   private String logo;
+  private List<Long> filieres;
+
+  public EtablissementDto(Long id, String uai, AdresseDto adresse, CategorieStructure categorie,
+                          String nom, String nomCourt, String siren) {
+    this.id = id;
+    this.uai = uai;
+    this.adresse = adresse;
+    this.categorie = categorie;
+    this.nom = nom;
+    this.nomCourt = nomCourt;
+    this.siren = siren;
+  }
+
+  public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, Date anneeScolaire,
+                          AdresseDto adresse, CategorieStructure categorie, String mail, String nom,
+                          String nomCourt, String siren, String siteWeb, String modeleLogin, String logo) {
+    this.id = id;
+    this.uai = uai;
+    this.etat = etat;
+    this.etatAlim = etatAlim;
+    this.anneeScolaire = anneeScolaire;
+    this.adresse = adresse;
+    this.categorie = categorie;
+    this.mail = mail;
+    this.nom = nom;
+    this.nomCourt = nomCourt;
+    this.siren = siren;
+    this.siteWeb = siteWeb;
+    this.modeleLogin = modeleLogin;
+    this.logo = logo;
+  }
 
 }

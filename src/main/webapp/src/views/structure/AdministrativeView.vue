@@ -7,7 +7,7 @@ import { storeToRefs } from "pinia";
 import { ref } from "vue";
 
 const fonctionStore = useFonctionStore();
-const { filieres } = storeToRefs(fonctionStore);
+const { currentEtabFilieres } = storeToRefs(fonctionStore);
 
 const etats = ref([
   "Invalide",
@@ -23,7 +23,7 @@ const etats = ref([
 
 <template>
   <v-container fluid>
-    <div v-for="(filiere, index) in filieres" :key="index">
+    <div v-for="(filiere, index) in currentEtabFilieres" :key="index">
       <div>{{ capitalize(filiere.libelleFiliere) }}</div>
       <v-row>
         <v-col
