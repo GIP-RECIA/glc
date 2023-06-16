@@ -3,6 +3,7 @@ import AccountView from "./structure/AccountView.vue";
 import AdministrativeView from "./structure/AdministrativeView.vue";
 import DashboardView from "./structure/DashboardView.vue";
 import ExportView from "./structure/ExportView.vue";
+import InfoView from "./structure/InfoView.vue";
 import TeachingView from "./structure/TeachingView.vue";
 import { ref } from "vue";
 
@@ -13,6 +14,7 @@ let tab = ref<string>();
   <div>
     <v-tabs v-model="tab" align-tabs="center">
       <v-tab value="dashboard">{{ $t("dashboard") }}</v-tab>
+      <v-tab value="info">{{ $t("information") }}</v-tab>
       <v-tab value="administrativeStaff">{{ $t("administrativeStaff") }}</v-tab>
       <v-tab value="teachingStaff">{{ $t("teachingStaff") }}</v-tab>
       <v-tab value="accounts">{{ $t("accounts") }}</v-tab>
@@ -21,6 +23,9 @@ let tab = ref<string>();
     <v-window v-model="tab">
       <v-window-item value="dashboard">
         <dashboard-view />
+      </v-window-item>
+      <v-window-item value="info">
+        <info-view />
       </v-window-item>
       <v-window-item value="administrativeStaff">
         <administrative-view />

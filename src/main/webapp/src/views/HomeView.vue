@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useStructureStore } from "@/stores/structureStore";
+import { storeToRefs } from "pinia";
 
 const structureStore = useStructureStore();
+const { etablissements } = storeToRefs(structureStore);
 </script>
 
 <template>
   <v-container>
     <v-row>
       <v-col
-        v-for="(etablissement, index) in structureStore.etablissements"
+        v-for="(etablissement, index) in etablissements"
         :key="index"
         :cols="12"
         :sm="6"
