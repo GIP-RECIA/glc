@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import UserCard from "@/components/UserCard.vue";
 import type { Filiere } from "@/types/filiereType";
 
 defineProps<{
