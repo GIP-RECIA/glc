@@ -1,0 +1,62 @@
+[
+  {
+    "source": "SarapisUi_AC-ORLEANS-TOURS",
+    "filieres": [
+      {
+        "code": "DIR",
+        "disciplines": ["D0010", "D0011", "DIRSEGPA"]
+      },
+      {
+        "code": "ADF",
+        "disciplines": [
+          "SECDIR",
+          "SECELV",
+          "SECCTR",
+          "GEST",
+          "SECGEST",
+          "CPT",
+          "ECCPT",
+          "ADFGRETA"
+        ]
+      },
+      {
+        "code": "CTR",
+        "disciplines": ["*"]
+      },
+      {
+        "code": "EDU",
+        "disciplines": ["E0030"]
+      },
+      {
+        "code": "MDS",
+        "disciplines": ["P9110", "P9111", "P9222"]
+      },
+      {
+        "code": "PSY",
+        "disciplines": ["Y0012"]
+      },
+      {
+        "code": "ADM",
+        "disciplines": ["COORULIS", "COORMLDS"]
+      }
+    ],
+    "disciplines": []
+  },
+  {
+    "source": "COLL-CVDL",
+    "filieres": [],
+    "disciplines": [
+      "RESEQUENTLIN",
+      "RESEQUMAI",
+      "RESEQUPROLOC",
+      "RESEQURES",
+      "RESPMAG",
+      "RESCUI"
+    ]
+  },
+  {
+    "source": "COLL-CD18",
+    "filieres": [],
+    "disciplines": ["971"]
+  }
+]

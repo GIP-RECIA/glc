@@ -15,6 +15,8 @@
  */
 package fr.recia.glc.web.rest;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.recia.glc.db.dto.education.DisciplineDto;
 import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto;
@@ -25,12 +27,16 @@ import fr.recia.glc.db.repositories.education.DisciplineRepository;
 import fr.recia.glc.db.repositories.fonction.FonctionRepository;
 import fr.recia.glc.db.repositories.fonction.TypeFonctionFiliereRepository;
 import fr.recia.glc.models.apiresponse.ApiResponse;
+import fr.recia.glc.models.mappers.AdditionalFonctionMapping;
+import fr.recia.glc.models.mappers.AdditionalFonctionMappingFiliere;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -104,11 +110,90 @@ public class FonctionController {
           .toList()
       );
       object.put("disciplinesWithoutFiliere", unusedDisciplines);
+      try {
+        object.put("additional", getAdditional(source));
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
 
       data.put(source, object);
     });
 
     return new ApiResponse("", data);
+  }
+
+  private Map<String, Object> getAdditional(String source) throws IOException {
+    Map<String, Object> data = new HashMap<>();
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    List<AdditionalFonctionMapping> additionalFonctionsMapping = objectMapper.readValue(
+      new File("src/main/resources/mapping/additionalFonctionMapping.json"),
+      new TypeReference<>() {
+      }
+    );
+
+    AdditionalFonctionMapping additionalFonctionMapping = additionalFonctionsMapping.stream()
+      .filter(af -> Objects.equals(af.getSource(), source))
+      .findAny()
+      .orElse(null);
+
+    if (additionalFonctionMapping == null) {
+      return data;
+    }
+
+    List<TypeFonctionFiliereDto> typesFonctionFiliere;
+    if (source.startsWith("SarapisUi_")) {
+      String querySource = source.substring("SarapisUi_".length());
+      typesFonctionFiliere =
+        typeFonctionFiliereRepository.findByCodeAndSourceSarapis(
+          additionalFonctionMapping.getFilieres().stream()
+            .map(AdditionalFonctionMappingFiliere::getCode)
+            .toList(),
+          querySource
+        );
+    } else {
+      typesFonctionFiliere =
+        typeFonctionFiliereRepository.findByCodeAndSource(
+          additionalFonctionMapping.getFilieres().stream()
+            .map(AdditionalFonctionMappingFiliere::getCode)
+            .toList(),
+          source
+        );
+    }
+
+    typesFonctionFiliere = typesFonctionFiliere.stream()
+      .map(typeFonctionFiliere -> {
+        List<String> disciplineCodes = additionalFonctionMapping.getFilieres().stream()
+          .filter(af -> Objects.equals(af.getCode(), typeFonctionFiliere.getCodeFiliere()))
+          .findAny()
+          .map(AdditionalFonctionMappingFiliere::getDisciplines)
+          .get();
+
+        List<DisciplineDto> disciplines;
+        if (source.startsWith("SarapisUi_")) {
+          String querySource = source.substring("SarapisUi_".length());
+          disciplines = disciplineRepository.findByCodeAndSourceSarapis(disciplineCodes, querySource);
+        } else {
+          disciplines = disciplineRepository.findByCodeAndSource(disciplineCodes, source);
+        }
+        typeFonctionFiliere.setDisciplines(disciplines);
+
+        return typeFonctionFiliere;
+      })
+      .toList();
+
+    data.put("additionalWithFiliere", typesFonctionFiliere);
+
+    List<DisciplineDto> disciplines;
+    if (source.startsWith("SarapisUi_")) {
+      String querySource = source.substring("SarapisUi_".length());
+      disciplines = disciplineRepository.findByCodeAndSourceSarapis(additionalFonctionMapping.getDisciplines(), querySource);
+    } else {
+      disciplines = disciplineRepository.findByCodeAndSource(additionalFonctionMapping.getDisciplines(), source);
+    }
+    data.put("additionalWithoutFiliere", disciplines);
+
+    return data;
   }
 
 }
