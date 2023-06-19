@@ -10,9 +10,13 @@ defineProps<{
 
 <template>
   <v-card>
-    <div class="ma-2">
-      <v-icon icon="fas fa-user" :color="getEtat(status).color" />
-      {{ lastName }} {{ fistName }}
+    <div class="ma-2 d-flex">
+      <v-icon
+        icon="fas fa-user"
+        :color="getEtat(status).color"
+        class="d-flex text-center mr-2"
+      />{{ lastName }}
+      {{ fistName }}
     </div>
   </v-card>
 </template>
