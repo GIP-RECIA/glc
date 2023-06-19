@@ -1,60 +1,46 @@
 <script setup lang="ts">
-import UserCard from "@/components/UserCard.vue";
+import FiliereDisciplines from "@/components/FiliereDisciplines.vue";
 import AdministrativeModal from "@/components/modal/AdministrativeModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
-import { capitalize } from "@/utils/stringUtils";
-import { storeToRefs } from "pinia";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const fonctionStore = useFonctionStore();
-const { currentEtabFilieres } = storeToRefs(fonctionStore);
+const { getFilteredFilieres } = fonctionStore;
 
-const etats = ref([
-  "Invalide",
-  "Valide",
-  "Bloque",
-  "Delete",
-  "Incertain",
-  "Incertain_Export_Delete",
-  "Incertain_Export_Modify",
-  "Incertain_Export_Add",
-]);
+const filters = [
+  {
+    title: t("all"),
+    value: "all",
+  },
+  {
+    title: t("used"),
+    value: "etab",
+  },
+];
+const displayFilter = ref<{
+  title: string;
+  value: string;
+}>(filters[1]);
 </script>
 
 <template>
   <v-container fluid>
-    <div v-for="(filiere, index) in currentEtabFilieres" :key="index">
-      <div>{{ capitalize(filiere.libelleFiliere) }}</div>
-      <v-row>
-        <v-col
-          v-for="(discipline, index) in filiere.disciplines"
-          :key="index"
-          :cols="12"
-          :md="6"
-          :lg="4"
-          :xxl="3"
-          class="pa-2"
-        >
-          <v-card :title="capitalize(discipline.disciplinePoste)">
-            <v-card-text>
-              <v-row>
-                <v-col
-                  :cols="6"
-                  v-for="(user, index) in etats"
-                  :key="index"
-                  class="pa-2"
-                >
-                  <user-card
-                    :fistName="'Didier'"
-                    :lastName="'CUNAFO'"
-                    :status="user"
-                  />
-                </v-col>
-              </v-row>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+    <v-select
+      v-model="displayFilter"
+      :items="filters"
+      itemTitle="title"
+      itemValue="value"
+      :label="t('filter')"
+      returnObject
+    />
+    <div
+      v-for="(filiere, index) in getFilteredFilieres(displayFilter.value)"
+      :key="index"
+    >
+      <filiere-disciplines :filiere="filiere" />
     </div>
 
     <administrative-modal />

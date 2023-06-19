@@ -27,5 +27,8 @@
   "discipline": "discipline",
   "classOrEducationalGroup": "classe ou groupe pédagogique",
   "warning": "alerte | alertes",
-  "deletingOrDeletedAccounts": "Comptes en suppression/supprimés"
+  "deletingOrDeletedAccounts": "Comptes en suppression/supprimés",
+  "filter": "filtrer",
+  "all": "tous",
+  "used": "utilisés"
 }

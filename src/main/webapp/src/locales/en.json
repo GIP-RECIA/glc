@@ -27,5 +27,8 @@
   "discipline": "discipline",
   "classOrEducationalGroup": "class or educational group",
   "warning": "warning | warnings",
-  "deletingOrDeletedAccounts": "deleting/deleted accounts"
+  "deletingOrDeletedAccounts": "deleting/deleted accounts",
+  "filter": "filter",
+  "all": "all",
+  "used": "used"
 }
