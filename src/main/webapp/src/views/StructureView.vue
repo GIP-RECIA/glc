@@ -8,7 +8,10 @@ import TeachingView from "./structure/TeachingView.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { useStructureStore } from "@/stores/structureStore";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
+
+const { t } = useI18n();
 
 const route = useRoute();
 const { structureId } = route.params;
@@ -25,12 +28,12 @@ let tab = ref<string>();
 <template>
   <div>
     <v-tabs v-model="tab" align-tabs="center">
-      <v-tab value="dashboard">{{ $t("dashboard") }}</v-tab>
-      <v-tab value="info">{{ $t("information") }}</v-tab>
-      <v-tab value="administrativeStaff">{{ $t("administrativeStaff") }}</v-tab>
-      <v-tab value="teachingStaff">{{ $t("teachingStaff") }}</v-tab>
-      <v-tab value="accounts">{{ $t("accounts") }}</v-tab>
-      <v-tab value="exports">{{ $t("exports") }}</v-tab>
+      <v-tab value="dashboard">{{ t("dashboard") }}</v-tab>
+      <v-tab value="info">{{ t("information") }}</v-tab>
+      <v-tab value="administrativeStaff">{{ t("administrativeStaff") }}</v-tab>
+      <v-tab value="teachingStaff">{{ t("teachingStaff") }}</v-tab>
+      <v-tab value="accounts">{{ t("accounts") }}</v-tab>
+      <v-tab value="exports">{{ t("exports") }}</v-tab>
     </v-tabs>
     <v-window v-model="tab">
       <v-window-item value="dashboard">

@@ -5,6 +5,9 @@ import { useFonctionStore } from "@/stores/fonctionStore";
 import { capitalize } from "@/utils/stringUtils";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 let dialog = ref<boolean>(false);
 let selected = ref<Array<number>>([]);
@@ -19,10 +22,10 @@ const { filieres } = storeToRefs(fonctionStore);
       <v-btn color="primary" icon="fas fa-user-plus" @click="dialog = true" />
     </div>
 
-    <base-modal v-model="dialog" :title="$t('add')">
+    <base-modal v-model="dialog" :title="t('add')">
       <div class="d-flex flex-row flex-wrap">
-        <readonly-data :label="$t('status')" class="flex-item" />
-        <readonly-data :label="$t('mail')" class="flex-item" />
+        <readonly-data :label="t('status')" class="flex-item" />
+        <readonly-data :label="t('mail')" class="flex-item" />
       </div>
       <div>{{ $t("additionalFunction", 2) }}</div>
       <div v-for="(filiere, index) in filieres" :key="index">
