@@ -21,7 +21,7 @@
       },
       {
         "code": "CTR",
-        "disciplines": ["*"]
+        "disciplines": ["L2001", "L2020", "L2070", "L2080", "L2085", "P2001"]
       },
       {
         "code": "EDU",
@@ -38,6 +38,10 @@
       {
         "code": "ADM",
         "disciplines": ["COORULIS", "COORMLDS"]
+      },
+      {
+        "code": "AED",
+        "disciplines": ["S0097"]
       }
     ],
     "disciplines": []
