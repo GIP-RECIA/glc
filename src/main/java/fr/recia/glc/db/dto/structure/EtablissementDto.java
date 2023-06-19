@@ -16,6 +16,7 @@
 package fr.recia.glc.db.dto.structure;
 
 import fr.recia.glc.db.dto.common.AdresseDto;
+import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import fr.recia.glc.db.enums.CategorieStructure;
 import fr.recia.glc.db.enums.Etat;
 import fr.recia.glc.db.enums.EtatAlim;
@@ -48,6 +49,8 @@ public class EtablissementDto {
   private String modeleLogin;
   private String logo;
   private List<Long> filieres;
+  private List<SimplePersonneDto> enseignants;
+  private List<SimplePersonneDto> eleves;
 
   public EtablissementDto(Long id, String uai, AdresseDto adresse, CategorieStructure categorie,
                           String nom, String nomCourt, String siren) {

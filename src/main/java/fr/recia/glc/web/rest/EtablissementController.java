@@ -15,10 +15,15 @@
  */
 package fr.recia.glc.web.rest;
 
+import fr.recia.glc.db.dto.fonction.FonctionDto;
+import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import fr.recia.glc.db.dto.structure.EtablissementDto;
 import fr.recia.glc.db.entities.fonction.Fonction;
+import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.entities.structure.Etablissement;
+import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.repositories.fonction.FonctionRepository;
+import fr.recia.glc.db.repositories.personne.APersonneRepository;
 import fr.recia.glc.db.repositories.structure.EtablissementRepository;
 import fr.recia.glc.models.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +44,8 @@ public class EtablissementController {
   private EtablissementRepository<Etablissement> etablissementRepository;
   @Autowired
   private FonctionRepository<Fonction> fonctionRepository;
+  @Autowired
+  private APersonneRepository<APersonne> aPersonneRepository;
 
   @GetMapping()
   public ApiResponse getEtablissements() {
@@ -49,6 +56,18 @@ public class EtablissementController {
   public ApiResponse getEtablissement(@PathVariable Long id) {
     EtablissementDto etablissement = etablissementRepository.findByIdEtablissement(id);
     etablissement.setFilieres(fonctionRepository.findByStructure(id));
+    etablissement.setEleves(aPersonneRepository.findByStructureIdAndCategorie(id, CategoriePersonne.Eleve));
+    List<SimplePersonneDto> enseignants =
+      aPersonneRepository.findByStructureIdAndCategorie(id, CategoriePersonne.Enseignant);
+    enseignants = enseignants.stream()
+      .map(enseignant -> {
+        List<FonctionDto> fonctions = fonctionRepository.findByPersonneId(enseignant.getId());
+        enseignant.setFonctions(fonctions);
+
+        return enseignant;
+      })
+      .toList();
+    etablissement.setEnseignants(enseignants);
 
     return new ApiResponse("", etablissement);
   }
