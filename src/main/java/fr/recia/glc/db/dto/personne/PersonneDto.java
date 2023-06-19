@@ -16,19 +16,16 @@
 package fr.recia.glc.db.dto.personne;
 
 import fr.recia.glc.db.dto.common.AdresseDto;
-import fr.recia.glc.db.entities.common.Adresse;
 import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.enums.Civilite;
 import fr.recia.glc.db.enums.Etat;
 import fr.recia.glc.db.enums.ForceEtat;
-import fr.recia.glc.db.enums.Sexe;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter

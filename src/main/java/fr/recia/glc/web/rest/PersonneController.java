@@ -53,13 +53,4 @@ public class PersonneController {
     );
   }
 
-//  @PutMapping(value = "/{id}/fonction")
-//  public ApiResponse setPersonneFonctions(@PathVariable Long id) {
-//
-//    return new ApiResponse(
-//      "",
-//
-//    );
-//  }
-
 }
