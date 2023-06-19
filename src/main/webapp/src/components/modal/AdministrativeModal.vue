@@ -27,7 +27,7 @@ const { filieres } = storeToRefs(fonctionStore);
         <readonly-data :label="t('status')" class="flex-item" />
         <readonly-data :label="t('mail')" class="flex-item" />
       </div>
-      <div>{{ $t("additionalFunction", 2) }}</div>
+      <div>{{ t("additionalFunction", 2) }}</div>
       <div v-for="(filiere, index) in filieres" :key="index">
         <div>{{ capitalize(filiere.libelleFiliere) }}</div>
         <div class="d-flex flex-row flex-wrap">
@@ -52,7 +52,7 @@ const { filieres } = storeToRefs(fonctionStore);
           prepend-icon="fas fa-floppy-disk"
           @click="dialog = false"
         >
-          {{ $t("save") }}
+          {{ t("save") }}
         </v-btn>
       </template>
     </base-modal>
