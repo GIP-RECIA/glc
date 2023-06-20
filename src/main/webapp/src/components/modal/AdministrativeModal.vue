@@ -2,7 +2,6 @@
 import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
-import { capitalize } from "@/utils/stringUtils";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
@@ -13,7 +12,7 @@ let dialog = ref<boolean>(false);
 let selected = ref<Array<number>>([]);
 
 const fonctionStore = useFonctionStore();
-const { filieres } = storeToRefs(fonctionStore);
+const { customMapping } = storeToRefs(fonctionStore);
 </script>
 
 <template>
@@ -28,8 +27,8 @@ const { filieres } = storeToRefs(fonctionStore);
         <readonly-data :label="t('mail')" class="flex-item" />
       </div>
       <div>{{ t("additionalFunction", 2) }}</div>
-      <div v-for="(filiere, index) in filieres" :key="index">
-        <div>{{ capitalize(filiere.libelleFiliere) }}</div>
+      <div v-for="(filiere, index) in customMapping?.filieres" :key="index">
+        <div>{{ filiere.libelleFiliere }}</div>
         <div class="d-flex flex-row flex-wrap">
           <div
             v-for="(discipline, index) in filiere.disciplines"
@@ -38,7 +37,7 @@ const { filieres } = storeToRefs(fonctionStore);
           >
             <v-checkbox
               v-model="selected"
-              :label="capitalize(discipline.disciplinePoste)"
+              :label="discipline.disciplinePoste"
               :value="`${filiere.id}-${discipline.id}`"
               color="primary"
               :hide-details="true"

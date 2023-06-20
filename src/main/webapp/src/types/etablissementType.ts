@@ -5,6 +5,7 @@ export type Etablissement = {
   uai: string;
   etat: string;
   etatAlim: string;
+  source: string;
   anneeScolaire: string;
   adresse: Adresse;
   categorie: string;

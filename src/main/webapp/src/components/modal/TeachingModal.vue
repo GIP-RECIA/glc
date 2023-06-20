@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
-import { useFonctionStore } from "@/stores/fonctionStore";
-import { storeToRefs } from "pinia";
+// import { useFonctionStore } from "@/stores/fonctionStore";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
@@ -11,8 +10,8 @@ const { t } = useI18n();
 let dialog = ref<boolean>(false);
 let selected = ref<Array<number>>([]);
 
-const fonctionStore = useFonctionStore();
-const { ENS } = storeToRefs(fonctionStore);
+// const fonctionStore = useFonctionStore();
+// const {} = fonctionStore;
 </script>
 
 <template>
@@ -29,11 +28,7 @@ const { ENS } = storeToRefs(fonctionStore);
         </div>
         <div>{{ t("lessons", 2) }}</div>
         <div class="d-flex flex-row flex-wrap">
-          <div
-            v-for="(discipline, index) in ENS.disciplines"
-            :key="index"
-            class="flex-item"
-          >
+          <div v-for="(discipline, index) in 0" :key="index" class="flex-item">
             <v-checkbox
               v-model="selected"
               :label="discipline.disciplinePoste"

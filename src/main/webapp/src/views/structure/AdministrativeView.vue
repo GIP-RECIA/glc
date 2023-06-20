@@ -8,7 +8,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const fonctionStore = useFonctionStore();
-const { getFilteredFilieres } = fonctionStore;
+const { getAdministrative } = fonctionStore;
 
 const filters = [
   {
@@ -37,7 +37,7 @@ const displayFilter = ref<{
       returnObject
     />
     <div
-      v-for="(filiere, index) in getFilteredFilieres(displayFilter.value)"
+      v-for="(filiere, index) in getAdministrative(displayFilter.value)"
       :key="index"
     >
       <filiere-disciplines :filiere="filiere" />
