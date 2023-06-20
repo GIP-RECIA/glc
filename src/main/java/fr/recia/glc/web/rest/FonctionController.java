@@ -38,8 +38,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -60,7 +60,6 @@ public class FonctionController {
 
   private static final String FILIERE = "filieres";
   private static final String DISCIPLINE = "disciplines";
-//  private static final String UNUSED = "unused_";
 
   @GetMapping()
   public ApiResponse getFonctions() {
@@ -70,32 +69,22 @@ public class FonctionController {
     sources.forEach(source -> {
       Map<String, Object> object = new HashMap<>();
       object.put("source", source);
-      object.put(FILIERE, getFromSource(source).get(FILIERE));
+      object.put(FILIERE, getFromSource(source));
       object.put("customMapping", getCustomMapping(source));
-
       data.add(object);
     });
 
     return new ApiResponse("", data);
   }
 
-  private Map<String, Object> getFromSource(String source) {
-    Map<String, Object> data = new HashMap<>();
-//    Set<Long> usedDisciplineIds = new HashSet<>();
-
+  private List<TypeFonctionFiliereDto> getFromSource(String source) {
     // Recherche des filières, disciplines et fonctions les liants
     List<FonctionDto> fonctions = fonctionRepository.findBySource(source);
     List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
     List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
 
     // Retourne les filières et disciplines s'il n'y a pas de fonction les liants
-    if (fonctions.isEmpty()) {
-//      data.put(UNUSED + FILIERE, typesFonctionFiliere);
-      data.put(FILIERE, new ArrayList<>());
-//      data.put(UNUSED + DISCIPLINE, disciplines);
-
-      return data;
-    }
+    if (fonctions.isEmpty()) return Collections.emptyList();
 
     // Ajout des disciplines aux filières
     typesFonctionFiliere = typesFonctionFiliere.stream()
@@ -104,7 +93,6 @@ public class FonctionController {
           .filter(fonction -> Objects.equals(fonction.getFiliere(), typeFonctionFiliere.getId()))
           .map(FonctionDto::getDisciplinePoste)
           .collect(Collectors.toSet());
-//        usedDisciplineIds.addAll(disciplineIds);
         List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
           .filter(discipline -> disciplineIds.contains(discipline.getId()))
           .toList();
@@ -113,25 +101,10 @@ public class FonctionController {
         return typeFonctionFiliere;
       }).toList();
 
-//    // Liste les filières sans disciplines
-//    List<TypeFonctionFiliereDto> unusedFilieres = typesFonctionFiliere.stream()
-//      .filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
-//      .toList();
-//    data.put(UNUSED + FILIERE, unusedFilieres);
-
     // Retrait des filières sans disciplines
-    typesFonctionFiliere = typesFonctionFiliere.stream()
+    return typesFonctionFiliere.stream()
       .filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
       .toList();
-    data.put(FILIERE, typesFonctionFiliere);
-
-//    // Liste des disciplines sans filière
-//    List<DisciplineDto> unusedDisciplines = disciplines.stream()
-//      .filter(discipline -> !usedDisciplineIds.contains(discipline.getId()))
-//      .toList();
-//    data.put(UNUSED + DISCIPLINE, unusedDisciplines);
-
-    return data;
   }
 
   private Map<String, Object> getCustomMapping(String source) {
