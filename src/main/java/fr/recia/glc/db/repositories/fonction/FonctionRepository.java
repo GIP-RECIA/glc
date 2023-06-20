@@ -29,15 +29,13 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
     "WHERE f.personne.id = :id")
   List<FonctionDto> findByPersonneId(Long id);
 
-  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id) " +
+  @Query("SELECT DISTINCT new fr.recia.glc.db.dto.fonction.FonctionDto(f.disciplinePoste.id, f.filiere.id, f.source) " +
     "FROM Fonction f " +
-    "WHERE f.source = :source")
+    "WHERE f.source = :source " +
+    "AND f.disciplinePoste IS NOT NULL " +
+    "AND f.filiere IS NOT NULL " +
+    "AND f.categorie = 'Fonction'")
   List<FonctionDto> findBySource(String source);
-
-  @Query("SELECT DISTINCT f.source " +
-    "FROM Fonction f " +
-    "ORDER BY f.source")
-  List<String> findAllSources();
 
   @Query("SELECT DISTINCT f.filiere.id " +
     "FROM Fonction f " +

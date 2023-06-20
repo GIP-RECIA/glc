@@ -34,7 +34,7 @@ public class TypeFonctionFiliereDto {
   private String codeFiliere;
   private String libelleFiliere;
   private String source;
-  private List<DisciplineDto> disciplines = new ArrayList<>();
+  private List<DisciplineDto> disciplines;
 
   public TypeFonctionFiliereDto(Long id, String codeFiliere, String libelleFiliere, String source) {
     this.id = id;

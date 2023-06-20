@@ -48,4 +48,10 @@ public interface DisciplineRepository<T extends Discipline> extends AbstractRepo
     "OR d.source = CONCAT('SarapisUi_', :source)")
   List<DisciplineDto> findBySourceSarapis(String source);
 
+  @Query("SELECT DISTINCT d.source " +
+    "FROM Discipline d " +
+    "WHERE d.source NOT LIKE 'SarapisUi_%'" +
+    "ORDER BY d.source")
+  List<String> findAllNonSarapisSources();
+
 }

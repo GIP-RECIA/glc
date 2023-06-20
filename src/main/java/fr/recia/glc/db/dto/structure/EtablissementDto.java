@@ -38,6 +38,7 @@ public class EtablissementDto {
   private String uai;
   private Etat etat;
   private EtatAlim etatAlim;
+  private String source;
   private Date anneeScolaire;
   private AdresseDto adresse;
   private CategorieStructure categorie;
@@ -63,13 +64,14 @@ public class EtablissementDto {
     this.siren = siren;
   }
 
-  public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, Date anneeScolaire,
+  public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, String source, Date anneeScolaire,
                           AdresseDto adresse, CategorieStructure categorie, String mail, String nom,
                           String nomCourt, String siren, String siteWeb, String modeleLogin, String logo) {
     this.id = id;
     this.uai = uai;
     this.etat = etat;
     this.etatAlim = etatAlim;
+    this.source = source;
     this.anneeScolaire = anneeScolaire;
     this.adresse = adresse;
     this.categorie = categorie;
