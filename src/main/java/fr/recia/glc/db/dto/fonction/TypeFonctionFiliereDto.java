@@ -21,6 +21,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -33,7 +34,7 @@ public class TypeFonctionFiliereDto {
   private String codeFiliere;
   private String libelleFiliere;
   private String source;
-  private List<DisciplineDto> disciplines;
+  private List<DisciplineDto> disciplines = new ArrayList<>();
 
   public TypeFonctionFiliereDto(Long id, String codeFiliere, String libelleFiliere, String source) {
     this.id = id;

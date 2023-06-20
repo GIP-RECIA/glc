@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -57,30 +58,50 @@ public class FonctionController {
   @Autowired
   private TypeFonctionFiliereRepository<TypeFonctionFiliere> typeFonctionFiliereRepository;
 
-  private final static String SARAPIS_UI = "SarapisUi_";
+  private static final String SARAPIS_UI = "SarapisUi_";
+  private static final String FILIERE = "filieres";
+  private static final String DISCIPLINE = "disciplines";
+  private static final String UNUSED = "unused_";
 
   @GetMapping()
   public ApiResponse getFonctions() {
-    Map<String, Object> data = new HashMap<>();
+    ArrayList<Object> data = new ArrayList<>();
 
-    List<String> sources = fonctionRepository.findAllSources();
+    List<String> sources = disciplineRepository.findAllNonSarapisSources();
     sources.forEach(source -> {
-      List<FonctionDto> fonctions = fonctionRepository.findBySource(source);
-      List<TypeFonctionFiliereDto> typesFonctionFiliere;
-      List<DisciplineDto> disciplines;
+      Map<String, Object> object = new HashMap<>();
+      object.put("source", source);
+      object.put("official", getFromSource(source, source));
+      object.put("sarapisUi", getFromSource(SARAPIS_UI + source, source));
+      object.put("customMapping", getCustomMapping(source));
 
-      if (source.startsWith(SARAPIS_UI)) {
-        String querySource = source.substring(SARAPIS_UI.length());
-        typesFonctionFiliere = typeFonctionFiliereRepository.findBySourceSarapis(querySource);
-        disciplines = disciplineRepository.findBySourceSarapis(querySource);
-      } else {
-        typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
-        disciplines = disciplineRepository.findBySource(source);
-      }
+      data.add(object);
+    });
 
-      Set<Long> usedDisciplineIds = new HashSet<>();
+    return new ApiResponse("", data);
+  }
 
-      typesFonctionFiliere = typesFonctionFiliere.stream().map(typeFonctionFiliere -> {
+  private Map<String, Object> getFromSource(String fonctionSource, String source) {
+    Map<String, Object> data = new HashMap<>();
+    Set<Long> usedDisciplineIds = new HashSet<>();
+
+    // Recherche des filières, disciplines et fonctions les liants
+    List<FonctionDto> fonctions = fonctionRepository.findBySource(fonctionSource);
+    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
+    List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
+
+    // Retourne les filières et disciplines s'il n'y a pas de fonction les liants
+    if (fonctions.isEmpty()) {
+      data.put(UNUSED + FILIERE, typesFonctionFiliere);
+      data.put(FILIERE, new ArrayList<>());
+      data.put(UNUSED + DISCIPLINE, disciplines);
+
+      return data;
+    }
+
+    // Ajout des disciplines aux filières
+    typesFonctionFiliere = typesFonctionFiliere.stream()
+      .map(typeFonctionFiliere -> {
         Set<Long> disciplineIds = fonctions.stream()
           .filter(fonction -> Objects.equals(fonction.getFiliere(), typeFonctionFiliere.getId()))
           .map(FonctionDto::getDisciplinePoste)
@@ -94,86 +115,77 @@ public class FonctionController {
         return typeFonctionFiliere;
       }).toList();
 
-      List<DisciplineDto> unusedDisciplines = disciplines.stream()
-        .filter(discipline -> !usedDisciplineIds.contains(discipline.getId()))
-        .toList();
+    // Liste les filières sans disciplines
+    List<TypeFonctionFiliereDto> unusedFilieres = typesFonctionFiliere.stream()
+      .filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
+      .toList();
+    data.put(UNUSED + FILIERE, unusedFilieres);
 
-      Map<String, Object> object = new HashMap<>();
-      object.put(
-        "filiereWithDiscipline",
-        typesFonctionFiliere.stream()
-          .filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
-          .toList()
-      );
-      object.put(
-        "filiereWithoutDisciplines",
-        typesFonctionFiliere.stream()
-          .filter(typeFonctionFiliere -> typeFonctionFiliere.getDisciplines().isEmpty())
-          .toList()
-      );
-      object.put("disciplinesWithoutFiliere", unusedDisciplines);
-      try {
-        object.put("additional", getAdditional(source));
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
+    // Retrait des filières sans disciplines
+    typesFonctionFiliere = typesFonctionFiliere.stream()
+      .filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
+      .toList();
+    data.put(FILIERE, typesFonctionFiliere);
 
-      data.put(source, object);
-    });
+    // Liste des disciplines sans filière
+    List<DisciplineDto> unusedDisciplines = disciplines.stream()
+      .filter(discipline -> !usedDisciplineIds.contains(discipline.getId()))
+      .toList();
+    data.put(UNUSED + DISCIPLINE, unusedDisciplines);
 
-    return new ApiResponse("", data);
+    return data;
   }
 
-  private Map<String, Object> getAdditional(String source) throws IOException {
+  private Map<String, Object> getCustomMapping(String source) {
     Map<String, Object> data = new HashMap<>();
     ObjectMapper objectMapper = new ObjectMapper();
-    String querySource = source.startsWith(SARAPIS_UI) ? source.substring(SARAPIS_UI.length()) : source;
 
     // Lecture du fichier JSON
-    List<AdditionalFonctionMapping> additionalFonctionsMapping = objectMapper.readValue(
-      new File("src/main/resources/mapping/additionalFonctionMapping.json"),
-      new TypeReference<>() {}
-    );
+    List<AdditionalFonctionMapping> jsonFile;
+    try {
+      jsonFile = objectMapper.readValue(
+        new File("src/main/resources/mapping/additionalFonctionMapping.json"),
+        new TypeReference<>() {
+        }
+      );
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
 
     // Recherche du mapping
-    AdditionalFonctionMapping additionalFonctionMapping = additionalFonctionsMapping.stream()
-      .filter(af -> Objects.equals(af.getSource(), querySource))
+    AdditionalFonctionMapping mappingEntry = jsonFile.stream()
+      .filter(af -> Objects.equals(af.getSource(), source))
       .findAny()
       .orElse(null);
-    if (additionalFonctionMapping == null) return data;
+    if (mappingEntry == null) return data;
 
     // Recherche des filières
-    List<String> typeFonctionFiliereCodes = additionalFonctionMapping.getFilieres().stream()
+    List<String> typeFonctionFiliereCodes = mappingEntry.getFilieres().stream()
       .map(AdditionalFonctionMappingFiliere::getCode)
       .toList();
-    List<TypeFonctionFiliereDto> typesFonctionFiliere = source.startsWith(SARAPIS_UI)
-      ? typeFonctionFiliereRepository.findByCodeAndSourceSarapis(typeFonctionFiliereCodes, querySource)
-      : typeFonctionFiliereRepository.findByCodeAndSource(typeFonctionFiliereCodes, querySource);
+    List<TypeFonctionFiliereDto> typesFonctionFiliere =
+      typeFonctionFiliereRepository.findByCodeAndSourceSarapis(typeFonctionFiliereCodes, source);
 
     // Ajout des disciplines aux filières
     typesFonctionFiliere = typesFonctionFiliere.stream()
       .map(typeFonctionFiliere -> {
-        List<String> disciplineCodes = additionalFonctionMapping.getFilieres().stream()
+        List<String> disciplineCodes = mappingEntry.getFilieres().stream()
           .filter(af -> Objects.equals(af.getCode(), typeFonctionFiliere.getCodeFiliere()))
           .findAny()
           .map(AdditionalFonctionMappingFiliere::getDisciplines)
-          .get();
+          .orElse(new ArrayList<>());
 
-        List<DisciplineDto> disciplines = source.startsWith(SARAPIS_UI)
-          ? disciplineRepository.findByCodeAndSourceSarapis(disciplineCodes, querySource)
-          : disciplineRepository.findByCodeAndSource(disciplineCodes, querySource);
+        List<DisciplineDto> disciplines = disciplineRepository.findByCodeAndSourceSarapis(disciplineCodes, source);
         typeFonctionFiliere.setDisciplines(disciplines);
 
         return typeFonctionFiliere;
       })
       .toList();
-    data.put("additionalWithFiliere", typesFonctionFiliere);
+    data.put(FILIERE, typesFonctionFiliere);
 
     // Recherche des disciplines sans filières
-    List<DisciplineDto> disciplines = source.startsWith(SARAPIS_UI)
-      ? disciplineRepository.findByCodeAndSourceSarapis(additionalFonctionMapping.getDisciplines(), querySource)
-      : disciplineRepository.findByCodeAndSource(additionalFonctionMapping.getDisciplines(), querySource);
-    data.put("additionalWithoutFiliere", disciplines);
+    List<DisciplineDto> disciplines = disciplineRepository.findByCodeAndSourceSarapis(mappingEntry.getDisciplines(), source);
+    data.put(DISCIPLINE, disciplines);
 
     return data;
   }
