@@ -15,10 +15,13 @@
  */
 package fr.recia.glc.db.dto.education;
 
+import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,5 +33,13 @@ public class DisciplineDto {
   private String code;
   private String disciplinePoste;
   private String source;
+  private List<SimplePersonneDto> personnes;
+
+  public DisciplineDto(Long id, String code, String disciplinePoste, String source) {
+    this.id = id;
+    this.code = code;
+    this.disciplinePoste = disciplinePoste;
+    this.source = source;
+  }
 
 }

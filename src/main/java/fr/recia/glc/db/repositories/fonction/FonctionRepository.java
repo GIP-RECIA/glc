@@ -40,6 +40,12 @@ public interface FonctionRepository<T extends Fonction> extends AbstractReposito
   @Query("SELECT DISTINCT f.filiere.id " +
     "FROM Fonction f " +
     "WHERE f.structure.id = :id")
-  List<Long> findByStructure(Long id);
+  List<Long> findFilieresByStructureId(Long id);
+
+  @Query("SELECT new fr.recia.glc.db.dto.fonction.FonctionDto(f.personne.id, f.disciplinePoste.id, f.filiere.id, " +
+    "f.source) " +
+    "FROM Fonction f " +
+    "WHERE f.structure.id = :id")
+  List<FonctionDto> findByStructureId(Long id);
 
 }

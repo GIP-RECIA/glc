@@ -69,7 +69,7 @@ public class FonctionController {
     sources.forEach(source -> {
       Map<String, Object> object = new HashMap<>();
       object.put("source", source);
-      object.put(FILIERE, getFromSource(source));
+      object.put(FILIERE, getOfficial(source));
       object.put("customMapping", getCustomMapping(source));
       data.add(object);
     });
@@ -77,7 +77,7 @@ public class FonctionController {
     return new ApiResponse("", data);
   }
 
-  private List<TypeFonctionFiliereDto> getFromSource(String source) {
+  private List<TypeFonctionFiliereDto> getOfficial(String source) {
     // Recherche des filières, disciplines et fonctions les liants
     List<FonctionDto> fonctions = fonctionRepository.findBySource(source);
     List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);

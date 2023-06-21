@@ -16,11 +16,11 @@
 package fr.recia.glc.db.dto.structure;
 
 import fr.recia.glc.db.dto.common.AdresseDto;
+import fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto;
 import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import fr.recia.glc.db.enums.CategorieStructure;
 import fr.recia.glc.db.enums.Etat;
 import fr.recia.glc.db.enums.EtatAlim;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,7 +30,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode
 public class EtablissementDto {
 
@@ -49,7 +48,7 @@ public class EtablissementDto {
   private String siteWeb;
   private String modeleLogin;
   private String logo;
-  private List<Long> filieres;
+  private List<TypeFonctionFiliereDto> filieres;
   private List<SimplePersonneDto> personnes;
 
   public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, String source, Date anneeScolaire,

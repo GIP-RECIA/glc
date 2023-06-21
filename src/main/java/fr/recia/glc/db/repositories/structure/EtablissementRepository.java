@@ -37,6 +37,6 @@ public interface EtablissementRepository<T extends Etablissement> extends Abstra
     "e.nomCourt, e.siren, e.siteWeb, e.modeleLogin, e.logo) " +
     "FROM Etablissement e " +
     "WHERE e.id = :id")
-  EtablissementDto findByIdEtablissement(Long id);
+  EtablissementDto findByEtablissementId(Long id);
 
 }
