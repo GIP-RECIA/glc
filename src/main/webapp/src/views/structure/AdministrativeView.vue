@@ -2,6 +2,8 @@
 import FiliereDisciplines from "@/components/layout/FiliereDisciplines.vue";
 import AdministrativeModal from "@/components/modal/AdministrativeModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
+import { usePersonneStore } from "@/stores/personneStore";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
@@ -9,6 +11,8 @@ const { t } = useI18n();
 
 const fonctionStore = useFonctionStore();
 const { getAdministrative } = fonctionStore;
+const personneStore = usePersonneStore();
+const { administrative } = storeToRefs(personneStore);
 
 const filters = [
   {
@@ -28,6 +32,7 @@ const displayFilter = ref<{
 
 <template>
   <v-container fluid>
+    {{ administrative }}
     <v-select
       v-model="displayFilter"
       :items="filters"
