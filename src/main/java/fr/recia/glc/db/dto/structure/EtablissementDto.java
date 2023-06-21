@@ -50,8 +50,7 @@ public class EtablissementDto {
   private String modeleLogin;
   private String logo;
   private List<Long> filieres;
-  private List<SimplePersonneDto> enseignants;
-  private List<SimplePersonneDto> eleves;
+  private List<SimplePersonneDto> personnes;
 
   public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, String source, Date anneeScolaire,
                           AdresseDto adresse, CategorieStructure categorie, String mail, String nom,

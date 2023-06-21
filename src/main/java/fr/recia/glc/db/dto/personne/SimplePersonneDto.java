@@ -15,15 +15,12 @@
  */
 package fr.recia.glc.db.dto.personne;
 
-import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.enums.Etat;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -36,14 +33,5 @@ public class SimplePersonneDto {
   private CategoriePersonne categorie;
   private String givenName;
   private String patronyme;
-  private List<FonctionDto> fonctions;
-
-  public SimplePersonneDto(Long id, Etat etat, CategoriePersonne categorie, String givenName, String patronyme) {
-    this.id = id;
-    this.etat = etat;
-    this.categorie = categorie;
-    this.givenName = givenName;
-    this.patronyme = patronyme;
-  }
 
 }
