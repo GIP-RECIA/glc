@@ -29,7 +29,7 @@ public enum CategoriePersonne {
    */
   Non_enseignant_collectivite_locale,
   /**
-   * Une personne non enseignante faisant parti du personnel d'un établissement.
+   * Une personne non enseignante faisant partie du personnel d'un établissement.
    */
   Non_enseignant_etablissement,
   /**
@@ -37,7 +37,7 @@ public enum CategoriePersonne {
    */
   Non_enseignant_service_academique,
   /**
-   * Une personne étant uniquement une personne en custommappings avec un élève.
+   * Une personne étant uniquement une personne en custom mappings avec un élève.
    */
   Personne_relation_eleve,
   /**
