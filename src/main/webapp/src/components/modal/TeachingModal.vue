@@ -21,18 +21,23 @@ let selected = ref<Array<string>>([]);
     </div>
 
     <base-modal v-model="dialog" :title="t('add')">
-      <div v-if="ENS">
+      <div class="d-flex flex-row flex-wrap">
+        <readonly-data :label="t('status')" class="flex-item" />
+        <readonly-data :label="t('mail')" class="flex-item" />
+      </div>
+      <div>{{ t("lessons", 2) }}</div>
+      <div v-for="(filiere, index) in 0" :key="index">
+        <div>{{ filiere.libelleFiliere }}</div>
         <div class="d-flex flex-row flex-wrap">
-          <readonly-data :label="t('status')" class="flex-item" />
-          <readonly-data :label="t('mail')" class="flex-item" />
-        </div>
-        <div>{{ t("lessons", 2) }}</div>
-        <div class="d-flex flex-row flex-wrap">
-          <div v-for="(discipline, index) in 0" :key="index" class="flex-item">
+          <div
+            v-for="(discipline, index) in filiere.discipline"
+            :key="index"
+            class="flex-item"
+          >
             <v-checkbox
               v-model="selected"
               :label="discipline.disciplinePoste"
-              :value="`${ENS.id}-${discipline.id}`"
+              :value="`${filiere.id}-${discipline.id}`"
               color="primary"
               :hide-details="true"
             />
