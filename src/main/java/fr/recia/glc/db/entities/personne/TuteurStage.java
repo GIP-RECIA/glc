@@ -16,8 +16,8 @@
 package fr.recia.glc.db.entities.personne;
 
 import fr.recia.glc.db.entities.common.CleJointure;
-import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.entities.structure.AStructure;
+import fr.recia.glc.db.enums.CategoriePersonne;
 import lombok.Getter;
 import lombok.Setter;
 

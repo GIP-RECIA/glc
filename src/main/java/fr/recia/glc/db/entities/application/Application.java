@@ -16,10 +16,10 @@
 package fr.recia.glc.db.entities.application;
 
 import fr.recia.glc.db.entities.common.AbstractEntity;
-import fr.recia.glc.db.enums.CategorieApplication;
 import fr.recia.glc.db.entities.groupe.Profil;
 import fr.recia.glc.db.entities.groupe.RoleApplicatif;
 import fr.recia.glc.db.entities.personne.APersonne;
+import fr.recia.glc.db.enums.CategorieApplication;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

@@ -15,9 +15,9 @@
  */
 package fr.recia.glc.db.entities.groupe;
 
-import fr.recia.glc.db.enums.CategorieGroupe;
 import fr.recia.glc.db.entities.education.MEF;
 import fr.recia.glc.db.entities.structure.Etablissement;
+import fr.recia.glc.db.enums.CategorieGroupe;
 import lombok.Getter;
 import lombok.Setter;
 

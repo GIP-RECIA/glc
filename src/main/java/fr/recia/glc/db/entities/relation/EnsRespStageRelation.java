@@ -15,10 +15,10 @@
  */
 package fr.recia.glc.db.entities.relation;
 
-import fr.recia.glc.db.enums.CategorieRelation;
-import fr.recia.glc.db.enums.TypeStage;
 import fr.recia.glc.db.entities.personne.Eleve;
 import fr.recia.glc.db.entities.personne.Enseignant;
+import fr.recia.glc.db.enums.CategorieRelation;
+import fr.recia.glc.db.enums.TypeStage;
 import lombok.Getter;
 import lombok.Setter;
 

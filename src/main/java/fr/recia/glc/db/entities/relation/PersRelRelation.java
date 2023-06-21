@@ -15,11 +15,11 @@
  */
 package fr.recia.glc.db.entities.relation;
 
+import fr.recia.glc.db.entities.personne.Eleve;
+import fr.recia.glc.db.entities.personne.PersonneRelationEleve;
 import fr.recia.glc.db.enums.CategorieRelation;
 import fr.recia.glc.db.enums.LienParente;
 import fr.recia.glc.db.enums.ResponsableLegal;
-import fr.recia.glc.db.entities.personne.Eleve;
-import fr.recia.glc.db.entities.personne.PersonneRelationEleve;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

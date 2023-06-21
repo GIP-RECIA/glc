@@ -16,8 +16,8 @@
 package fr.recia.glc.db.entities.fonction;
 
 import fr.recia.glc.db.entities.common.AbstractEntity;
-import fr.recia.glc.db.enums.CategorieFonction;
 import fr.recia.glc.db.entities.personne.APersonne;
+import fr.recia.glc.db.enums.CategorieFonction;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;

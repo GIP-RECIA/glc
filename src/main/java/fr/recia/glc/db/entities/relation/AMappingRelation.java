@@ -15,8 +15,8 @@
  */
 package fr.recia.glc.db.entities.relation;
 
-import fr.recia.glc.db.enums.CategorieRelation;
 import fr.recia.glc.db.entities.personne.APersonne;
+import fr.recia.glc.db.enums.CategorieRelation;
 import fr.recia.glc.db.utils.IntConst;
 import lombok.Getter;
 import lombok.Setter;
