@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FiliereDisciplines from "@/components/FiliereDisciplines.vue";
+import FiliereDisciplines from "@/components/layout/FiliereDisciplines.vue";
 import AdministrativeModal from "@/components/modal/AdministrativeModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { ref } from "vue";
