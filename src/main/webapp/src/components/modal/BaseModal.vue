@@ -6,9 +6,7 @@ const props = defineProps<{
   title: string;
 }>();
 
-defineEmits<{
-  (event: "update:modelValue", payload: boolean): void;
-}>();
+defineEmits<(event: "update:modelValue", payload: boolean) => void>();
 
 const { modelValue } = toRefs(props);
 </script>

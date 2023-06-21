@@ -9,7 +9,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 let dialog = ref<boolean>(false);
-let selected = ref<Array<number>>([]);
+let selected = ref<Array<string>>([]);
 
 const fonctionStore = useFonctionStore();
 const { customMapping } = storeToRefs(fonctionStore);
