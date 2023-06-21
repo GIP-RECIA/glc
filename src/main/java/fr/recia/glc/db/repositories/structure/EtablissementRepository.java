@@ -16,6 +16,7 @@
 package fr.recia.glc.db.repositories.structure;
 
 import fr.recia.glc.db.dto.structure.EtablissementDto;
+import fr.recia.glc.db.dto.structure.SimpleEtablissementDto;
 import fr.recia.glc.db.entities.structure.Etablissement;
 import fr.recia.glc.db.repositories.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,12 +25,11 @@ import java.util.List;
 
 public interface EtablissementRepository<T extends Etablissement> extends AbstractRepository<T, Long> {
 
-  @Query("SELECT new fr.recia.glc.db.dto.structure.EtablissementDto(e.id, e.uai, " +
-    "new fr.recia.glc.db.dto.common.AdresseDto(e.adresse.adresse , e.adresse.codePostal , e.adresse.ville, " +
-    "e.adresse.boitePostale, e.adresse.pays), e.categorie, e.nom, e.nomCourt, e.siren) " +
+  @Query("SELECT new fr.recia.glc.db.dto.structure.SimpleEtablissementDto(e.id, e.uai, e.categorie, e.nom, e.nomCourt, " +
+    "e.siren) " +
     "FROM Etablissement e " +
     "WHERE e.uai IS NOT NULL")
-  List<EtablissementDto> findAllEtablissements();
+  List<SimpleEtablissementDto> findAllEtablissements();
 
   @Query("SELECT new fr.recia.glc.db.dto.structure.EtablissementDto(e.id, e.uai, e.etat, e.etatAlim, " +
     "e.cleJointure.source, e.anneeScolaire, new fr.recia.glc.db.dto.common.AdresseDto(e.adresse.adresse , " +

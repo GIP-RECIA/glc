@@ -53,17 +53,6 @@ public class EtablissementDto {
   private List<SimplePersonneDto> enseignants;
   private List<SimplePersonneDto> eleves;
 
-  public EtablissementDto(Long id, String uai, AdresseDto adresse, CategorieStructure categorie,
-                          String nom, String nomCourt, String siren) {
-    this.id = id;
-    this.uai = uai;
-    this.adresse = adresse;
-    this.categorie = categorie;
-    this.nom = nom;
-    this.nomCourt = nomCourt;
-    this.siren = siren;
-  }
-
   public EtablissementDto(Long id, String uai, Etat etat, EtatAlim etatAlim, String source, Date anneeScolaire,
                           AdresseDto adresse, CategorieStructure categorie, String mail, String nom,
                           String nomCourt, String siren, String siteWeb, String modeleLogin, String logo) {
