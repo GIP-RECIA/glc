@@ -1,22 +1,9 @@
-import { getToken } from "@/utils/oidcUtils";
-import axios from "axios";
-
-const { VITE_API_URL } = import.meta.env;
+import { instance as axios } from "@/utils/axiosUtils";
 
 const getEtablissements = async () =>
-  await axios.get(`${VITE_API_URL}/structure/etablissement`, {
-    headers: {
-      Authorization: `Bearer ${await getToken()}`,
-      "content-type": "application/jwt",
-    },
-  });
+  await axios.get("/structure/etablissement");
 
 const getEtablissement = async (id: number) =>
-  await axios.get(`${VITE_API_URL}/structure/etablissement/${id}`, {
-    headers: {
-      Authorization: `Bearer ${await getToken()}`,
-      "content-type": "application/jwt",
-    },
-  });
+  await axios.get(`/structure/etablissement/${id}`);
 
 export { getEtablissements, getEtablissement };
