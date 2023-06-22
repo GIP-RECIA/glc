@@ -1,4 +1,5 @@
 import type { Adresse } from "@/types/adresseType";
+import type { Filiere } from "@/types/filiereType";
 
 export type Etablissement = {
   id: number;
@@ -16,5 +17,5 @@ export type Etablissement = {
   siteWeb: string;
   modeleLogin: string;
   logo: string;
-  filieres: Array<number>;
+  filieres: Array<Filiere>;
 };

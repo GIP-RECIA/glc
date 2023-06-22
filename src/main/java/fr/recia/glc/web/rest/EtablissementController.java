@@ -68,25 +68,22 @@ public class EtablissementController {
   @GetMapping(value = "/{id}")
   public ApiResponse getEtablissement(@PathVariable Long id) {
     EtablissementDto etablissement = etablissementRepository.findByEtablissementId(id);
-    etablissement.setFilieres(getUsersByCategories(id, etablissement.getSource()));
+    etablissement.setFilieres(getFilieresWithDisciplinesAndUsers(id, etablissement.getSource()));
     etablissement.setPersonnes(aPersonneRepository.findByStructureId(id));
 
     return new ApiResponse("", etablissement);
   }
 
-  private List<TypeFonctionFiliereDto> getUsersByCategories(Long id, String source) {
-    // Recherche des filières, disciplines et fonctions les liants
-    List<FonctionDto> fonctions = fonctionRepository.findByStructureId(id);
-    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySource(source);
-    List<DisciplineDto> disciplines = disciplineRepository.findBySource(source);
-    List<SimplePersonneDto> personnes = aPersonneRepository.findByStructureId(id);
+  private List<TypeFonctionFiliereDto> getFilieresWithDisciplinesAndUsers(Long structureId, String source) {
+    List<FonctionDto> fonctions = fonctionRepository.findByStructureIdAndSource(structureId, source);
+    List<TypeFonctionFiliereDto> typesFonctionFiliere = typeFonctionFiliereRepository.findBySourceSarapis(source);
+    List<DisciplineDto> disciplines = disciplineRepository.findBySourceSarapis(source);
+    List<SimplePersonneDto> personnes = aPersonneRepository.findByStructureId(structureId);
 
-    // Retourne les filières et disciplines s'il n'y a pas de fonction les liants
     if (fonctions.isEmpty()) return Collections.emptyList();
 
-    // Ajout des disciplines aux filières
-    List<SimplePersonneDto> finalPersonnes = personnes;
-    typesFonctionFiliere = typesFonctionFiliere.stream()
+    return typesFonctionFiliere.stream()
+      // Ajout des disciplines aux filières
       .map(typeFonctionFiliere -> {
         // Filtre les fonctions de la filière
         List<FonctionDto> fonctionsInFiliere = fonctions.stream()
@@ -100,7 +97,7 @@ public class EtablissementController {
         List<DisciplineDto> disciplinesInFiliere = disciplines.stream()
           .filter(discipline -> disciplineIds.contains(discipline.getId()))
           .toList();
-        // Ajout des utilisateurs
+        // Ajout des personnes aux disciplines
         disciplinesInFiliere = disciplinesInFiliere.stream()
           .map(discipline -> {
             // Liste des ID de personne de la discipline
@@ -109,7 +106,7 @@ public class EtablissementController {
               .map(FonctionDto::getPersonne)
               .collect(Collectors.toSet());
             // Liste les personnes de la discipline
-            List<SimplePersonneDto> personnesInDiscipline = finalPersonnes.stream()
+            List<SimplePersonneDto> personnesInDiscipline = personnes.stream()
               .filter(personne -> personneIds.contains(personne.getId()))
               .toList();
             discipline.setPersonnes(personnesInDiscipline);
@@ -117,14 +114,11 @@ public class EtablissementController {
             return discipline;
           })
           .toList();
-
         typeFonctionFiliere.setDisciplines(disciplinesInFiliere);
 
         return typeFonctionFiliere;
-      }).toList();
-
-    // Retrait des filières sans disciplines
-    return typesFonctionFiliere.stream()
+      })
+      // Retrait des filières sans disciplines
       .filter(typeFonctionFiliere -> !typeFonctionFiliere.getDisciplines().isEmpty())
       .toList();
   }

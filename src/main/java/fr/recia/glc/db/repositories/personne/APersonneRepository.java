@@ -18,7 +18,6 @@ package fr.recia.glc.db.repositories.personne;
 import fr.recia.glc.db.dto.personne.PersonneDto;
 import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import fr.recia.glc.db.entities.personne.APersonne;
-import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.repositories.AbstractRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -36,17 +35,10 @@ public interface APersonneRepository<T extends APersonne> extends AbstractReposi
     "WHERE ap.id = :id")
   PersonneDto findByPersonneId(Long id);
 
-  @Query("SELECT new fr.recia.glc.db.dto.personne.SimplePersonneDto(ap.id, ap.etat, ap.categorie, ap.givenName, " +
-    "ap.patronyme) " +
+  @Query("SELECT new fr.recia.glc.db.dto.personne.SimplePersonneDto(ap.id, ap.etat, ap.categorie, " +
+    "ap.cleJointure.source, ap.givenName, ap.patronyme) " +
     "FROM APersonne ap " +
-    "WHERE ap.structRattachement.id = :id " +
-    "AND ap.categorie = :categorie")
-  List<SimplePersonneDto> findByStructureIdAndCategorie(Long id, CategoriePersonne categorie);
-
-  @Query("SELECT new fr.recia.glc.db.dto.personne.SimplePersonneDto(ap.id, ap.etat, ap.categorie, ap.givenName, " +
-    "ap.patronyme) " +
-    "FROM APersonne ap " +
-    "WHERE ap.structRattachement.id = :id")
-  List<SimplePersonneDto> findByStructureId(Long id);
+    "WHERE ap.structRattachement.id = :structureId")
+  List<SimplePersonneDto> findByStructureId(Long structureId);
 
 }

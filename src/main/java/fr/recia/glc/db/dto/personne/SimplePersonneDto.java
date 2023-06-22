@@ -31,6 +31,7 @@ public class SimplePersonneDto {
   private Long id;
   private Etat etat;
   private CategoriePersonne categorie;
+  private String source;
   private String givenName;
   private String patronyme;
 
