@@ -1,22 +1,27 @@
 <script setup lang="ts">
 import { getEtat } from "@/enums/Etat";
+import type { SimplePersonne } from "@/types/personneType";
+import { useI18n } from "vue-i18n";
 
-defineProps<{
-  fistName: string;
-  lastName: string;
-  status: string;
+const { t } = useI18n();
+
+const props = defineProps<{
+  user: SimplePersonne;
 }>();
+
+const { color, i18n } = getEtat(props.user.etat);
 </script>
 
 <template>
   <v-card>
-    <div class="ma-2 d-flex">
+    <v-card-text>
       <v-icon
         icon="fas fa-user"
-        :color="getEtat(status).color"
-        class="d-flex text-center mr-2"
-      />{{ lastName }}
-      {{ fistName }}
-    </div>
+        :color="color"
+        :title="t(i18n)"
+        :alt="t(i18n)"
+        class="mr-2"
+      />{{ user.patronyme }} {{ user.givenName }}
+    </v-card-text>
   </v-card>
 </template>
