@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useConfigurationStore } from "./stores/configurationStore";
 import { onBeforeMount } from "vue";
 
 onBeforeMount(() => {
@@ -15,6 +16,9 @@ onBeforeMount(() => {
   );
   document.head.appendChild(extendedUportalFooterScript);
 });
+
+const configurationStore = useConfigurationStore();
+configurationStore.init();
 </script>
 
 <template>
