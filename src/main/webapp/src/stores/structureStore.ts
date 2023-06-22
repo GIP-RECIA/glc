@@ -4,7 +4,7 @@ import {
 } from "@/services/structureService";
 import type { Etablissement } from "@/types/etablissementType";
 import { defineStore } from "pinia";
-import { readonly, ref } from "vue";
+import { ref } from "vue";
 
 export const useStructureStore = defineStore("structure", () => {
   const etabs = ref<Array<Etablissement> | undefined>();
@@ -19,8 +19,8 @@ export const useStructureStore = defineStore("structure", () => {
   };
 
   return {
-    etabs: readonly(etabs),
-    currentEtab: readonly(currentEtab),
+    etabs,
+    currentEtab,
     init,
     initCurrentEtab,
   };

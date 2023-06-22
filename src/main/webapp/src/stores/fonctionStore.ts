@@ -1,3 +1,4 @@
+import { useConfigurationStore } from "./configurationStore";
 import { useStructureStore } from "./structureStore";
 import { getFonctions } from "@/services/fonctionService";
 import type { Filiere } from "@/types/filiereType";
@@ -6,39 +7,46 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useFonctionStore = defineStore("fonctions", () => {
+  const configurationStore = useConfigurationStore();
   const structureStore = useStructureStore();
 
   const fonctions = ref<Array<SourceFonction> | undefined>();
 
   const filieres = computed((): Array<Filiere> | undefined => {
-    const sourceEtab = structureStore.currentEtab
-      ? structureStore.currentEtab.source
-      : undefined;
+    const { currentEtab } = structureStore;
 
     return fonctions.value
-      ? fonctions.value.find((fonction) => fonction.source === sourceEtab)
-          ?.filieres
+      ? fonctions.value.find(
+          (fonction) => fonction.source === currentEtab?.source
+        )?.filieres
       : undefined;
   });
 
   const customMapping = computed((): CustomMapping | undefined => {
-    const sourceEtab = structureStore.currentEtab
-      ? structureStore.currentEtab.source
-      : undefined;
+    const { currentEtab } = structureStore;
 
     return fonctions.value
-      ? fonctions.value.find((fonction) => fonction.source === sourceEtab)
-          ?.customMapping
+      ? fonctions.value.find(
+          (fonction) => fonction.source === currentEtab?.source
+        )?.customMapping
       : undefined;
   });
 
-  const currentEtabFilieres = computed((): Array<Filiere> | undefined => {
-    const filieresInEtab = structureStore.currentEtab
-      ? structureStore.currentEtab.filieres
-      : [];
+  const administrative = computed((): Array<Filiere> | undefined => {
+    const { administrativeCodes } = configurationStore;
+    const { currentEtab } = structureStore;
 
-    return filieres.value?.filter((filiere) =>
-      filieresInEtab.includes(filiere.id)
+    return currentEtab?.filieres.filter((filiere) =>
+      administrativeCodes?.includes(filiere.codeFiliere)
+    );
+  });
+
+  const teaching = computed((): Array<Filiere> | undefined => {
+    const { teachingCodes } = configurationStore;
+    const { currentEtab } = structureStore;
+
+    return currentEtab?.filieres.filter((filiere) =>
+      teachingCodes?.includes(filiere.codeFiliere)
     );
   });
 
@@ -46,58 +54,11 @@ export const useFonctionStore = defineStore("fonctions", () => {
     fonctions.value = (await getFonctions()).data.payload;
   };
 
-  const getAdministrative = (filter: string): Array<Filiere> | undefined => {
-    const administrativeCodes = [
-      "DIR",
-      "ADF",
-      "CTR",
-      "EDU",
-      "MDS",
-      "PSY",
-      "ADM",
-      "AED",
-    ];
-    const administrative = filieres.value?.filter((filiere) =>
-      administrativeCodes.includes(filiere.codeFiliere)
-    );
-
-    switch (filter) {
-      case "etab":
-        return administrative;
-      default:
-        return administrative;
-    }
-  };
-
-  const getTeaching = (filter: string): Array<Filiere> | undefined => {
-    const teachingCodes = [
-      "ACP",
-      "APP",
-      "DOC",
-      "DCT",
-      "ENS",
-      "FCA",
-      "FIJ",
-      "REM",
-      "STG",
-    ];
-    const teaching = filieres.value?.filter((filiere) =>
-      teachingCodes.includes(filiere.codeFiliere)
-    );
-
-    switch (filter) {
-      case "etab":
-        return teaching;
-      default:
-        return teaching;
-    }
-  };
-
   return {
     filieres,
     customMapping,
+    administrative,
+    teaching,
     init,
-    getAdministrative,
-    getTeaching,
   };
 });

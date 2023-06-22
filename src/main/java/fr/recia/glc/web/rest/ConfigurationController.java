@@ -18,6 +18,7 @@ package fr.recia.glc.web.rest;
 import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.models.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,12 @@ import java.util.Map;
 @RequestMapping(value = "/config")
 public class ConfigurationController {
 
+  @Value("${app.config.filiere.administrative}")
+  private List<String> administrativeCodes;
+
+  @Value("${app.config.filiere.teaching}")
+  private List<String> teachingCodes;
+
   @GetMapping()
   public ApiResponse getConfiguration() {
     Map<String, Object> data = new HashMap<>();
@@ -42,6 +49,9 @@ public class ConfigurationController {
     administrativeStaff.add(CategoriePersonne.Non_enseignant_etablissement);
     administrativeStaff.add(CategoriePersonne.Non_enseignant_service_academique);
     data.put("administrativeStaff", administrativeStaff);
+
+    data.put("administrativeCodes", administrativeCodes);
+    data.put("teachingCodes", teachingCodes);
 
     return new ApiResponse("", data);
   }

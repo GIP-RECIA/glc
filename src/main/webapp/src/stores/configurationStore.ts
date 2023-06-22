@@ -12,9 +12,19 @@ export const useConfigurationStore = defineStore("configuration", () => {
       : undefined;
   });
 
+  const administrativeCodes = computed((): Array<string> | undefined => {
+    return configuration.value
+      ? configuration.value.administrativeCodes
+      : undefined;
+  });
+
+  const teachingCodes = computed((): Array<string> | undefined => {
+    return configuration.value ? configuration.value.teachingCodes : undefined;
+  });
+
   const init = async (): Promise<void> => {
     configuration.value = (await getConfiguration()).data.payload;
   };
 
-  return { administrativeStaff, init };
+  return { administrativeStaff, administrativeCodes, teachingCodes, init };
 });
