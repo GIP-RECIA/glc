@@ -30,5 +30,13 @@
   "deletingOrDeletedAccounts": "deleting/deleted accounts",
   "filter": "filter",
   "all": "all",
-  "used": "used"
+  "used": "used",
+  "invalid": "invalid",
+  "valid": "valid",
+  "locked": "locked",
+  "deleted": "deleted",
+  "uncertain": "uncertain",
+  "uncertainExportDelete": "uncertain D",
+  "uncertainExportModify": "uncertain M",
+  "uncertainExportAdd": "uncertain A"
 }

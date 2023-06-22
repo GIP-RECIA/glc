@@ -30,5 +30,13 @@
   "deletingOrDeletedAccounts": "Comptes en suppression/supprimés",
   "filter": "filtrer",
   "all": "tous",
-  "used": "utilisés"
+  "used": "utilisés",
+  "invalid": "invalide",
+  "valid": "valide",
+  "locked": "bloqué",
+  "deleted": "supprimé",
+  "uncertain": "incertain",
+  "uncertainExportDelete": "incertain D",
+  "uncertainExportModify": "incertain M",
+  "uncertainExportAdd": "incertain A"
 }
