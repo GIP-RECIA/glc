@@ -28,6 +28,7 @@ export type SimplePersonne = {
   id: number;
   etat: string;
   categorie: string;
+  source: string;
   givenName: string;
   patronyme: string;
 };
