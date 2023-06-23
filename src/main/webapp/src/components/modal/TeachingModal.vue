@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SearchPersonne from "@/components/SearchPersonne.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 // import { useFonctionStore } from "@/stores/fonctionStore";
 import { ref } from "vue";
@@ -20,6 +21,7 @@ let selected = ref<Array<string>>([]);
     </div>
 
     <base-modal v-model="dialog" :title="t('add')">
+      <search-personne />
       <div>
         <b>{{ t("lessons", 2) }}</b>
       </div>

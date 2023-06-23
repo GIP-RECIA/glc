@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SearchPersonne from "@/components/SearchPersonne.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
@@ -21,6 +22,7 @@ const { customMapping } = storeToRefs(fonctionStore);
     </div>
 
     <base-modal v-model="dialog" :title="t('add')">
+      <search-personne />
       <div>
         <b>{{ t("additionalFunction", 2) }}</b>
       </div>
