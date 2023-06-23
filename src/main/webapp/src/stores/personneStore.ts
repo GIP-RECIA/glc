@@ -11,22 +11,22 @@ export const usePersonneStore = defineStore("personne", () => {
 
   const currentPersonne = ref<Personne | undefined>();
 
-  const isCurrentPersonne = computed({
-    get(): boolean {
+  const isCurrentPersonne = computed<boolean>({
+    get() {
       return currentPersonne.value ? true : false;
     },
-    set(): void {
+    set() {
       currentPersonne.value = undefined;
     },
   });
 
-  const personnes = computed((): Array<SimplePersonne> | undefined => {
+  const personnes = computed<Array<SimplePersonne> | undefined>(() => {
     const { personnes } = structureStore.currentEtab;
 
     return personnes;
   });
 
-  const administrative = computed((): Array<SimplePersonne> | undefined => {
+  const administrative = computed<Array<SimplePersonne> | undefined>(() => {
     const { administrativeStaff } = configurationStore;
 
     return personnes.value?.filter((personne) =>

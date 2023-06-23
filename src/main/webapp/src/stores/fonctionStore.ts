@@ -12,7 +12,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
 
   const fonctions = ref<Array<SourceFonction> | undefined>();
 
-  const filieres = computed((): Array<Filiere> | undefined => {
+  const filieres = computed<Array<Filiere> | undefined>(() => {
     const { currentEtab } = structureStore;
 
     return fonctions.value
@@ -22,7 +22,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
       : undefined;
   });
 
-  const customMapping = computed((): CustomMapping | undefined => {
+  const customMapping = computed<CustomMapping | undefined>(() => {
     const { currentEtab } = structureStore;
 
     return fonctions.value
@@ -32,7 +32,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
       : undefined;
   });
 
-  const administrative = computed((): Array<Filiere> | undefined => {
+  const administrative = computed<Array<Filiere> | undefined>(() => {
     const { administrativeCodes } = configurationStore;
     const { currentEtab } = structureStore;
 
@@ -41,7 +41,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
     );
   });
 
-  const teaching = computed((): Array<Filiere> | undefined => {
+  const teaching = computed<Array<Filiere> | undefined>(() => {
     const { teachingCodes } = configurationStore;
     const { currentEtab } = structureStore;
 
