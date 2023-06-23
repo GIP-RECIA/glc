@@ -3,6 +3,8 @@ import "regenerator-runtime/runtime.js";
 import "vuetify/styles";
 import "@/assets/main.scss";
 
+import "@/utils/momentUtils";
+
 import App from "@/App.vue";
 
 import i18n from "@/plugins/i18n";
