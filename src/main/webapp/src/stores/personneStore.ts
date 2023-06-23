@@ -41,6 +41,7 @@ export const usePersonneStore = defineStore("personne", () => {
   return {
     currentPersonne,
     isCurrentPersonne,
+    personnes,
     administrative,
     initCurrentPersonne,
   };
