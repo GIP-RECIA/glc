@@ -19,7 +19,7 @@
   "lastName": "nom",
   "firstName": "prénom",
   "birthDate": "date de naissance",
-  "mail": "mail",
+  "email": "email",
   "schoolYear": "annnée scolaire",
   "login": "login",
   "status": "état",

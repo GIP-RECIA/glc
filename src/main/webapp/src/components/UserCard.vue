@@ -25,7 +25,9 @@ const { color, i18n } = getEtat(props.user.etat);
         :title="t(i18n)"
         :alt="t(i18n)"
         class="mr-2"
-      />{{ user.patronyme }} {{ user.givenName }}
+      />{{
+        user.patronyme ? `${user.patronyme} ${user.givenName}` : user.givenName
+      }}
     </v-card-text>
   </v-card>
 </template>
