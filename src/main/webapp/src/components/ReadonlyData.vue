@@ -6,12 +6,9 @@ defineProps<{
 </script>
 
 <template>
-  <div>
-    <div>
-      {{ label }}
-    </div>
-    <div>
-      {{ value ? value : "-" }}
-    </div>
+  <div class="mb-3">
+    <b>{{ label }}</b>
+    <br />
+    {{ value ? value : "-" }}
   </div>
 </template>

@@ -25,9 +25,13 @@ let selected = ref<Array<string>>([]);
         <readonly-data :label="t('status')" class="flex-item" />
         <readonly-data :label="t('mail')" class="flex-item" />
       </div>
-      <div>{{ t("lessons", 2) }}</div>
+      <div>
+        <b>{{ t("lessons", 2) }}</b>
+      </div>
       <div v-for="(filiere, index) in 0" :key="index">
-        <div>{{ filiere.libelleFiliere }}</div>
+        <div>
+          <b>{{ filiere.libelleFiliere }}</b>
+        </div>
         <div class="d-flex flex-row flex-wrap">
           <div
             v-for="(discipline, index) in filiere.discipline"

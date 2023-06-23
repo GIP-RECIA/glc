@@ -26,9 +26,13 @@ const { customMapping } = storeToRefs(fonctionStore);
         <readonly-data :label="t('status')" class="flex-item" />
         <readonly-data :label="t('mail')" class="flex-item" />
       </div>
-      <div>{{ t("additionalFunction", 2) }}</div>
+      <div>
+        <b>{{ t("additionalFunction", 2) }}</b>
+      </div>
       <div v-for="(filiere, index) in customMapping?.filieres" :key="index">
-        <div>{{ filiere.libelleFiliere }}</div>
+        <div>
+          <b>{{ filiere.libelleFiliere }}</b>
+        </div>
         <div class="d-flex flex-row flex-wrap">
           <div
             v-for="(discipline, index) in filiere.disciplines"
