@@ -60,12 +60,12 @@ const { currentPersonne, isCurrentPersonne } = storeToRefs(personneStore);
         class="flex-item"
       />
       <readonly-data
-        :label="t('email') + 'ac'"
+        :label="t('email') + ' ac'"
         :value="currentPersonne.email"
         class="flex-item"
       />
       <readonly-data
-        :label="t('email') + 'perso'"
+        :label="t('email') + ' perso'"
         :value="currentPersonne.emailPersonnel"
         class="flex-item"
       />
