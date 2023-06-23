@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
 // import { useFonctionStore } from "@/stores/fonctionStore";
 import { ref } from "vue";
@@ -21,10 +20,6 @@ let selected = ref<Array<string>>([]);
     </div>
 
     <base-modal v-model="dialog" :title="t('add')">
-      <div class="d-flex flex-row flex-wrap">
-        <readonly-data :label="t('status')" class="flex-item" />
-        <readonly-data :label="t('mail')" class="flex-item" />
-      </div>
       <div>
         <b>{{ t("lessons", 2) }}</b>
       </div>
