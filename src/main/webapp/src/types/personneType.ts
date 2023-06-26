@@ -22,6 +22,11 @@ export type Personne = {
   forceEtat: string;
   idEduConnect: string;
   login: string;
+  fonctions: Array<{
+    disciplinePoste: number;
+    filiere: number;
+    source: string;
+  }>;
 };
 
 export type SimplePersonne = {

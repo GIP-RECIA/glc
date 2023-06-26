@@ -15,6 +15,7 @@
  */
 package fr.recia.glc.web.rest;
 
+import fr.recia.glc.db.dto.personne.PersonneDto;
 import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.repositories.fonction.FonctionRepository;
@@ -25,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -37,19 +39,24 @@ public class PersonneController {
   @Autowired
   private FonctionRepository<Fonction> fonctionRepository;
 
-  @GetMapping(value = "/{id}")
-  public ApiResponse getPersonne(@PathVariable Long id) {
+  @GetMapping
+  public ApiResponse searchPersonne(
+    @RequestParam(value = "name") String name
+  ) {
     return new ApiResponse(
       "",
-      aPersonneRepository.findByPersonneId(id)
+      ""
     );
   }
 
-  @GetMapping(value = "/{id}/fonction")
-  public ApiResponse getPersonneFonctions(@PathVariable Long id) {
+  @GetMapping(value = "/{id}")
+  public ApiResponse getPersonne(@PathVariable Long id) {
+    PersonneDto personne = aPersonneRepository.findByPersonneId(id);
+    personne.setFonctions(fonctionRepository.findByPersonneId(id));
+
     return new ApiResponse(
       "",
-      fonctionRepository.findByPersonneId(id)
+      personne
     );
   }
 
