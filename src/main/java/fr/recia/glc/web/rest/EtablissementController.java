@@ -20,6 +20,7 @@ import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.dto.fonction.TypeFonctionFiliereDto;
 import fr.recia.glc.db.dto.personne.SimplePersonneDto;
 import fr.recia.glc.db.dto.structure.EtablissementDto;
+import fr.recia.glc.db.dto.structure.SimpleEtablissementDto;
 import fr.recia.glc.db.entities.education.Discipline;
 import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.entities.fonction.TypeFonctionFiliere;
@@ -62,7 +63,21 @@ public class EtablissementController {
 
   @GetMapping()
   public ApiResponse getEtablissements() {
-    return new ApiResponse("", etablissementRepository.findAllEtablissements());
+    List<SimpleEtablissementDto> etablissements =
+      etablissementRepository.findAllEtablissements().stream()
+      .map(etablissement -> {
+        String[] split = etablissement.getNom().split("\\$");
+        if (split.length > 1) {
+          etablissement.setType(split[0]);
+          etablissement.setVille(split[2]);
+          etablissement.setNom(split[1]);
+        }
+
+        return etablissement;
+      })
+      .toList();
+
+    return new ApiResponse("", etablissements);
   }
 
   @GetMapping(value = "/{id}")

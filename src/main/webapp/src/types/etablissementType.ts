@@ -26,7 +26,9 @@ export type SimpleEtablissement = {
   id: number;
   uai: string;
   categorie: string;
+  type?: string;
   nom: string;
   nomCourt: string;
+  ville?: string;
   siren: string;
 };

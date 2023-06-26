@@ -16,22 +16,32 @@
 package fr.recia.glc.db.dto.structure;
 
 import fr.recia.glc.db.enums.CategorieStructure;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @EqualsAndHashCode
 public class SimpleEtablissementDto {
 
   private Long id;
   private String uai;
   private CategorieStructure categorie;
+  private String type;
   private String nom;
   private String nomCourt;
+  private String ville;
   private String siren;
+
+  public SimpleEtablissementDto(Long id, String uai, CategorieStructure categorie,
+                                String nom, String nomCourt, String siren) {
+    this.id = id;
+    this.uai = uai;
+    this.categorie = categorie;
+    this.nom = nom;
+    this.nomCourt = nomCourt;
+    this.siren = siren;
+  }
 
 }

@@ -28,10 +28,19 @@ watch(etabs, (newValue) => {
 
 watch(select, (newValue) => {
   if (typeof newValue !== "undefined" && newValue !== null) {
-    items.value = etabs.value?.filter(
-      (etablissement) =>
-        etablissement.nom.toLowerCase().indexOf(newValue.toLowerCase()) > -1
-    );
+    items.value = etabs.value?.filter((etablissement) => {
+      let filters =
+        etablissement.nom.toLowerCase().indexOf(newValue.toLowerCase()) > -1 ||
+        etablissement.uai.toLowerCase().indexOf(newValue.toLowerCase()) > -1;
+      if (etablissement.ville) {
+        filters =
+          filters ||
+          etablissement.ville.toLowerCase().indexOf(newValue.toLowerCase()) >
+            -1;
+      }
+
+      return filters;
+    });
   } else items.value = etabs.value;
 });
 
@@ -70,7 +79,13 @@ const showPage = (page: number) => {
           block
           :to="{ name: 'structure', params: { structureId: etablissement.id } }"
         >
-          {{ etablissement.nom }}
+          <span v-if="etablissement.type">
+            {{ etablissement.nom }} ({{ etablissement.type }}
+            {{ etablissement.uai }})
+          </span>
+          <span v-else>
+            {{ etablissement.nom }}
+          </span>
         </v-btn>
       </v-col>
     </v-row>
