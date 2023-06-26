@@ -4,29 +4,24 @@ import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 
 const personneStore = usePersonneStore();
-const { personnes } = storeToRefs(personneStore);
+const { searchList } = storeToRefs(personneStore);
 
-const select = ref<string | undefined>();
+const select = ref<{ id: number; name: string } | undefined>();
 const search = ref<string>();
 const loading = ref<boolean>(false);
-const items = ref<Array<string>>([]);
+const items = ref<Array<{ id: number; name: string }>>([]);
 
 watch(search, (val) => {
-  if (val == "") items.value = [];
-  val && val !== select.value && querySelections(val);
+  if (typeof val !== "undefined" && val !== null && val.length > 0)
+    querySelections(val);
+  else items.value = [];
 });
 
 const querySelections = (q: string) => {
-  const searchList = personnes.value?.map((personne) =>
-    personne.patronyme
-      ? `${personne.patronyme} ${personne.givenName}`
-      : personne.givenName
-  );
-
-  if (q.length > 2 && searchList) {
+  if (q.length > 2 && searchList.value) {
     loading.value = true;
-    items.value = searchList.filter(
-      (item) => item.toLowerCase().indexOf(q.toLowerCase()) > -1
+    items.value = searchList.value.filter(
+      (item) => item.name.toLowerCase().indexOf(q.toLowerCase()) > -1
     );
     loading.value = false;
   } else {
@@ -42,8 +37,10 @@ const querySelections = (q: string) => {
     v-model:search="search"
     :loading="loading"
     :items="items"
+    item-title="name"
     hide-no-data
     hide-details
+    return-object
     clearable
     @click:clear="items = []"
     label="Select"

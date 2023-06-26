@@ -26,6 +26,21 @@ export const usePersonneStore = defineStore("personne", () => {
     return personnes;
   });
 
+  const searchList = computed<Array<{ id: number; name: string }> | undefined>(
+    () => {
+      const { personnes } = structureStore.currentEtab;
+
+      return personnes.map((personne) => {
+        return {
+          id: personne.id,
+          name: personne.patronyme
+            ? `${personne.patronyme} ${personne.givenName}`
+            : personne.givenName,
+        };
+      });
+    }
+  );
+
   const administrative = computed<Array<SimplePersonne> | undefined>(() => {
     const { administrativeStaff } = configurationStore;
 
@@ -42,6 +57,7 @@ export const usePersonneStore = defineStore("personne", () => {
     currentPersonne,
     isCurrentPersonne,
     personnes,
+    searchList,
     administrative,
     initCurrentPersonne,
   };
