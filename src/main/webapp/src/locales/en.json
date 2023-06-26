@@ -38,5 +38,7 @@
   "uncertain": "Uncertain",
   "uncertainExportDelete": "Uncertain D",
   "uncertainExportModify": "Uncertain M",
-  "uncertainExportAdd": "Uncertain A"
+  "uncertainExportAdd": "Uncertain A",
+  "people": "People",
+  "searchOutOfStructure": "search out of structure"
 }
