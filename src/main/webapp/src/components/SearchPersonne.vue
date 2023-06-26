@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { searchPersonne } from "@/services/personneService";
 import { usePersonneStore } from "@/stores/personneStore";
+import debounce from "lodash.debounce";
 import { storeToRefs } from "pinia";
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
@@ -25,6 +27,7 @@ const searchOutOfStructure = ref<boolean>(false);
 watch(search, (newSearch) => {
   if (typeof newSearch !== "undefined" && newSearch !== null) {
     if (newSearch.length > 3) {
+      loading.value = true;
       searchOutOfStructure.value
         ? findOutOfStructure(newSearch)
         : findInStructure(newSearch);
@@ -41,19 +44,21 @@ watch(searchOutOfStructure, () => {
 
 const findInStructure = (name: string): void => {
   if (searchList.value) {
-    loading.value = true;
     items.value = searchList.value.filter(
       (item) => item.name.toLowerCase().indexOf(name.toLowerCase()) > -1
     );
-    loading.value = false;
   }
-};
-
-const findOutOfStructure = (name: string): void => {
-  loading.value = true;
-  items.value = [];
   loading.value = false;
 };
+
+const findOutOfStructure = debounce(async (name: string) => {
+  try {
+    items.value = (await searchPersonne(name)).data.payload;
+  } catch (e) {
+    console.error(e);
+  }
+  loading.value = false;
+}, 500);
 </script>
 
 <template>
