@@ -21,3 +21,12 @@ export type Etablissement = {
   personnes: Array<SimplePersonne>;
   filieres: Array<Filiere>;
 };
+
+export type SimpleEtablissement = {
+  id: number;
+  uai: string;
+  categorie: string;
+  nom: string;
+  nomCourt: string;
+  siren: string;
+};
