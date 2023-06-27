@@ -3,6 +3,7 @@ import UserModal from "@/components/modal/UserModal.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { useStructureStore } from "@/stores/structureStore";
+import { Tabs } from "@/types/enums/Tabs";
 import AccountView from "@/views/structure/AccountView.vue";
 import AdministrativeView from "@/views/structure/AdministrativeView.vue";
 import DashboardView from "@/views/structure/DashboardView.vue";
@@ -40,30 +41,32 @@ watch(
 <template>
   <div>
     <v-tabs v-model="currentTab" align-tabs="center">
-      <v-tab value="dashboard">{{ t("dashboard") }}</v-tab>
-      <v-tab value="info">{{ t("information") }}</v-tab>
-      <v-tab value="administrativeStaff">{{ t("administrativeStaff") }}</v-tab>
-      <v-tab value="teachingStaff">{{ t("teachingStaff") }}</v-tab>
-      <v-tab value="accounts">{{ t("accounts") }}</v-tab>
-      <v-tab value="exports">{{ t("exports") }}</v-tab>
+      <v-tab :value="Tabs.Dashboard">{{ t("dashboard") }}</v-tab>
+      <v-tab :value="Tabs.Info">{{ t("information") }}</v-tab>
+      <v-tab :value="Tabs.AdministrativeStaff">{{
+        t("administrativeStaff")
+      }}</v-tab>
+      <v-tab :value="Tabs.TeachingStaff">{{ t("teachingStaff") }}</v-tab>
+      <v-tab :value="Tabs.Accounts">{{ t("accounts") }}</v-tab>
+      <v-tab :value="Tabs.Exports">{{ t("exports") }}</v-tab>
     </v-tabs>
     <v-window v-model="currentTab">
-      <v-window-item value="dashboard">
+      <v-window-item :value="Tabs.Dashboard">
         <dashboard-view />
       </v-window-item>
-      <v-window-item value="info">
+      <v-window-item :value="Tabs.Info">
         <info-view />
       </v-window-item>
-      <v-window-item value="administrativeStaff">
+      <v-window-item :value="Tabs.AdministrativeStaff">
         <administrative-view />
       </v-window-item>
-      <v-window-item value="teachingStaff">
+      <v-window-item :value="Tabs.TeachingStaff">
         <teaching-view />
       </v-window-item>
-      <v-window-item value="accounts">
+      <v-window-item :value="Tabs.Accounts">
         <account-view />
       </v-window-item>
-      <v-window-item value="exports">
+      <v-window-item :value="Tabs.Exports">
         <export-view />
       </v-window-item>
     </v-window>

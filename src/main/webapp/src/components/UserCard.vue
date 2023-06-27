@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getEtat } from "@/enums/Etat";
 import { usePersonneStore } from "@/stores/personneStore";
+import { getEtat } from "@/types/enums/Etat";
 import type { SimplePersonne } from "@/types/personneType";
 import { useI18n } from "vue-i18n";
 

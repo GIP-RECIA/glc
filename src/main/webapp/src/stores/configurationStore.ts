@@ -1,5 +1,6 @@
 import { getConfiguration } from "@/services/configurationService";
 import type { Configuration } from "@/types/configurationType";
+import { Tabs } from "@/types/enums/Tabs";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
@@ -7,7 +8,7 @@ export const useConfigurationStore = defineStore("configuration", () => {
   const configuration = ref<Configuration | undefined>();
   const structures = ref<Array<{ id: number; name: string }>>([]);
   const currentStructure = ref<number | undefined>();
-  const currentTab = ref<string>("dashboard");
+  const currentTab = ref<number>(Tabs.Dashboard);
 
   const administrativeStaff = computed<Array<string> | undefined>(() => {
     return configuration.value
@@ -33,7 +34,7 @@ export const useConfigurationStore = defineStore("configuration", () => {
     currentStructure.value = value;
   };
 
-  const setCurrentTab = (value: string): void => {
+  const setCurrentTab = (value: number): void => {
     currentTab.value = value;
   };
 

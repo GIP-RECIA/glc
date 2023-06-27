@@ -3,6 +3,7 @@ import {
   getEtablissement,
 } from "@/services/structureService";
 import { useConfigurationStore } from "@/stores/configurationStore";
+import { Tabs } from "@/types/enums/Tabs";
 import type {
   Etablissement,
   SimpleEtablissement,
@@ -37,7 +38,7 @@ export const useStructureStore = defineStore("structure", () => {
       });
       setCurrentStructure(structures.length - 1);
     } else setCurrentStructure(index);
-    setCurrentTab("dashboard");
+    setCurrentTab(Tabs.Dashboard);
   };
 
   return {
