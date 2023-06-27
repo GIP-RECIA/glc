@@ -10,6 +10,7 @@ import ExportView from "@/views/structure/ExportView.vue";
 import InfoView from "@/views/structure/InfoView.vue";
 import TeachingView from "@/views/structure/TeachingView.vue";
 import { storeToRefs } from "pinia";
+import { watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute } from "vue-router";
 
@@ -26,6 +27,13 @@ structureStore.initCurrentEtab(Number(structureId));
 
 const configurationStore = useConfigurationStore();
 const { currentTab } = storeToRefs(configurationStore);
+
+watch(
+  () => route.params.structureId,
+  (newValue) => {
+    structureStore.initCurrentEtab(Number(newValue));
+  }
+);
 </script>
 
 <template>
