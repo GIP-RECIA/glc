@@ -59,7 +59,7 @@ This project includes:
   javax.inject under The Apache Software License, Version 2.0
   JAXB Core under Eclipse Distribution License - v 1.0
   JAXB Runtime under Eclipse Distribution License - v 1.0
-  JBoss Logging 3 under Apache License, version 2.0
+  JBoss Logging 3 under Apache License 2.0
   JCL 1.2 implemented over SLF4J under Apache License, Version 2.0
   JJWT :: API under Apache License, Version 2.0
   JJWT :: Extensions :: Jackson under Apache License, Version 2.0
