@@ -18,11 +18,7 @@ const pagination = ref({
 const itemsPerPage: number = 20;
 
 watch(etabs, (newValue) => {
-  if (
-    typeof newValue !== "undefined" &&
-    newValue !== null &&
-    typeof items.value === "undefined"
-  )
+  if (typeof newValue !== "undefined" && newValue !== null)
     items.value = newValue;
 });
 
