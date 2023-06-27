@@ -65,17 +65,17 @@ public class EtablissementController {
   public ApiResponse getEtablissements() {
     List<SimpleEtablissementDto> etablissements =
       etablissementRepository.findAllEtablissements().stream()
-      .map(etablissement -> {
-        String[] split = etablissement.getNom().split("\\$");
-        if (split.length > 1) {
-          etablissement.setType(split[0]);
-          etablissement.setVille(split[2]);
-          etablissement.setNom(split[1]);
-        }
+        .map(etablissement -> {
+          String[] split = etablissement.getNom().split("\\$");
+          if (split.length > 1) {
+            etablissement.setType(split[0]);
+            etablissement.setVille(split[2]);
+            etablissement.setNom(split[1]);
+          }
 
-        return etablissement;
-      })
-      .toList();
+          return etablissement;
+        })
+        .toList();
 
     return new ApiResponse("", etablissements);
   }
@@ -83,6 +83,11 @@ public class EtablissementController {
   @GetMapping(value = "/{id}")
   public ApiResponse getEtablissement(@PathVariable Long id) {
     EtablissementDto etablissement = etablissementRepository.findByEtablissementId(id);
+    String[] split = etablissement.getNom().split("\\$");
+    if (split.length > 1) {
+      etablissement.setType(split[0]);
+      etablissement.setNom(split[1]);
+    }
     etablissement.setFilieres(getFilieresWithDisciplinesAndUsers(id, etablissement.getSource()));
     etablissement.setPersonnes(aPersonneRepository.findByStructureId(id));
 

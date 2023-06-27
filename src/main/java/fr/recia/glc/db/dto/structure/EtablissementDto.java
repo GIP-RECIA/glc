@@ -41,6 +41,7 @@ public class EtablissementDto {
   private Date anneeScolaire;
   private AdresseDto adresse;
   private CategorieStructure categorie;
+  private String type;
   private String mail;
   private String nom;
   private String nomCourt;

@@ -29,7 +29,11 @@ export const useStructureStore = defineStore("structure", () => {
     if (index == -1) {
       structures.push({
         id: id,
-        name: currentEtab.value ? currentEtab.value.nom : "ERROR",
+        name: currentEtab.value
+          ? currentEtab.value.type
+            ? `${currentEtab.value.type} ${currentEtab.value.nom}`
+            : currentEtab.value.nom
+          : "",
       });
       setCurrentStructure(structures.length - 1);
     } else setCurrentStructure(index);

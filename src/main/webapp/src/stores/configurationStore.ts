@@ -46,5 +46,6 @@ export const useConfigurationStore = defineStore("configuration", () => {
     teachingCodes,
     init,
     setCurrentStructure,
+    setCurrentTab,
   };
 });

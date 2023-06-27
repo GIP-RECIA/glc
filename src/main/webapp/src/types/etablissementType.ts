@@ -11,6 +11,7 @@ export type Etablissement = {
   anneeScolaire: string;
   adresse: Adresse;
   categorie: string;
+  type?: string;
   mail: string;
   nom: string;
   nomCourt: string;
