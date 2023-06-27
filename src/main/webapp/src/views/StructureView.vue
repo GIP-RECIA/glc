@@ -31,7 +31,8 @@ const { currentTab } = storeToRefs(configurationStore);
 watch(
   () => route.params.structureId,
   (newValue) => {
-    structureStore.initCurrentEtab(Number(newValue));
+    if (typeof newValue !== "undefined" && newValue !== null)
+      structureStore.initCurrentEtab(Number(newValue));
   }
 );
 </script>
