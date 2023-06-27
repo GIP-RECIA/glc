@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useConfigurationStore } from "./stores/configurationStore";
+import { useConfigurationStore } from "@/stores/configurationStore";
+import { storeToRefs } from "pinia";
 import { onBeforeMount } from "vue";
 
 onBeforeMount(() => {
@@ -19,6 +20,7 @@ onBeforeMount(() => {
 
 const configurationStore = useConfigurationStore();
 configurationStore.init();
+const { structures, currentStructure } = storeToRefs(configurationStore);
 </script>
 
 <template>
@@ -48,6 +50,18 @@ configurationStore.init();
       return-home-target="_self"
       icon-type="nine-square"
     />
+    <v-toolbar title="GLC" density="compact">
+      <v-chip-group v-model="currentStructure" selected-class="text-primary">
+        <v-chip
+          v-for="(structure, index) in structures"
+          :key="index"
+          :to="{ name: 'structure', params: { structureId: structure.id } }"
+          closable
+          >{{ structure.name }}</v-chip
+        >
+      </v-chip-group>
+      <v-btn :to="{ name: 'home' }" icon><v-icon icon="fas fa-plus" /></v-btn>
+    </v-toolbar>
   </header>
   <main>
     <RouterView />
