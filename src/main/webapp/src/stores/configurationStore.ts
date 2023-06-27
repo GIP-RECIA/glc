@@ -5,6 +5,7 @@ import { computed, ref } from "vue";
 
 export const useConfigurationStore = defineStore("configuration", () => {
   const configuration = ref<Configuration | undefined>();
+  const currentTab = ref<string>("dashboard");
 
   const administrativeStaff = computed<Array<string> | undefined>(() => {
     return configuration.value
@@ -26,5 +27,11 @@ export const useConfigurationStore = defineStore("configuration", () => {
     configuration.value = (await getConfiguration()).data.payload;
   };
 
-  return { administrativeStaff, administrativeCodes, teachingCodes, init };
+  return {
+    currentTab,
+    administrativeStaff,
+    administrativeCodes,
+    teachingCodes,
+    init,
+  };
 });
