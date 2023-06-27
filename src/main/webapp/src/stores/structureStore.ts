@@ -21,7 +21,8 @@ export const useStructureStore = defineStore("structure", () => {
   };
 
   const initCurrentEtab = async (id: number): Promise<void> => {
-    const { structures, setCurrentStructure } = configurationStore;
+    const { structures, setCurrentStructure, setCurrentTab } =
+      configurationStore;
 
     currentEtab.value = (await getEtablissement(id)).data.payload;
     const index = structures.findIndex((structures) => structures.id == id);
@@ -32,6 +33,7 @@ export const useStructureStore = defineStore("structure", () => {
       });
       setCurrentStructure(structures.length - 1);
     } else setCurrentStructure(index);
+    setCurrentTab("dashboard");
   };
 
   return {

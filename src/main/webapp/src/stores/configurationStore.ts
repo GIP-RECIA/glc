@@ -33,6 +33,10 @@ export const useConfigurationStore = defineStore("configuration", () => {
     currentStructure.value = value;
   };
 
+  const setCurrentTab = (value: string): void => {
+    currentTab.value = value;
+  };
+
   return {
     structures,
     currentStructure,
