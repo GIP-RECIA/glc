@@ -3,6 +3,7 @@ import { useStructureStore } from "./structureStore";
 import { getFonctions } from "@/services/fonctionService";
 import type { Filiere } from "@/types/filiereType";
 import type { CustomMapping, SourceFonction } from "@/types/fonctionType";
+import isEmpty from "lodash.isempty";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
@@ -25,11 +26,11 @@ export const useFonctionStore = defineStore("fonctions", () => {
   const customMapping = computed<CustomMapping | undefined>(() => {
     const { currentEtab } = structureStore;
 
-    return fonctions.value
-      ? fonctions.value.find(
-          (fonction) => fonction.source === currentEtab?.source
-        )?.customMapping
-      : undefined;
+    const customMapping = fonctions.value?.find(
+      (fonction) => fonction.source === currentEtab?.source
+    )?.customMapping;
+
+    return isEmpty(customMapping) ? undefined : customMapping;
   });
 
   const administrative = computed<Array<Filiere> | undefined>(() => {

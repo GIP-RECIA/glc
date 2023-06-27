@@ -19,7 +19,8 @@ const fonctionStore = useFonctionStore();
 const { customMapping } = storeToRefs(fonctionStore);
 
 const personneStore = usePersonneStore();
-const { currentPersonne, isCurrentPersonne } = storeToRefs(personneStore);
+const { currentPersonne, isCurrentPersonne, additionalFonctionsForCheckboxes } =
+  storeToRefs(personneStore);
 
 const isLocked = ref<boolean>(false);
 const isAddMode = ref<boolean>(false);
@@ -29,6 +30,8 @@ watch(isCurrentPersonne, (newValue) => {
   if (!newValue) {
     isAddMode.value = false;
     selected.value = [];
+  } else {
+    selected.value = additionalFonctionsForCheckboxes.value;
   }
 });
 
@@ -233,7 +236,11 @@ const cancel = () => {
           "
         >
           <v-btn
-            v-if="!isAddMode"
+            v-if="
+              !isAddMode &&
+              typeof customMapping !== 'undefined' &&
+              customMapping !== null
+            "
             color="primary"
             prepend-icon="fas fa-plus"
             @click="isAddMode = true"

@@ -20,6 +20,14 @@ export const usePersonneStore = defineStore("personne", () => {
     },
   });
 
+  const additionalFonctionsForCheckboxes = computed<Array<string>>(() => {
+    const items = currentPersonne.value?.additionalFonctions.map(
+      (fonction) => `${fonction.filiere}-${fonction.disciplinePoste}`
+    );
+
+    return typeof items === "undefined" ? [] : items;
+  });
+
   const personnes = computed<Array<SimplePersonne> | undefined>(() => {
     const { personnes } = structureStore.currentEtab;
 
@@ -56,6 +64,7 @@ export const usePersonneStore = defineStore("personne", () => {
   return {
     currentPersonne,
     isCurrentPersonne,
+    additionalFonctionsForCheckboxes,
     personnes,
     searchList,
     administrative,

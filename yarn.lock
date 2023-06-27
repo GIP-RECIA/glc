@@ -742,6 +742,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash.isempty@npm:^4.4.7":
+  version: 4.4.7
+  resolution: "@types/lodash.isempty@npm:4.4.7"
+  dependencies:
+    "@types/lodash": "*"
+  checksum: d941e2d9eca0e4059ed9fafbba3b39ed9be4afea69a599a431c1818f2ab8565ca2e1e891bbea4aff10ab51335b33c978517490c6dbd67b5bb9ca6c7bcc832dce
+  languageName: node
+  linkType: hard
+
 "@types/lodash@npm:*":
   version: 4.14.195
   resolution: "@types/lodash@npm:4.14.195"
@@ -3781,6 +3790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.isempty@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.isempty@npm:4.4.0"
+  checksum: a8118f23f7ed72a1dbd176bf27f297d1e71aa1926288449cb8f7cef99ba1bc7527eab52fe7899ab080fa1dc150aba6e4a6367bf49fa4e0b78da1ecc095f8d8c5
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
@@ -5258,6 +5274,7 @@ __metadata:
     "@tsconfig/node18": ^2.0.1
     "@types/jsdom": ^21.1.1
     "@types/lodash.debounce": ^4.0.7
+    "@types/lodash.isempty": ^4.4.7
     "@types/node": ^18.16.18
     "@uportal/open-id-connect": ^1.39.0
     "@vitejs/plugin-vue": ^4.2.3
@@ -5273,6 +5290,7 @@ __metadata:
     jsdom: ^22.1.0
     lint-staged: ^13.2.2
     lodash.debounce: ^4.0.8
+    lodash.isempty: ^4.4.0
     moment: ^2.29.4
     npm-run-all: ^4.1.5
     pinia: ^2.1.4
