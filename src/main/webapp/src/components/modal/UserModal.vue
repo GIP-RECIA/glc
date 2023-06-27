@@ -1,15 +1,48 @@
 <script setup lang="ts">
 import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
+import { useConfigurationStore } from "@/stores/configurationStore";
+import { useFonctionStore } from "@/stores/fonctionStore";
 import { usePersonneStore } from "@/stores/personneStore";
+import { Tabs } from "@/types/enums/Tabs";
 import moment from "moment";
 import { storeToRefs } from "pinia";
+import { watch, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
+const configurationStore = useConfigurationStore();
+const { currentTab } = storeToRefs(configurationStore);
+
+const fonctionStore = useFonctionStore();
+const { customMapping } = storeToRefs(fonctionStore);
+
 const personneStore = usePersonneStore();
 const { currentPersonne, isCurrentPersonne } = storeToRefs(personneStore);
+
+const isLocked = ref<boolean>(false);
+const isAddMode = ref<boolean>(false);
+const selected = ref<Array<string>>([]);
+
+watch(isCurrentPersonne, (newValue) => {
+  if (!newValue) {
+    isAddMode.value = false;
+    selected.value = [];
+  }
+});
+
+const lockManager = () => {
+  isLocked.value = !isLocked.value;
+};
+
+const save = () => {
+  isAddMode.value = false;
+};
+
+const cancel = () => {
+  isAddMode.value = false;
+};
 </script>
 
 <template>
@@ -23,116 +56,205 @@ const { currentPersonne, isCurrentPersonne } = storeToRefs(personneStore);
         : ''
     "
   >
-    <div v-if="currentPersonne" class="d-flex flex-row flex-wrap">
-      <readonly-data
-        label="uid"
-        :value="currentPersonne.uid"
-        class="flex-item"
-      />
-      <readonly-data
-        label="uuid"
-        :value="currentPersonne.uuid"
-        class="flex-item"
-      />
-      <readonly-data
-        label="idEduConnect"
-        :value="currentPersonne.idEduConnect"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('civility')"
-        :value="currentPersonne.civilite"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('lastName')"
-        :value="currentPersonne.patronyme"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('firstName')"
-        :value="currentPersonne.givenName"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('birthDate')"
-        :value="moment(currentPersonne.dateNaissance).format('L')"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('email') + ' ac'"
-        :value="currentPersonne.email"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('email') + ' perso'"
-        :value="currentPersonne.emailPersonnel"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('schoolYear')"
-        :value="moment(currentPersonne.anneeScolaire).format('Y')"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('login')"
-        :value="currentPersonne.login"
-        class="flex-item"
-      />
-      <readonly-data
-        :label="t('status')"
-        :value="currentPersonne.etat"
-        class="flex-item"
-      />
-      <readonly-data
-        label="categorie"
-        :value="currentPersonne.categorie"
-        class="flex-item"
-      />
-      <readonly-data label="cn" :value="currentPersonne.cn" class="flex-item" />
-      <readonly-data
-        label="displayName"
-        :value="currentPersonne.displayName"
-        class="flex-item"
-      />
-      <readonly-data
-        label="numBureau"
-        :value="currentPersonne.numBureau"
-        class="flex-item"
-      />
-      <readonly-data label="sn" :value="currentPersonne.sn" class="flex-item" />
-      <readonly-data
-        label="titre"
-        :value="currentPersonne.titre"
-        class="flex-item"
-      />
-      <readonly-data
-        label="listeRouge"
-        :value="currentPersonne.listeRouge.toString()"
-        class="flex-item"
-      />
-      <readonly-data
-        label="forceEtat"
-        :value="currentPersonne.forceEtat"
-        class="flex-item"
-      />
+    <div v-if="currentPersonne && !isAddMode">
+      <div class="d-flex flex-row flex-wrap">
+        <readonly-data
+          label="uid"
+          :value="currentPersonne.uid"
+          class="flex-item"
+        />
+        <readonly-data
+          label="uuid"
+          :value="currentPersonne.uuid"
+          class="flex-item"
+        />
+        <readonly-data
+          label="idEduConnect"
+          :value="currentPersonne.idEduConnect"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('civility')"
+          :value="currentPersonne.civilite"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('lastName')"
+          :value="currentPersonne.patronyme"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('firstName')"
+          :value="currentPersonne.givenName"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('birthDate')"
+          :value="moment(currentPersonne.dateNaissance).format('L')"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('email') + ' ac'"
+          :value="currentPersonne.email"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('email') + ' perso'"
+          :value="currentPersonne.emailPersonnel"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('schoolYear')"
+          :value="moment(currentPersonne.anneeScolaire).format('Y')"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('login')"
+          :value="currentPersonne.login"
+          class="flex-item"
+        />
+        <readonly-data
+          :label="t('status')"
+          :value="currentPersonne.etat"
+          class="flex-item"
+        />
+        <readonly-data
+          label="categorie"
+          :value="currentPersonne.categorie"
+          class="flex-item"
+        />
+        <readonly-data
+          label="cn"
+          :value="currentPersonne.cn"
+          class="flex-item"
+        />
+        <readonly-data
+          label="displayName"
+          :value="currentPersonne.displayName"
+          class="flex-item"
+        />
+        <readonly-data
+          label="numBureau"
+          :value="currentPersonne.numBureau"
+          class="flex-item"
+        />
+        <readonly-data
+          label="sn"
+          :value="currentPersonne.sn"
+          class="flex-item"
+        />
+        <readonly-data
+          label="titre"
+          :value="currentPersonne.titre"
+          class="flex-item"
+        />
+        <readonly-data
+          label="listeRouge"
+          :value="currentPersonne.listeRouge.toString()"
+          class="flex-item"
+        />
+        <readonly-data
+          label="forceEtat"
+          :value="currentPersonne.forceEtat"
+          class="flex-item"
+        />
+      </div>
+      <div>
+        <b>{{ t("function", 2) }}</b>
+      </div>
+      <div v-for="(fonction, index) in currentPersonne.fonctions" :key="index">
+        {{ fonction }}
+      </div>
+      <div>
+        <b>{{ t("additionalFunction", 2) }}</b>
+      </div>
+      <div
+        v-for="(fonction, index) in currentPersonne.additionalFonctions"
+        :key="index"
+      >
+        {{ fonction }}
+      </div>
+    </div>
+    <div
+      v-if="
+        (currentTab == Tabs.AdministrativeStaff ||
+          currentTab == Tabs.TeachingStaff) &&
+        isAddMode
+      "
+    >
+      <div v-for="(filiere, index) in customMapping?.filieres" :key="index">
+        <div>
+          <b>{{ filiere.libelleFiliere }}</b>
+        </div>
+        <div class="d-flex flex-row flex-wrap">
+          <div
+            v-for="(discipline, index) in filiere.disciplines"
+            :key="index"
+            class="flex-item"
+          >
+            <v-checkbox
+              v-model="selected"
+              :label="discipline.disciplinePoste"
+              :value="`${filiere.id}-${discipline.id}`"
+              color="primary"
+              :hide-details="true"
+            />
+          </div>
+        </div>
+      </div>
     </div>
     <template #footer>
       <div class="d-flex justify-space-between w-100">
         <div>
-          <v-btn color="secondary" prepend-icon="fas fa-lock">
+          <v-btn
+            v-if="isLocked"
+            color="secondary"
+            prepend-icon="fas fa-lock"
+            @click="lockManager"
+          >
             {{ t("lock") }}
           </v-btn>
-          <v-btn color="secondary" prepend-icon="fas fa-lock-open">
+          <v-btn
+            v-else
+            color="secondary"
+            prepend-icon="fas fa-lock-open"
+            @click="lockManager"
+          >
             {{ t("unlock") }}
           </v-btn>
           <v-btn color="secondary" prepend-icon="fas fa-rotate-right">
             {{ t("reinitialize") }}
           </v-btn>
         </div>
-        <div>
-          <v-btn color="primary" prepend-icon="fas fa-plus">
+        <div
+          v-if="
+            currentTab == Tabs.AdministrativeStaff ||
+            currentTab == Tabs.TeachingStaff
+          "
+        >
+          <v-btn
+            v-if="!isAddMode"
+            color="primary"
+            prepend-icon="fas fa-plus"
+            @click="isAddMode = true"
+          >
             {{ t("add") }}
+          </v-btn>
+          <v-btn
+            v-if="isAddMode"
+            color="secondary"
+            prepend-icon="fas fa-xmark"
+            @click="cancel"
+          >
+            {{ t("cancel") }}
+          </v-btn>
+          <v-btn
+            v-if="isAddMode"
+            color="success"
+            prepend-icon="fas fa-floppy-disk"
+            @click="save"
+          >
+            {{ t("save") }}
           </v-btn>
         </div>
       </div>

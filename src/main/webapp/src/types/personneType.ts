@@ -24,6 +24,11 @@ export type Personne = {
     filiere: number;
     source: string;
   }>;
+  additionalFonctions: Array<{
+    disciplinePoste: number;
+    filiere: number;
+    source: string;
+  }>;
 };
 
 export type SimplePersonne = {

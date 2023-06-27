@@ -40,5 +40,6 @@
   "uncertainExportModify": "Incertain M",
   "uncertainExportAdd": "Incertain A",
   "people": "Personne | Personnes",
-  "searchOutOfStructure": "Rechercher hors de la structure"
+  "searchOutOfStructure": "Rechercher hors de la structure",
+  "cancel": "Annuler"
 }

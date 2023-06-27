@@ -57,6 +57,7 @@ public class PersonneDto {
 //  private Set<String> prenoms;
   private Long structure;
   private List<FonctionDto> fonctions;
+  private List<FonctionDto> additionalFonctions;
 
 
   public PersonneDto(Etat etat, Date anneeScolaire, CategoriePersonne categorie, Civilite civilite,

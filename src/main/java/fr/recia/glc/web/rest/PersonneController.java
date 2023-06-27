@@ -15,6 +15,7 @@
  */
 package fr.recia.glc.web.rest;
 
+import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.dto.personne.PersonneDto;
 import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.entities.personne.APersonne;
@@ -28,6 +29,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController()
@@ -52,7 +55,9 @@ public class PersonneController {
   @GetMapping(value = "/{id}")
   public ApiResponse getPersonne(@PathVariable Long id) {
     PersonneDto personne = aPersonneRepository.findByPersonneId(id);
-    personne.setFonctions(fonctionRepository.findByPersonneIdAndStructure(id, personne.getStructure()));
+    List<FonctionDto> fonctions = fonctionRepository.findByPersonneIdAndStructure(id, personne.getStructure());
+    personne.setFonctions(fonctions.stream().filter(fonction -> !fonction.getSource().startsWith("SarapisUi_")).toList());
+    personne.setAdditionalFonctions(fonctions.stream().filter(fonction -> fonction.getSource().startsWith("SarapisUi_")).toList());
 
     return new ApiResponse(
       "",
