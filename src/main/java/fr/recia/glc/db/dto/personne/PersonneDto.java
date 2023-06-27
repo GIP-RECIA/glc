@@ -55,13 +55,15 @@ public class PersonneDto {
   private String login;
 //  private String alias;
 //  private Set<String> prenoms;
+  private Long structure;
   private List<FonctionDto> fonctions;
 
 
   public PersonneDto(Etat etat, Date anneeScolaire, CategoriePersonne categorie, Civilite civilite,
                      String cn, Date dateNaissance, String displayName, String email, String givenName,
                      String numBureau, String patronyme, String sn, String titre, String uid, String uuid,
-                     String emailPersonnel, boolean listeRouge, ForceEtat forceEtat, String idEduConnect, String login
+                     String emailPersonnel, boolean listeRouge, ForceEtat forceEtat, String idEduConnect, String login,
+                     Long structure
   ) {
     this.etat = etat;
     this.anneeScolaire = anneeScolaire;
@@ -83,6 +85,7 @@ public class PersonneDto {
     this.forceEtat = forceEtat;
     this.idEduConnect = idEduConnect;
     this.login = login;
+    this.structure = structure;
   }
 
 }

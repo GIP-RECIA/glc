@@ -28,7 +28,7 @@ public interface APersonneRepository<T extends APersonne> extends AbstractReposi
   @Query("SELECT new fr.recia.glc.db.dto.personne.PersonneDto(ap.etat, ap.anneeScolaire, ap.categorie," +
     "ap.civilite, ap.cn, ap.dateNaissance, ap.displayName, ap.email, ap.givenName, ap.numBureau, ap.patronyme, " +
     "ap.sn, ap.titre, ap.uid, ap.uuid, ap.emailPersonnel, ap.listeRouge, ap.forceEtat, ap.idEduConnect, " +
-    "ap.login.nom) " +
+    "ap.login.nom, ap.structRattachement.id) " +
     "FROM APersonne ap " +
     "WHERE ap.id = :id")
   PersonneDto findByPersonneId(Long id);

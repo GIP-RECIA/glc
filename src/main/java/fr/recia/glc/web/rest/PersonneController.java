@@ -52,7 +52,7 @@ public class PersonneController {
   @GetMapping(value = "/{id}")
   public ApiResponse getPersonne(@PathVariable Long id) {
     PersonneDto personne = aPersonneRepository.findByPersonneId(id);
-    personne.setFonctions(fonctionRepository.findByPersonneId(id));
+    personne.setFonctions(fonctionRepository.findByPersonneIdAndStructure(id, personne.getStructure()));
 
     return new ApiResponse(
       "",
