@@ -1,10 +1,7 @@
-import type { Adresse } from "@/types/adresseType";
-
 export type Personne = {
   etat: string;
   anneeScolaire: Date;
   categorie: string;
-  adresse: Adresse;
   civilite: string;
   cn: string;
   dateNaissance: Date;
@@ -12,7 +9,7 @@ export type Personne = {
   email: string;
   givenName: string;
   numBureau: string;
-  patronyme: string;
+  patronyme?: string;
   sn: string;
   titre: string;
   uid: string;

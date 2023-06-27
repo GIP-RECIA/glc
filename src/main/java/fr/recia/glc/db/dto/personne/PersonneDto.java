@@ -15,7 +15,6 @@
  */
 package fr.recia.glc.db.dto.personne;
 
-import fr.recia.glc.db.dto.common.AdresseDto;
 import fr.recia.glc.db.dto.fonction.FonctionDto;
 import fr.recia.glc.db.enums.CategoriePersonne;
 import fr.recia.glc.db.enums.Civilite;
@@ -36,7 +35,6 @@ public class PersonneDto {
   private Etat etat;
   private Date anneeScolaire;
   private CategoriePersonne categorie;
-  private AdresseDto adresse;
   private Civilite civilite;
   private String cn;
   private Date dateNaissance;
@@ -60,7 +58,7 @@ public class PersonneDto {
   private List<FonctionDto> fonctions;
 
 
-  public PersonneDto(Etat etat, Date anneeScolaire, CategoriePersonne categorie, AdresseDto adresse, Civilite civilite,
+  public PersonneDto(Etat etat, Date anneeScolaire, CategoriePersonne categorie, Civilite civilite,
                      String cn, Date dateNaissance, String displayName, String email, String givenName,
                      String numBureau, String patronyme, String sn, String titre, String uid, String uuid,
                      String emailPersonnel, boolean listeRouge, ForceEtat forceEtat, String idEduConnect, String login
@@ -68,7 +66,6 @@ public class PersonneDto {
     this.etat = etat;
     this.anneeScolaire = anneeScolaire;
     this.categorie = categorie;
-    this.adresse = adresse;
     this.civilite = civilite;
     this.cn = cn;
     this.dateNaissance = dateNaissance;

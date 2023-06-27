@@ -26,8 +26,6 @@ import java.util.List;
 public interface APersonneRepository<T extends APersonne> extends AbstractRepository<T, Long> {
 
   @Query("SELECT new fr.recia.glc.db.dto.personne.PersonneDto(ap.etat, ap.anneeScolaire, ap.categorie," +
-    "new fr.recia.glc.db.dto.common.AdresseDto(ap.adresse.adresse, ap.adresse.codePostal, ap.adresse.ville, " +
-    "ap.adresse.boitePostale, ap.adresse.pays), " +
     "ap.civilite, ap.cn, ap.dateNaissance, ap.displayName, ap.email, ap.givenName, ap.numBureau, ap.patronyme, " +
     "ap.sn, ap.titre, ap.uid, ap.uuid, ap.emailPersonnel, ap.listeRouge, ap.forceEtat, ap.idEduConnect, " +
     "ap.login.nom) " +

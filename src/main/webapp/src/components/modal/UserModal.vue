@@ -89,11 +89,6 @@ const { currentPersonne, isCurrentPersonne } = storeToRefs(personneStore);
         :value="currentPersonne.categorie"
         class="flex-item"
       />
-      <readonly-data
-        label="adresse"
-        :value="currentPersonne.adresse"
-        class="flex-item"
-      />
       <readonly-data label="cn" :value="currentPersonne.cn" class="flex-item" />
       <readonly-data
         label="displayName"
