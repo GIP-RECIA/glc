@@ -26,11 +26,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController()
@@ -62,6 +65,31 @@ public class PersonneController {
     return new ApiResponse(
       "",
       personne
+    );
+  }
+
+  @PostMapping(value = "/{id}/fonction")
+  public ApiResponse setPersonneAdditionalFonctions(@PathVariable Long id, @RequestBody Map<String, Object> body) {
+    PersonneDto personne = aPersonneRepository.findByPersonneId(id);
+    String source = personne.getSource().startsWith("SarapisUI_")
+      ? personne.getSource()
+      : "SarapisUI_" + personne.getSource();
+
+    List<FonctionDto> fonctions = ((List<String>) body.get("additionalFonctions")).stream()
+      .map(fonction -> {
+        String[] split = fonction.split("-");
+
+        return new FonctionDto(
+          Long.parseLong(split[0]),
+          Long.parseLong(split[1]),
+          source
+        );
+      })
+      .toList();
+
+    return new ApiResponse(
+      "",
+      fonctions
     );
   }
 

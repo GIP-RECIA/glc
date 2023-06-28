@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ReadonlyData from "@/components/ReadonlyData.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
+import { setPersonneAdditionalFonctions } from "@/services/personneService";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { usePersonneStore } from "@/stores/personneStore";
@@ -41,6 +42,9 @@ const lockManager = () => {
 
 const save = () => {
   isAddMode.value = false;
+  if (currentPersonne.value) {
+    setPersonneAdditionalFonctions(currentPersonne.value.id, selected.value);
+  }
 };
 
 const cancel = () => {
