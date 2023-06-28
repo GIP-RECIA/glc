@@ -162,20 +162,25 @@ const cancel = () => {
           class="flex-item"
         />
       </div>
-      <div>
+      <div class="mb-3">
         <b>{{ t("function", 2) }}</b>
-      </div>
-      <div v-for="(fonction, index) in currentPersonne.fonctions" :key="index">
-        {{ fonction }}
+        <br />
+        <div
+          v-for="(fonction, index) in currentPersonne.fonctions"
+          :key="index"
+        >
+          {{ fonction }}
+        </div>
       </div>
       <div>
         <b>{{ t("additionalFunction", 2) }}</b>
-      </div>
-      <div
-        v-for="(fonction, index) in currentPersonne.additionalFonctions"
-        :key="index"
-      >
-        {{ fonction }}
+        <br />
+        <div
+          v-for="(fonction, index) in currentPersonne.additionalFonctions"
+          :key="index"
+        >
+          {{ fonction }}
+        </div>
       </div>
     </div>
     <div

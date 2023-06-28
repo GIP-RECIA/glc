@@ -63,13 +63,15 @@ const showPage = (page: number) => {
 
 <template>
   <v-container>
-    <v-text-field v-model="select" variant="solo" clearable rounded />
+    <v-text-field v-model="select" variant="solo" rounded clearable />
     <v-row>
       <v-col
         v-for="(etablissement, index) in pageItems"
         :key="index"
         :cols="12"
-        :sm="6"
+        :md="6"
+        :lg="4"
+        :xl="3"
       >
         <v-btn
           block
