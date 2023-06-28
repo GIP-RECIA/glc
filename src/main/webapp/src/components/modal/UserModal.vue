@@ -34,13 +34,15 @@ watch(isCurrentPersonne, (newValue) => {
     selected.value = [];
   } else {
     selected.value = additionalFonctionsForCheckboxes.value;
-    isLocked.value = currentPersonne.value!!.etat == Etat.Bloque;
+    isLocked.value = currentPersonne.value!.etat == Etat.Bloque;
   }
 });
 
 const lockManager = () => {
   isLocked.value = !isLocked.value;
 };
+
+const reinitialize = () => {};
 
 const save = () => {
   isAddMode.value = false;
@@ -228,7 +230,11 @@ const cancel = () => {
             >
               {{ isLocked ? t("lock") : t("unlock") }}
             </v-btn>
-            <v-btn color="secondary" prepend-icon="fas fa-rotate-right">
+            <v-btn
+              color="secondary"
+              prepend-icon="fas fa-rotate-right"
+              @click="reinitialize"
+            >
               {{ t("reinitialize") }}
             </v-btn>
           </div>
