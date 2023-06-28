@@ -1,3 +1,5 @@
+import type { enumValues } from "@/types/enumValuesType";
+
 export enum Etat {
   Invalide = "Invalide",
   Valide = "Valide",
@@ -9,29 +11,24 @@ export enum Etat {
   Incertain_Export_Add = "Incertain_Export_Add",
 }
 
-type TEtat = {
-  color: string;
-  i18n: string;
-};
-
-const getEtat = (etat: string): TEtat => {
+const getEtat = (etat: string): enumValues => {
   switch (etat) {
     case Etat.Invalide.toString():
-      return { color: "yellow", i18n: "invalid" };
+      return { i18n: "invalid", color: "yellow" };
     case Etat.Valide.toString():
-      return { color: "green", i18n: "valid" };
+      return { i18n: "valid", color: "green" };
     case Etat.Bloque.toString():
-      return { color: "orange", i18n: "locked" };
+      return { i18n: "locked", color: "orange" };
     case Etat.Delete.toString():
-      return { color: "gray", i18n: "deleted" };
+      return { i18n: "deleted", color: "gray" };
     case Etat.Incertain.toString():
-      return { color: "yellow", i18n: "uncertain" };
+      return { i18n: "uncertain", color: "yellow" };
     case Etat.Incertain_Export_Delete.toString():
-      return { color: "red", i18n: "uncertainExportDelete" };
+      return { i18n: "uncertainExportDelete", color: "red" };
     case Etat.Incertain_Export_Modify.toString():
-      return { color: "yellow", i18n: "uncertainExportModify" };
+      return { i18n: "uncertainExportModify", color: "yellow" };
     case Etat.Incertain_Export_Add.toString():
-      return { color: "yellow", i18n: "uncertainExportAdd" };
+      return { i18n: "uncertainExportAdd", color: "yellow" };
     default:
       throw new Error(`Non-existent etat in switch: ${etat}`);
   }
