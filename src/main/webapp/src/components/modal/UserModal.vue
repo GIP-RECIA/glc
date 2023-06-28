@@ -5,6 +5,7 @@ import { setPersonneAdditionalFonctions } from "@/services/personneService";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { usePersonneStore } from "@/stores/personneStore";
+import { Etat } from "@/types/enums/Etat";
 import { Tabs } from "@/types/enums/Tabs";
 import moment from "moment";
 import { storeToRefs } from "pinia";
@@ -33,6 +34,7 @@ watch(isCurrentPersonne, (newValue) => {
     selected.value = [];
   } else {
     selected.value = additionalFonctionsForCheckboxes.value;
+    isLocked.value = currentPersonne.value!!.etat == Etat.Bloque;
   }
 });
 
@@ -218,25 +220,18 @@ const cancel = () => {
     <template #footer>
       <div class="d-flex justify-space-between w-100">
         <div>
-          <v-btn
-            v-if="isLocked"
-            color="secondary"
-            prepend-icon="fas fa-lock"
-            @click="lockManager"
-          >
-            {{ t("lock") }}
-          </v-btn>
-          <v-btn
-            v-else
-            color="secondary"
-            prepend-icon="fas fa-lock-open"
-            @click="lockManager"
-          >
-            {{ t("unlock") }}
-          </v-btn>
-          <v-btn color="secondary" prepend-icon="fas fa-rotate-right">
-            {{ t("reinitialize") }}
-          </v-btn>
+          <div v-if="!isAddMode">
+            <v-btn
+              color="secondary"
+              :prepend-icon="isLocked ? 'fas fa-lock' : 'fas fa-lock-open'"
+              @click="lockManager"
+            >
+              {{ isLocked ? t("lock") : t("unlock") }}
+            </v-btn>
+            <v-btn color="secondary" prepend-icon="fas fa-rotate-right">
+              {{ t("reinitialize") }}
+            </v-btn>
+          </div>
         </div>
         <div
           v-if="
@@ -256,22 +251,22 @@ const cancel = () => {
           >
             {{ t("add") }}
           </v-btn>
-          <v-btn
-            v-if="isAddMode"
-            color="secondary"
-            prepend-icon="fas fa-xmark"
-            @click="cancel"
-          >
-            {{ t("cancel") }}
-          </v-btn>
-          <v-btn
-            v-if="isAddMode"
-            color="success"
-            prepend-icon="fas fa-floppy-disk"
-            @click="save"
-          >
-            {{ t("save") }}
-          </v-btn>
+          <div v-if="isAddMode">
+            <v-btn
+              color="secondary"
+              prepend-icon="fas fa-xmark"
+              @click="cancel"
+            >
+              {{ t("cancel") }}
+            </v-btn>
+            <v-btn
+              color="success"
+              prepend-icon="fas fa-floppy-disk"
+              @click="save"
+            >
+              {{ t("save") }}
+            </v-btn>
+          </div>
         </div>
       </div>
     </template>

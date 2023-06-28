@@ -1,4 +1,4 @@
-enum Etat {
+export enum Etat {
   Invalide = "Invalide",
   Valide = "Valide",
   Bloque = "Bloque",
