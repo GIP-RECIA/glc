@@ -1,8 +1,10 @@
 export type Personne = {
+  id: number;
   etat: string;
   anneeScolaire: Date;
   categorie: string;
   civilite: string;
+  source: string;
   cn: string;
   dateNaissance: Date;
   displayName: string;

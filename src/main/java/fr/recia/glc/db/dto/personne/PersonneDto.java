@@ -32,10 +32,12 @@ import java.util.List;
 @EqualsAndHashCode
 public class PersonneDto {
 
+  private Long id;
   private Etat etat;
   private Date anneeScolaire;
   private CategoriePersonne categorie;
   private Civilite civilite;
+  private String source;
   private String cn;
   private Date dateNaissance;
   private String displayName;
@@ -60,16 +62,18 @@ public class PersonneDto {
   private List<FonctionDto> additionalFonctions;
 
 
-  public PersonneDto(Etat etat, Date anneeScolaire, CategoriePersonne categorie, Civilite civilite,
-                     String cn, Date dateNaissance, String displayName, String email, String givenName,
+  public PersonneDto(Long id, Etat etat, Date anneeScolaire, CategoriePersonne categorie, Civilite civilite,
+                     String source, String cn, Date dateNaissance, String displayName, String email, String givenName,
                      String numBureau, String patronyme, String sn, String titre, String uid, String uuid,
                      String emailPersonnel, boolean listeRouge, ForceEtat forceEtat, String idEduConnect, String login,
                      Long structure
   ) {
+    this.id = id;
     this.etat = etat;
     this.anneeScolaire = anneeScolaire;
     this.categorie = categorie;
     this.civilite = civilite;
+    this.source = source;
     this.cn = cn;
     this.dateNaissance = dateNaissance;
     this.displayName = displayName;
