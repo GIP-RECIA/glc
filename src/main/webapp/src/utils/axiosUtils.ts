@@ -19,7 +19,6 @@ const instance = axios.create({
   baseURL: VITE_API_URL,
 });
 
-instance.defaults.headers.common["Authorization"] = await getToken();
 instance.defaults.headers.common["content-type"] = "application/jwt";
 
-export { instance };
+export { getToken, instance };
