@@ -11,12 +11,7 @@ const { t } = useI18n();
 const personneStore = usePersonneStore();
 const { searchList } = storeToRefs(personneStore);
 
-defineEmits<
-  (
-    event: "update:select",
-    payload: { id: number; name: string } | undefined
-  ) => void
->();
+defineEmits<(event: "update:select", payload: number | undefined) => void>();
 
 const select = ref<{ id: number; name: string } | undefined>();
 const search = ref<string>();

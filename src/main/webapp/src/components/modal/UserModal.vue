@@ -9,7 +9,7 @@ import { Etat } from "@/types/enums/Etat";
 import { Tabs } from "@/types/enums/Tabs";
 import moment from "moment";
 import { storeToRefs } from "pinia";
-import { watch, ref } from "vue";
+import { watch, ref, computed } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
@@ -27,6 +27,8 @@ const { currentPersonne, isCurrentPersonne, additionalFonctionsForCheckboxes } =
 const isLocked = ref<boolean>(false);
 const isAddMode = ref<boolean>(false);
 const selected = ref<Array<string>>([]);
+
+const isSelected = computed<boolean>(() => selected.value.length > 0);
 
 watch(isCurrentPersonne, (newValue) => {
   if (!newValue) {
@@ -268,6 +270,7 @@ const cancel = () => {
             <v-btn
               color="success"
               prepend-icon="fas fa-floppy-disk"
+              :disabled="!isSelected"
               @click="save"
             >
               {{ t("save") }}
