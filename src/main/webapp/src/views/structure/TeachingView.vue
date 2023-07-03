@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FiliereDisciplines from "@/components/layout/FiliereDisciplines.vue";
-import TeachingModal from "@/components/modal/TeachingModal.vue";
+import AdditionalFonctionsModal from "@/components/modal/AdditionalFonctionsModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
 
@@ -16,6 +16,6 @@ const { teaching } = storeToRefs(fonctionStore);
       :filiere="filiere"
     />
 
-    <teaching-modal />
+    <additional-fonctions-modal />
   </v-container>
 </template>

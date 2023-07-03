@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import FiliereDisciplines from "@/components/layout/FiliereDisciplines.vue";
-import AdministrativeModal from "@/components/modal/AdministrativeModal.vue";
+import AdditionalFonctionsModal from "@/components/modal/AdditionalFonctionsModal.vue";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
 
@@ -16,6 +16,6 @@ const { administrative } = storeToRefs(fonctionStore);
       :filiere="filiere"
     />
 
-    <administrative-modal />
+    <additional-fonctions-modal />
   </v-container>
 </template>

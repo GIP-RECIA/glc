@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SearchPersonne from "@/components/SearchPersonne.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
+import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
 import { ref } from "vue";
@@ -8,11 +9,14 @@ import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
 
-let dialog = ref<boolean>(false);
-let selected = ref<Array<string>>([]);
+const configurationStore = useConfigurationStore();
+const { currentTab } = storeToRefs(configurationStore);
 
 const fonctionStore = useFonctionStore();
 const { customMapping } = storeToRefs(fonctionStore);
+
+let dialog = ref<boolean>(false);
+let selected = ref<Array<string>>([]);
 </script>
 
 <template>
@@ -22,6 +26,7 @@ const { customMapping } = storeToRefs(fonctionStore);
     </div>
 
     <base-modal v-model="dialog" :title="t('add')">
+      Current tab : {{ currentTab }}
       <search-personne />
       <div>
         <b>{{ t("additionalFunction", 2) }}</b>
