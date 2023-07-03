@@ -13,6 +13,19 @@ export const useFonctionStore = defineStore("fonctions", () => {
 
   const fonctions = ref<Array<SourceFonction> | undefined>();
 
+  /**
+   * Initialise `fonction` avec la liste des fonctions et disciplines
+   * par source
+   */
+  const init = async (): Promise<void> => {
+    fonctions.value = (await getFonctions()).data.payload;
+  };
+
+  /* -- Pour la structure courrante -- */
+
+  /**
+   * Retourne les filières de la structure courrante
+   */
   const filieres = computed<Array<Filiere> | undefined>(() => {
     const { currentEtab } = structureStore;
 
@@ -23,6 +36,9 @@ export const useFonctionStore = defineStore("fonctions", () => {
       : undefined;
   });
 
+  /**
+   * Retourne le custom mapping de la structure courante
+   */
   const customMapping = computed<CustomMapping | undefined>(() => {
     const { currentEtab } = structureStore;
 
@@ -33,6 +49,10 @@ export const useFonctionStore = defineStore("fonctions", () => {
     return isEmpty(customMapping) ? undefined : customMapping;
   });
 
+  /**
+   * Retourne les filières administratives avec disciline et personnes
+   * de la structure courrante
+   */
   const administrative = computed<Array<Filiere> | undefined>(() => {
     const { administrativeCodes } = configurationStore;
     const { currentEtab } = structureStore;
@@ -42,6 +62,10 @@ export const useFonctionStore = defineStore("fonctions", () => {
     );
   });
 
+  /**
+   * Retourne les filières d'enseignement avec disciplines et personnes
+   * de la structure courrante
+   */
   const teaching = computed<Array<Filiere> | undefined>(() => {
     const { teachingCodes } = configurationStore;
     const { currentEtab } = structureStore;
@@ -51,15 +75,11 @@ export const useFonctionStore = defineStore("fonctions", () => {
     );
   });
 
-  const init = async (): Promise<void> => {
-    fonctions.value = (await getFonctions()).data.payload;
-  };
-
   return {
+    init,
     filieres,
     customMapping,
     administrative,
     teaching,
-    init,
   };
 });

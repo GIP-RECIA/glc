@@ -17,10 +17,17 @@ export const useStructureStore = defineStore("structure", () => {
   const etabs = ref<Array<SimpleEtablissement> | undefined>();
   const currentEtab = ref<Etablissement | undefined>();
 
+  /**
+   * Initialise `etabs`
+   */
   const init = async (): Promise<void> => {
     etabs.value = (await getEtablissements()).data.payload;
   };
 
+  /**
+   * Initialise `currentEtab`
+   * @param id Identifiant de la structure
+   */
   const initCurrentEtab = async (id: number): Promise<void> => {
     const { structures, setCurrentStructure, setCurrentTab } =
       configurationStore;
@@ -30,11 +37,9 @@ export const useStructureStore = defineStore("structure", () => {
     if (index == -1) {
       structures.push({
         id: id,
-        name: currentEtab.value
-          ? currentEtab.value.type
-            ? `${currentEtab.value.type} ${currentEtab.value.nom}`
-            : currentEtab.value.nom
-          : "",
+        name: currentEtab?.value?.type
+          ? `${currentEtab.value.type} ${currentEtab.value.nom}`
+          : currentEtab?.value?.nom || "",
       });
       setCurrentStructure(structures.length - 1);
     } else setCurrentStructure(index);

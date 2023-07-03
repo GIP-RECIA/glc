@@ -6,29 +6,44 @@ import { computed, ref } from "vue";
 
 export const useConfigurationStore = defineStore("configuration", () => {
   const configuration = ref<Configuration | undefined>();
-  const structures = ref<Array<{ id: number; name: string }>>([]);
-  const currentStructure = ref<number | undefined>();
-  const currentTab = ref<number>(Tabs.Dashboard);
 
+  /**
+   * Initialise `configuration`
+   */
+  const init = async (): Promise<void> => {
+    configuration.value = (await getConfiguration()).data.payload;
+  };
+
+  /**
+   * Retourne la liste des types de personnel administratif
+   */
   const administrativeStaff = computed<Array<string> | undefined>(() => {
     return configuration.value
       ? configuration.value.administrativeStaff
       : undefined;
   });
 
+  /**
+   * Retourne la liste des codes de filière d'administration
+   */
   const administrativeCodes = computed<Array<string> | undefined>(() => {
     return configuration.value
       ? configuration.value.administrativeCodes
       : undefined;
   });
 
+  /**
+   * Retourne la liste des codes de filière d'enseigments
+   */
   const teachingCodes = computed<Array<string> | undefined>(() => {
     return configuration.value ? configuration.value.teachingCodes : undefined;
   });
 
-  const init = async (): Promise<void> => {
-    configuration.value = (await getConfiguration()).data.payload;
-  };
+  /* --- Gestion des onglets de structure --- */
+
+  const structures = ref<Array<{ id: number; name: string }>>([]);
+  const currentStructure = ref<number | undefined>();
+  const currentTab = ref<number>(Tabs.Dashboard);
 
   const setCurrentStructure = (value: number): void => {
     currentStructure.value = value;
@@ -39,13 +54,13 @@ export const useConfigurationStore = defineStore("configuration", () => {
   };
 
   return {
-    structures,
-    currentStructure,
-    currentTab,
+    init,
     administrativeStaff,
     administrativeCodes,
     teachingCodes,
-    init,
+    structures,
+    currentStructure,
+    currentTab,
     setCurrentStructure,
     setCurrentTab,
   };

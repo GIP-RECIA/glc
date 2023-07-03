@@ -9,8 +9,22 @@ export const usePersonneStore = defineStore("personne", () => {
   const configurationStore = useConfigurationStore();
   const structureStore = useStructureStore();
 
+  /* -- Pour la personne courrante -- */
+
   const currentPersonne = ref<Personne | undefined>();
 
+  /**
+   * Initialise `currentPersonne`
+   *
+   * @param id Identifiant de la personne
+   */
+  const initCurrentPersonne = async (id: number): Promise<void> => {
+    currentPersonne.value = (await getPersonne(id)).data.payload;
+  };
+
+  /**
+   * Retourne s'il y a une personne de défini ou l'efface
+   */
   const isCurrentPersonne = computed<boolean>({
     get() {
       return currentPersonne.value ? true : false;
@@ -20,6 +34,10 @@ export const usePersonneStore = defineStore("personne", () => {
     },
   });
 
+  /**
+   * Retourne la liste des fonctions complémentaires de la personne
+   * courrante formaté
+   */
   const additionalFonctionsForCheckboxes = computed<Array<string>>(() => {
     const items = currentPersonne.value?.additionalFonctions.map(
       (fonction) => `${fonction.filiere}-${fonction.disciplinePoste}`
@@ -28,17 +46,25 @@ export const usePersonneStore = defineStore("personne", () => {
     return typeof items === "undefined" ? [] : items;
   });
 
-  const personnes = computed<Array<SimplePersonne> | undefined>(() => {
-    const { personnes } = structureStore.currentEtab;
+  /* -- Pour la structure courrante -- */
 
-    return personnes;
+  /**
+   * Retourne la liste des personnes de la structure
+   */
+  const personnes = computed<Array<SimplePersonne> | undefined>(() => {
+    const { currentEtab } = structureStore;
+
+    return currentEtab?.personnes;
   });
 
+  /**
+   * Retourne la liste des personnes de la structure courrante formaté
+   */
   const searchList = computed<Array<{ id: number; name: string }> | undefined>(
     () => {
-      const { personnes } = structureStore.currentEtab;
+      const { currentEtab } = structureStore;
 
-      return personnes.map((personne) => {
+      return currentEtab?.personnes.map((personne) => {
         return {
           id: personne.id,
           name: personne.patronyme
@@ -49,6 +75,9 @@ export const usePersonneStore = defineStore("personne", () => {
     }
   );
 
+  /**
+   * Retourne la liste des personnels administratifs de la structure courrante
+   */
   const administrative = computed<Array<SimplePersonne> | undefined>(() => {
     const { administrativeStaff } = configurationStore;
 
@@ -57,17 +86,13 @@ export const usePersonneStore = defineStore("personne", () => {
     );
   });
 
-  const initCurrentPersonne = async (id: number): Promise<void> => {
-    currentPersonne.value = (await getPersonne(id)).data.payload;
-  };
-
   return {
     currentPersonne,
+    initCurrentPersonne,
     isCurrentPersonne,
     additionalFonctionsForCheckboxes,
     personnes,
     searchList,
     administrative,
-    initCurrentPersonne,
   };
 });
