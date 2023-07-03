@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import SearchPersonne from "@/components/SearchPersonne.vue";
 import { useStructureStore } from "@/stores/structureStore";
 import { storeToRefs } from "pinia";
 
@@ -25,6 +24,5 @@ const { currentEtab } = storeToRefs(structureStore);
       <div>modeleLogin : {{ currentEtab.modeleLogin }}</div>
       <div>logo : {{ currentEtab.logo }}</div>
     </div>
-    <search-personne />
   </v-container>
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AdditionalFonctionsModal from "@/components/modal/AdditionalFonctionsModal.vue";
 import UserModal from "@/components/modal/UserModal.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
@@ -71,5 +72,6 @@ watch(
       </v-window-item>
     </v-window>
     <user-modal />
+    <additional-fonctions-modal />
   </div>
 </template>

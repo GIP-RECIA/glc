@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import FiliereDisciplines from "@/components/layout/FiliereDisciplines.vue";
-import AdditionalFonctionsModal from "@/components/modal/AdditionalFonctionsModal.vue";
+import { useConfigurationStore } from "@/stores/configurationStore";
 import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
+
+const configurationStore = useConfigurationStore();
+const { isAdditionalFonction } = storeToRefs(configurationStore);
 
 const fonctionStore = useFonctionStore();
 const { administrative } = storeToRefs(fonctionStore);
@@ -16,6 +19,12 @@ const { administrative } = storeToRefs(fonctionStore);
       :filiere="filiere"
     />
 
-    <additional-fonctions-modal />
+    <div class="fab ma-4">
+      <v-btn
+        color="primary"
+        icon="fas fa-user-plus"
+        @click="isAdditionalFonction = true"
+      />
+    </div>
   </v-container>
 </template>

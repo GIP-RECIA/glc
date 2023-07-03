@@ -53,6 +53,10 @@ export const useConfigurationStore = defineStore("configuration", () => {
     currentTab.value = value;
   };
 
+  /* --  -- */
+
+  const isAdditionalFonction = ref<boolean>(false);
+
   return {
     init,
     administrativeStaff,
@@ -63,5 +67,6 @@ export const useConfigurationStore = defineStore("configuration", () => {
     currentTab,
     setCurrentStructure,
     setCurrentTab,
+    isAdditionalFonction,
   };
 });
