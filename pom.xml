@@ -126,16 +126,20 @@
         <version>4.2</version>
         <configuration>
           <strictCheck>true</strictCheck>
-          <header>etc/header.template</header>
-          <includes>
-            <include>src/**/*.java</include>
-            <include>src/**/*.xml</include>
-            <include>src/**/*.properties</include>
-            <include>src/**/*.css</include>
-          </includes>
-          <excludes>
-            <exclude>**/dist/**</exclude>
-          </excludes>
+          <licenseSets>
+            <licenseSet>
+              <header>etc/header.template</header>
+              <includes>
+                <include>src/**/*.java</include>
+                <include>src/**/*.xml</include>
+                <include>src/**/*.properties</include>
+                <include>src/**/*.css</include>
+              </includes>
+              <excludes>
+                <exclude>**/dist/**</exclude>
+              </excludes>
+            </licenseSet>
+          </licenseSets>
         </configuration>
       </plugin>
       <plugin>
