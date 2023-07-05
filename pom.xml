@@ -20,7 +20,6 @@
 
   <properties>
     <java.version>17</java.version>
-    <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <org.jasig.portal.version>5.13.1</org.jasig.portal.version>
   </properties>
 
@@ -175,13 +174,7 @@
         <configuration>
           <filesets>
             <fileset>
-              <directory>src/main/webapp/dist</directory>
-            </fileset>
-            <fileset>
               <directory>.tmp</directory>
-            </fileset>
-            <fileset>
-              <directory>node_modules</directory>
             </fileset>
           </filesets>
         </configuration>
