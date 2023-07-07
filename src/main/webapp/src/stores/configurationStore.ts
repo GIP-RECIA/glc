@@ -14,6 +14,14 @@ export const useConfigurationStore = defineStore("configuration", () => {
     configuration.value = (await getConfiguration()).data.payload;
   };
 
+  const casUrlLogin = computed<string | undefined>(
+    () => configuration.value?.casUrlLogin
+  );
+
+  const casUrlLogout = computed<string | undefined>(
+    () => configuration.value?.casUrlLogout
+  );
+
   /**
    * Retourne la liste des types de personnel administratif
    */
@@ -59,6 +67,8 @@ export const useConfigurationStore = defineStore("configuration", () => {
 
   return {
     init,
+    casUrlLogin,
+    casUrlLogout,
     administrativeStaff,
     administrativeCodes,
     teachingCodes,

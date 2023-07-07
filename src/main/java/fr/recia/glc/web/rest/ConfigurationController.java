@@ -33,15 +33,21 @@ import java.util.Map;
 @RequestMapping(value = "/config")
 public class ConfigurationController {
 
+  @Value("${security-configuration.cas.url.login}")
+  private String casUrlLogin;
+  @Value("${security-configuration.cas.url.logout}")
+  private String casUrlLogout;
   @Value("${app.config.filiere.administrative}")
   private List<String> administrativeCodes;
-
   @Value("${app.config.filiere.teaching}")
   private List<String> teachingCodes;
 
   @GetMapping()
   public ApiResponse getConfiguration() {
     Map<String, Object> data = new HashMap<>();
+
+    data.put("casUrlLogin", casUrlLogin);
+    data.put("casUrlLogout", casUrlLogout);
 
     List<CategoriePersonne> administrativeStaff = new ArrayList<>();
     administrativeStaff.add(CategoriePersonne.Enseignant);
