@@ -9,7 +9,7 @@ export const usePersonneStore = defineStore("personne", () => {
   const configurationStore = useConfigurationStore();
   const structureStore = useStructureStore();
 
-  /* -- Pour la personne courrante -- */
+  /* -- Pour la personne courante -- */
 
   const currentPersonne = ref<Personne | undefined>();
 
@@ -36,7 +36,7 @@ export const usePersonneStore = defineStore("personne", () => {
 
   /**
    * Retourne la liste des fonctions complémentaires de la personne
-   * courrante formaté
+   * courante formaté
    */
   const additionalFonctionsForCheckboxes = computed<Array<string>>(() => {
     const items = currentPersonne.value?.additionalFonctions.map(
@@ -46,7 +46,7 @@ export const usePersonneStore = defineStore("personne", () => {
     return typeof items === "undefined" ? [] : items;
   });
 
-  /* -- Pour la structure courrante -- */
+  /* -- Pour la structure courante -- */
 
   /**
    * Retourne la liste des personnes de la structure
@@ -58,7 +58,7 @@ export const usePersonneStore = defineStore("personne", () => {
   });
 
   /**
-   * Retourne la liste des personnes de la structure courrante formaté
+   * Retourne la liste des personnes de la structure courante formaté
    */
   const searchList = computed<Array<{ id: number; name: string }> | undefined>(
     () => {
@@ -76,7 +76,7 @@ export const usePersonneStore = defineStore("personne", () => {
   );
 
   /**
-   * Retourne la liste des personnels administratifs de la structure courrante
+   * Retourne la liste des personnels administratifs de la structure courante
    */
   const administrative = computed<Array<SimplePersonne> | undefined>(() => {
     const { administrativeStaff } = configurationStore;

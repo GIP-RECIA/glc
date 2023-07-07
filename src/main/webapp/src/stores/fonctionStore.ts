@@ -21,10 +21,10 @@ export const useFonctionStore = defineStore("fonctions", () => {
     fonctions.value = (await getFonctions()).data;
   };
 
-  /* -- Pour la structure courrante -- */
+  /* -- Pour la structure courante -- */
 
   /**
-   * Retourne les filières de la structure courrante
+   * Retourne les filières de la structure courante
    */
   const filieres = computed<Array<Filiere> | undefined>(() => {
     const { currentEtab } = structureStore;
@@ -51,7 +51,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
 
   /**
    * Retourne les filières administratives avec disciline et personnes
-   * de la structure courrante
+   * de la structure courante
    */
   const administrative = computed<Array<Filiere> | undefined>(() => {
     const { administrativeCodes } = configurationStore;
@@ -64,7 +64,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
 
   /**
    * Retourne les filières d'enseignement avec disciplines et personnes
-   * de la structure courrante
+   * de la structure courante
    */
   const teaching = computed<Array<Filiere> | undefined>(() => {
     const { teachingCodes } = configurationStore;
