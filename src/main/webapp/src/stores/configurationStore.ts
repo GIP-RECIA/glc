@@ -25,27 +25,23 @@ export const useConfigurationStore = defineStore("configuration", () => {
   /**
    * Retourne la liste des types de personnel administratif
    */
-  const administrativeStaff = computed<Array<string> | undefined>(() => {
-    return configuration.value
-      ? configuration.value.administrativeStaff
-      : undefined;
-  });
+  const administrativeStaff = computed<Array<string> | undefined>(
+    () => configuration.value?.administrativeStaff
+  );
 
   /**
    * Retourne la liste des codes de filière d'administration
    */
-  const administrativeCodes = computed<Array<string> | undefined>(() => {
-    return configuration.value
-      ? configuration.value.administrativeCodes
-      : undefined;
-  });
+  const administrativeCodes = computed<Array<string> | undefined>(
+    () => configuration.value?.administrativeCodes
+  );
 
   /**
    * Retourne la liste des codes de filière d'enseigments
    */
-  const teachingCodes = computed<Array<string> | undefined>(() => {
-    return configuration.value ? configuration.value.teachingCodes : undefined;
-  });
+  const teachingCodes = computed<Array<string> | undefined>(
+    () => configuration.value?.teachingCodes
+  );
 
   /* --- Gestion des onglets de structure --- */
 
