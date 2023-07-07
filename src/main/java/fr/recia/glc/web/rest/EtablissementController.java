@@ -31,9 +31,10 @@ import fr.recia.glc.db.repositories.fonction.FonctionRepository;
 import fr.recia.glc.db.repositories.fonction.TypeFonctionFiliereRepository;
 import fr.recia.glc.db.repositories.personne.APersonneRepository;
 import fr.recia.glc.db.repositories.structure.EtablissementRepository;
-import fr.recia.glc.models.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +63,7 @@ public class EtablissementController {
   private TypeFonctionFiliereRepository<TypeFonctionFiliere> typeFonctionFiliereRepository;
 
   @GetMapping()
-  public ApiResponse getEtablissements() {
+  public ResponseEntity<List<SimpleEtablissementDto>> getEtablissements() {
     List<SimpleEtablissementDto> etablissements =
       etablissementRepository.findAllEtablissements().stream()
         .map(etablissement -> {
@@ -77,11 +78,11 @@ public class EtablissementController {
         })
         .toList();
 
-    return new ApiResponse("", etablissements);
+    return new ResponseEntity<>(etablissements, HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")
-  public ApiResponse getEtablissement(@PathVariable Long id) {
+  public ResponseEntity<EtablissementDto> getEtablissement(@PathVariable Long id) {
     EtablissementDto etablissement = etablissementRepository.findByEtablissementId(id);
     String[] split = etablissement.getNom().split("\\$");
     if (split.length > 1) {
@@ -91,7 +92,7 @@ public class EtablissementController {
     etablissement.setFilieres(getFilieresWithDisciplinesAndUsers(id, etablissement.getSource()));
     etablissement.setPersonnes(aPersonneRepository.findByStructureId(id));
 
-    return new ApiResponse("", etablissement);
+    return new ResponseEntity<>(etablissement, HttpStatus.OK);
   }
 
   private List<TypeFonctionFiliereDto> getFilieresWithDisciplinesAndUsers(Long structureId, String source) {

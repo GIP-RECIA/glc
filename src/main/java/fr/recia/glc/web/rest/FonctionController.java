@@ -26,11 +26,12 @@ import fr.recia.glc.db.entities.fonction.TypeFonctionFiliere;
 import fr.recia.glc.db.repositories.education.DisciplineRepository;
 import fr.recia.glc.db.repositories.fonction.FonctionRepository;
 import fr.recia.glc.db.repositories.fonction.TypeFonctionFiliereRepository;
-import fr.recia.glc.models.apiresponse.ApiResponse;
 import fr.recia.glc.models.mappers.AdditionalFonctionMapping;
 import fr.recia.glc.models.mappers.AdditionalFonctionMappingFiliere;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,7 +63,7 @@ public class FonctionController {
   private static final String DISCIPLINE = "disciplines";
 
   @GetMapping()
-  public ApiResponse getFonctions() {
+  public ResponseEntity<List<Object>> getFonctions() {
     ArrayList<Object> data = new ArrayList<>();
 
     List<String> sources = disciplineRepository.findAllNonSarapisSources();
@@ -74,7 +75,7 @@ public class FonctionController {
       data.add(object);
     });
 
-    return new ApiResponse("", data);
+    return new ResponseEntity<>(data, HttpStatus.OK);
   }
 
   private List<TypeFonctionFiliereDto> getOfficial(String source) {

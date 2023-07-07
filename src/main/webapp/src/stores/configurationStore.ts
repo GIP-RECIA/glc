@@ -11,7 +11,7 @@ export const useConfigurationStore = defineStore("configuration", () => {
    * Initialise `configuration`
    */
   const init = async (): Promise<void> => {
-    configuration.value = (await getConfiguration()).data.payload;
+    configuration.value = (await getConfiguration()).data;
   };
 
   const casUrlLogin = computed<string | undefined>(

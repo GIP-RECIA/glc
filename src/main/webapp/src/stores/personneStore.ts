@@ -19,7 +19,7 @@ export const usePersonneStore = defineStore("personne", () => {
    * @param id Identifiant de la personne
    */
   const initCurrentPersonne = async (id: number): Promise<void> => {
-    currentPersonne.value = (await getPersonne(id)).data.payload;
+    currentPersonne.value = (await getPersonne(id)).data;
   };
 
   /**

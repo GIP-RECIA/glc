@@ -48,7 +48,7 @@ const findInStructure = (name: string): void => {
 
 const findOutOfStructure = debounce(async (name: string) => {
   try {
-    items.value = (await searchPersonne(name)).data.payload;
+    items.value = (await searchPersonne(name)).data;
   } catch (e) {
     console.error(e);
   }

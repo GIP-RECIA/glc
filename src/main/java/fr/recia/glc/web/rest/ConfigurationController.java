@@ -16,9 +16,10 @@
 package fr.recia.glc.web.rest;
 
 import fr.recia.glc.db.enums.CategoriePersonne;
-import fr.recia.glc.models.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class ConfigurationController {
   private List<String> teachingCodes;
 
   @GetMapping()
-  public ApiResponse getConfiguration() {
+  public ResponseEntity<Object> getConfiguration() {
     Map<String, Object> data = new HashMap<>();
 
     data.put("casUrlLogin", casUrlLogin);
@@ -59,7 +60,7 @@ public class ConfigurationController {
     data.put("administrativeCodes", administrativeCodes);
     data.put("teachingCodes", teachingCodes);
 
-    return new ApiResponse("", data);
+    return new ResponseEntity<>(data, HttpStatus.OK);
   }
 
 }

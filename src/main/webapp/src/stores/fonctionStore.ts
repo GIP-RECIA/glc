@@ -18,7 +18,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
    * par source
    */
   const init = async (): Promise<void> => {
-    fonctions.value = (await getFonctions()).data.payload;
+    fonctions.value = (await getFonctions()).data;
   };
 
   /* -- Pour la structure courrante -- */

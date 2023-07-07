@@ -21,7 +21,7 @@ export const useStructureStore = defineStore("structure", () => {
    * Initialise `etabs`
    */
   const init = async (): Promise<void> => {
-    etabs.value = (await getEtablissements()).data.payload;
+    etabs.value = (await getEtablissements()).data;
   };
 
   /**
@@ -32,7 +32,7 @@ export const useStructureStore = defineStore("structure", () => {
     const { structures, setCurrentStructure, setCurrentTab } =
       configurationStore;
 
-    currentEtab.value = (await getEtablissement(id)).data.payload;
+    currentEtab.value = (await getEtablissement(id)).data;
     const index = structures.findIndex((structures) => structures.id == id);
     if (index == -1) {
       structures.push({

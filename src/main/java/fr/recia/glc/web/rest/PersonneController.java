@@ -21,9 +21,10 @@ import fr.recia.glc.db.entities.fonction.Fonction;
 import fr.recia.glc.db.entities.personne.APersonne;
 import fr.recia.glc.db.repositories.fonction.FonctionRepository;
 import fr.recia.glc.db.repositories.personne.APersonneRepository;
-import fr.recia.glc.models.apiresponse.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,30 +47,24 @@ public class PersonneController {
   private FonctionRepository<Fonction> fonctionRepository;
 
   @GetMapping
-  public ApiResponse searchPersonne(
+  public ResponseEntity<String> searchPersonne(
     @RequestParam(value = "name") String name
   ) {
-    return new ApiResponse(
-      "",
-      ""
-    );
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 
   @GetMapping(value = "/{id}")
-  public ApiResponse getPersonne(@PathVariable Long id) {
+  public ResponseEntity<PersonneDto> getPersonne(@PathVariable Long id) {
     PersonneDto personne = aPersonneRepository.findByPersonneId(id);
     List<FonctionDto> fonctions = fonctionRepository.findByPersonneIdAndStructure(id, personne.getStructure());
     personne.setFonctions(fonctions.stream().filter(fonction -> !fonction.getSource().startsWith("SarapisUi_")).toList());
     personne.setAdditionalFonctions(fonctions.stream().filter(fonction -> fonction.getSource().startsWith("SarapisUi_")).toList());
 
-    return new ApiResponse(
-      "",
-      personne
-    );
+    return new ResponseEntity<>(personne, HttpStatus.OK);
   }
 
   @PostMapping(value = "/{id}/fonction")
-  public ApiResponse setPersonneAdditionalFonctions(@PathVariable Long id, @RequestBody Map<String, Object> body) {
+  public ResponseEntity<List<FonctionDto>> setPersonneAdditionalFonctions(@PathVariable Long id, @RequestBody Map<String, Object> body) {
     PersonneDto personne = aPersonneRepository.findByPersonneId(id);
     String source = personne.getSource().startsWith("SarapisUI_")
       ? personne.getSource()
@@ -87,10 +82,7 @@ public class PersonneController {
       })
       .toList();
 
-    return new ApiResponse(
-      "",
-      fonctions
-    );
+    return new ResponseEntity<>(fonctions, HttpStatus.OK);
   }
 
 }
