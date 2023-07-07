@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import LoginModal from "@/components/modal/LoginModal.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount } from "vue";
@@ -20,11 +21,12 @@ onBeforeMount(() => {
 
 const configurationStore = useConfigurationStore();
 configurationStore.init();
-const { structures, currentStructure } = storeToRefs(configurationStore);
+const { structures, currentStructure, isAuthenticated } =
+  storeToRefs(configurationStore);
 </script>
 
 <template>
-  <header>
+  <header v-if="isAuthenticated">
     <extended-uportal-header
       domain="test-lycee.giprecia.net"
       service-name="Gestion Locale des Comptes"
@@ -64,9 +66,10 @@ const { structures, currentStructure } = storeToRefs(configurationStore);
     </v-toolbar>
   </header>
   <main>
-    <RouterView />
+    <router-view v-if="isAuthenticated" />
+    <login-modal />
   </main>
-  <footer>
+  <footer v-if="isAuthenticated">
     <extended-uportal-footer
       domain="test-lycee.giprecia.net"
       template-api-path="/commun/portal_template_api.tpl.json"

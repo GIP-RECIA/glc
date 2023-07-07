@@ -57,9 +57,13 @@ export const useConfigurationStore = defineStore("configuration", () => {
     currentTab.value = value;
   };
 
-  /* --  -- */
+  /* -- Gestion de la modale des fonctionalités complémentaires -- */
 
   const isAdditionalFonction = ref<boolean>(false);
+
+  /* -- Gestion de l'authentification -- */
+
+  const isAuthenticated = ref<boolean>(false);
 
   return {
     init,
@@ -74,5 +78,6 @@ export const useConfigurationStore = defineStore("configuration", () => {
     setCurrentStructure,
     setCurrentTab,
     isAdditionalFonction,
+    isAuthenticated,
   };
 });

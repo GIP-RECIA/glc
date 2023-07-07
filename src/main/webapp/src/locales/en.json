@@ -42,5 +42,6 @@
   "people": "People",
   "searchOutOfStructure": "search out of structure",
   "cancel": "Cancel",
-  "signIn": "Sign In"
+  "signIn": "Sign In",
+  "casSignIn": "CAS sign in"
 }

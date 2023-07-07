@@ -42,5 +42,6 @@
   "people": "Personne | Personnes",
   "searchOutOfStructure": "Rechercher hors de la structure",
   "cancel": "Annuler",
-  "signIn": "Connexion"
+  "signIn": "Connexion",
+  "casSignIn": "Connexion CAS"
 }
