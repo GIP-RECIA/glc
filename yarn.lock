@@ -927,15 +927,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uportal/open-id-connect@npm:^1.39.0":
-  version: 1.39.0
-  resolution: "@uportal/open-id-connect@npm:1.39.0"
-  dependencies:
-    jwt-decode: ^3.0.0
-  checksum: 95798440a8bda85175ceed8d847515db7ba722cb2ef9114992fed2f2fdba1c461754a4167c79a7a90ece29b5b0b422a168590908ddcc8271d243eec794dbaa9d
-  languageName: node
-  linkType: hard
-
 "@vitejs/plugin-vue@npm:^4.2.3":
   version: 4.2.3
   resolution: "@vitejs/plugin-vue@npm:4.2.3"
@@ -3626,13 +3617,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jwt-decode@npm:^3.0.0":
-  version: 3.1.2
-  resolution: "jwt-decode@npm:3.1.2"
-  checksum: 20a4b072d44ce3479f42d0d2c8d3dabeb353081ba4982e40b83a779f2459a70be26441be6c160bfc8c3c6eadf9f6380a036fbb06ac5406b5674e35d8c4205eeb
-  languageName: node
-  linkType: hard
-
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -5184,7 +5168,6 @@ __metadata:
     "@types/lodash.debounce": ^4.0.7
     "@types/lodash.isempty": ^4.4.7
     "@types/node": ^18.16.19
-    "@uportal/open-id-connect": ^1.39.0
     "@vitejs/plugin-vue": ^4.2.3
     "@vue/eslint-config-prettier": ^7.1.0
     "@vue/eslint-config-typescript": ^11.0.3
