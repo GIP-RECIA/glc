@@ -15,21 +15,36 @@
  */
 package fr.recia.glc;
 
+import fr.recia.glc.security.cas.AjaxAuthenticationFailureHandler;
+import fr.recia.glc.security.cas.AjaxAuthenticationSuccessHandler;
+import fr.recia.glc.security.cas.AjaxLogoutSuccessHandler;
+import fr.recia.glc.security.cas.CustomSingleSignOutFilter;
+import fr.recia.glc.web.filter.CsrfCookieGeneratorFilter;
 import lombok.extern.slf4j.Slf4j;
-import org.apereo.portal.soffit.security.SoffitApiAuthenticationManager;
-import org.apereo.portal.soffit.security.SoffitApiPreAuthenticatedProcessingFilter;
+import org.apereo.cas.client.validation.Cas20ServiceTicketValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.support.ErrorPageFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
+import org.springframework.security.cas.ServiceProperties;
+import org.springframework.security.cas.authentication.CasAssertionAuthenticationToken;
+import org.springframework.security.cas.authentication.CasAuthenticationProvider;
+import org.springframework.security.cas.web.CasAuthenticationEntryPoint;
+import org.springframework.security.cas.web.CasAuthenticationFilter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
+import org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
@@ -38,6 +53,8 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import jakarta.servlet.Filter;
+import javax.inject.Inject;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -45,26 +62,122 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-  @Value("${security-configuration.soffit.jwt.signatureKey}")
-  private String signatureKey;
+  @Value("${server.servlet.context-path}")
+  private String contextPath;
+
+  @Value("${security-configuration.cas.service}")
+  private String casService;
+  @Value("${security-configuration.cas.id-key-provider}")
+  private String casIdKeyProvider;
+  @Value("${security-configuration.cas.url.login}")
+  private String casUrlLogin;
+  @Value("${security-configuration.cas.url.logout}")
+  private String casUrlLogout;
+  @Value("${security-configuration.cas.url.prefix}")
+  private String casUrlPrefix;
 
   @Value("${security-configuration.cors.enable}")
   private boolean corsEnable;
-
   @Value("${security-configuration.cors.allow-credentials}")
   private Boolean corsAllowCredentials;
-
   @Value("${security-configuration.cors.allowed-origins}")
   private List<String> corsAllowedOrigins;
-
   @Value("${security-configuration.cors.exposed-headers}")
   private List<String> corsExposedHeaders;
-
   @Value("${security-configuration.cors.allowed-headers}")
   private List<String> corsAllowedHeaders;
-
   @Value("${security-configuration.cors.allowed-methods}")
   private List<String> corsAllowedMethods;
+
+  @Inject
+  private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
+  @Inject
+  private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+  @Inject
+  private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+  @Inject
+  private AuthenticationUserDetailsService<CasAssertionAuthenticationToken> userDetailsService;
+
+  // CAS
+
+  @Bean
+  public ServiceProperties serviceProperties() {
+    ServiceProperties sp = new ServiceProperties();
+    sp.setService(casService);
+    sp.setSendRenew(false);
+    sp.setAuthenticateAllArtifacts(true);
+
+    return sp;
+  }
+
+  @Bean
+  protected AuthenticationManager authenticationManager() {
+    return new ProviderManager(Collections.singletonList(casAuthenticationProvider()));
+  }
+
+  @Bean
+  public SessionAuthenticationStrategy sessionStrategy() {
+    SessionFixationProtectionStrategy sessionStrategy = new SessionFixationProtectionStrategy();
+    sessionStrategy.setMigrateSessionAttributes(false);
+
+    return sessionStrategy;
+  }
+
+  @Bean
+  public SimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler() {
+    SimpleUrlAuthenticationSuccessHandler authenticationSuccessHandler = new SimpleUrlAuthenticationSuccessHandler();
+    authenticationSuccessHandler.setDefaultTargetUrl("/");
+    authenticationSuccessHandler.setTargetUrlParameter("spring-security-redirect");
+
+    return authenticationSuccessHandler;
+  }
+
+  @Bean
+  public Cas20ServiceTicketValidator cas20ServiceTicketValidator() {
+    return new Cas20ServiceTicketValidator(casUrlPrefix);
+  }
+
+  @Bean
+  public CasAuthenticationProvider casAuthenticationProvider() {
+    CasAuthenticationProvider casAuthenticationProvider = new CasAuthenticationProvider();
+    casAuthenticationProvider.setAuthenticationUserDetailsService(userDetailsService);
+    casAuthenticationProvider.setServiceProperties(serviceProperties());
+    casAuthenticationProvider.setTicketValidator(cas20ServiceTicketValidator());
+    casAuthenticationProvider.setKey(casIdKeyProvider);
+
+    return casAuthenticationProvider;
+  }
+
+  @Bean
+  public CasAuthenticationEntryPoint casAuthenticationEntryPoint() {
+    CasAuthenticationEntryPoint casAuthenticationEntryPoint = new CasAuthenticationEntryPoint();
+    casAuthenticationEntryPoint.setLoginUrl(casUrlLogin);
+    casAuthenticationEntryPoint.setServiceProperties(serviceProperties());
+
+    return casAuthenticationEntryPoint;
+  }
+
+  @Bean
+  public CasAuthenticationFilter casAuthenticationFilter() {
+    CasAuthenticationFilter casAuthenticationFilter = new CasAuthenticationFilter();
+    casAuthenticationFilter.setFilterProcessesUrl("/j_spring_cas_security_check");
+    casAuthenticationFilter.setAuthenticationManager(authenticationManager());
+    casAuthenticationFilter.setSessionAuthenticationStrategy(sessionStrategy());
+    casAuthenticationFilter.setAuthenticationFailureHandler(ajaxAuthenticationFailureHandler);
+    casAuthenticationFilter.setAuthenticationSuccessHandler(ajaxAuthenticationSuccessHandler);
+
+    return casAuthenticationFilter;
+  }
+
+  @Bean
+  public CustomSingleSignOutFilter singleSignOutFilter() {
+    CustomSingleSignOutFilter singleSignOutFilter = new CustomSingleSignOutFilter();
+    singleSignOutFilter.setCasServerUrlPrefix(casUrlPrefix);
+
+    return singleSignOutFilter;
+  }
+
+  // Spring
 
   @Bean
   public WebSecurityCustomizer webSecurityCustomizer() {
@@ -76,27 +189,35 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    if (log.isDebugEnabled()) log.debug("configure signatureKey = {}", this.signatureKey);
-    final AbstractPreAuthenticatedProcessingFilter filter =
-      new SoffitApiPreAuthenticatedProcessingFilter(this.signatureKey);
-
-    filter.setAuthenticationManager(authenticationManager());
-
-    http.addFilter(filter);
-    http.authorizeHttpRequests(authz -> authz
-      .requestMatchers("/health-check").permitAll()
-      .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
-      .anyRequest().denyAll()
-    );
     http.cors().configurationSource(corsConfigurationSource());
-    http.sessionManagement().sessionFixation().newSession();
+//    http.sessionManagement().sessionFixation().newSession();
+
+    http.
+      addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class).exceptionHandling()
+      .authenticationEntryPoint(casAuthenticationEntryPoint());
+
+    http
+      .addFilterBefore(casAuthenticationFilter(), BasicAuthenticationFilter.class)
+      .addFilterBefore(singleSignOutFilter(), CasAuthenticationFilter.class);
+
+    http.headers().frameOptions().disable();
+
+    http
+      .authorizeHttpRequests(authz -> authz
+        .requestMatchers("/health-check").permitAll()
+        .requestMatchers("/api/**").authenticated()
+        .anyRequest().denyAll()
+      );
+
+    http
+      .logout()
+      .logoutUrl("/api/logout")
+      .logoutSuccessHandler(ajaxLogoutSuccessHandler)
+      .invalidateHttpSession(true)
+      .deleteCookies("JSESSIONID")
+      .permitAll();
 
     return http.build();
-  }
-
-  @Bean
-  public AuthenticationManager authenticationManager() {
-    return new SoffitApiAuthenticationManager();
   }
 
   @Bean
@@ -121,16 +242,16 @@ public class SecurityConfiguration {
   CorsConfigurationSource corsConfigurationSource() {
     final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-    if (this.corsEnable) {
+    if (corsEnable) {
       if (log.isWarnEnabled()) log.warn("CORS ABILITATI! CORS est autorisé");
 
       final CorsConfiguration configuration = new CorsConfiguration();
 
-      configuration.setAllowCredentials(this.corsAllowCredentials);
-      configuration.setAllowedOrigins(this.corsAllowedOrigins);
-      configuration.setExposedHeaders(this.corsExposedHeaders);
-      configuration.setAllowedHeaders(this.corsAllowedHeaders);
-      configuration.setAllowedMethods(this.corsAllowedMethods);
+      configuration.setAllowCredentials(corsAllowCredentials);
+      configuration.setAllowedOrigins(corsAllowedOrigins);
+      configuration.setExposedHeaders(corsExposedHeaders);
+      configuration.setAllowedHeaders(corsAllowedHeaders);
+      configuration.setAllowedMethods(corsAllowedMethods);
 
       source.registerCorsConfiguration("/**", configuration);
     }

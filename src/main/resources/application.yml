@@ -10,10 +10,8 @@ server:
   servlet:
     context-path: /spring-api
 
-#logging:
-#  level:
-#    web: DEBUG
-#    fr: DEBUG
+logging:
+  config: "classpath:logback.xml"
 
 spring:
   application:
@@ -40,9 +38,6 @@ spring:
         format_sql: true
 
 security-configuration:
-  soffit:
-    jwt.signatureKey: "=== Signature Key ==="
-
   cors:
     enable: true
     allow-credentials: true

@@ -3,11 +3,6 @@ server:
   servlet:
     context-path: /api-quentin
 
-#logging:
-#  level:
-#    web: DEBUG
-#    fr: DEBUG
-
 spring:
   config:
     activate:
@@ -19,8 +14,13 @@ spring:
     password: root
 
 security-configuration:
-  soffit:
-    jwt.signatureKey: ""
+  cas:
+    id-key-provider:
+    service:
+    url:
+      prefix:
+      login:
+      logout:
 
   cors:
     enable: true

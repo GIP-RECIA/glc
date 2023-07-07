@@ -14,8 +14,13 @@ spring:
     password:
 
 security-configuration:
-  soffit:
-    jwt.signatureKey: ""
+  cas:
+    id-key-provider:
+    service:
+    url:
+      prefix:
+      login:
+      logout:
 
   cors:
     enable: true
