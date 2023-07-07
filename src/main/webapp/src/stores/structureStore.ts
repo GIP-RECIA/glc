@@ -33,6 +33,8 @@ export const useStructureStore = defineStore("structure", () => {
       configurationStore;
 
     currentEtab.value = (await getEtablissement(id)).data;
+
+    // Mise à jour de l'onglet
     const index = structures.findIndex((structures) => structures.id == id);
     if (index == -1) {
       structures.push({
