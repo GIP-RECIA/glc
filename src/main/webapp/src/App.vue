@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import LoginModal from "@/components/modal/LoginModal.vue";
+import CustomTabBar from "@/components/tab/CustomTabBar.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { storeToRefs } from "pinia";
 import { onBeforeMount } from "vue";
@@ -21,8 +22,7 @@ onBeforeMount(() => {
 
 const configurationStore = useConfigurationStore();
 configurationStore.init();
-const { structures, currentStructure, isAuthenticated } =
-  storeToRefs(configurationStore);
+const { isAuthenticated } = storeToRefs(configurationStore);
 </script>
 
 <template>
@@ -52,17 +52,8 @@ const { structures, currentStructure, isAuthenticated } =
       return-home-target="_self"
       icon-type="nine-square"
     />
-    <v-toolbar title="GLC" density="compact">
-      <v-chip-group v-model="currentStructure" selected-class="text-primary">
-        <v-chip
-          v-for="(structure, index) in structures"
-          :key="index"
-          :to="{ name: 'structure', params: { structureId: structure.id } }"
-          closable
-          >{{ structure.name }}</v-chip
-        >
-      </v-chip-group>
-      <v-btn :to="{ name: 'home' }" icon><v-icon icon="fas fa-plus" /></v-btn>
+    <v-toolbar density="compact" class="px-3">
+      GLC<custom-tab-bar class="ml-2" />
     </v-toolbar>
   </header>
   <main>
