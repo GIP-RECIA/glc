@@ -226,11 +226,15 @@ const cancel = () => {
         <div>
           <div v-if="!isAddMode">
             <v-btn
+              v-if="
+                currentPersonne?.etat == Etat.Bloque ||
+                currentPersonne?.etat == Etat.Valide
+              "
               color="secondary"
-              :prepend-icon="isLocked ? 'fas fa-lock' : 'fas fa-lock-open'"
+              :prepend-icon="isLocked ? 'fas fa-lock-open' : 'fas fa-lock'"
               @click="lockManager"
             >
-              {{ isLocked ? t("lock") : t("unlock") }}
+              {{ isLocked ? t("unlock") : t("lock") }}
             </v-btn>
             <v-btn
               color="secondary"
