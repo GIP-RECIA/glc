@@ -19,7 +19,7 @@ defineEmits<(event: "close", payload: number) => void>();
   >
     <router-link
       :class="`d-flex align-center text-decoration-none ml-2 h-100 ${
-        !selected && 'text-black'
+        selected ? '' : 'text-black'
       }`"
       :to="link"
     >

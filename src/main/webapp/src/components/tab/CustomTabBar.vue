@@ -22,7 +22,12 @@ const close = (i: number) => {
   )?.id;
   if (structureId)
     router.push({ name: "structure", params: { structureId: structureId } });
-  else router.push({ name: "home" });
+  else newTab();
+};
+
+const newTab = () => {
+  router.push({ name: "home" });
+  currentStructure.value = undefined;
 };
 </script>
 
@@ -37,7 +42,14 @@ const close = (i: number) => {
       :selected="currentStructure == index"
       @close="close"
     />
-    <v-btn :to="{ name: 'home' }" variant="text" density="comfortable" icon>
+    <v-btn
+      v-if="structures.length > 0"
+      :to="{ name: 'home' }"
+      variant="text"
+      density="comfortable"
+      icon
+      @click="newTab"
+    >
       <v-icon icon="fas fa-plus" size="x-small" />
     </v-btn>
   </div>
