@@ -18,7 +18,7 @@ const close = (i: number) => {
 
   // Changement de page
   const structureId = structures.value.find(
-    (structure, index) => index == newCurrentStructure
+    (structure, index) => index == currentStructure.value
   )?.id;
   if (structureId)
     router.push({ name: "structure", params: { structureId: structureId } });
