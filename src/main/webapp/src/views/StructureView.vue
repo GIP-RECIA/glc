@@ -41,7 +41,13 @@ watch(
 
 <template>
   <div>
-    <v-tabs v-model="currentTab" align-tabs="center">
+    <v-tabs
+      v-model="currentTab"
+      align-tabs="center"
+      show-arrows
+      hide-slider
+      selected-class="slide-group-item--activate"
+    >
       <v-tab :value="Tabs.Dashboard">{{ t("dashboard") }}</v-tab>
       <v-tab :value="Tabs.Info">{{ t("information") }}</v-tab>
       <v-tab :value="Tabs.AdministrativeStaff">{{
@@ -75,3 +81,12 @@ watch(
     <additional-fonctions-modal />
   </div>
 </template>
+
+<style scoped lang="scss">
+.slide-group-item--activate {
+  background-color: rgba(
+    var(--v-theme-primary),
+    var(--v-activated-opacity)
+  ) !important;
+}
+</style>
