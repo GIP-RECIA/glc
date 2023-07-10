@@ -8,21 +8,23 @@ const { currentEtab } = storeToRefs(structureStore);
 
 <template>
   <v-container fluid>
-    <div v-if="currentEtab">
-      <div>uai : {{ currentEtab.uai }}</div>
-      <div>etat : {{ currentEtab.etat }}</div>
-      <div>etatAlim : {{ currentEtab.etatAlim }}</div>
-      <div>source : {{ currentEtab.source }}</div>
-      <div>anneeScolaire : {{ currentEtab.anneeScolaire }}</div>
-      <div>adresse : {{ currentEtab.adresse }}</div>
-      <div>categorie : {{ currentEtab.categorie }}</div>
-      <div>mail : {{ currentEtab.mail }}</div>
-      <div>nom : {{ currentEtab.nom }}</div>
-      <div>nomCourt : {{ currentEtab.nomCourt }}</div>
-      <div>siren : {{ currentEtab.siren }}</div>
-      <div>siteWeb : {{ currentEtab.siteWeb }}</div>
-      <div>modeleLogin : {{ currentEtab.modeleLogin }}</div>
-      <div>logo : {{ currentEtab.logo }}</div>
-    </div>
+    <v-card flat>
+      <v-card-text v-if="currentEtab">
+        <div>uai : {{ currentEtab.uai }}</div>
+        <div>etat : {{ currentEtab.etat }}</div>
+        <div>etatAlim : {{ currentEtab.etatAlim }}</div>
+        <div>source : {{ currentEtab.source }}</div>
+        <div>anneeScolaire : {{ currentEtab.anneeScolaire }}</div>
+        <div>adresse : {{ currentEtab.adresse }}</div>
+        <div>categorie : {{ currentEtab.categorie }}</div>
+        <div>mail : {{ currentEtab.mail }}</div>
+        <div>nom : {{ currentEtab.nom }}</div>
+        <div>nomCourt : {{ currentEtab.nomCourt }}</div>
+        <div>siren : {{ currentEtab.siren }}</div>
+        <div>siteWeb : {{ currentEtab.siteWeb }}</div>
+        <div>modeleLogin : {{ currentEtab.modeleLogin }}</div>
+        <div>logo : {{ currentEtab.logo }}</div>
+      </v-card-text>
+    </v-card>
   </v-container>
 </template>

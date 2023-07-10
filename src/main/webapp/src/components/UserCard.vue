@@ -11,14 +11,17 @@ const { initCurrentPersonne } = personneStore;
 
 const props = defineProps<{
   user: SimplePersonne;
+  variant?: NonNullable<
+    "flat" | "text" | "elevated" | "tonal" | "outlined" | "plain"
+  >;
 }>();
 
 const { color, i18n } = getEtat(props.user.etat);
 </script>
 
 <template>
-  <v-card @click="initCurrentPersonne(user.id)">
-    <v-card-text>
+  <v-card :variant="variant" @click="initCurrentPersonne(user.id)">
+    <v-card-text class="pa-3">
       <v-icon
         icon="fas fa-user"
         :color="color"

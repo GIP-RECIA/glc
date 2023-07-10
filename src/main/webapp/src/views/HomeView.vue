@@ -63,7 +63,15 @@ const showPage = (page: number) => {
 
 <template>
   <v-container>
-    <v-text-field v-model="select" variant="solo" rounded clearable />
+    <v-text-field
+      v-model="select"
+      variant="solo"
+      rounded
+      clearable
+      flat
+      hide-details
+      class="mb-8"
+    />
     <v-row>
       <v-col
         v-for="(etablissement, index) in pageItems"
@@ -75,6 +83,7 @@ const showPage = (page: number) => {
       >
         <v-btn
           block
+          flat
           :to="{ name: 'structure', params: { structureId: etablissement.id } }"
         >
           <span v-if="etablissement.type">
@@ -92,6 +101,7 @@ const showPage = (page: number) => {
       v-model="pagination.page"
       :length="pagination.pages"
       rounded="circle"
+      class="mt-8"
       @update:model-value="showPage"
     />
   </v-container>

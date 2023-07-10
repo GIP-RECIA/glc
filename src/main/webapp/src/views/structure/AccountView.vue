@@ -63,7 +63,15 @@ items.value = personnes.value;
 
 <template>
   <v-container fluid>
-    <v-text-field v-model="select" variant="solo" rounded clearable />
+    <v-text-field
+      v-model="select"
+      variant="solo"
+      rounded
+      clearable
+      flat
+      hide-details
+      class="mb-8"
+    />
     <v-row>
       <v-col
         v-for="(user, index) in pageItems"
@@ -74,7 +82,7 @@ items.value = personnes.value;
         :xxl="3"
         class="pa-2"
       >
-        <user-card :user="user" />
+        <user-card variant="flat" :user="user" />
       </v-col>
     </v-row>
     <v-pagination
@@ -82,6 +90,7 @@ items.value = personnes.value;
       v-model="pagination.page"
       :length="pagination.pages"
       rounded="circle"
+      class="mt-8"
       @update:model-value="showPage"
     />
   </v-container>
