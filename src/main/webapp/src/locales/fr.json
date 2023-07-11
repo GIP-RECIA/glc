@@ -43,5 +43,13 @@
   "searchOutOfStructure": "Rechercher hors de la structure",
   "cancel": "Annuler",
   "signIn": "Connexion",
-  "casSignIn": "Connexion CAS"
+  "casSignIn": "Connexion CAS",
+  "result": "Résultat | Résultats",
+  "admin": "Administrateur",
+  "teacher": "Enseignant",
+  "student": "Eleve",
+  "legalRepresentative": "Responsable légal",
+  "communityStaff": "Personnel de collectivité",
+  "structureStaff": "Personnel de la structure",
+  "category": "Catégorie"
 }

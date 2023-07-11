@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import UserCard from "@/components/UserCard.vue";
+import AccountFilter from "@/components/filter/AccountFilter.vue";
 import { usePersonneStore } from "@/stores/personneStore";
 import type { SimplePersonne } from "@/types/personneType";
 import { storeToRefs } from "pinia";
@@ -8,7 +9,6 @@ import { watch, ref } from "vue";
 const personneStore = usePersonneStore();
 const { personnes } = storeToRefs(personneStore);
 
-const select = ref<string>();
 const items = ref<Array<SimplePersonne> | undefined>();
 const pageItems = ref<Array<SimplePersonne> | undefined>();
 const pagination = ref({
@@ -20,22 +20,6 @@ const itemsPerPage: number = 20;
 watch(personnes, (newValue) => {
   if (typeof newValue !== "undefined" && newValue !== null)
     items.value = newValue;
-});
-
-watch(select, (newValue) => {
-  if (typeof newValue !== "undefined" && newValue !== null) {
-    items.value = personnes.value?.filter((personne) => {
-      let filters =
-        personne.givenName.toLowerCase().indexOf(newValue.toLowerCase()) > -1;
-      if (personne.patronyme) {
-        filters =
-          filters ||
-          personne.patronyme.toLowerCase().indexOf(newValue.toLowerCase()) > -1;
-      }
-
-      return filters;
-    });
-  } else items.value = personnes.value;
 });
 
 watch(items, (newValue) => {
@@ -63,14 +47,9 @@ items.value = personnes.value;
 
 <template>
   <v-container fluid>
-    <v-text-field
-      v-model="select"
-      variant="solo"
-      rounded
-      clearable
-      flat
-      hide-details
+    <account-filter
       class="mb-8"
+      @update:result="(result: Array<SimplePersonne>) => items = result"
     />
     <v-row>
       <v-col

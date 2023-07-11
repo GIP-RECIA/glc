@@ -43,5 +43,13 @@
   "searchOutOfStructure": "search out of structure",
   "cancel": "Cancel",
   "signIn": "Sign In",
-  "casSignIn": "CAS sign in"
+  "casSignIn": "CAS sign in",
+  "result": "Result | Results",
+  "admin": "Administrator",
+  "teacher": "Teacher",
+  "student": "student",
+  "legalRepresentative": "Legal representative",
+  "communityStaff": "Community staff",
+  "structureStaff": "Structure staff",
+  "category": "Category"
 }
