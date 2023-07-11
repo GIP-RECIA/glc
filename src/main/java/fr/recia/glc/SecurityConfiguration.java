@@ -191,8 +191,8 @@ public class SecurityConfiguration {
     http.cors().configurationSource(corsConfigurationSource());
     http.sessionManagement().sessionFixation().newSession();
 
-    http.
-      addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class).exceptionHandling()
+    http
+      .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class).exceptionHandling()
       .authenticationEntryPoint(casAuthenticationEntryPoint());
 
     http
