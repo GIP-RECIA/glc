@@ -6,7 +6,7 @@ import { Etat } from "@/types/enums/Etat";
 import type { SimplePersonne } from "@/types/personneType";
 import isEmpty from "lodash.isempty";
 import { storeToRefs } from "pinia";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const emit =
@@ -19,17 +19,11 @@ const { t } = useI18n();
 const personneStore = usePersonneStore();
 const { personnes } = storeToRefs(personneStore);
 
-const nbResults = ref<number>(0);
+const nbResults = ref<number>(personnes.value ? personnes.value.length : 0);
 
 let searchFilter: string | undefined;
 let categoryFilter: Array<string>;
 let statusFilter: Array<string>;
-
-// Définition du nombre de résultats par défaut
-watch(personnes, (newValue) => {
-  if (newValue !== undefined && newValue !== null && nbResults.value == 0)
-    nbResults.value = newValue.length;
-});
 
 const setSearchFilter = (newValue: string | undefined) => {
   searchFilter = newValue;
