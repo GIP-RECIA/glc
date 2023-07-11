@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { usePersonneStore } from "@/stores/personneStore";
+import type { enumValues } from "@/types/enumValuesType";
 import { getEtat } from "@/types/enums/Etat";
 import type { SimplePersonne } from "@/types/personneType";
+import { unref, onUpdated, ref } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
@@ -16,7 +18,15 @@ const props = defineProps<{
   >;
 }>();
 
-const { color, i18n } = getEtat(props.user.etat);
+let oldEtat = unref(props.user.etat);
+const displayEtat = ref<enumValues>(getEtat(props.user.etat));
+
+onUpdated(() => {
+  if (oldEtat != props.user.etat) {
+    displayEtat.value = getEtat(props.user.etat);
+    oldEtat = props.user.etat;
+  }
+});
 </script>
 
 <template>
@@ -24,9 +34,9 @@ const { color, i18n } = getEtat(props.user.etat);
     <v-card-text class="pa-3">
       <v-icon
         icon="fas fa-user"
-        :color="color"
-        :title="t(i18n)"
-        :alt="t(i18n)"
+        :color="displayEtat.color"
+        :title="t(displayEtat.i18n)"
+        :alt="t(displayEtat.i18n)"
         class="mr-2"
       />{{
         user.patronyme ? `${user.patronyme} ${user.givenName}` : user.givenName
