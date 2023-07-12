@@ -51,5 +51,7 @@
   "legalRepresentative": "Responsable légal",
   "communityStaff": "Personnel de collectivité",
   "structureStaff": "Personnel de la structure",
-  "category": "Catégorie"
+  "category": "Catégorie",
+  "hideEmpty": "Masquer les séctions vides",
+  "showAll": "Tout afficher"
 }

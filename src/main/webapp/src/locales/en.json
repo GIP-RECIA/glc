@@ -51,5 +51,7 @@
   "legalRepresentative": "Legal representative",
   "communityStaff": "Community staff",
   "structureStaff": "Structure staff",
-  "category": "Category"
+  "category": "Category",
+  "hideEmpty": "Hide empty",
+  "showAll": "Show all"
 }
