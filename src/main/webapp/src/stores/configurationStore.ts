@@ -61,6 +61,10 @@ export const useConfigurationStore = defineStore("configuration", () => {
 
   const isAdditionalFonction = ref<boolean>(false);
 
+  /* -- Gestion de la modale des enseignements complémentaires -- */
+
+  const isAdditionalTeachings = ref<boolean>(false);
+
   /* -- Gestion de l'authentification -- */
 
   const isAuthenticated = ref<boolean>(false);
@@ -78,6 +82,7 @@ export const useConfigurationStore = defineStore("configuration", () => {
     setCurrentStructure,
     setCurrentTab,
     isAdditionalFonction,
+    isAdditionalTeachings,
     isAuthenticated,
   };
 });

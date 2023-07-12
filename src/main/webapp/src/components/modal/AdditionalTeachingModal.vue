@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import SearchPersonne from "@/components/SearchPersonne.vue";
 import BaseModal from "@/components/modal/BaseModal.vue";
-import { setPersonneAdditionalFonctions } from "@/services/personneService";
+import { setPersonneAdditionalTeachings } from "@/services/personneService";
 import { useConfigurationStore } from "@/stores/configurationStore";
-import { useFonctionStore } from "@/stores/fonctionStore";
 import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
@@ -11,10 +10,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const configurationStore = useConfigurationStore();
-const { isAdditionalFonction } = storeToRefs(configurationStore);
-
-const fonctionStore = useFonctionStore();
-const { customMapping } = storeToRefs(fonctionStore);
+const { isAdditionalTeachings } = storeToRefs(configurationStore);
 
 const selectedUser = ref<number | undefined>();
 const selected = ref<Array<string>>([]);
@@ -28,36 +24,16 @@ const setSelectedUser = (id: number | undefined) => {
 };
 
 const save = () => {
-  isAdditionalFonction.value = false;
-  setPersonneAdditionalFonctions(selectedUser.value!, selected.value);
+  isAdditionalTeachings.value = false;
+  setPersonneAdditionalTeachings(selectedUser.value!, selected.value);
 };
 </script>
 
 <template>
-  <base-modal v-model="isAdditionalFonction" :title="t('add')">
+  <base-modal v-model="isAdditionalTeachings" :title="t('add')">
     <search-personne @update:select="setSelectedUser" />
     <div>
-      <b>{{ t("additionalFunction", 2) }}</b>
-    </div>
-    <div v-for="(filiere, index) in customMapping?.filieres" :key="index">
-      <div>
-        <b>{{ filiere.libelleFiliere }}</b>
-      </div>
-      <div class="d-flex flex-row flex-wrap">
-        <div
-          v-for="(discipline, index) in filiere.disciplines"
-          :key="index"
-          class="flex-item"
-        >
-          <v-checkbox
-            v-model="selected"
-            :label="discipline.disciplinePoste"
-            :value="`${filiere.id}-${discipline.id}`"
-            color="primary"
-            :hide-details="true"
-          />
-        </div>
-      </div>
+      <b>{{ t("additionalTeaching", 2) }}</b>
     </div>
     <template #footer>
       <v-btn

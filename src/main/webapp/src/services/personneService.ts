@@ -10,4 +10,14 @@ const setPersonneAdditionalFonctions = async (
   additionalFonctions: Array<string>
 ) => await axios.post(`/personne/${id}/fonction`, { additionalFonctions });
 
-export { getPersonne, searchPersonne, setPersonneAdditionalFonctions };
+const setPersonneAdditionalTeachings = async (
+  id: number,
+  additionalTeaching: Array<string>
+) => {};
+
+export {
+  getPersonne,
+  searchPersonne,
+  setPersonneAdditionalFonctions,
+  setPersonneAdditionalTeachings,
+};

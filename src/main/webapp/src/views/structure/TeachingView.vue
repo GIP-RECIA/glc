@@ -9,7 +9,7 @@ import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
 const configurationStore = useConfigurationStore();
-const { isAdditionalFonction } = storeToRefs(configurationStore);
+const { isAdditionalTeachings } = storeToRefs(configurationStore);
 
 const fonctionStore = useFonctionStore();
 const { teaching } = storeToRefs(fonctionStore);
@@ -40,7 +40,7 @@ const showAll = ref<boolean>(false);
       <v-btn
         variant="tonal"
         icon="fas fa-user-plus"
-        @click="isAdditionalFonction = true"
+        @click="isAdditionalTeachings = true"
       />
     </div>
   </v-container>
