@@ -37,6 +37,7 @@ export const useStructureStore = defineStore("structure", () => {
     // Mise à jour de l'onglet
     const index = structures.findIndex((structures) => structures.id == id);
     if (index == -1) {
+      setCurrentTab(Tabs.Dashboard);
       structures.push({
         id: id,
         name: currentEtab?.value?.type
@@ -45,7 +46,6 @@ export const useStructureStore = defineStore("structure", () => {
       });
       setCurrentStructure(structures.length - 1);
     } else setCurrentStructure(index);
-    setCurrentTab(Tabs.Dashboard);
   };
 
   return {
