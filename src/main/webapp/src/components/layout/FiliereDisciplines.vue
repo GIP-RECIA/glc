@@ -2,15 +2,36 @@
 import UserCard from "@/components/UserCard.vue";
 import type { Discipline } from "@/types/disciplineType";
 import type { Filiere } from "@/types/filiereType";
-import { onBeforeMount, unref, onUpdated, ref } from "vue";
+import { watch, onBeforeMount, unref, ref } from "vue";
 
 const props = defineProps<{
   filiere: Filiere;
   showAll: boolean;
 }>();
 
-let oldShowAll = unref(props.showAll);
 const disciplines = ref<Array<Discipline>>([]);
+
+onBeforeMount(() => {
+  filteredDisciplines();
+});
+
+watch(
+  () => props.showAll,
+  (newValue, oldValue) => {
+    if (newValue != oldValue) {
+      filteredDisciplines();
+    }
+  }
+);
+
+watch(
+  () => props.filiere,
+  (newValue, oldValue) => {
+    if (newValue != oldValue) {
+      filteredDisciplines();
+    }
+  }
+);
 
 const filteredDisciplines = (): void => {
   const filteredDisciplines = unref(props.filiere.disciplines);
@@ -21,17 +42,6 @@ const filteredDisciplines = (): void => {
         (discipline) => discipline.personnes.length > 0
       );
 };
-
-onBeforeMount(() => {
-  filteredDisciplines();
-});
-
-onUpdated(() => {
-  if (unref(props.showAll) != oldShowAll) {
-    oldShowAll = unref(props.showAll);
-    filteredDisciplines();
-  }
-});
 </script>
 
 <template>
