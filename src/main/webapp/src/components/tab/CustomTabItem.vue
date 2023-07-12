@@ -18,9 +18,7 @@ defineEmits<(event: "close", payload: number) => void>();
     class="d-flex align-center mx-1 v-btn v-btn--size-default"
   >
     <router-link
-      :class="`d-flex align-center text-decoration-none ml-2 h-100 ${
-        selected ? '' : 'text-black'
-      }`"
+      class="d-flex align-center text-decoration-none ml-2 h-100"
       :to="link"
     >
       {{ title }}
@@ -35,3 +33,9 @@ defineEmits<(event: "close", payload: number) => void>();
     </v-btn>
   </v-card>
 </template>
+
+<style scoped lang="scss">
+a {
+  color: inherit;
+}
+</style>
