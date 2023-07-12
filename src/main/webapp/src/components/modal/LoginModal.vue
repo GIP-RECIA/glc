@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { signIn } from "@/services/authenticationService";
+import AuthenticationService from "@/cas-publisher/AuthenticationService.js";
+import PrincipalService from "@/cas-publisher/PrincipalService.js";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
@@ -12,17 +13,73 @@ const { t } = useI18n();
 
 const modelValue = computed<boolean>(() => !isAuthenticated.value);
 
+// Objet en charge de la redirection vers le serveur CAS
+const relogState = {};
+
+// Méthode en charge du processus de connexion
+// Une fois connecté, l'utilisateur est redirigé
 const login = async () => {
+  AuthenticationService.login()
+    .then(() => {
+      // this.authenticationError = false;
+      console.log("BACK TO HOME OR OTHER ROUTE");
+    })
+    .catch(() => {
+      console.error("error");
+      // this.authenticationError = true;
+      relog();
+    });
+};
+
+// Méthode effectuant une redirection sur le serveur CAS,
+// un listener est mis en place afin de détecter la réponse
+// du serveur CAS
+const relog = (closeLoginModal = true) => {
+  windowOpenCleanup(relogState, closeLoginModal);
+  relogState.listener = onmessage;
+  window.addEventListener("message", onmessage);
+
+  relogState.window = window.open(casUrlLogin.value);
+
+  // console.log(casUrlLogin.value);
+  // if (casUrlLogin.value != undefined) window.open(casUrlLogin.value);
+};
+
+// Méthode de nettoyage de la page de login
+const windowOpenCleanup = (state, closeLoginModal) => {
   try {
-    const response = await signIn();
-    console.log(response);
+    if (state.listener) {
+      window.removeEventListener("message", state.listener);
+    }
+    if (state.window) {
+      state.window.close();
+    }
+    if (closeLoginModal) {
+      // && this.$store.getters.getLoginModalOpened) {
+      console.log("setLoginModalOpened");
+      // this.$store.commit("setLoginModalOpened", false);
+    }
   } catch (e) {
-    relog();
+    // eslint-disable-next-line
+    console.error(e);
   }
 };
 
-const relog = () => {
-  if (casUrlLogin.value != undefined) window.open(casUrlLogin.value);
+// Méthode utilisé lors de la réception de la réponse
+// du serveur CAS puis redirige l'utilisateur
+const onmessage = (e) => {
+  if (typeof e.data !== "string") {
+    return;
+  }
+  const m = e.data.match(/^loggedUser=(.*)$/);
+  if (!m) {
+    return;
+  }
+
+  windowOpenCleanup(relogState, true);
+  PrincipalService.identify(true).then(() => {
+    console.log("BACK TO HOME OR OTHER ROUTE");
+  });
 };
 </script>
 
