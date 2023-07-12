@@ -33,7 +33,9 @@ onUpdated(() => {
   <v-card :variant="variant" @click="initCurrentPersonne(user.id)">
     <v-card-text class="pa-3">
       <v-icon
-        icon="fas fa-user"
+        :icon="
+          user.source.startsWith('SarapisUi_') ? 'far fa-user' : 'fas fa-user'
+        "
         :color="displayEtat.color"
         :title="t(displayEtat.i18n)"
         :alt="t(displayEtat.i18n)"
