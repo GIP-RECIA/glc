@@ -1,7 +1,9 @@
-import { useConfigurationStore } from "./configurationStore";
-import { useStructureStore } from "./structureStore";
 import { getPersonne } from "@/services/personneService";
+import { useConfigurationStore } from "@/stores/configurationStore";
+import { useStructureStore } from "@/stores/structureStore";
+import { Etat } from "@/types/enums/Etat";
 import type { Personne, SimplePersonne } from "@/types/personneType";
+import isEmpty from "lodash.isempty";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
@@ -57,6 +59,16 @@ export const usePersonneStore = defineStore("personne", () => {
     return currentEtab?.personnes;
   });
 
+  const deletedPersonnes = computed<Array<SimplePersonne>>(() => {
+    const { currentEtab } = structureStore;
+
+    const result = currentEtab?.personnes?.filter(
+      (personne) => personne.etat == Etat.Delete
+    );
+
+    return isEmpty(result) ? [] : result!;
+  });
+
   /**
    * Retourne la liste des personnes de la structure courante formaté
    */
@@ -92,6 +104,7 @@ export const usePersonneStore = defineStore("personne", () => {
     isCurrentPersonne,
     additionalFonctionsForCheckboxes,
     personnes,
+    deletedPersonnes,
     searchList,
     administrative,
   };
