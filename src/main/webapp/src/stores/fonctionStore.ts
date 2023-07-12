@@ -18,8 +18,12 @@ export const useFonctionStore = defineStore("fonctions", () => {
    * par source
    */
   const init = async (): Promise<void> => {
-    fonctions.value = (await getFonctions()).data;
+    if (!isInit.value) fonctions.value = (await getFonctions()).data;
   };
+
+  const isInit = computed<boolean>(() =>
+    fonctions.value ? fonctions.value.length > 0 : false
+  );
 
   /* -- Pour la structure courante -- */
 
@@ -77,6 +81,7 @@ export const useFonctionStore = defineStore("fonctions", () => {
 
   return {
     init,
+    isInit,
     filieres,
     customMapping,
     administrative,

@@ -2,7 +2,6 @@
 import AdditionalFonctionsModal from "@/components/modal/AdditionalFonctionsModal.vue";
 import UserModal from "@/components/modal/UserModal.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
-import { useFonctionStore } from "@/stores/fonctionStore";
 import { useStructureStore } from "@/stores/structureStore";
 import { Tabs } from "@/types/enums/Tabs";
 import AccountView from "@/views/structure/AccountView.vue";
@@ -20,9 +19,6 @@ const { t } = useI18n();
 
 const route = useRoute();
 const { structureId } = route.params;
-
-const fonctionStore = useFonctionStore();
-fonctionStore.init();
 
 const structureStore = useStructureStore();
 structureStore.initCurrentEtab(Number(structureId));

@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { useFonctionStore } from "./stores/fonctionStore";
 import LoginModal from "@/components/modal/LoginModal.vue";
 import CustomTabBar from "@/components/tab/CustomTabBar.vue";
 import { useConfigurationStore } from "@/stores/configurationStore";
 import { storeToRefs } from "pinia";
-import { onBeforeMount } from "vue";
+import { watch, onBeforeMount } from "vue";
 
 onBeforeMount(() => {
   let extendedUportalHeaderScript = document.createElement("script");
@@ -23,6 +24,13 @@ onBeforeMount(() => {
 const configurationStore = useConfigurationStore();
 configurationStore.init();
 const { isAuthenticated } = storeToRefs(configurationStore);
+
+const fonctionStore = useFonctionStore();
+isAuthenticated.value && fonctionStore.init();
+
+watch(isAuthenticated, (newValue) => {
+  newValue && fonctionStore.init();
+});
 </script>
 
 <template>
