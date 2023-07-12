@@ -44,6 +44,7 @@ watch(
       show-arrows
       hide-slider
       selected-class="slide-group-item--activate"
+      class="mt-2"
     >
       <v-tab :value="Tabs.Dashboard">{{ t("dashboard") }}</v-tab>
       <v-tab :value="Tabs.Info">{{ t("information") }}</v-tab>
