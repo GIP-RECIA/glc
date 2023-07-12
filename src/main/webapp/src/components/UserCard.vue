@@ -22,9 +22,9 @@ let oldEtat = unref(props.user.etat);
 const displayEtat = ref<enumValues>(getEtat(props.user.etat));
 
 onUpdated(() => {
-  if (oldEtat != props.user.etat) {
-    displayEtat.value = getEtat(props.user.etat);
-    oldEtat = props.user.etat;
+  if (props.user.etat != oldEtat) {
+    oldEtat = unref(props.user.etat);
+    displayEtat.value = getEtat(oldEtat);
   }
 });
 </script>
