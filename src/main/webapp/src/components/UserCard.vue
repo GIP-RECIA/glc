@@ -3,7 +3,7 @@ import { usePersonneStore } from "@/stores/personneStore";
 import type { enumValues } from "@/types/enumValuesType";
 import { getEtat } from "@/types/enums/Etat";
 import type { SimplePersonne } from "@/types/personneType";
-import { unref, onUpdated, ref } from "vue";
+import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
@@ -18,15 +18,16 @@ const props = defineProps<{
   >;
 }>();
 
-let oldEtat = unref(props.user.etat);
 const displayEtat = ref<enumValues>(getEtat(props.user.etat));
 
-onUpdated(() => {
-  if (props.user.etat != oldEtat) {
-    oldEtat = unref(props.user.etat);
-    displayEtat.value = getEtat(oldEtat);
+watch(
+  () => props.user.etat,
+  (newValue, oldValue) => {
+    if (newValue != oldValue) {
+      displayEtat.value = getEtat(newValue);
+    }
   }
-});
+);
 </script>
 
 <template>
