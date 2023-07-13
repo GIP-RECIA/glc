@@ -1,90 +1,94 @@
-import AccountService from "./AccountService";
+import FetchWrapper from "./FetchWrapper";
+import { storeToRefs } from "pinia";
 
 class PrincipalService {
+  constructor(store) {
+    this.store = store;
+    this.fw = new FetchWrapper(store);
+    this.refs = storeToRefs(store);
+  }
+
   identify(force) {
     return new Promise((resolve, reject) => {
-      var identity = undefined; // store.getters.getIdentity;
+      let identity2 = this.refs.identity.value;
       if (force === true) {
         console.log("force");
-        // store.commit("setIdentity", undefined);
-        identity = undefined;
+        this.refs.identity.value = undefined;
+        identity2 = undefined;
       }
 
       // check and see if we have retrieved the identity data from the server.
       // if we have, reuse it by immediately resolving
-      if (identity !== undefined && identity !== null) {
-        resolve(identity);
+      if (identity2 !== undefined && identity2 !== null) {
+        resolve(identity2);
       } else {
         // retrieve the identity data from the server, update the identity object, and then resolve.
-        AccountService.account()
+        this.fw
+          .getJson("api/account")
           .then((response) => {
             console.log(
               "setIdentity:",
               response.data,
               "setAuthenticated: true"
             );
-            // store.commit("setIdentity", response.data);
-            // store.commit("setAuthenticated", true);
-            resolve(identity);
+            this.refs.identity.value = response.data;
+            this.refs.authenticated.value = true;
+            resolve(identity2);
           })
           .catch(() => {
             console.log("setIdentity:", null, "setAuthenticated: true");
-            // store.commit("setIdentity", null);
-            // store.commit("setAuthenticated", false);
-            reject(identity);
+            this.refs.identity.value = null;
+            this.refs.authenticated.value = false;
+            reject(identity2);
           });
       }
     });
   }
 
-  authenticate(identity) {
-    console.log("authenticate", identity);
-    // store.commit("setIdentity", identity);
-    // store.commit(
-    //   "setAuthenticated",
-    //   identity !== null && identity !== undefined
-    // );
+  authenticate(identity2) {
+    console.log("authenticate", identity2);
+    this.refs.identity.value = identity2;
+    this.refs.authenticated.value =
+      identity2 !== null && identity2 !== undefined;
   }
 
   isInAnyRole(roles) {
-    return true;
-    // const identity = store.getters.getIdentity;
-    // const authenticated = store.getters.getAuthenticated;
-    // if (
-    //   !authenticated ||
-    //   identity === undefined ||
-    //   identity === null ||
-    //   !identity.roles
-    // ) {
-    //   return false;
-    // }
+    const identity2 = this.refs.identity.value;
+    const authenticated2 = this.refs.authenticated.value;
+    if (
+      !authenticated2 ||
+      identity2 === undefined ||
+      identity2 === null ||
+      !identity2.roles
+    ) {
+      return false;
+    }
 
-    // return roles.some((role) => this.isInRole(role));
+    return roles.some((role) => this.isInRole(role));
   }
 
   isInRole(role) {
-    return true;
-    // const identity = store.getters.getIdentity;
-    // const authenticated = store.getters.getAuthenticated;
-    // if (
-    //   !authenticated ||
-    //   identity === undefined ||
-    //   identity === null ||
-    //   !identity.roles
-    // ) {
-    //   return false;
-    // }
-    // return identity.roles.indexOf(role) !== -1;
+    const identity2 = this.refs.identity.value;
+    const authenticated2 = this.refs.authenticated.value;
+    if (
+      !authenticated2 ||
+      identity2 === undefined ||
+      identity2 === null ||
+      !identity2.roles
+    ) {
+      return false;
+    }
+
+    return this.refs.identity.roles.indexOf(role) !== -1;
   }
 
   isAuthenticated() {
-    return false;
-    // return store.getters.getAuthenticated;
+    return this.refs.authenticated.value;
   }
 
   isIdentityResolved() {
-    return false; // typeof store.getters.getIdentity !== "undefined";
+    return typeof this.refs.identity.value !== "undefined";
   }
 }
 
-export default new PrincipalService();
+export default PrincipalService;

@@ -1,11 +1,18 @@
 import CookieUtils from "./CookieUtils";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 
 const { VITE_API_URL } = import.meta.env;
 
 class FetchWrapper {
+  constructor(store) {
+    this.refs = storeToRefs(store);
+    this.route = useRoute();
+  }
+
   countPendingRequests() {
-    return countPendingRequests;
+    return countPendingRequests.value;
   }
 
   getJson(url) {
@@ -49,7 +56,7 @@ class FetchWrapper {
 }
 
 // Compteur des requêtes en cours
-var countPendingRequests = ref(0);
+const countPendingRequests = ref(0);
 
 // Fonction permettant de faire une requête JSON et de la réessayer après login si erreur 401
 function fetchWithRetry(resolve, reject, url, params) {
@@ -59,22 +66,22 @@ function fetchWithRetry(resolve, reject, url, params) {
       if (!response.ok) {
         if (
           response.status !== 401 ||
-          url === VITE_API_URL + "api/account" // ||
-          // store.getters.getLoginModalOpened
+          url === VITE_API_URL + "api/account" ||
+          this.refs.loginModalOpened.value
         ) {
           reject(response);
         } else {
           // Si erreur 401, redirection vers la page de login
           console.error("401");
-          // if (router.currentRoute.value.name !== "Login") {
-          //   store.commit("setLoginModalOpened", true);
-          //   store.commit("setReturnRoute", {
-          //     name: router.currentRoute.value.name,
-          //     params: router.currentRoute.value.params,
-          //     meta: router.currentRoute.value.meta,
-          //   });
-          //   router.push({ name: "Login" });
-          // }
+          if (this.route.name !== "Login") {
+            this.refs.loginModalOpened.value = true;
+            this.refs.returnRoute.value = {
+              name: this.route.name,
+              params: this.route.params,
+              meta: this.route.meta,
+            };
+            console.log("GO TO LOGIN");
+          }
         }
       } else {
         response
@@ -178,4 +185,4 @@ function jsonp(url, callbackName, timeout) {
   });
 }
 
-export default new FetchWrapper();
+export default FetchWrapper;

@@ -1,12 +1,21 @@
 import FetchWrapper from "./FetchWrapper";
 import PrincipalService from "./PrincipalService";
+import { storeToRefs } from "pinia";
 
 class AuthenticationService {
+  constructor(store) {
+    this.refs = storeToRefs(store);
+    this.fw = new FetchWrapper(store);
+    this.ps = new PrincipalService(store);
+  }
+
   login() {
     return new Promise((resolve, reject) => {
-      FetchWrapper.getJsonP("app/login")
+      this.fw
+        .getJsonP("app/login")
         .then(() => {
-          PrincipalService.identify(true)
+          this.ps
+            .identify(true)
             .then((account) => {
               if (
                 account !== undefined &&
@@ -14,7 +23,7 @@ class AuthenticationService {
                 account.user.langKey !== null
               ) {
                 console.log("setLang");
-                // store.commit("setLang", account.user.langKey);
+                this.refs.lang.value = account.user.langKey;
               }
               resolve(account);
             })
@@ -24,7 +33,7 @@ class AuthenticationService {
         })
         .catch((err) => {
           this.logout();
-          PrincipalService.authenticate(null);
+          this.ps.authenticate(null);
           reject(err);
         });
     });
@@ -32,10 +41,11 @@ class AuthenticationService {
 
   logout() {
     return new Promise((resolve, reject) => {
-      FetchWrapper.postJson("api/logout")
+      this.fw
+        .postJson("api/logout")
         .then((response) => {
           console.log("clearAll");
-          // store.commit("clearAll");
+          this.store.clearAll();
           resolve(response);
         })
         .catch((err) => {
@@ -45,31 +55,29 @@ class AuthenticationService {
   }
 
   authorize() {
-    return PrincipalService.identify().then(() => {
-      const isAuthenticated = PrincipalService.isAuthenticated();
+    return this.ps.identify().then(() => {
+      const isAuthenticated = new PrincipalService(
+        this.store
+      ).isAuthenticated();
       if (
-        // store.getters.getNextRoute.meta.roles &&
-        // store.getters.getNextRoute.meta.roles.length > 0 &&
-        // !PrincipalService.isInAnyRole(store.getters.getNextRoute.meta.roles)
-        true
+        this.refs.nextRoute.value.meta.roles &&
+        this.refs.nextRoute.value.meta.roles.length > 0 &&
+        !this.ps.isInAnyRole(this.refs.nextRoute.value.meta.roles)
       ) {
         if (isAuthenticated) {
           // user is signed in but not authorized for desired state
           console.log("AccessDenied");
-          // router.push({ name: "AccessDenied" });
         } else {
           // user is not authenticated. stow the state they wanted before you
           // send them to the signin state, so you can return them when you're done
-          console.log("setReturnRoute");
-          // store.commit("setReturnRoute", store.getters.getNextRoute);
+          console.log("setReturnRoute", this.refs.nextRoute.value);
 
           // now, send them to the signin state so they can log in
           console.log("Login");
-          // router.push({ name: "Login" });
         }
       }
     });
   }
 }
 
-export default new AuthenticationService();
+export default AuthenticationService;

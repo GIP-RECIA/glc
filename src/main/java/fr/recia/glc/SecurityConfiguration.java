@@ -185,7 +185,7 @@ public class SecurityConfiguration {
   @Bean
   public CasAuthenticationFilter casAuthenticationFilter() {
     CasAuthenticationFilter casAuthenticationFilter = new CasAuthenticationFilter();
-    casAuthenticationFilter.setFilterProcessesUrl("/j_spring_cas_security_check");
+    casAuthenticationFilter.setFilterProcessesUrl("/" + casService);
     casAuthenticationFilter.setAuthenticationManager(authenticationManager());
     casAuthenticationFilter.setAuthenticationDetailsSource(new RememberWebAuthenticationDetailsSource(
       serviceUrlHelper(), serviceProperties(), getCasTargetUrlParameter()
@@ -206,6 +206,27 @@ public class SecurityConfiguration {
   }
 
   // Spring
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+    if (corsEnable) {
+      if (log.isWarnEnabled()) log.warn("CORS ABILITATI! CORS est autorisé");
+
+      final CorsConfiguration configuration = new CorsConfiguration();
+
+      configuration.setAllowCredentials(corsAllowCredentials);
+      configuration.setAllowedOrigins(corsAllowedOrigins);
+      configuration.setExposedHeaders(corsExposedHeaders);
+      configuration.setAllowedHeaders(corsAllowedHeaders);
+      configuration.setAllowedMethods(corsAllowedMethods);
+
+      source.registerCorsConfiguration("/**", configuration);
+    }
+
+    return source;
+  }
 
   @Bean
   public WebSecurityCustomizer webSecurityCustomizer() {
@@ -235,10 +256,13 @@ public class SecurityConfiguration {
         .requestMatchers(HttpMethod.OPTIONS).permitAll()
         .requestMatchers(
           "/health-check",
-          "/app/**",
+          "/app/**/*.{js, ts, html}",
           "/api/**"
         ).permitAll()
-//        .requestMatchers("/api/**").authenticated()
+        .requestMatchers(
+          "/app/**",
+          PROTECTED_PATH + "**"
+        ).authenticated()
         .anyRequest().denyAll()
       );
 
@@ -271,24 +295,4 @@ public class SecurityConfiguration {
     return filterRegistrationBean;
   }
 
-  @Bean
-  CorsConfigurationSource corsConfigurationSource() {
-    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-    if (corsEnable) {
-      if (log.isWarnEnabled()) log.warn("CORS ABILITATI! CORS est autorisé");
-
-      final CorsConfiguration configuration = new CorsConfiguration();
-
-      configuration.setAllowCredentials(corsAllowCredentials);
-      configuration.setAllowedOrigins(corsAllowedOrigins);
-      configuration.setExposedHeaders(corsExposedHeaders);
-      configuration.setAllowedHeaders(corsAllowedHeaders);
-      configuration.setAllowedMethods(corsAllowedMethods);
-
-      source.registerCorsConfiguration("/**", configuration);
-    }
-
-    return source;
-  }
 }

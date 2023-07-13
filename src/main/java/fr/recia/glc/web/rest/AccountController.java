@@ -21,17 +21,17 @@ import java.io.IOException;
 @Slf4j
 public class AccountController {
 
-  @GetMapping(value = "/signin")
-  public ResponseEntity<CustomUserDetails> signIn() {
-    CustomUserDetails userDetails = SecurityUtils.getCurrentUserDetails();
-    log.debug("UserDetails: {}", userDetails);
-    if (userDetails == null)
-      return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//  @GetMapping(value = "/signin")
+//  public ResponseEntity<CustomUserDetails> signIn() {
+//    CustomUserDetails userDetails = SecurityUtils.getCurrentUserDetails();
+//    log.debug("UserDetails: {}", userDetails);
+//    if (userDetails == null)
+//      return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+//
+//    return new ResponseEntity<>(userDetails, HttpStatus.OK);
+//  }
 
-    return new ResponseEntity<>(userDetails, HttpStatus.OK);
-  }
-
-  @RequestMapping("/login")
+  @RequestMapping(value = "/login")
   public Object login(Model model, HttpServletRequest request) throws IOException {
     log.debug("=========> Login Call ");
         /*String then = request.getParameter("then");
